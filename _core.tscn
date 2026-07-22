@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bv3klgr035oac"]
+[gd_scene format=3 uid="uid://bv3klgr035oac"]
 
 [ext_resource type="Script" uid="uid://bf52dr70k2ej5" path="res://_core.gd" id="1_110wm"]
 [ext_resource type="Script" uid="uid://djvk5f1dkttil" path="res://core/inspector.gd" id="2_2jvhd"]
@@ -17,106 +17,107 @@
 [ext_resource type="PackedScene" uid="uid://d08p5bfc634r" path="res://scenes/peekaboo/_peekaboo.tscn" id="21_pw4lx"]
 [ext_resource type="PackedScene" uid="uid://cxiw0m4n4emut" path="res://scenes/swiper/_swiper.tscn" id="22_t1t3w"]
 
-[node name="_Core" type="Node2D"]
+[node name="_Core" type="Node2D" unique_id=2081767672]
 script = ExtResource("1_110wm")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1173798803]
 unique_name_in_owner = true
 anchor_mode = 0
 
-[node name="_Core_Variables" type="Node" parent="."]
+[node name="_Core_Variables" type="Node" parent="." unique_id=2000460852]
 script = ExtResource("2_swu0y")
 
-[node name="Debug" type="Node" parent="."]
+[node name="Debug" type="Node" parent="." unique_id=1990757988]
 
-[node name="Inspectors" type="Node" parent="Debug"]
+[node name="Inspectors" type="Node" parent="Debug" unique_id=773959973]
 
-[node name="Cards Inspector" type="Node" parent="Debug/Inspectors"]
+[node name="Cards Inspector" type="Node" parent="Debug/Inspectors" unique_id=657801642]
 script = ExtResource("2_2jvhd")
 
-[node name="Portraits Inspector" type="Node" parent="Debug/Inspectors" node_paths=PackedStringArray("inspectee_3")]
+[node name="Portraits Inspector" type="Node" parent="Debug/Inspectors" unique_id=1707938554 node_paths=PackedStringArray("inspectee_3")]
 script = ExtResource("2_2jvhd")
 inspectee_3 = NodePath("../../../Scenes/Scene Grid/_Starter")
 
-[node name="Log" type="Node" parent="Debug"]
+[node name="Log" type="Node" parent="Debug" unique_id=19897430]
 script = ExtResource("3_day3e")
 
-[node name="Label" type="Label" parent="Debug/Log"]
+[node name="Label" type="Label" parent="Debug/Log" unique_id=1373822675]
 offset_right = 40.0
 offset_bottom = 23.0
 
-[node name="Turner" parent="." instance=ExtResource("5_okhcm")]
+[node name="Turner" parent="." unique_id=730354619 instance=ExtResource("5_okhcm")]
 
-[node name="_Core_Lambdas" type="Node" parent="."]
+[node name="_Core_Lambdas" type="Node" parent="." unique_id=1745341184]
 unique_name_in_owner = true
 script = ExtResource("11_yes15")
 
-[node name="Documentation" type="Node" parent="."]
+[node name="Documentation" type="Node" parent="." unique_id=1610529775]
 script = ExtResource("12_dhys3")
 
-[node name="_Core_Data_Lambdas" type="Node" parent="."]
+[node name="_Core_Data_Lambdas" type="Node" parent="." unique_id=1857056034]
 script = ExtResource("9_swu0y")
 
-[node name="Current Scene" type="Node" parent="."]
+[node name="Current Scene" type="Node" parent="." unique_id=1147398754]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Current Scene"]
+[node name="CanvasLayer" type="CanvasLayer" parent="Current Scene" unique_id=1486082117]
 
-[node name="MarginContainer" type="MarginContainer" parent="Current Scene/CanvasLayer"]
+[node name="MarginContainer" type="MarginContainer" parent="Current Scene/CanvasLayer" unique_id=2090643998]
 offset_right = 1920.0
 offset_bottom = 1080.0
 
-[node name="CenterContainer" type="CenterContainer" parent="Current Scene/CanvasLayer/MarginContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="Current Scene/CanvasLayer/MarginContainer" unique_id=1857809514]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Current Viewport" type="TextureRect" parent="Current Scene/CanvasLayer/MarginContainer/CenterContainer"]
+[node name="Current Viewport" type="TextureRect" parent="Current Scene/CanvasLayer/MarginContainer/CenterContainer" unique_id=302085477]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="CanvasLayer Log" type="CanvasLayer" parent="Current Scene"]
+[node name="CanvasLayer Log" type="CanvasLayer" parent="Current Scene" unique_id=1696090845]
 
-[node name="MarginContainer" type="MarginContainer" parent="Current Scene/CanvasLayer Log"]
+[node name="MarginContainer" type="MarginContainer" parent="Current Scene/CanvasLayer Log" unique_id=1120925366]
 offset_right = 1920.0
 offset_bottom = 1080.0
 
-[node name="_Core_Log" parent="Current Scene/CanvasLayer Log/MarginContainer" instance=ExtResource("9_hqny6")]
+[node name="_Core_Log" parent="Current Scene/CanvasLayer Log/MarginContainer" unique_id=2083876567 instance=ExtResource("9_hqny6")]
 unique_name_in_owner = true
+visible = false
 modulate = Color(1, 1, 1, 0.5882353)
 layout_mode = 2
 
-[node name="Scenes" type="Node2D" parent="."]
+[node name="Scenes" type="Node2D" parent="." unique_id=625028179]
 position = Vector2(0, 5000)
 
-[node name="Scene Grid" type="GridContainer" parent="Scenes"]
+[node name="Scene Grid" type="GridContainer" parent="Scenes" unique_id=663346643]
 offset_right = 7773.0
 offset_bottom = 7631.0
 columns = 2
 
-[node name="_Starter" parent="Scenes/Scene Grid" node_paths=PackedStringArray("next_scene") instance=ExtResource("17_8i81m")]
+[node name="_Starter" parent="Scenes/Scene Grid" unique_id=518186998 node_paths=PackedStringArray("next_scene") instance=ExtResource("17_8i81m")]
 unique_name_in_owner = true
 layout_mode = 2
 next_scene = NodePath("../_RPGM")
 player_turn = ExtResource("18_sps4g")
 
-[node name="_RPGM" parent="Scenes/Scene Grid" instance=ExtResource("21_pw4lx")]
+[node name="_RPGM" parent="Scenes/Scene Grid" unique_id=1387192614 instance=ExtResource("21_pw4lx")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="_Swiper" parent="Scenes/Scene Grid" instance=ExtResource("22_t1t3w")]
+[node name="_Swiper" parent="Scenes/Scene Grid" unique_id=1082721733 instance=ExtResource("22_t1t3w")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="_Scroller" parent="Scenes/Scene Grid" instance=ExtResource("13_ltnrw")]
+[node name="_Scroller" parent="Scenes/Scene Grid" unique_id=753989595 instance=ExtResource("13_ltnrw")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="_Birds" parent="Scenes/Scene Grid" instance=ExtResource("15_wlg60")]
+[node name="_Birds" parent="Scenes/Scene Grid" unique_id=502677430 instance=ExtResource("15_wlg60")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="_DGM" parent="Scenes/Scene Grid" instance=ExtResource("15_hqny6")]
+[node name="_DGM" parent="Scenes/Scene Grid" unique_id=560611514 instance=ExtResource("15_hqny6")]
 unique_name_in_owner = true
 layout_mode = 2

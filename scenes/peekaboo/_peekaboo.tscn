@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d08p5bfc634r"]
+[gd_scene format=3 uid="uid://d08p5bfc634r"]
 
 [ext_resource type="Script" uid="uid://caovffqs8nkct" path="res://scenes/peekaboo/peekaboo.scene.gd" id="1_3t57p"]
 [ext_resource type="Script" uid="uid://c6484wl627c5c" path="res://scenes/peekaboo/peekaboo.lambdas.gd" id="3_5dvgp"]
@@ -12,111 +12,111 @@ shader = ExtResource("7_stufm")
 shader_parameter/x_speed = 0.10000000475
 shader_parameter/y_speed = 0.10000000475
 
-[node name="_RPGM" type="SubViewportContainer"]
+[node name="_RPGM" type="SubViewportContainer" unique_id=1781439656]
 offset_right = 1920.0
 offset_bottom = 1080.0
 script = ExtResource("1_3t57p")
 
-[node name="_RPGM_Lambdas" type="Node" parent="."]
+[node name="_RPGM_Lambdas" type="Node" parent="." unique_id=1900062065]
 unique_name_in_owner = true
 script = ExtResource("3_5dvgp")
 
-[node name="SubViewport" type="SubViewport" parent="."]
+[node name="SubViewport" type="SubViewport" parent="." unique_id=431755219]
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(1920, 1080)
 render_target_update_mode = 4
 
-[node name="CanvasLayer Parallax" type="CanvasLayer" parent="SubViewport"]
+[node name="CanvasLayer Parallax" type="CanvasLayer" parent="SubViewport" unique_id=1262522344]
 
-[node name="MarginContainer" type="MarginContainer" parent="SubViewport/CanvasLayer Parallax"]
+[node name="MarginContainer" type="MarginContainer" parent="SubViewport/CanvasLayer Parallax" unique_id=661561121]
 offset_right = 1920.0
 offset_bottom = 1080.0
 
-[node name="TextureRect Parallax" type="TextureRect" parent="SubViewport/CanvasLayer Parallax/MarginContainer"]
+[node name="TextureRect Parallax" type="TextureRect" parent="SubViewport/CanvasLayer Parallax/MarginContainer" unique_id=228471277]
 z_index = -5
 material = SubResource("ShaderMaterial_5i764")
 layout_mode = 2
 texture = ExtResource("7_4skqh")
 stretch_mode = 1
 
-[node name="CanvasLayer _RPGM_Map" type="CanvasLayer" parent="SubViewport"]
+[node name="CanvasLayer _RPGM_Map" type="CanvasLayer" parent="SubViewport" unique_id=2065911113]
 
-[node name="MarginContainer _RPGM_Map" type="MarginContainer" parent="SubViewport/CanvasLayer _RPGM_Map"]
+[node name="MarginContainer _RPGM_Map" type="MarginContainer" parent="SubViewport/CanvasLayer _RPGM_Map" unique_id=1673264316]
 offset_right = 1920.0
 offset_bottom = 1080.0
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="SubViewport/CanvasLayer _RPGM_Map/MarginContainer _RPGM_Map"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="SubViewport/CanvasLayer _RPGM_Map/MarginContainer _RPGM_Map" unique_id=895895228]
 layout_mode = 2
 
-[node name="SubViewport" type="SubViewport" parent="SubViewport/CanvasLayer _RPGM_Map/MarginContainer _RPGM_Map/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="SubViewport/CanvasLayer _RPGM_Map/MarginContainer _RPGM_Map/SubViewportContainer" unique_id=1397195006]
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(1920, 1080)
 render_target_update_mode = 4
 
-[node name="_RPGM_Map" parent="SubViewport/CanvasLayer _RPGM_Map/MarginContainer _RPGM_Map/SubViewportContainer/SubViewport" instance=ExtResource("4_n54ed")]
+[node name="_RPGM_Map" parent="SubViewport/CanvasLayer _RPGM_Map/MarginContainer _RPGM_Map/SubViewportContainer/SubViewport" unique_id=970781835 instance=ExtResource("4_n54ed")]
 unique_name_in_owner = true
 
-[node name="CanvasLayer Windows" type="CanvasLayer" parent="SubViewport"]
+[node name="CanvasLayer Windows" type="CanvasLayer" parent="SubViewport" unique_id=412499182]
 unique_name_in_owner = true
 
-[node name="MarginContainer" type="MarginContainer" parent="SubViewport/CanvasLayer Windows"]
+[node name="MarginContainer" type="MarginContainer" parent="SubViewport/CanvasLayer Windows" unique_id=941980826]
 offset_right = 1920.0
 offset_bottom = 1080.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SubViewport/CanvasLayer Windows/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewport/CanvasLayer Windows/MarginContainer" unique_id=1182177793]
 layout_mode = 2
 
-[node name="MarginContainer1" type="MarginContainer" parent="SubViewport/CanvasLayer Windows/MarginContainer/VBoxContainer"]
+[node name="MarginContainer1" type="MarginContainer" parent="SubViewport/CanvasLayer Windows/MarginContainer/VBoxContainer" unique_id=1612741509]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="_canvas_top" type="CenterContainer" parent="SubViewport/CanvasLayer Windows/MarginContainer/VBoxContainer/MarginContainer1"]
+[node name="_canvas_top" type="CenterContainer" parent="SubViewport/CanvasLayer Windows/MarginContainer/VBoxContainer/MarginContainer1" unique_id=269062822]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="MarginContainer2" type="MarginContainer" parent="SubViewport/CanvasLayer Windows/MarginContainer/VBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="SubViewport/CanvasLayer Windows/MarginContainer/VBoxContainer" unique_id=672145052]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="_canvas_middle" type="CenterContainer" parent="SubViewport/CanvasLayer Windows/MarginContainer/VBoxContainer/MarginContainer2"]
+[node name="_canvas_middle" type="CenterContainer" parent="SubViewport/CanvasLayer Windows/MarginContainer/VBoxContainer/MarginContainer2" unique_id=505417886]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="MarginContainer3" type="MarginContainer" parent="SubViewport/CanvasLayer Windows/MarginContainer/VBoxContainer"]
+[node name="MarginContainer3" type="MarginContainer" parent="SubViewport/CanvasLayer Windows/MarginContainer/VBoxContainer" unique_id=1037934819]
 custom_minimum_size = Vector2(0, 500)
 layout_mode = 2
 
-[node name="_canvas_bottom" type="CenterContainer" parent="SubViewport/CanvasLayer Windows/MarginContainer/VBoxContainer/MarginContainer3"]
+[node name="_canvas_bottom" type="CenterContainer" parent="SubViewport/CanvasLayer Windows/MarginContainer/VBoxContainer/MarginContainer3" unique_id=1574497149]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="CanvasLayer _Core_Log" type="CanvasLayer" parent="SubViewport"]
+[node name="CanvasLayer _Core_Log" type="CanvasLayer" parent="SubViewport" unique_id=784913853]
 visible = false
 
-[node name="MarginContainer" type="MarginContainer" parent="SubViewport/CanvasLayer _Core_Log"]
+[node name="MarginContainer" type="MarginContainer" parent="SubViewport/CanvasLayer _Core_Log" unique_id=201478264]
 offset_right = 1920.0
 offset_bottom = 1080.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="SubViewport/CanvasLayer _Core_Log/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="SubViewport/CanvasLayer _Core_Log/MarginContainer" unique_id=934529428]
 layout_mode = 2
 
-[node name="MarginContainer 1" type="MarginContainer" parent="SubViewport/CanvasLayer _Core_Log/MarginContainer/HBoxContainer"]
+[node name="MarginContainer 1" type="MarginContainer" parent="SubViewport/CanvasLayer _Core_Log/MarginContainer/HBoxContainer" unique_id=1848000549]
 custom_minimum_size = Vector2(1400, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MarginContainer 2" type="MarginContainer" parent="SubViewport/CanvasLayer _Core_Log/MarginContainer/HBoxContainer"]
+[node name="MarginContainer 2" type="MarginContainer" parent="SubViewport/CanvasLayer _Core_Log/MarginContainer/HBoxContainer" unique_id=1746315967]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="_Core_Log" parent="SubViewport/CanvasLayer _Core_Log/MarginContainer/HBoxContainer/MarginContainer 2" instance=ExtResource("4_jlhyk")]
+[node name="_Core_Log" parent="SubViewport/CanvasLayer _Core_Log/MarginContainer/HBoxContainer/MarginContainer 2" unique_id=1655611174 instance=ExtResource("4_jlhyk")]
 z_index = 100
 layout_mode = 2

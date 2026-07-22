@@ -6,17 +6,13 @@ class_name _RPGM_Event
 enum EventState {A, B, C, D, E, F, G}
 @export var state : EventState = EventState.A
 
-
 @onready var portraits = find_children("*", "_RPGM_Portrait")
 
 var facing := Vector2(-1, 0):
 	set(value):
 		facing = value
-		for p in portraits:
-			if p: p.facing = facing
+		for p in portraits: if p: p.facing = facing
 		
-
-
 var is_collision = false
 var deprecated = false
 
@@ -35,11 +31,6 @@ func get_variables(): return _RPGM_Variables
 func get_area(): return _area
 func get_mover(): return _mover
 func get_core(): return find_parent("_Core") as _Core
-
-func get_portraits():
-	# if not active_script: return null
-	# return active_script.find_child("_RPGM_Portrait") as _RPGM_Portrait
-	return null
 
 var active_scripts := []
 @onready var all_scripts = find_children("*", "_RPGM_Script")
