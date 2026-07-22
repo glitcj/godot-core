@@ -1,4 +1,5 @@
 @tool
+@icon("res://addons/at-icons/animation/box_wireframe.svg")
 extends Node2D
 class_name _RPGM_Event
 

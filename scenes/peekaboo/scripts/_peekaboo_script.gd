@@ -1,3 +1,4 @@
+@icon("res://addons/at-icons/control/anchor.svg")
 extends Node2D
 class_name _RPGM_Script
 
@@ -71,10 +72,6 @@ func bind_triggers():
 	if get_area(): get_area().body_entered.connect(_check_area_signals)
 	area_entered_by_player.connect(_wrapped_callable.bind(_on_area_entered))
 	
-
-
-
-
 func _get_components():
 	parent = get_parent()
 	# CLAUDE: cache all node refs here to avoid repeated find_parent/find_child in per-frame calls

@@ -29,6 +29,9 @@ var tiles_with_rpgm_collision: Array[Vector2i] = []
 var collision_dirty: bool = false
 var _all_collision_debugging_rects: Array[ColorRect] = []
 
+
+
+
 func mark_collision_dirty() -> void:
 	collision_dirty = true
 
@@ -46,8 +49,6 @@ func _rebuild_collision_tiles() -> void:
 	tiles_with_rpgm_collision = []
 	var p
 	for m: _RPGM_Mover in find_children("*", "_RPGM_Mover"):
-		# if not (m.get_parent() is _RPGM_Player or m.get_parent() is _RPGM_Event): continue
-		
 		p = m.get_parent()
 		
 		if p is _RPGM_Player:

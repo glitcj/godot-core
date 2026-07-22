@@ -23,7 +23,6 @@ func _editor_update():
 @export var map_position: Vector2i = Vector2i(0, 0):
 	set(v):
 		map_position = v
-		# CLAUDE: dirty flag now lives on _RPGM_Map — it owns collision state and drives rebuild in its _process
 		if get_map(): get_map().mark_collision_dirty()
 		if Engine.is_editor_hint(): _quantise_position()
 		
