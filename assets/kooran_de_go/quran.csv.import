@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://bwerit2h8cgxh"
+
+[deps]
+
+files=["res://assets/kooran_de_go/quran.surah.translation", "res://assets/kooran_de_go/quran.surah.translation", "res://assets/kooran_de_go/quran.surah.translation", "res://assets/kooran_de_go/quran.ayah.translation", "res://assets/kooran_de_go/quran.ayah.translation", "res://assets/kooran_de_go/quran.ayah.translation", "res://assets/kooran_de_go/quran.ayah.translation", "res://assets/kooran_de_go/quran.ruko.translation", "res://assets/kooran_de_go/quran.juz.translation", "res://assets/kooran_de_go/quran.manzil.translation", "res://assets/kooran_de_go/quran.hizb.translation", "res://assets/kooran_de_go/quran.total.translation", "res://assets/kooran_de_go/quran.total.translation", "res://assets/kooran_de_go/quran.place.translation", "res://assets/kooran_de_go/quran.sajah.translation", "res://assets/kooran_de_go/quran.sajdah.translation", "res://assets/kooran_de_go/quran.nb.translation", "res://assets/kooran_de_go/quran.list.translation"]
+
+source_file="res://assets/kooran_de_go/quran.csv"
+dest_files=["res://assets/kooran_de_go/quran.surah.translation", "res://assets/kooran_de_go/quran.surah.translation", "res://assets/kooran_de_go/quran.surah.translation", "res://assets/kooran_de_go/quran.ayah.translation", "res://assets/kooran_de_go/quran.ayah.translation", "res://assets/kooran_de_go/quran.ayah.translation", "res://assets/kooran_de_go/quran.ayah.translation", "res://assets/kooran_de_go/quran.ruko.translation", "res://assets/kooran_de_go/quran.juz.translation", "res://assets/kooran_de_go/quran.manzil.translation", "res://assets/kooran_de_go/quran.hizb.translation", "res://assets/kooran_de_go/quran.total.translation", "res://assets/kooran_de_go/quran.total.translation", "res://assets/kooran_de_go/quran.place.translation", "res://assets/kooran_de_go/quran.sajah.translation", "res://assets/kooran_de_go/quran.sajdah.translation", "res://assets/kooran_de_go/quran.nb.translation", "res://assets/kooran_de_go/quran.list.translation"]
+
+[params]
+
+compress=true
+delimiter=0
+unescape_keys=false
+unescape_translations=true
