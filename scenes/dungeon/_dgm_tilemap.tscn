@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://caltidappke87"]
+
+[ext_resource type="Script" uid="uid://bv2cvrevi23q4" path="res://scenes/dungeon/_dgm_tilemap.gd" id="1_rn5rw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s4ae8"]
+
+[node name="_DGM_Tilemap" type="Area3D"]
+script = ExtResource("1_rn5rw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_s4ae8")

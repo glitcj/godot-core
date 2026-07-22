@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="_RPGM_Event_Data" load_steps=2 format=3 uid="uid://bxts5doey0ppj"]
+
+[ext_resource type="Script" uid="uid://chjmmjesks5yj" path="res://scenes/peekaboo/data/_rpgm_event_data/_rpgm_event_data.gd" id="1_fabbb"]
+
+[resource]
+script = ExtResource("1_fabbb")
+metadata/_custom_type_script = "uid://chjmmjesks5yj"

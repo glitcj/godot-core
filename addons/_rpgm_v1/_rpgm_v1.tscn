@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxl6u7pp3lhq8"]
+
+[ext_resource type="Script" uid="uid://dermk4r5gc7ve" path="res://addons/_rpgm_v1/_rpgm_v1.gd" id="1_nj6x7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nj6x7"]
+font_size = 64
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_nj6x7"]
+width = 32
+height = 32
+
+[node name="RpgmV1" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_nj6x7")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 404.0
+offset_bottom = 285.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Test"
+label_settings = SubResource("LabelSettings_nj6x7")
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Clickity Click"
+icon = SubResource("NoiseTexture2D_nj6x7")
+
+[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Clickity Click"
+icon = SubResource("NoiseTexture2D_nj6x7")

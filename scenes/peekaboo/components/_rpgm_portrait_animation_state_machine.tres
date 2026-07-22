@@ -1,0 +1,47 @@
+[gd_resource type="AnimationNodeStateMachine" load_steps=10 format=3 uid="uid://ddeg02nfkn3sj"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cpa10"]
+animation = &"move_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fkyil"]
+animation = &"move_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ehfvc"]
+animation = &"move_up"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5odop"]
+animation = &"move_down"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_riwu1"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_cpa10")
+blend_point_0/pos = Vector2(-1, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_fkyil")
+blend_point_1/pos = Vector2(1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_ehfvc")
+blend_point_2/pos = Vector2(0, -1)
+blend_point_3/node = SubResource("AnimationNodeAnimation_5odop")
+blend_point_3/pos = Vector2(0, 1)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lvnky"]
+animation = &"actioned"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_riwu1"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lvnky"]
+advance_mode = 2
+advance_expression = "actioned"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cpa10"]
+switch_mode = 2
+advance_mode = 2
+
+[resource]
+states/BlendSpace2D/node = SubResource("AnimationNodeBlendSpace2D_riwu1")
+states/BlendSpace2D/position = Vector2(411.42505, 110.15982)
+states/Start/position = Vector2(212.58398, 110.20935)
+states/actioned/node = SubResource("AnimationNodeAnimation_lvnky")
+states/actioned/position = Vector2(627.92505, 110.060776)
+transitions = ["Start", "BlendSpace2D", SubResource("AnimationNodeStateMachineTransition_riwu1"), "BlendSpace2D", "actioned", SubResource("AnimationNodeStateMachineTransition_lvnky"), "actioned", "BlendSpace2D", SubResource("AnimationNodeStateMachineTransition_cpa10")]
+graph_offset = Vector2(131.39978, 57.937485)

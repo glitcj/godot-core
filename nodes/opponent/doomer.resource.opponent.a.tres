@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="_Doomer_Resource_Opponent" load_steps=3 format=3 uid="uid://dycnim38xcytm"]
+
+[ext_resource type="Script" uid="uid://6g1xdc0nsg" path="res://nodes/opponent/doomer.resource.opponent.gd" id="1_kspbt"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_kspbt"]
+
+[resource]
+script = ExtResource("1_kspbt")
+name = "Teller"
+call_pair = 6
+call_straight = 6
+texture = SubResource("ImageTexture_kspbt")
+metadata/_custom_type_script = "uid://6g1xdc0nsg"

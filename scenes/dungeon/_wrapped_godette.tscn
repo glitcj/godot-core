@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0yuxrs7ob1q3"]
+
+[ext_resource type="PackedScene" uid="uid://6xt62so0w0wr" path="res://assets/proto_zelda/characters/godette/godette.glb" id="1_iejhj"]
+
+[node name="TestGodette" type="Node3D"]
+
+[node name="godette" parent="." instance=ExtResource("1_iejhj")]

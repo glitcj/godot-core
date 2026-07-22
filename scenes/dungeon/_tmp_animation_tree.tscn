@@ -1,0 +1,69 @@
+[gd_scene load_steps=15 format=3 uid="uid://c0x6jhswc2gcs"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wm67s"]
+animation = &"Cheer"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5pf81"]
+animation = &"Death_A"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_64xx5"]
+animation = &"Dodge_Backward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ekqk3"]
+animation = &"Dodge_Forward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6mewk"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6mewk"]
+xfade_time = 1.0
+advance_mode = 2
+advance_expression = "int(TIME) % 6 > 3"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yofef"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_24ojj"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_37vqx"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kknf2"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_su435"]
+advance_mode = 2
+advance_expression = "int(TIME) % 6 < 3"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gy30y"]
+advance_mode = 2
+advance_expression = "velocity.length() > 0"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wm67s"]
+advance_mode = 2
+advance_expression = "velocity.length() == 0"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_wm67s"]
+states/Cheer/node = SubResource("AnimationNodeAnimation_wm67s")
+states/Cheer/position = Vector2(551.91516, 102.33125)
+states/Death_A/node = SubResource("AnimationNodeAnimation_5pf81")
+states/Death_A/position = Vector2(721.41516, 98.58125)
+states/Dodge_Backward/node = SubResource("AnimationNodeAnimation_64xx5")
+states/Dodge_Backward/position = Vector2(500.91516, 268.1625)
+states/Dodge_Forward/node = SubResource("AnimationNodeAnimation_ekqk3")
+states/Dodge_Forward/position = Vector2(376, 101.16563)
+states/Idle/node = SubResource("AnimationNodeAnimation_6mewk")
+states/Idle/position = Vector2(200.56757, 237.74998)
+states/Start/position = Vector2(200.42567, 101.74844)
+transitions = ["Start", "Dodge_Forward", SubResource("AnimationNodeStateMachineTransition_6mewk"), "Dodge_Forward", "Cheer", SubResource("AnimationNodeStateMachineTransition_yofef"), "Cheer", "Death_A", SubResource("AnimationNodeStateMachineTransition_24ojj"), "Death_A", "Dodge_Backward", SubResource("AnimationNodeStateMachineTransition_37vqx"), "Dodge_Backward", "Dodge_Forward", SubResource("AnimationNodeStateMachineTransition_kknf2"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_su435"), "Idle", "Dodge_Forward", SubResource("AnimationNodeStateMachineTransition_gy30y"), "Dodge_Forward", "Idle", SubResource("AnimationNodeStateMachineTransition_wm67s")]
+graph_offset = Vector2(110.34009, 69.11246)
+
+[node name="AnimationTree" type="AnimationTree"]
+root_node = NodePath("%AnimationTree/..")
+tree_root = SubResource("AnimationNodeStateMachine_wm67s")
+anim_player = NodePath("../AnimationPlayer")

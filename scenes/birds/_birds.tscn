@@ -1,0 +1,115 @@
+[gd_scene load_steps=8 format=3 uid="uid://p0nktsm07ev6"]
+
+[ext_resource type="Script" uid="uid://8itso7r1mes3" path="res://scenes/birds/_birds.gd" id="1_2cdxk"]
+[ext_resource type="Texture2D" uid="uid://c4ndustk7oa48" path="res://assets/rpgmaker/mv/parallaxes/CloudySky1.png" id="2_asp21"]
+[ext_resource type="Texture2D" uid="uid://xpowxxhfyjbw" path="res://assets/rpgmaker/mv/parallaxes/StarlitSky.png" id="3_lo0k1"]
+[ext_resource type="PackedScene" uid="uid://b7x0tsw8mwysl" path="res://scenes/birds/_birds_level_1.tscn" id="4_jmqeq"]
+[ext_resource type="PackedScene" uid="uid://dfg24h7bgrdws" path="res://scenes/birds/_core_log.tscn" id="5_lo0k1"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_lo0k1"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_p80ax"]
+
+[node name="_Birds" type="SubViewportContainer"]
+offset_right = 1920.0
+offset_bottom = 1080.0
+script = ExtResource("1_2cdxk")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="MarginContainer Parallax" type="MarginContainer" parent="SubViewport"]
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="CenterContainer" type="CenterContainer" parent="SubViewport/MarginContainer Parallax"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Node2D" type="Node2D" parent="SubViewport/MarginContainer Parallax/CenterContainer"]
+scale = Vector2(3, 3)
+
+[node name="Parallax2D" type="Parallax2D" parent="SubViewport/MarginContainer Parallax/CenterContainer/Node2D"]
+repeat_size = Vector2(816, 0)
+autoscroll = Vector2(50, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewport/MarginContainer Parallax/CenterContainer/Node2D/Parallax2D"]
+texture = ExtResource("2_asp21")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SubViewport"]
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="MarginContainer 1" type="MarginContainer" parent="SubViewport/HBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="SubViewport/HBoxContainer/MarginContainer 1"]
+layout_mode = 2
+texture = ExtResource("3_lo0k1")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="MarginContainer Border 1" type="MarginContainer" parent="SubViewport/HBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+theme_override_constants/margin_left = -5
+
+[node name="TextureRect" type="TextureRect" parent="SubViewport/HBoxContainer/MarginContainer Border 1"]
+modulate = Color(1, 0.5, 0.5, 1)
+layout_mode = 2
+texture = SubResource("CanvasTexture_lo0k1")
+
+[node name="MarginContainer Birds" type="MarginContainer" parent="SubViewport/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="SubViewport/HBoxContainer/MarginContainer Birds"]
+layout_mode = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewport/HBoxContainer/MarginContainer Birds/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1274, 1080)
+render_target_update_mode = 4
+
+[node name="_Birds_Level_1" parent="SubViewport/HBoxContainer/MarginContainer Birds/SubViewportContainer/SubViewport" instance=ExtResource("4_jmqeq")]
+position = Vector2(28, 0)
+
+[node name="MarginContainer Border 2" type="MarginContainer" parent="SubViewport/HBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+theme_override_constants/margin_right = -5
+
+[node name="TextureRect" type="TextureRect" parent="SubViewport/HBoxContainer/MarginContainer Border 2"]
+modulate = Color(1, 0.5, 0.5, 1)
+layout_mode = 2
+texture = SubResource("CanvasTexture_p80ax")
+
+[node name="MarginContainer HUD" type="MarginContainer" parent="SubViewport/HBoxContainer"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="SubViewport/HBoxContainer/MarginContainer HUD"]
+visible = false
+layout_mode = 2
+texture = ExtResource("3_lo0k1")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="_Core_Log" parent="SubViewport/HBoxContainer/MarginContainer HUD" instance=ExtResource("5_lo0k1")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Camera2D" type="Camera2D" parent="SubViewport"]
+unique_name_in_owner = true
+anchor_mode = 0
+
+[node name="ReferenceRect" type="ReferenceRect" parent="SubViewport/Camera2D"]
+offset_right = 1920.0
+offset_bottom = 1080.0
+border_width = 20.0

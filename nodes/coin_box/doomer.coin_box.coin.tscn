@@ -1,0 +1,80 @@
+[gd_scene load_steps=12 format=3 uid="uid://j04p8d2crqxd"]
+
+[ext_resource type="Texture2D" uid="uid://b6pq22kfp7up1" path="res://assets/doomer/coins/coin-Sheet.png" id="1_63a5p"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_63a5p"]
+bounce = 0.1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_niy41"]
+atlas = ExtResource("1_63a5p")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0y8e0"]
+atlas = ExtResource("1_63a5p")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jme0h"]
+atlas = ExtResource("1_63a5p")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w3quw"]
+atlas = ExtResource("1_63a5p")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ignyc"]
+atlas = ExtResource("1_63a5p")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6xm18"]
+atlas = ExtResource("1_63a5p")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_osjxf"]
+atlas = ExtResource("1_63a5p")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xlhwi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_niy41")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0y8e0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jme0h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w3quw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ignyc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6xm18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_osjxf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w3gyp"]
+
+[node name="CoinRigidBody2D" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_63a5p")
+inertia = 0.1
+lock_rotation = true
+continuous_cd = 2
+max_contacts_reported = 16
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_xlhwi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_w3gyp")

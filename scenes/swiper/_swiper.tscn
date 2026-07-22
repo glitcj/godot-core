@@ -1,0 +1,349 @@
+[gd_scene load_steps=10 format=3 uid="uid://cxiw0m4n4emut"]
+
+[ext_resource type="Script" uid="uid://yry6g6f3wyis" path="res://scenes/swiper/_swiper.gd" id="1_jhufk"]
+[ext_resource type="Texture2D" uid="uid://cbwh2bgycvref" path="res://assets/kooran_de_go/marubatsu-Sheet.png" id="2_r66b3"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_1htd0"]
+
+[sub_resource type="GDScript" id="GDScript_14spj"]
+script/source = "extends Node2D
+
+
+@export var applied_modulate : Color
+@export var applied_scale : Vector2
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cnib0"]
+atlas = ExtResource("2_r66b3")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehivg"]
+atlas = ExtResource("2_r66b3")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0q7st"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cnib0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ehivg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="GDScript" id="GDScript_wwys7"]
+script/source = "extends Node2D
+
+@export var text : String = \"\":
+	set(v):
+		(find_child(\"Label\") as Label).text = v
+
+@export var index : int = 1
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_jhufk"]
+font_size = 100
+
+[node name="_Swiper" type="SubViewportContainer"]
+offset_right = 1080.0
+offset_bottom = 2400.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_jhufk")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+size = Vector2i(1080, 2400)
+render_target_update_mode = 4
+
+[node name="Camera2D" type="Camera2D" parent="SubViewport"]
+unique_name_in_owner = true
+anchor_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="SubViewport"]
+offset_top = -1000.0
+offset_right = 1080.0
+offset_bottom = 3400.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect Background" type="TextureRect" parent="SubViewport/MarginContainer"]
+modulate = Color(0.9455804, 0.2907711, 0.18593669, 1)
+z_index = -10
+layout_mode = 2
+texture = SubResource("CanvasTexture_1htd0")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewport/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer 0" type="MarginContainer" parent="SubViewport/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CenterContainer2" type="CenterContainer" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 0"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="_scroll_position_0" type="Node2D" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 0/CenterContainer2"]
+script = SubResource("GDScript_14spj")
+applied_modulate = Color(0, 0, 0, 0)
+applied_scale = Vector2(0.2, 0.2)
+
+[node name="MarginContainer 1" type="MarginContainer" parent="SubViewport/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 1"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="_scroll_position_1" type="Node2D" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 1/CenterContainer"]
+script = SubResource("GDScript_14spj")
+applied_modulate = Color(1, 1, 1, 0.5882353)
+applied_scale = Vector2(0.6, 0.6)
+
+[node name="MarginContainer 2" type="MarginContainer" parent="SubViewport/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="_scroll_position_2" type="Node2D" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 2/CenterContainer"]
+script = SubResource("GDScript_14spj")
+applied_modulate = Color(1, 1, 1, 1)
+applied_scale = Vector2(1, 1)
+
+[node name="MarginContainer 3" type="MarginContainer" parent="SubViewport/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 3"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="_scroll_position_3" type="Node2D" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 3/CenterContainer"]
+script = SubResource("GDScript_14spj")
+applied_modulate = Color(1, 1, 1, 0.5882353)
+applied_scale = Vector2(0.6, 0.6)
+
+[node name="MarginContainer 4" type="MarginContainer" parent="SubViewport/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 4"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="_scroll_position_4" type="Node2D" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 4/CenterContainer"]
+script = SubResource("GDScript_14spj")
+applied_modulate = Color(0, 0, 0, 0)
+applied_scale = Vector2(0.2, 0.2)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="SubViewport"]
+
+[node name="MarginContainer" type="MarginContainer" parent="SubViewport/CanvasLayer"]
+offset_top = -1000.0
+offset_right = 1080.0
+offset_bottom = 3040.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewport/CanvasLayer/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer 1" type="MarginContainer" parent="SubViewport/CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="SubViewport/CanvasLayer/MarginContainer/VBoxContainer/MarginContainer 1"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer 2" type="MarginContainer" parent="SubViewport/CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SubViewport/CanvasLayer/MarginContainer/VBoxContainer/MarginContainer 2"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="SubViewport/CanvasLayer/MarginContainer/VBoxContainer/MarginContainer 2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="SubViewport/CanvasLayer/MarginContainer/VBoxContainer/MarginContainer 2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="SubViewport/CanvasLayer/MarginContainer/VBoxContainer/MarginContainer 2/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="_marubatsu" type="AnimatedSprite2D" parent="SubViewport/CanvasLayer/MarginContainer/VBoxContainer/MarginContainer 2/HBoxContainer/MarginContainer2/CenterContainer"]
+unique_name_in_owner = true
+visible = false
+texture_filter = 1
+scale = Vector2(20, 20)
+sprite_frames = SubResource("SpriteFrames_0q7st")
+
+[node name="MarginContainer3" type="MarginContainer" parent="SubViewport/CanvasLayer/MarginContainer/VBoxContainer/MarginContainer 2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer 3" type="MarginContainer" parent="SubViewport/CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="SubViewport/CanvasLayer/MarginContainer/VBoxContainer/MarginContainer 3"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer 4" type="MarginContainer" parent="SubViewport/CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="SubViewport/CanvasLayer/MarginContainer/VBoxContainer/MarginContainer 4"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer 5" type="MarginContainer" parent="SubViewport/CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="SubViewport/CanvasLayer/MarginContainer/VBoxContainer/MarginContainer 5"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="_verse_0" type="Node2D" parent="SubViewport/CanvasLayer"]
+position = Vector2(540, -500)
+script = SubResource("GDScript_wwys7")
+
+[node name="Label" type="Label" parent="SubViewport/CanvasLayer/_verse_0"]
+custom_minimum_size = Vector2(1080, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -540.0
+offset_top = -214.5
+offset_right = 540.0
+offset_bottom = 214.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "ٱلْحَمْدُ لِلَّهِ ٱلَّذِىٓ أَنزَلَ عَلَىٰ عَبْدِهِ ٱلْكِتَـٰبَ وَلَمْ يَجْعَل لَّهُۥ عِوَجَا"
+label_settings = SubResource("LabelSettings_jhufk")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="_verse_1" type="Node2D" parent="SubViewport/CanvasLayer"]
+position = Vector2(540, -500)
+script = SubResource("GDScript_wwys7")
+
+[node name="Label" type="Label" parent="SubViewport/CanvasLayer/_verse_1"]
+custom_minimum_size = Vector2(1080, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -540.0
+offset_top = -214.5
+offset_right = 540.0
+offset_bottom = 214.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "ٱلْحَمْدُ لِلَّهِ ٱلَّذِىٓ أَنزَلَ عَلَىٰ عَبْدِهِ ٱلْكِتَـٰبَ وَلَمْ يَجْعَل لَّهُۥ عِوَجَا"
+label_settings = SubResource("LabelSettings_jhufk")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="_verse_2" type="Node2D" parent="SubViewport/CanvasLayer"]
+position = Vector2(540, -500)
+script = SubResource("GDScript_wwys7")
+
+[node name="Label" type="Label" parent="SubViewport/CanvasLayer/_verse_2"]
+custom_minimum_size = Vector2(1080, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -540.0
+offset_top = -214.5
+offset_right = 540.0
+offset_bottom = 214.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "ٱلْحَمْدُ لِلَّهِ ٱلَّذِىٓ أَنزَلَ عَلَىٰ عَبْدِهِ ٱلْكِتَـٰبَ وَلَمْ يَجْعَل لَّهُۥ عِوَجَا"
+label_settings = SubResource("LabelSettings_jhufk")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="_verse_3" type="Node2D" parent="SubViewport/CanvasLayer"]
+position = Vector2(540, -500)
+script = SubResource("GDScript_wwys7")
+
+[node name="Label" type="Label" parent="SubViewport/CanvasLayer/_verse_3"]
+custom_minimum_size = Vector2(1080, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -540.0
+offset_top = -214.5
+offset_right = 540.0
+offset_bottom = 214.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "ٱلْحَمْدُ لِلَّهِ ٱلَّذِىٓ أَنزَلَ عَلَىٰ عَبْدِهِ ٱلْكِتَـٰبَ وَلَمْ يَجْعَل لَّهُۥ عِوَجَا"
+label_settings = SubResource("LabelSettings_jhufk")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="_verse_4" type="Node2D" parent="SubViewport/CanvasLayer"]
+position = Vector2(540, 3000)
+script = SubResource("GDScript_wwys7")
+
+[node name="Label" type="Label" parent="SubViewport/CanvasLayer/_verse_4"]
+custom_minimum_size = Vector2(1080, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -540.0
+offset_top = -214.5
+offset_right = 540.0
+offset_bottom = 214.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "ٱلْحَمْدُ لِلَّهِ ٱلَّذِىٓ أَنزَلَ عَلَىٰ عَبْدِهِ ٱلْكِتَـٰبَ وَلَمْ يَجْعَل لَّهُۥ عِوَجَا"
+label_settings = SubResource("LabelSettings_jhufk")
+horizontal_alignment = 1
+autowrap_mode = 2

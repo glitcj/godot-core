@@ -1,0 +1,1013 @@
+[gd_scene load_steps=89 format=3 uid="uid://bh76i8vm1ftt2"]
+
+[ext_resource type="Script" uid="uid://b1ojkok8uy3g3" path="res://nodes/card/node.doomer.card.gd" id="1_kt143"]
+[ext_resource type="Texture2D" uid="uid://y8u3owkjoqd2" path="res://assets/doomer/cards/doom-poker-cards-Sheet.png" id="2_2wj50"]
+[ext_resource type="Texture2D" uid="uid://t350wnyvjfji" path="res://assets/doomer/heads/doom-poker-face-Sheet.png" id="3_sweri"]
+[ext_resource type="Texture2D" uid="uid://d3fj0b8gjif82" path="res://assets/doomer/cards/cards_7.png" id="3_tgwkm"]
+
+[sub_resource type="Animation" id="Animation_1urid"]
+resource_name = "AttackDown"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Scaler/MarginContainer/CenterContainer/Control/SubViewportContainer:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 1), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Scaler:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.15, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -20), Vector2(0, 50), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_fo5sk"]
+resource_name = "AttackUp"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Scaler/MarginContainer/CenterContainer/Control/SubViewportContainer:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 1), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Scaler:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.15, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 20), Vector2(0, -50), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_82fda"]
+resource_name = "Buzz"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Scaler/MarginContainer/CenterContainer/Control/SubViewportContainer/SubViewport/HBoxContainer/Middle Container/VBox/Card Container/Card Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.9, 1), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Scaler/MarginContainer/CenterContainer/Control/SubViewportContainer/SubViewport/HBoxContainer/Middle Container/VBox/Card Container/Card Sprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-0.17453292519943295, 0.17453292519943295, -0.17453292519943295, 0.17453292, -0.17453292519943295, 0.17453292, 0.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_u1m8c"]
+resource_name = "FlipDown"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:card_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 1), Vector2(1, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [0],
+"method": &"_change_card_state"
+}, {
+"args": [1],
+"method": &"_change_card_state"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_glmm8"]
+resource_name = "FlipIn"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Scaler/MarginContainer/CenterContainer/Control/SubViewportContainer/SubViewport/HBoxContainer/Middle Container/VBox/Card Container/Card Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Scaler/MarginContainer/CenterContainer/Control/SubViewportContainer/SubViewport/HBoxContainer/Middle Container/VBox/Card Container/Card Sprite:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"cards_other"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Scaler/MarginContainer/CenterContainer/Control/SubViewportContainer/SubViewport/HBoxContainer/Middle Container/VBox/Card Container/Card Sprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ws3wq"]
+resource_name = "FlipOut"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Scaler/MarginContainer/CenterContainer/Control/SubViewportContainer/SubViewport/HBoxContainer/Middle Container/VBox/Card Container/Card Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Scaler/MarginContainer/CenterContainer/Control/SubViewportContainer/SubViewport/HBoxContainer/Middle Container/VBox/Card Container/Card Sprite:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"cards_other"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Scaler/MarginContainer/CenterContainer/Control/SubViewportContainer/SubViewport/HBoxContainer/Middle Container/VBox/Card Container/Card Sprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_eh0nk"]
+resource_name = "FlipUp"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:card_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 1), Vector2(1, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [1],
+"method": &"_change_card_state"
+}, {
+"args": [0],
+"method": &"_change_card_state"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_xtpg3"]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Scaler/MarginContainer/CenterContainer/Control/SubViewportContainer/SubViewport/HBoxContainer/Middle Container/VBox/Card Container/Card Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Scaler/MarginContainer/CenterContainer/Control/SubViewportContainer/SubViewport/HBoxContainer/Middle Container/VBox/Card Container/Card Sprite:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"cards_other"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Scaler/MarginContainer/CenterContainer/Control/SubViewportContainer/SubViewport/HBoxContainer/Middle Container/VBox/Card Container/Card Sprite:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Scaler/MarginContainer/CenterContainer/Control/SubViewportContainer/SubViewport/HBoxContainer/Middle Container/VBox/Card Container/Card Sprite:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:card_scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eiu11"]
+_data = {
+&"AttackDown": SubResource("Animation_1urid"),
+&"AttackUp": SubResource("Animation_fo5sk"),
+&"Buzz": SubResource("Animation_82fda"),
+&"FlipDown": SubResource("Animation_u1m8c"),
+&"FlipIn": SubResource("Animation_glmm8"),
+&"FlipOut": SubResource("Animation_ws3wq"),
+&"FlipUp": SubResource("Animation_eh0nk"),
+&"RESET": SubResource("Animation_xtpg3")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q11y8"]
+atlas = ExtResource("2_2wj50")
+region = Rect2(0, 0, 35, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2jqjd"]
+atlas = ExtResource("2_2wj50")
+region = Rect2(35, 0, 35, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sodam"]
+atlas = ExtResource("2_2wj50")
+region = Rect2(70, 0, 35, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wvsqw"]
+atlas = ExtResource("2_2wj50")
+region = Rect2(105, 0, 35, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qe7wl"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(0, 194, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_542q7"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(72, 194, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o7up1"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(144, 194, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fs3m5"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(216, 194, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qlahi"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(288, 194, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mydnh"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(360, 194, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t2sul"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(432, 194, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_odsdu"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(504, 194, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hh15y"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(576, 194, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w211s"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(648, 194, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qfjtd"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(720, 194, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nyjpr"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(792, 194, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idl0k"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(864, 194, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxn1g"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(0, 291, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gtnli"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(72, 291, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4vh4i"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(144, 291, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pe6qq"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(216, 291, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4pfu"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(288, 291, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kaffv"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(360, 291, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mjtqu"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(432, 291, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yxuac"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(504, 291, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vnej3"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(576, 291, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ujto0"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(648, 291, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6m0if"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(720, 291, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w08yc"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(792, 291, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ogs5j"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(864, 291, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmrpq"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(0, 97, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7wuko"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(72, 97, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bcs26"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(144, 97, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rn71k"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(216, 97, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xsxqy"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(288, 97, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2uv8i"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(360, 97, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2uil2"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(432, 97, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6a8vb"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(504, 97, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wfa5l"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(576, 97, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qfnog"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(648, 97, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ev77"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(720, 97, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gmwwc"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(792, 97, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2dhlt"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(864, 97, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5arat"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(288, 776, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5es4"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(360, 776, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vpfqw"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(504, 776, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdn01"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(72, 776, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fnve2"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(216, 776, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ghrr"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(144, 776, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mcch6"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(0, 776, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ydxkm"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(0, 873, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fnnqt"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(72, 873, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ccyac"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(144, 873, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ekmo"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(216, 873, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uapdt"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(288, 873, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hxmaq"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(360, 873, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1804y"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(432, 873, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_61o2q"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(504, 873, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ihgff"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(432, 776, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t28ke"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(0, 0, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xhsuq"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(72, 0, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yyejm"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(144, 0, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jtmk6"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(216, 0, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ngvro"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(288, 0, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6lrow"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(360, 0, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kx8as"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(432, 0, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0x3bq"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(504, 0, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_emi4i"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(576, 0, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jvals"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(648, 0, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iusxe"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(720, 0, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u6no7"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(792, 0, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xeran"]
+atlas = ExtResource("3_tgwkm")
+region = Rect2(864, 0, 72, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hma62"]
+atlas = ExtResource("3_sweri")
+region = Rect2(0, 0, 58, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3aa0u"]
+atlas = ExtResource("3_sweri")
+region = Rect2(58, 0, 58, 69)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_djf6f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q11y8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2jqjd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sodam")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wvsqw")
+}],
+"loop": true,
+"name": &"cards",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qe7wl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_542q7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o7up1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fs3m5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qlahi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mydnh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t2sul")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_odsdu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hh15y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w211s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qfjtd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nyjpr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idl0k")
+}],
+"loop": true,
+"name": &"cards_club",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxn1g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gtnli")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4vh4i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pe6qq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m4pfu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kaffv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mjtqu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yxuac")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vnej3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ujto0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6m0if")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w08yc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ogs5j")
+}],
+"loop": true,
+"name": &"cards_diamond",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bmrpq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7wuko")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bcs26")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rn71k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xsxqy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2uv8i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2uil2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6a8vb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wfa5l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qfnog")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ev77")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gmwwc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2dhlt")
+}],
+"loop": true,
+"name": &"cards_heart",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5arat")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y5es4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vpfqw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdn01")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fnve2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ghrr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mcch6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ydxkm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fnnqt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ccyac")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ekmo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uapdt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hxmaq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1804y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_61o2q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ihgff")
+}],
+"loop": true,
+"name": &"cards_other",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t28ke")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xhsuq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yyejm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jtmk6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ngvro")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6lrow")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kx8as")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0x3bq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_emi4i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jvals")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iusxe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u6no7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xeran")
+}],
+"loop": true,
+"name": &"cards_spade",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hma62")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3aa0u")
+}],
+"loop": true,
+"name": &"faces",
+"speed": 5.0
+}]
+
+[node name="Card" type="Node2D" node_paths=PackedStringArray("card", "card_viewport", "containers_node")]
+script = ExtResource("1_kt143")
+card = NodePath("Scaler/MarginContainer/CenterContainer/Control/SubViewportContainer/SubViewport/HBoxContainer/Middle Container/VBox/Card Container/Card Sprite")
+card_viewport = NodePath("Scaler/MarginContainer/CenterContainer/Control/SubViewportContainer")
+containers_node = NodePath("")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+visible = false
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_eiu11")
+}
+autoplay = "RESET"
+
+[node name="Scaler" type="Node2D" parent="."]
+scale = Vector2(2.5, 2.5)
+
+[node name="MarginContainer" type="MarginContainer" parent="Scaler"]
+offset_left = -540.0
+offset_top = -1200.0
+offset_right = 540.0
+offset_bottom = 1200.0
+
+[node name="CenterContainer" type="CenterContainer" parent="Scaler/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Control" type="Control" parent="Scaler/MarginContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Scaler/MarginContainer/CenterContainer/Control"]
+custom_minimum_size = Vector2(100, 150)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -75.0
+offset_right = 50.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(50, 70)
+
+[node name="SubViewport" type="SubViewport" parent="Scaler/MarginContainer/CenterContainer/Control/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(100, 140)
+render_target_update_mode = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Scaler/MarginContainer/CenterContainer/Control/SubViewportContainer/SubViewport"]
+custom_minimum_size = Vector2(100, 150)
+offset_right = 100.0
+offset_bottom = 150.0
+
+[node name="Left Marks Container" type="VBoxContainer" parent="Scaler/MarginContainer/CenterContainer/Control/SubViewportContainer/SubViewport/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Margin 1" type="MarginContainer" parent="Scaler/MarginContainer/CenterContainer/Control/SubViewportContainer/SubViewport/HBoxContainer/Left Marks Container"]
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="Scaler/MarginContainer/CenterContainer/Control/SubViewportContainer/SubViewport/HBoxContainer/Left Marks Container"]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+
+[node name="Player Mark Container 1" type="CenterContainer" parent="Scaler/MarginContainer/CenterContainer/Control/SubViewportContainer/SubViewport/HBoxContainer/Left Marks Container/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="Mark 1" type="AnimatedSprite2D" parent="Scaler/MarginContainer/CenterContainer/Control/SubViewportContainer/SubViewport/HBoxContainer/Left Marks Container/GridContainer/Player Mark Container 1"]
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_djf6f")
+animation = &"cards_other"
+frame = 2
+
+[node name="Player Mark Container 2" type="CenterContainer" parent="Scaler/MarginContainer/CenterContainer/Control/SubViewportContainer/SubViewport/HBoxContainer/Left Marks Container/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="Mark 2" type="AnimatedSprite2D" parent="Scaler/MarginContainer/CenterContainer/Control/SubViewportContainer/SubViewport/HBoxContainer/Left Marks Container/GridContainer/Player Mark Container 2"]
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_djf6f")
+animation = &"cards_other"
+frame = 3
+
+[node name="Player Mark Container 3" type="CenterContainer" parent="Scaler/MarginContainer/CenterContainer/Control/SubViewportContainer/SubViewport/HBoxContainer/Left Marks Container/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="Mark 3" type="AnimatedSprite2D" parent="Scaler/MarginContainer/CenterContainer/Control/SubViewportContainer/SubViewport/HBoxContainer/Left Marks Container/GridContainer/Player Mark Container 3"]
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_djf6f")
+animation = &"cards_other"
+frame = 5
+
+[node name="Margin 2" type="MarginContainer" parent="Scaler/MarginContainer/CenterContainer/Control/SubViewportContainer/SubViewport/HBoxContainer/Left Marks Container"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+
+[node name="Middle Container" type="VBoxContainer" parent="Scaler/MarginContainer/CenterContainer/Control/SubViewportContainer/SubViewport/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Top Margin" type="VBoxContainer" parent="Scaler/MarginContainer/CenterContainer/Control/SubViewportContainer/SubViewport/HBoxContainer/Middle Container"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Enemy Bet Container" type="CenterContainer" parent="Scaler/MarginContainer/CenterContainer/Control/SubViewportContainer/SubViewport/HBoxContainer/Middle Container/Top Margin"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="VBox" type="VBoxContainer" parent="Scaler/MarginContainer/CenterContainer/Control/SubViewportContainer/SubViewport/HBoxContainer/Middle Container"]
+custom_minimum_size = Vector2(80, 85)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Card Container" type="CenterContainer" parent="Scaler/MarginContainer/CenterContainer/Control/SubViewportContainer/SubViewport/HBoxContainer/Middle Container/VBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="Card Sprite" type="AnimatedSprite2D" parent="Scaler/MarginContainer/CenterContainer/Control/SubViewportContainer/SubViewport/HBoxContainer/Middle Container/VBox/Card Container"]
+sprite_frames = SubResource("SpriteFrames_djf6f")
+animation = &"cards_other"
+
+[node name="Bottom Margin" type="VBoxContainer" parent="Scaler/MarginContainer/CenterContainer/Control/SubViewportContainer/SubViewport/HBoxContainer/Middle Container"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Player Bet Container" type="CenterContainer" parent="Scaler/MarginContainer/CenterContainer/Control/SubViewportContainer/SubViewport/HBoxContainer/Middle Container/Bottom Margin"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="Right Marks Container" type="VBoxContainer" parent="Scaler/MarginContainer/CenterContainer/Control/SubViewportContainer/SubViewport/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3

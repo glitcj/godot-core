@@ -1,0 +1,122 @@
+[gd_scene load_steps=17 format=3 uid="uid://bv3klgr035oac"]
+
+[ext_resource type="Script" uid="uid://bf52dr70k2ej5" path="res://_core.gd" id="1_110wm"]
+[ext_resource type="Script" uid="uid://djvk5f1dkttil" path="res://core/inspector.gd" id="2_2jvhd"]
+[ext_resource type="Script" uid="uid://chrqwcvjxpk7x" path="res://scenes/peekaboo/scripts/_core_variables.gd" id="2_swu0y"]
+[ext_resource type="Script" uid="uid://bx1omwn0qjk24" path="res://core/debug/doomer.debug.log.gd" id="3_day3e"]
+[ext_resource type="PackedScene" uid="uid://cpdqupnudty53" path="res://core/turner/_core_turner.tscn" id="5_okhcm"]
+[ext_resource type="PackedScene" uid="uid://dfg24h7bgrdws" path="res://scenes/birds/_core_log.tscn" id="9_hqny6"]
+[ext_resource type="Script" uid="uid://byxa8sksknfmi" path="res://_core_data_lambdas.gd" id="9_swu0y"]
+[ext_resource type="Script" uid="uid://yc144vx4kdbk" path="res://scenes/_core_lambdas.gd" id="11_yes15"]
+[ext_resource type="Script" uid="uid://csfet7gupg7d0" path="res://docs/notes.gd" id="12_dhys3"]
+[ext_resource type="PackedScene" uid="uid://kdwtnvamx6of" path="res://scenes/swiper/_scroller.tscn" id="13_ltnrw"]
+[ext_resource type="PackedScene" uid="uid://ddux8cxbg3086" path="res://scenes/dungeon/_dgm.tscn" id="15_hqny6"]
+[ext_resource type="PackedScene" uid="uid://p0nktsm07ev6" path="res://scenes/birds/_birds.tscn" id="15_wlg60"]
+[ext_resource type="PackedScene" uid="uid://dcswdc80s3eyf" path="res://scenes/starter/_starter.tscn" id="17_8i81m"]
+[ext_resource type="Script" uid="uid://ddlflx7lmomwr" path="res://core/turner/turns/_starter_turn.gd" id="18_sps4g"]
+[ext_resource type="PackedScene" uid="uid://d08p5bfc634r" path="res://scenes/peekaboo/_peekaboo.tscn" id="21_pw4lx"]
+[ext_resource type="PackedScene" uid="uid://cxiw0m4n4emut" path="res://scenes/swiper/_swiper.tscn" id="22_t1t3w"]
+
+[node name="_Core" type="Node2D"]
+script = ExtResource("1_110wm")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+unique_name_in_owner = true
+anchor_mode = 0
+
+[node name="_Core_Variables" type="Node" parent="."]
+script = ExtResource("2_swu0y")
+
+[node name="Debug" type="Node" parent="."]
+
+[node name="Inspectors" type="Node" parent="Debug"]
+
+[node name="Cards Inspector" type="Node" parent="Debug/Inspectors"]
+script = ExtResource("2_2jvhd")
+
+[node name="Portraits Inspector" type="Node" parent="Debug/Inspectors" node_paths=PackedStringArray("inspectee_3")]
+script = ExtResource("2_2jvhd")
+inspectee_3 = NodePath("../../../Scenes/Scene Grid/_Starter")
+
+[node name="Log" type="Node" parent="Debug"]
+script = ExtResource("3_day3e")
+
+[node name="Label" type="Label" parent="Debug/Log"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Turner" parent="." instance=ExtResource("5_okhcm")]
+
+[node name="_Core_Lambdas" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("11_yes15")
+
+[node name="Documentation" type="Node" parent="."]
+script = ExtResource("12_dhys3")
+
+[node name="_Core_Data_Lambdas" type="Node" parent="."]
+script = ExtResource("9_swu0y")
+
+[node name="Current Scene" type="Node" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Current Scene"]
+
+[node name="MarginContainer" type="MarginContainer" parent="Current Scene/CanvasLayer"]
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="CenterContainer" type="CenterContainer" parent="Current Scene/CanvasLayer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Current Viewport" type="TextureRect" parent="Current Scene/CanvasLayer/MarginContainer/CenterContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="CanvasLayer Log" type="CanvasLayer" parent="Current Scene"]
+
+[node name="MarginContainer" type="MarginContainer" parent="Current Scene/CanvasLayer Log"]
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="_Core_Log" parent="Current Scene/CanvasLayer Log/MarginContainer" instance=ExtResource("9_hqny6")]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.5882353)
+layout_mode = 2
+
+[node name="Scenes" type="Node2D" parent="."]
+position = Vector2(0, 5000)
+
+[node name="Scene Grid" type="GridContainer" parent="Scenes"]
+offset_right = 7773.0
+offset_bottom = 7631.0
+columns = 2
+
+[node name="_Starter" parent="Scenes/Scene Grid" node_paths=PackedStringArray("next_scene") instance=ExtResource("17_8i81m")]
+unique_name_in_owner = true
+layout_mode = 2
+next_scene = NodePath("../_RPGM")
+player_turn = ExtResource("18_sps4g")
+
+[node name="_RPGM" parent="Scenes/Scene Grid" instance=ExtResource("21_pw4lx")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="_Swiper" parent="Scenes/Scene Grid" instance=ExtResource("22_t1t3w")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="_Scroller" parent="Scenes/Scene Grid" instance=ExtResource("13_ltnrw")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="_Birds" parent="Scenes/Scene Grid" instance=ExtResource("15_wlg60")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="_DGM" parent="Scenes/Scene Grid" instance=ExtResource("15_hqny6")]
+unique_name_in_owner = true
+layout_mode = 2

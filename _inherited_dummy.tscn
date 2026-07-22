@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhrph8fyabx7t"]
+
+[ext_resource type="PackedScene" uid="uid://nm6jvcae63b1" path="res://assets/universal_animation_dummy/UAL1_Standard.glb" id="1_0o57y"]
+
+[node name="_Inherited_Dummy" instance=ExtResource("1_0o57y")]

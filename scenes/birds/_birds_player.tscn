@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://fk76d8xanqjy"]
+
+[ext_resource type="Script" uid="uid://di6te028flucu" path="res://scenes/birds/_birds_player.gd" id="1_j3mge"]
+[ext_resource type="PackedScene" uid="uid://ca8vvptjr324n" path="res://scenes/peekaboo/components/_rpgm_portrait.tscn" id="2_nqen2"]
+[ext_resource type="Shader" uid="uid://5dmscal31dgu" path="res://scenes/peekaboo/shaders/_random.gdshader" id="3_5krvi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lo0k1"]
+radius = 50.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j3mge"]
+shader = ExtResource("3_5krvi")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nqen2"]
+size = Vector2(250, 200)
+
+[node name="_Birds_Player" type="CharacterBody2D"]
+script = ExtResource("1_j3mge")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_lo0k1")
+
+[node name="_RPGM_Portrait" parent="." instance=ExtResource("2_nqen2")]
+unique_name_in_owner = true
+modulate = Color(1.4595516, 1.6773839, 2.3308809, 1)
+material = SubResource("ShaderMaterial_j3mge")
+position = Vector2(0, -70)
+sprite = "bird"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="ReferenceRect" type="ReferenceRect" parent="Camera2D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+border_width = 10.0
+
+[node name="Area2D HitBox" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D HitBox"]
+shape = SubResource("RectangleShape2D_nqen2")

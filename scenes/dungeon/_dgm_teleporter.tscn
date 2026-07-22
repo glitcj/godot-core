@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dyc1jbanvgwm3"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_8ink1"]
+radius = 3.0
+height = 10.0
+
+[node name="_Desert_Teleporter" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_8ink1")

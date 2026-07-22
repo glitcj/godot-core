@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpdqupnudty53"]
+
+[ext_resource type="Script" uid="uid://dg6umh5fnvvvl" path="res://core/turner/_core_turner.gd" id="1_axhyf"]
+[ext_resource type="Script" uid="uid://dgolmm8ww1134" path="res://core/turner/turns/_core_turn.gd" id="3_1o6bk"]
+
+[node name="Turner" type="Node"]
+script = ExtResource("1_axhyf")
+
+[node name="ActionTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="_Core_Turn" type="Node" parent="."]
+script = ExtResource("3_1o6bk")
+
+[connection signal="timeout" from="ActionTimer" to="." method="_on_timer_timeout"]
