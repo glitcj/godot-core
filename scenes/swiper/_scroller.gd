@@ -25,7 +25,7 @@ var verses := []
 @onready var scroll_messages = get_variables().koran as Array
 
 
-func _on_viewport_end():	
+func _on_viewport_finish():	
 	var tweener : _Core_Tweener
 	for i in range(total_verses_on_page):
 		if i == 2:

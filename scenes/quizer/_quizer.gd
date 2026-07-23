@@ -18,7 +18,7 @@ var questions_counter
 var koran_loader : _Core_Data
 var current_verse_index
 
-func _on_viewport_end():
+func _on_viewport_finish():
 	super()
 
 # Called when the node enters the scene tree for the first time.

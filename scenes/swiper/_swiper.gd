@@ -22,7 +22,7 @@ var current_verse_index
 @onready var verses_initialiser = find_children("_verse_*")
 
 
-func _on_viewport_end():
+func _on_viewport_finish():
 	super()
 
 # Called when the node enters the scene tree for the first time.

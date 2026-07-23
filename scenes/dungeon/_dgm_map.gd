@@ -13,11 +13,7 @@ func _get_viewport():
 @export var start_position : Node3D
 
 func _ready():
-	pass
-	# print_tree_pretty()
-	
 	_get_viewport().started.connect(_on_viewport_started)
-	pass
 
 func _on_viewport_started():
 	%_DGM_Player.global_position = start_position.global_position

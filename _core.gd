@@ -37,7 +37,7 @@ func _boot():
 
 func change_viewport(viewport: _Core_Viewport):
 	if current_viewport:
-		await current_viewport._on_viewport_end()
+		await current_viewport._on_viewport_finish()
 	current_viewport = viewport
 	
 	%"Current Viewport".texture = (viewport.find_child("SubViewport") as SubViewport).get_texture()
@@ -48,7 +48,7 @@ var viewport_stack = []
 # they also handle activation handover etc, so cannot be
 # refactored completely into the _Core_Viewport class
 func add_viewport(to_add_viewport: _Core_Viewport,  _container : Container, _scale := Vector2.ONE):
-	await current_viewport._on_viewport_end()
+	await current_viewport._on_viewport_finish()
 	viewport_stack.append(current_viewport)
 	current_viewport = to_add_viewport
 	
@@ -57,11 +57,8 @@ func add_viewport(to_add_viewport: _Core_Viewport,  _container : Container, _sca
 	# to_add_viewport.scale = Vector2(.5, .5)
 	await current_viewport._on_viewport_start()
 
-
-
-# func remove_viewport(parent_viewport : _Core_Viewport, child_viewport: _Core_Viewport, _container : Container):
 func remove_viewport(to_remove_viewport: _Core_Viewport): #, _container : Container):
-	await to_remove_viewport._on_viewport_end()
+	await to_remove_viewport._on_viewport_finish()
 	var next_viewport = viewport_stack.pop_at(0)
 	
 	current_viewport = next_viewport

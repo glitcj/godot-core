@@ -29,7 +29,7 @@ func _ready() -> void:
 func _on_viewport_start():	
 	super()
 	
-func _on_viewport_end():
+func _on_viewport_finish():
 	super()
 	
 func finish():

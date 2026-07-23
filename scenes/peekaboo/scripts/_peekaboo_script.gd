@@ -42,7 +42,6 @@ var current_distnace_from_player : Vector2 = Vector2.ZERO
 var parent : Object
 var mover : _RPGM_Mover
 var portrait : _RPGM_Portrait
-var scene_just_started := true
 
 var trigger_is_running : Dictionary = {}
 
@@ -64,6 +63,7 @@ func bind_triggers():
 	actioned.connect(_wrapped_callable.bind(_on_action))
 	actioned_within_area.connect(_wrapped_callable.bind(_on_action_within_area))
 	frame_started.connect(_wrapped_callable.bind(_on_frame))
+	# get_rpgm().started.connect(_wrapped_callable.bind(_on_viewport_start))
 	get_rpgm().started.connect(_wrapped_callable.bind(_on_viewport_start))
 	
 	if get_area(): get_area().body_entered.connect(_check_area_signals)
