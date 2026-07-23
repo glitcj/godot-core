@@ -73,13 +73,13 @@ func add_viewport(parent_viewport : _Core_Viewport, child_viewport: _Core_Viewpo
 
 
 
+# func remove_viewport(parent_viewport : _Core_Viewport, child_viewport: _Core_Viewport, _container : Container):
 func remove_viewport(parent_viewport : _Core_Viewport, child_viewport: _Core_Viewport, _container : Container):
 	if child_viewport == current_scene:
 		await child_viewport._on_viewport_end()
 	current_scene = parent_viewport
 
 	var wrapper_node = child_viewport.get_parent() as Node2D
-	
 	
 	# parent_scene.remove_child(wrapper_node)
 	# wrapper_node.remove_child(child_scene)
@@ -92,7 +92,7 @@ func remove_viewport(parent_viewport : _Core_Viewport, child_viewport: _Core_Vie
 	await parent_viewport._on_viewport_start()
 
 
-
+"""
 func add_scene(parent_scene : _Core_Viewport, child_scene: _Core_Viewport,  _position := Vector2.ZERO, _scale := Vector2.ONE):
 	if parent_scene == current_scene:
 		await current_scene._on_viewport_end()
@@ -126,7 +126,7 @@ func remove_scene(parent_scene : _Core_Viewport, child_scene: _Core_Viewport):
 	wrapper_node.queue_free()
 	
 	await parent_scene._on_viewport_start()
-
+"""
 
 
 func test_log(): return "Test"

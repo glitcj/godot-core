@@ -44,6 +44,7 @@ func get_verses():
 		
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	super()
 	camera = %Camera2D as Camera2D
 
 func _initiate_visible_labels():

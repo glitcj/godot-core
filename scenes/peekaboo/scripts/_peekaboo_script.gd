@@ -9,10 +9,7 @@ signal actioned
 
 @export var interrupt_player := false
 @export var is_collision := false
-
-
-
-var is_active = false
+@export var is_active = true
 func _is_active() -> bool: return true
 
 # CLAUDE: cached node references — populated once at ready via _get_components
@@ -99,6 +96,8 @@ func _get_components():
 
 var last_is_active = false
 
+# var is_active = false
+
 func _process(_delta: float):
 	if not get_rpgm() or not get_player():
 		return
@@ -109,15 +108,18 @@ func _process(_delta: float):
 	
 	# this pattern is fragile ? to process_frame awaits and skips
 	# probably no
-	if (last_is_active and not _is_active()):
-		_on_deactivated()
-	if (not last_is_active and _is_active()):
-		_on_activated()
-		
+	if (last_is_active and not _is_active()): _deactivate()
+	if (not last_is_active and _is_active()): _activate()
+	
+	# if (last_is_active and not is_active): _deactivate()
+	# if (not last_is_active and is_active): _activate()
 		
 	last_is_active = _is_active()
-	
 	if not _is_active(): return
+	
+	# last_is_active = is_active
+	# if not is_active: return
+
 		
 	_log()
 	# CLAUDE: only emit frame_started if the subclass actually overrides _on_frame
@@ -175,13 +177,13 @@ func _on_within_range():
 func _on_action_within_area():
 	pass
 
-func _on_activated():
+func _activate():
 	visible = true
 	is_active = true
 	get_map().mark_collision_dirty()
 	get_event().update_active_scripts()
 
-func _on_deactivated():
+func _deactivate():
 	visible = false
 	is_active = false
 	get_map().mark_collision_dirty()

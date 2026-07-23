@@ -7,6 +7,11 @@ signal started
 # the signal <finished> is to be defined within 
 # each child of _Core_Viewport
 
+
+
+func _ready() -> void:
+	assert(has_signal("finished"))
+
 var is_active = false:
 	set(v):
 		is_active = v

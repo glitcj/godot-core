@@ -5,6 +5,7 @@ class_name _Swiper
 @export var words : Array[String]
 
 signal option_selected(selection)
+signal finished
 
 var interrupt_scroll = true
 
@@ -26,6 +27,7 @@ func _on_viewport_end():
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	super()
 	camera = %Camera2D as Camera2D
 	koran_loader = _Core_Data.new()
 	koran_loader.load_quran_csv("res://assets/kooran_de_go/quran.csv")

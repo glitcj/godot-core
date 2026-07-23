@@ -1,7 +1,7 @@
 extends _Core_Viewport
 class_name _Starter
 
-
+signal finished
 
 @export var next_scene : _Core_Viewport
 
@@ -12,6 +12,7 @@ class_name _Starter
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	super()
 	camera = %Camera2D as Camera2D
 	await _Starter_Turn.new().start(self)
 
