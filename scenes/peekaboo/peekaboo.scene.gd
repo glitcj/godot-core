@@ -22,6 +22,8 @@ func _on_viewport_end():
 
 func _activate():
 	find_child("Player").is_active = true
+	super()
 
 func _deactivate():
 	find_child("Player").is_active = false
+	super()

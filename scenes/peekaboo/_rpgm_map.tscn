@@ -11281,10 +11281,13 @@ func _ready():
 	super()
 	_viewport = load(\"res://scenes/swiper/_scroller.tscn\").instantiate() as _Scroller
 	_viewport.is_centered = true
+	_viewport.scale = Vector2(.25, .25)
 	
 func _on_viewport_finished(selection):
 	# get_core().remove_scene(get_rpgm(), _viewport)
-	get_core().remove_viewport(get_rpgm(), _viewport, get_rpgm().find_child(\"_canvas_top\"))
+	# get_core().remove_viewport(get_rpgm(), _viewport, get_rpgm().find_child(\"_canvas_top\"))
+	# get_core().remove_viewport(_viewport, get_rpgm().find_child(\"_canvas_top\"))
+	get_core().remove_viewport(_viewport)
 	await get_rpgm().activated
 	
 	await get_lambdas().show_messages([\"You selected %s.\" % selection])
@@ -11293,8 +11296,8 @@ func _on_viewport_finished(selection):
 
 func _on_action():
 	_viewport.finished.connect(_on_viewport_finished, CONNECT_ONE_SHOT)
-	# get_core().add_scene(get_rpgm(), _viewport, (get_rpgm().find_child(\"_canvas_top\") as CenterContainer).position)
-	get_core().add_viewport(get_rpgm(), _viewport, get_rpgm().find_child(\"_canvas_top\"))
+	get_core().add_viewport(_viewport, get_rpgm().find_child(\"_canvas_top\"))
+	# _viewport.scale = Vector2(.25, .25)
 	await returned_from_viewport_and_finished
 "
 

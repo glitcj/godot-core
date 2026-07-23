@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://kdwtnvamx6of"]
+[gd_scene format=3 uid="uid://kdwtnvamx6of"]
 
 [ext_resource type="Script" uid="uid://dljcynf31eb7" path="res://scenes/swiper/_scroller.gd" id="1_fcb8s"]
 
@@ -35,63 +35,63 @@ func _process(delta: float) -> void:
 [sub_resource type="LabelSettings" id="LabelSettings_jhufk"]
 font_size = 100
 
-[node name="_Scroller" type="SubViewportContainer"]
+[node name="_Scroller" type="SubViewportContainer" unique_id=710651511]
 offset_right = 1080.0
 offset_bottom = 2400.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_fcb8s")
 
-[node name="SubViewport" type="SubViewport" parent="."]
+[node name="SubViewport" type="SubViewport" parent="." unique_id=2056533907]
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(1080, 600)
 render_target_update_mode = 4
 
-[node name="Camera2D" type="Camera2D" parent="SubViewport"]
+[node name="Camera2D" type="Camera2D" parent="SubViewport" unique_id=1201562127]
 unique_name_in_owner = true
 anchor_mode = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="SubViewport"]
+[node name="MarginContainer" type="MarginContainer" parent="SubViewport" unique_id=1079330937]
 offset_top = -1800.0
 offset_right = 1080.0
 offset_bottom = 2600.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="TextureRect Background" type="TextureRect" parent="SubViewport/MarginContainer"]
+[node name="TextureRect Background" type="TextureRect" parent="SubViewport/MarginContainer" unique_id=651906194]
 modulate = Color(0.9455804, 0.2907711, 0.18593669, 1)
 z_index = -10
 layout_mode = 2
 texture = SubResource("CanvasTexture_1htd0")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SubViewport/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewport/MarginContainer" unique_id=1089710814]
 layout_mode = 2
 
-[node name="MarginContainer Empty 0" type="MarginContainer" parent="SubViewport/MarginContainer/VBoxContainer"]
+[node name="MarginContainer Empty 0" type="MarginContainer" parent="SubViewport/MarginContainer/VBoxContainer" unique_id=880004598]
 custom_minimum_size = Vector2(0, 1000)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer 0" type="MarginContainer" parent="SubViewport/MarginContainer/VBoxContainer"]
+[node name="MarginContainer 0" type="MarginContainer" parent="SubViewport/MarginContainer/VBoxContainer" unique_id=1293641344]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="CenterContainer2" type="CenterContainer" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 0"]
+[node name="CenterContainer2" type="CenterContainer" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 0" unique_id=694986190]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="_scroll_position_0" type="Node2D" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 0/CenterContainer2"]
+[node name="_scroll_position_0" type="Node2D" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 0/CenterContainer2" unique_id=386928753]
 script = SubResource("GDScript_14spj")
 applied_modulate = Color(0, 0, 0, 0)
 applied_scale = Vector2(0.2, 0.2)
 
-[node name="_verse_0" type="Node2D" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 0/CenterContainer2"]
+[node name="_verse_0" type="Node2D" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 0/CenterContainer2" unique_id=1292240219]
 visible = false
 script = SubResource("GDScript_wwys7")
 
-[node name="Label" type="Label" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 0/CenterContainer2/_verse_0"]
+[node name="Label" type="Label" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 0/CenterContainer2/_verse_0" unique_id=2076348019]
 custom_minimum_size = Vector2(1080, 0)
 anchors_preset = 8
 anchor_left = 0.5
@@ -109,25 +109,25 @@ label_settings = SubResource("LabelSettings_jhufk")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="MarginContainer 1" type="MarginContainer" parent="SubViewport/MarginContainer/VBoxContainer"]
+[node name="MarginContainer 1" type="MarginContainer" parent="SubViewport/MarginContainer/VBoxContainer" unique_id=1808977674]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="CenterContainer" type="CenterContainer" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 1"]
+[node name="CenterContainer" type="CenterContainer" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 1" unique_id=1518989698]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="_scroll_position_1" type="Node2D" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 1/CenterContainer"]
+[node name="_scroll_position_1" type="Node2D" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 1/CenterContainer" unique_id=1277137231]
 script = SubResource("GDScript_14spj")
 applied_modulate = Color(1, 1, 1, 0.5882353)
 applied_scale = Vector2(0.6, 0.6)
 
-[node name="_verse_1" type="Node2D" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 1/CenterContainer"]
+[node name="_verse_1" type="Node2D" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 1/CenterContainer" unique_id=988258122]
 visible = false
 script = SubResource("GDScript_wwys7")
 
-[node name="Label" type="Label" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 1/CenterContainer/_verse_1"]
+[node name="Label" type="Label" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 1/CenterContainer/_verse_1" unique_id=15752873]
 custom_minimum_size = Vector2(1080, 0)
 anchors_preset = 8
 anchor_left = 0.5
@@ -145,25 +145,25 @@ label_settings = SubResource("LabelSettings_jhufk")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="MarginContainer 2" type="MarginContainer" parent="SubViewport/MarginContainer/VBoxContainer"]
+[node name="MarginContainer 2" type="MarginContainer" parent="SubViewport/MarginContainer/VBoxContainer" unique_id=1192839916]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="CenterContainer" type="CenterContainer" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 2"]
+[node name="CenterContainer" type="CenterContainer" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 2" unique_id=1648343236]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="_scroll_position_2" type="Node2D" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 2/CenterContainer"]
+[node name="_scroll_position_2" type="Node2D" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 2/CenterContainer" unique_id=464269684]
 script = SubResource("GDScript_14spj")
 applied_modulate = Color(1, 1, 1, 1)
 applied_scale = Vector2(1, 1)
 
-[node name="_verse_2" type="Node2D" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 2/CenterContainer"]
+[node name="_verse_2" type="Node2D" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 2/CenterContainer" unique_id=2015892254]
 visible = false
 script = SubResource("GDScript_wwys7")
 
-[node name="Label" type="Label" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 2/CenterContainer/_verse_2"]
+[node name="Label" type="Label" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 2/CenterContainer/_verse_2" unique_id=1206525675]
 custom_minimum_size = Vector2(1080, 0)
 anchors_preset = 8
 anchor_left = 0.5
@@ -181,26 +181,26 @@ label_settings = SubResource("LabelSettings_jhufk")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="MarginContainer 3" type="MarginContainer" parent="SubViewport/MarginContainer/VBoxContainer"]
+[node name="MarginContainer 3" type="MarginContainer" parent="SubViewport/MarginContainer/VBoxContainer" unique_id=1581378883]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="CenterContainer" type="CenterContainer" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 3"]
+[node name="CenterContainer" type="CenterContainer" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 3" unique_id=1492932452]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="_scroll_position_3" type="Node2D" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 3/CenterContainer"]
+[node name="_scroll_position_3" type="Node2D" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 3/CenterContainer" unique_id=1814650410]
 script = SubResource("GDScript_14spj")
 applied_modulate = Color(1, 1, 1, 0.5882353)
 applied_scale = Vector2(0.6, 0.6)
 
-[node name="_verse_3" type="Node2D" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 3/CenterContainer"]
+[node name="_verse_3" type="Node2D" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 3/CenterContainer" unique_id=1582028685]
 visible = false
 script = SubResource("GDScript_wwys7")
 
-[node name="Label" type="Label" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 3/CenterContainer/_verse_3"]
+[node name="Label" type="Label" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 3/CenterContainer/_verse_3" unique_id=1715021677]
 custom_minimum_size = Vector2(1080, 0)
 anchors_preset = 8
 anchor_left = 0.5
@@ -218,25 +218,25 @@ label_settings = SubResource("LabelSettings_jhufk")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="MarginContainer 4" type="MarginContainer" parent="SubViewport/MarginContainer/VBoxContainer"]
+[node name="MarginContainer 4" type="MarginContainer" parent="SubViewport/MarginContainer/VBoxContainer" unique_id=1325817849]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="CenterContainer" type="CenterContainer" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 4"]
+[node name="CenterContainer" type="CenterContainer" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 4" unique_id=1624463412]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="_scroll_position_4" type="Node2D" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 4/CenterContainer"]
+[node name="_scroll_position_4" type="Node2D" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 4/CenterContainer" unique_id=165740821]
 script = SubResource("GDScript_14spj")
 applied_modulate = Color(0, 0, 0, 0)
 applied_scale = Vector2(0.2, 0.2)
 
-[node name="_verse_4" type="Node2D" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 4/CenterContainer"]
+[node name="_verse_4" type="Node2D" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 4/CenterContainer" unique_id=1558839987]
 visible = false
 script = SubResource("GDScript_wwys7")
 
-[node name="Label" type="Label" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 4/CenterContainer/_verse_4"]
+[node name="Label" type="Label" parent="SubViewport/MarginContainer/VBoxContainer/MarginContainer 4/CenterContainer/_verse_4" unique_id=1829019987]
 custom_minimum_size = Vector2(1080, 0)
 anchors_preset = 8
 anchor_left = 0.5
@@ -254,7 +254,7 @@ label_settings = SubResource("LabelSettings_jhufk")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="MarginContainer Empty 1" type="MarginContainer" parent="SubViewport/MarginContainer/VBoxContainer"]
+[node name="MarginContainer Empty 1" type="MarginContainer" parent="SubViewport/MarginContainer/VBoxContainer" unique_id=1908230139]
 custom_minimum_size = Vector2(0, 1000)
 layout_mode = 2
 size_flags_vertical = 3

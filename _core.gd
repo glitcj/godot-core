@@ -6,7 +6,7 @@ class_name _Core
 # This include nodes, and things inside nodes.
 # Static here means that the object does not change throughout the game, and a Pointer is not needed (for example containers)
 
-var current_scene : _Core_Viewport
+var current_viewport : _Core_Viewport
 
 @onready var camera = %Camera2D as Camera2D
 @onready var turner : _Core_Turner = $Turner
@@ -36,105 +36,38 @@ func _boot():
 	change_viewport(get_scene("_Starter"))
 
 func change_viewport(viewport: _Core_Viewport):
-	if current_scene:
-		await current_scene._on_viewport_end()
-	current_scene = viewport
+	if current_viewport:
+		await current_viewport._on_viewport_end()
+	current_viewport = viewport
 	
 	%"Current Viewport".texture = (viewport.find_child("SubViewport") as SubViewport).get_texture()
-	
 	await viewport._on_viewport_start()
 
-
-
-
 var viewport_stack = []
-
-
 # these functions do more than just add remove child logic
 # they also handle activation handover etc, so cannot be
 # refactored completely into the _Core_Viewport class
-# func add_viewport(parent_viewport : _Core_Viewport, child_viewport: _Core_Viewport,  _container : Container, _scale := Vector2.ONE):
-# func add_viewport(child_viewport: _Core_Viewport,  _container : Container, _scale := Vector2.ONE):
-func add_viewport(parent_viewport : _Core_Viewport, child_viewport: _Core_Viewport,  _container : Container, _scale := Vector2.ONE):
-
+func add_viewport(to_add_viewport: _Core_Viewport,  _container : Container, _scale := Vector2.ONE):
+	await current_viewport._on_viewport_end()
+	viewport_stack.append(current_viewport)
+	current_viewport = to_add_viewport
 	
-	
-
-	# if parent_viewport == current_scene:
-	await current_scene._on_viewport_end()
-	viewport_stack.append(current_scene)
-	current_scene = child_viewport
-	
-	# var wrapper_node = Node2D.new()
-	# wrapper_node.name = "_Wrapper_"
-	# wrapper_node.add_child(child_viewport)
-	
-		
-	# _container.add_child(wrapper_node)
-	_container.add_child(current_scene)
-	
-	# await child_viewport._on_viewport_start()
-	await current_scene._on_viewport_start()
+	# to_add_viewport.scale = Vector2(.5, .5)
+	_container.add_child(current_viewport)	
+	# to_add_viewport.scale = Vector2(.5, .5)
+	await current_viewport._on_viewport_start()
 
 
 
 # func remove_viewport(parent_viewport : _Core_Viewport, child_viewport: _Core_Viewport, _container : Container):
-func remove_viewport(parent_viewport : _Core_Viewport, child_viewport: _Core_Viewport, _container : Container):
-	# if child_viewport == current_scene:
-	await child_viewport._on_viewport_end()
+func remove_viewport(to_remove_viewport: _Core_Viewport): #, _container : Container):
+	await to_remove_viewport._on_viewport_end()
 	var next_viewport = viewport_stack.pop_at(0)
-	# current_scene = parent_viewport
-	current_scene = next_viewport
+	
+	current_viewport = next_viewport
+	to_remove_viewport.get_parent().remove_child(to_remove_viewport)
 
-	# var wrapper_node = child_viewport.get_parent() as Node2D
-	# _container.remove_child(wrapper_node)
-	_container.remove_child(child_viewport)
-	
-	
-	# wrapper_node.remove_child(child_viewport)
-	# wrapper_node.queue_free()
-	
-	
-	# await parent_viewport._on_viewport_start()
-	await current_scene._on_viewport_start()
-
-
-"""
-func add_scene(parent_scene : _Core_Viewport, child_scene: _Core_Viewport,  _position := Vector2.ZERO, _scale := Vector2.ONE):
-	if parent_scene == current_scene:
-		await current_scene._on_viewport_end()
-	current_scene = child_scene
-	
-	var wrapper_node = Node2D.new()
-	wrapper_node.name = "_Wrapper_"
-	wrapper_node.add_child(child_scene)
-	
-	
-	
-	print(_position)
-	pass
-	if _position != Vector2.ZERO:
-		wrapper_node.position = _position
-	if _scale != Vector2.ZERO:
-		wrapper_node.scale = _scale
-		
-	parent_scene.add_child(wrapper_node)
-	await child_scene._on_viewport_start()
-
-
-func remove_scene(parent_scene : _Core_Viewport, child_scene: _Core_Viewport):
-	if child_scene == current_scene:
-		await child_scene._on_viewport_end()
-	current_scene = parent_scene
-
-	var wrapper_node = child_scene.get_parent() as Node2D
-	parent_scene.remove_child(wrapper_node)
-	wrapper_node.remove_child(child_scene)
-	wrapper_node.queue_free()
-	
-	await parent_scene._on_viewport_start()
-"""
-
+	await current_viewport._on_viewport_start()
 
 func test_log(): return "Test"
 func _setup_log():

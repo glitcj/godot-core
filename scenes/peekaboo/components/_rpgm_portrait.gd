@@ -112,7 +112,7 @@ func _update_material():
 
 		
 func _ready() -> void:
-	# if get_tree().current_scene != self: %Camera2D.enabled = false
+	# if get_tree().current_viewport != self: %Camera2D.enabled = false
 	
 	atlas = AtlasTexture.new()
 	%Sprite2D.texture = atlas

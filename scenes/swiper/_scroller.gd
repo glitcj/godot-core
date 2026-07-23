@@ -75,10 +75,11 @@ func _initiate_visible_labels():
 func _on_viewport_start():
 	super()
 	await get_tree().process_frame
-	
+
 	interrupt_scroll = true
 	await _initiate_visible_labels()
 	interrupt_scroll = false
+	
 	
 func _scroll_down():
 	
@@ -160,6 +161,7 @@ func _input(event: InputEvent) -> void:
 	
 	match (event as InputEventKey).keycode:
 		KEY_RIGHT:
+
 			if scroll_counter > 0:
 				scroll_counter = scroll_counter - 1
 				await _scroll_up()
