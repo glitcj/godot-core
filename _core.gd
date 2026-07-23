@@ -80,10 +80,7 @@ func remove_viewport(parent_viewport : _Core_Viewport, child_viewport: _Core_Vie
 	current_scene = parent_viewport
 
 	var wrapper_node = child_viewport.get_parent() as Node2D
-	
-	# parent_scene.remove_child(wrapper_node)
-	# wrapper_node.remove_child(child_scene)
-	
+
 	_container.remove_child(wrapper_node)
 	wrapper_node.remove_child(child_viewport)
 	wrapper_node.queue_free()

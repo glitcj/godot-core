@@ -11856,7 +11856,7 @@ map_position = Vector2i(13, -26)
 metadata/_custom_type_script = "uid://cigfux3bal5ef"
 
 [node name="_npc_4_2" type="Node2D" parent="_map_4" unique_id=519240694]
-position = Vector2(696, -1320)
+position = Vector2(24, 120)
 script = ExtResource("17_yspku")
 deprecated = false
 
@@ -11872,7 +11872,7 @@ scale = Vector2(1.0166667, 1.0833334)
 [node name="_RPGM_Mover" type="Node" parent="_map_4/_npc_4_2" unique_id=393434475]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
-map_position = Vector2i(14, -28)
+map_position = Vector2i(0, 2)
 metadata/_custom_type_script = "uid://cigfux3bal5ef"
 
 [node name="_npc_4_3" type="Node2D" parent="_map_4" unique_id=523801611]
