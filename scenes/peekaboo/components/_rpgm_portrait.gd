@@ -31,8 +31,8 @@ var facing := Vector2(-1, 0):
 var sprite : String = "cream":
 	set(v):
 		sprite = v
-		if %AnimatedSprite2D == null: return
-		%AnimatedSprite2D.animation = sprite
+		if %_sampler == null: return
+		%_sampler.animation = sprite
 		_update_atlas()
 
 func _editor_update():
@@ -51,7 +51,7 @@ func _get_property_list() -> Array[Dictionary]:
 	return properties
 
 func _get_available_animation_names() -> Array:
-	var sprite_node =  %AnimatedSprite2D # get_node_or_null("AnimatedSprite2D")
+	var sprite_node =  %_sampler # get_node_or_null("AnimatedSprite2D")
 	if sprite_node and sprite_node.sprite_frames:
 		return Array(sprite_node.sprite_frames.get_animation_names())
 	return ["None"]
@@ -112,7 +112,7 @@ func _update_material():
 
 		
 func _ready() -> void:
-	# if get_tree().current_viewport != self: %Camera2D.enabled = false
+	# if get_tree().current_scene != self: %Camera2D.enabled = false
 	
 	atlas = AtlasTexture.new()
 	%Sprite2D.texture = atlas
@@ -120,15 +120,15 @@ func _ready() -> void:
 	%"Label Mark".text = mark
 	
 	# this step might be heavy and can be GPU optimised later on
-	%AnimatedSprite2D.frame_changed.connect(_update_atlas)
+	%_sampler.frame_changed.connect(_update_atlas)
 	
 	# sync atlas to whatever frame is current on load
 	_update_atlas()
 	_update_material()
 	
 func _update_atlas():
-	var frame = %AnimatedSprite2D.frame
-	var tex = %AnimatedSprite2D.sprite_frames.get_frame_texture(%AnimatedSprite2D.animation, frame)
+	var frame = %_sampler.frame
+	var tex = %_sampler.sprite_frames.get_frame_texture(%_sampler.animation, frame)
 	
 	var source_image : Image
 	var region : Rect2
@@ -148,6 +148,6 @@ func _update_atlas():
 func _tween_material_progress(duration := 10.0):
 	var tween = create_tween()
 	tween.tween_method(
-		func(v): $AnimatedSprite2D.material.set_shader_parameter("progress", v),
+		func(v): $_sampler.material.set_shader_parameter("progress", v),
 		0.0, 1.0, duration
 	)

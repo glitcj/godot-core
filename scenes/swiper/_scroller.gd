@@ -175,7 +175,7 @@ func _input(event: InputEvent) -> void:
 			else:
 				finished.emit("_word_1")
 				
-		KEY_ESCAPE:
+		KEY_ENTER:
 			finished.emit("_word_1")
 			
 		_:

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d08p5bfc634r"]
 
-[ext_resource type="Script" uid="uid://caovffqs8nkct" path="res://scenes/peekaboo/peekaboo.scene.gd" id="1_3t57p"]
-[ext_resource type="Script" uid="uid://c6484wl627c5c" path="res://scenes/peekaboo/peekaboo.lambdas.gd" id="3_5dvgp"]
+[ext_resource type="Script" uid="uid://caovffqs8nkct" path="res://scenes/peekaboo/_rpgm.gd" id="1_3t57p"]
+[ext_resource type="Script" uid="uid://c6484wl627c5c" path="res://scenes/peekaboo/_rpgm_lambdas.gd" id="3_5dvgp"]
 [ext_resource type="PackedScene" uid="uid://bc6scuw6gftg0" path="res://scenes/peekaboo/_rpgm_map.tscn" id="4_n54ed"]
 [ext_resource type="Texture2D" uid="uid://ck7xl51igarox" path="res://assets/rpgmaker/mv/parallaxes/DarkSpace1.png" id="7_4skqh"]
 [ext_resource type="Shader" uid="uid://cenoyxwifpvd0" path="res://scenes/peekaboo/shaders/_scroll.gdshader" id="7_stufm"]

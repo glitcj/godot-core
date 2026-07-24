@@ -1,8 +1,8 @@
 [gd_scene format=4 uid="uid://bc6scuw6gftg0"]
 
-[ext_resource type="Script" uid="uid://3b6nx2ubod3b" path="res://scenes/peekaboo/_peekaboo_map.gd" id="1_txeor"]
-[ext_resource type="Script" uid="uid://c6484wl627c5c" path="res://scenes/peekaboo/peekaboo.lambdas.gd" id="2_vd6wf"]
-[ext_resource type="Script" uid="uid://da77evou2la0g" path="res://scenes/peekaboo/scripts/_peekaboo_variables.gd" id="3_6le0f"]
+[ext_resource type="Script" uid="uid://3b6nx2ubod3b" path="res://scenes/peekaboo/_rpgm_map.gd" id="1_txeor"]
+[ext_resource type="Script" uid="uid://c6484wl627c5c" path="res://scenes/peekaboo/_rpgm_lambdas.gd" id="2_vd6wf"]
+[ext_resource type="Script" uid="uid://da77evou2la0g" path="res://scenes/peekaboo/scripts/_rpgm_variables.gd" id="3_6le0f"]
 [ext_resource type="Texture2D" uid="uid://cir837rpp1qt3" path="res://assets/rpgmaker/mv/tilesets/Dungeon_A1.png" id="4_uc14m"]
 [ext_resource type="Texture2D" uid="uid://cklccjgem4vvs" path="res://assets/ninja/Backgrounds/Tilesets/TilesetFloor.png" id="5_kl3l0"]
 [ext_resource type="Texture2D" uid="uid://dwo3ghnulbghq" path="res://assets/ninja/Backgrounds/Tilesets/TilesetField.png" id="6_loqga"]
@@ -12,7 +12,7 @@
 [ext_resource type="TileSet" uid="uid://dmuy2eaehvonb" path="res://assets/rpgmaker/converted/tilesets/Dungeon_A4.tres" id="10_cjg66"]
 [ext_resource type="TileSet" uid="uid://chbwhee5ecdx1" path="res://assets/rpgmaker/converted/tilesets/Dungeon_A1.tres" id="11_jmbn5"]
 [ext_resource type="Texture2D" uid="uid://dagwq224gg87f" path="res://assets/rpgmaker/mv/tilesets/Dungeon_B.png" id="12_oaqr5"]
-[ext_resource type="Script" uid="uid://dgn8xx17xtp4n" path="res://scenes/peekaboo/peekaboo.player.gd" id="13_jonhj"]
+[ext_resource type="Script" uid="uid://dgn8xx17xtp4n" path="res://scenes/peekaboo/_rpgm_player.gd" id="13_jonhj"]
 [ext_resource type="Script" uid="uid://cigfux3bal5ef" path="res://scenes/peekaboo/components/_rpgm_mover.gd" id="14_j4uy8"]
 [ext_resource type="PackedScene" uid="uid://ca8vvptjr324n" path="res://scenes/peekaboo/components/_rpgm_portrait.tscn" id="15_2uryw"]
 [ext_resource type="Shader" uid="uid://5dmscal31dgu" path="res://scenes/peekaboo/shaders/_random.gdshader" id="17_txeor"]
@@ -11517,7 +11517,6 @@ tile_set = SubResource("TileSet_x2jho")
 [node name="_RPGM_Camera" type="Node2D" parent="." unique_id=1806915797]
 position = Vector2(24, 24)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_RPGM_Mover" type="Node" parent="_RPGM_Camera" unique_id=636468214]
 script = ExtResource("14_j4uy8")
@@ -11612,7 +11611,6 @@ metadata/_custom_type_script = "uid://cigfux3bal5ef"
 [node name="_npc_1_2" type="Node2D" parent="_map_1" unique_id=1041572364]
 position = Vector2(-120, 120)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_rpgm_script" type="Node2D" parent="_map_1/_npc_1_2" unique_id=182426219]
 script = SubResource("GDScript_x2jho")
@@ -11632,7 +11630,6 @@ metadata/_custom_type_script = "uid://cigfux3bal5ef"
 [node name="_event_1_1" type="Node2D" parent="_map_1" unique_id=1839221708]
 position = Vector2(24, -24)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_RPGM_Script" type="Node2D" parent="_map_1/_event_1_1" unique_id=99814635]
 script = ExtResource("20_hxdjl")
@@ -11685,7 +11682,6 @@ label_settings = SubResource("LabelSettings_6le0f")
 [node name="_enemy_2_1" type="Node2D" parent="_map_2" unique_id=384155250]
 position = Vector2(-552, 72)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_enemy_script_2_1" type="Node2D" parent="_map_2/_enemy_2_1" unique_id=1155407201]
 script = SubResource("GDScript_ceddd")
@@ -11714,7 +11710,6 @@ map_position = Vector2i(-12, 1)
 [node name="_enemy_2_2" type="Node2D" parent="_map_2" unique_id=169736033]
 position = Vector2(-984, -120)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_common_script_ghost" type="Node2D" parent="_map_2/_enemy_2_2" unique_id=877032653]
 script = SubResource("GDScript_lnpst")
@@ -11734,7 +11729,6 @@ metadata/_custom_type_script = "uid://cigfux3bal5ef"
 [node name="_enemy_2_3" type="Node2D" parent="_map_2" unique_id=130958144]
 position = Vector2(-1080, 72)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_common_script_ghost" type="Node2D" parent="_map_2/_enemy_2_3" unique_id=1933306583]
 script = SubResource("GDScript_fchqt")
@@ -11754,7 +11748,6 @@ metadata/_custom_type_script = "uid://cigfux3bal5ef"
 [node name="_event_2_1" type="Node2D" parent="_map_2" unique_id=1539386637]
 position = Vector2(-648, -24)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_RPGM_Script" type="Node2D" parent="_map_2/_event_2_1" unique_id=1055183704]
 script = ExtResource("21_4gmig")
@@ -11775,7 +11768,6 @@ texture = SubResource("CanvasTexture_j52ey")
 [node name="_npc_3_2_talking_tree" type="Node2D" parent="_map_3" unique_id=1901808844]
 position = Vector2(648, -216)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_RPGM_Common_Script_Talker" type="Node2D" parent="_map_3/_npc_3_2_talking_tree" unique_id=1782417348]
 script = SubResource("GDScript_vvo4p")
@@ -11790,7 +11782,6 @@ metadata/_custom_type_script = "uid://cigfux3bal5ef"
 [node name="_npc_3_3_stuff" type="Node2D" parent="_map_3" unique_id=1535082856]
 position = Vector2(744, -264)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_RPGM_Script" type="Node2D" parent="_map_3/_npc_3_3_stuff" unique_id=1333190918]
 script = ExtResource("20_txeor")
@@ -11805,7 +11796,6 @@ metadata/_custom_type_script = "uid://cigfux3bal5ef"
 [node name="_npc_3_4_stuff" type="Node2D" parent="_map_3" unique_id=1089850911]
 position = Vector2(696, -264)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_RPGM_Script" type="Node2D" parent="_map_3/_npc_3_4_stuff" unique_id=1778908953]
 position = Vector2(48, 0)
@@ -11822,7 +11812,6 @@ metadata/_custom_type_script = "uid://cigfux3bal5ef"
 y_sort_enabled = true
 position = Vector2(552, -264)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_rpgm_common_script_talker_3_1" type="Node2D" parent="_map_3/_npc_3_1" unique_id=1384893167]
 script = ExtResource("18_xp5op")
@@ -11844,7 +11833,6 @@ metadata/_custom_type_script = "uid://cigfux3bal5ef"
 [node name="_npc_4_1_talking_tree" type="Node2D" parent="_map_4" unique_id=2054076073]
 position = Vector2(648, -1224)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_RPGM_Common_Script_Talker" type="Node2D" parent="_map_4/_npc_4_1_talking_tree" unique_id=1751104104]
 script = ExtResource("18_xp5op")
@@ -11861,7 +11849,6 @@ metadata/_custom_type_script = "uid://cigfux3bal5ef"
 [node name="_npc_4_2" type="Node2D" parent="_map_4" unique_id=519240694]
 position = Vector2(24, 120)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_RPGM_Script" type="Node2D" parent="_map_4/_npc_4_2" unique_id=453401314]
 script = SubResource("GDScript_eu0qy")
@@ -11881,7 +11868,6 @@ metadata/_custom_type_script = "uid://cigfux3bal5ef"
 [node name="_npc_4_3" type="Node2D" parent="_map_4" unique_id=523801611]
 position = Vector2(600, -1320)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_RPGM_Script" type="Node2D" parent="_map_4/_npc_4_3" unique_id=142225957]
 script = SubResource("GDScript_byr4j")
@@ -11903,7 +11889,6 @@ metadata/_custom_type_script = "uid://cigfux3bal5ef"
 [node name="_npc_5_1" type="Node2D" parent="_map_5" unique_id=83809832]
 position = Vector2(-648, -1464)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_RPGM_Script" type="Node2D" parent="_map_5/_npc_5_1" unique_id=962681152]
 script = SubResource("GDScript_38inc")
@@ -11927,7 +11912,6 @@ metadata/_custom_type_script = "uid://cigfux3bal5ef"
 [node name="_npc_6_1" type="Node2D" parent="_map_6" unique_id=1252690090]
 position = Vector2(120, 936)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_script" type="Node2D" parent="_map_6/_npc_6_1" unique_id=533204874]
 script = SubResource("GDScript_05s22")
@@ -11947,7 +11931,6 @@ metadata/_custom_type_script = "uid://cigfux3bal5ef"
 [node name="_npc_6_2" type="Node2D" parent="_map_6" unique_id=1064975660]
 position = Vector2(-72, 168)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_script" type="Node2D" parent="_map_6/_npc_6_2" unique_id=1638407331]
 script = SubResource("GDScript_vd6wf")
@@ -11966,7 +11949,6 @@ metadata/_custom_type_script = "uid://cigfux3bal5ef"
 [node name="_npc_6_3" type="Node2D" parent="_map_6" unique_id=1158217167]
 position = Vector2(120, 1032)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_rpgm_common_script_talker_6_3" type="Node2D" parent="_map_6/_npc_6_3" unique_id=675078666]
 script = ExtResource("18_xp5op")
@@ -11987,7 +11969,6 @@ metadata/_custom_type_script = "uid://cigfux3bal5ef"
 [node name="_event_6_1" type="Node2D" parent="_map_6" unique_id=1465020280]
 position = Vector2(-72, 1032)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_RPGM_Script" type="Node2D" parent="_map_6/_event_6_1" unique_id=1019395856]
 script = SubResource("GDScript_4lb6x")
@@ -12012,7 +11993,6 @@ metadata/_custom_type_script = "uid://cigfux3bal5ef"
 y_sort_enabled = true
 position = Vector2(1800, -216)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_rpgm_common_script_talker" type="Node2D" parent="_map_7/_npc_7_1" unique_id=749624767]
 script = ExtResource("18_xp5op")
@@ -12035,7 +12015,6 @@ metadata/_custom_type_script = "uid://cigfux3bal5ef"
 y_sort_enabled = true
 position = Vector2(2088, -168)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_rpgm_common_script_talker" type="Node2D" parent="_map_7/_npc_7_3" unique_id=973394962]
 script = ExtResource("18_xp5op")
@@ -12059,7 +12038,6 @@ metadata/_custom_type_script = "uid://cigfux3bal5ef"
 y_sort_enabled = true
 position = Vector2(1896, -216)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_rpgm_common_script_talker" type="Node2D" parent="_map_7/_npc_7_2" unique_id=764121597]
 script = ExtResource("18_xp5op")
@@ -12083,7 +12061,6 @@ metadata/_custom_type_script = "uid://cigfux3bal5ef"
 [node name="_teleport_6_1" type="Node2D" parent="_teleports" unique_id=1575285908]
 position = Vector2(24, 696)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_common_script_teleport_6_1" type="Node2D" parent="_teleports/_teleport_6_1" unique_id=771934062 node_paths=PackedStringArray("camera_position_node", "player_position_node")]
 script = ExtResource("23_tl7rd")
@@ -12128,7 +12105,6 @@ shape = SubResource("RectangleShape2D_ceddd")
 [node name="_teleport_1_6" type="Node2D" parent="_teleports" unique_id=1356118567]
 position = Vector2(24, 312)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_common_script_teleport_1_6" type="Node2D" parent="_teleports/_teleport_1_6" unique_id=1488423350 node_paths=PackedStringArray("camera_position_node", "player_position_node")]
 script = ExtResource("23_tl7rd")
@@ -12173,7 +12149,6 @@ shape = SubResource("RectangleShape2D_ceddd")
 [node name="_teleport_1_2" type="Node2D" parent="_teleports" unique_id=1159705767]
 position = Vector2(216, -24)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_common_script_teleport_1_2" type="Node2D" parent="_teleports/_teleport_1_2" unique_id=1612556890 node_paths=PackedStringArray("camera_position_node", "player_position_node")]
 script = ExtResource("23_tl7rd")
@@ -12218,7 +12193,6 @@ shape = SubResource("RectangleShape2D_ceddd")
 [node name="_teleport_1_3" type="Node2D" parent="_teleports" unique_id=1802139196]
 position = Vector2(-168, -24)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_common_script_teleport_1_3" type="Node2D" parent="_teleports/_teleport_1_3" unique_id=881670915 node_paths=PackedStringArray("camera_position_node", "player_position_node")]
 script = ExtResource("23_tl7rd")
@@ -12263,7 +12237,6 @@ shape = SubResource("RectangleShape2D_ceddd")
 [node name="_teleport_6_8" type="Node2D" parent="_teleports" unique_id=1352845840]
 position = Vector2(24, 1176)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_common_script_teleport" type="Node2D" parent="_teleports/_teleport_6_8" unique_id=574511413 node_paths=PackedStringArray("camera_position_node", "player_position_node")]
 script = ExtResource("23_tl7rd")
@@ -12308,7 +12281,6 @@ shape = SubResource("RectangleShape2D_ceddd")
 [node name="_teleport_8_6" type="Node2D" parent="_teleports" unique_id=1333061306]
 position = Vector2(24, 1944)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_common_script_teleport" type="Node2D" parent="_teleports/_teleport_8_6" unique_id=2107796815 node_paths=PackedStringArray("camera_position_node", "player_position_node")]
 script = ExtResource("23_tl7rd")
@@ -12353,7 +12325,6 @@ shape = SubResource("RectangleShape2D_ceddd")
 [node name="_teleport_2_1" type="Node2D" parent="_teleports" unique_id=48745072]
 position = Vector2(-456, -24)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_common_script_teleport_2_1" type="Node2D" parent="_teleports/_teleport_2_1" unique_id=1553532971 node_paths=PackedStringArray("camera_position_node", "player_position_node")]
 script = ExtResource("23_tl7rd")
@@ -12398,7 +12369,6 @@ shape = SubResource("RectangleShape2D_ceddd")
 [node name="_teleport_3_7" type="Node2D" parent="_teleports" unique_id=23464572]
 position = Vector2(840, -24)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_common_script_teleport_3_1" type="Node2D" parent="_teleports/_teleport_3_7" unique_id=255406865 node_paths=PackedStringArray("camera_position_node", "player_position_node")]
 script = ExtResource("23_tl7rd")
@@ -12443,7 +12413,6 @@ shape = SubResource("RectangleShape2D_ceddd")
 [node name="_teleport_3_1" type="Node2D" parent="_teleports" unique_id=1782395983]
 position = Vector2(456, -24)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_common_script_teleport_3_1" type="Node2D" parent="_teleports/_teleport_3_1" unique_id=66884466 node_paths=PackedStringArray("camera_position_node", "player_position_node")]
 script = ExtResource("23_tl7rd")
@@ -12488,7 +12457,6 @@ shape = SubResource("RectangleShape2D_ceddd")
 [node name="_teleport_7_3" type="Node2D" parent="_teleports" unique_id=272208020]
 position = Vector2(1560, -24)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_common_script_teleport_3_1" type="Node2D" parent="_teleports/_teleport_7_3" unique_id=461219721 node_paths=PackedStringArray("camera_position_node", "player_position_node")]
 script = ExtResource("23_tl7rd")
@@ -12533,7 +12501,6 @@ shape = SubResource("RectangleShape2D_ceddd")
 [node name="_teleport_3_2" type="Node2D" parent="_teleports" unique_id=104013461]
 position = Vector2(648, -408)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_common_script_teleport_3_2" type="Node2D" parent="_teleports/_teleport_3_2" unique_id=1985626519 node_paths=PackedStringArray("camera_position_node", "player_position_node")]
 script = ExtResource("23_tl7rd")
@@ -12578,7 +12545,6 @@ shape = SubResource("RectangleShape2D_ceddd")
 [node name="_teleport_4_3" type="Node2D" parent="_teleports" unique_id=1354397568]
 position = Vector2(648, -1032)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_common_script_teleport_4_1" type="Node2D" parent="_teleports/_teleport_4_3" unique_id=1872628943 node_paths=PackedStringArray("camera_position_node", "player_position_node")]
 script = ExtResource("23_tl7rd")
@@ -12627,7 +12593,6 @@ unique_name_in_owner = true
 visible = false
 position = Vector2(-648, -1368)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_RPGM_Mover" type="Node" parent="_camera_positions/_camera_position_5_1" unique_id=992085554]
 script = ExtResource("14_j4uy8")
@@ -12662,7 +12627,6 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 position = Vector2(648, -1224)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_RPGM_Mover" type="Node" parent="_camera_positions/_camera_position_4_1" unique_id=1555548166]
 script = ExtResource("14_j4uy8")
@@ -12697,7 +12661,6 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 position = Vector2(24, 2136)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_RPGM_Mover" type="Node" parent="_camera_positions/_camera_position_8_1" unique_id=1916155093]
 script = ExtResource("14_j4uy8")
@@ -12732,7 +12695,6 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 position = Vector2(-840, -24)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_RPGM_Mover" type="Node" parent="_camera_positions/_camera_position_2_1" unique_id=894112602]
 script = ExtResource("14_j4uy8")
@@ -12767,7 +12729,6 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 position = Vector2(648, -168)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_RPGM_Mover" type="Node" parent="_camera_positions/_camera_position_3_1" unique_id=1530418066]
 script = ExtResource("14_j4uy8")
@@ -12802,7 +12763,6 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 position = Vector2(24, 984)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_RPGM_Mover" type="Node" parent="_camera_positions/_camera_position_6_1" unique_id=1360472408]
 script = ExtResource("14_j4uy8")
@@ -12842,7 +12802,6 @@ shape = SubResource("RectangleShape2D_ceddd")
 unique_name_in_owner = true
 position = Vector2(24, 24)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_RPGM_Mover" type="Node" parent="_camera_positions/_camera_position_1_1" unique_id=401200729]
 script = ExtResource("14_j4uy8")
@@ -12881,7 +12840,6 @@ shape = SubResource("RectangleShape2D_ceddd")
 unique_name_in_owner = true
 position = Vector2(1848, -120)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_RPGM_Mover" type="Node" parent="_camera_positions/_camera_position_7_1" unique_id=935490369]
 script = ExtResource("14_j4uy8")
@@ -12918,7 +12876,6 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 position = Vector2(648, -1080)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_RPGM_Mover" type="Node" parent="_player_positions/_player_position_4_3" unique_id=1253762331]
 script = ExtResource("14_j4uy8")
@@ -12954,7 +12911,6 @@ unique_name_in_owner = true
 visible = false
 position = Vector2(-648, -1224)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_RPGM_Mover" type="Node" parent="_player_positions/_player_position_5_1" unique_id=1630862656]
 script = ExtResource("14_j4uy8")
@@ -12989,7 +12945,6 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 position = Vector2(648, -360)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_RPGM_Mover" type="Node" parent="_player_positions/_player_position_3_2" unique_id=971659330]
 script = ExtResource("14_j4uy8")
@@ -13024,7 +12979,6 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 position = Vector2(1608, -24)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_RPGM_Mover" type="Node" parent="_player_positions/_player_position_7_3" unique_id=104201319]
 script = ExtResource("14_j4uy8")
@@ -13059,7 +13013,6 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 position = Vector2(792, -24)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_RPGM_Mover" type="Node" parent="_player_positions/_player_position_3_7" unique_id=1724419661]
 script = ExtResource("14_j4uy8")
@@ -13094,7 +13047,6 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 position = Vector2(504, -24)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_RPGM_Mover" type="Node" parent="_player_positions/_player_position_3_1" unique_id=1003765028]
 script = ExtResource("14_j4uy8")
@@ -13129,7 +13081,6 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 position = Vector2(-504, -24)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_RPGM_Mover" type="Node" parent="_player_positions/_player_position_2_1" unique_id=381820362]
 script = ExtResource("14_j4uy8")
@@ -13164,7 +13115,6 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 position = Vector2(168, -24)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_RPGM_Mover" type="Node" parent="_player_positions/_player_position_1_2" unique_id=1200891452]
 script = ExtResource("14_j4uy8")
@@ -13199,7 +13149,6 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 position = Vector2(24, 1992)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_RPGM_Mover" type="Node" parent="_player_positions/_player_position_8_6" unique_id=1223835970]
 script = ExtResource("14_j4uy8")
@@ -13234,7 +13183,6 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 position = Vector2(24, 1128)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_RPGM_Mover" type="Node" parent="_player_positions/_player_position_6_8" unique_id=1759719162]
 script = ExtResource("14_j4uy8")
@@ -13269,7 +13217,6 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 position = Vector2(24, 744)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_RPGM_Mover" type="Node" parent="_player_positions/_player_position_6_1" unique_id=654396755]
 script = ExtResource("14_j4uy8")
@@ -13304,7 +13251,6 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 position = Vector2(24, 264)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_RPGM_Mover" type="Node" parent="_player_positions/_player_position_1_6" unique_id=2062622805]
 script = ExtResource("14_j4uy8")
@@ -13340,7 +13286,6 @@ unique_name_in_owner = true
 visible = false
 position = Vector2(-120, -24)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_RPGM_Mover" type="Node" parent="_player_positions/_player_position_1_1" unique_id=1791512296]
 script = ExtResource("14_j4uy8")
@@ -13376,7 +13321,6 @@ unique_name_in_owner = true
 visible = false
 position = Vector2(648, -1416)
 script = ExtResource("17_yspku")
-deprecated = false
 
 [node name="_RPGM_Mover" type="Node" parent="_player_positions/_player_position_4_transition" unique_id=1477106069]
 script = ExtResource("14_j4uy8")

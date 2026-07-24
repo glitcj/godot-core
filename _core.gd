@@ -7,7 +7,6 @@ class_name _Core
 # Static here means that the object does not change throughout the game, and a Pointer is not needed (for example containers)
 
 var current_viewport : _Core_Viewport
-
 @onready var camera = %Camera2D as Camera2D
 @onready var turner : _Core_Turner = $Turner
 
@@ -23,6 +22,8 @@ func _input(event):
 func _process_input():
 	if Input.is_action_just_pressed("ui_show_log"):
 		%_Core_Log.visible = !%_Core_Log.visible
+	if Input.is_action_just_pressed("ui_cancel"):
+		get_tree().quit()
 
 func _process(delta: float) -> void:
 	_process_input()
@@ -30,7 +31,7 @@ func _process(delta: float) -> void:
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_boot.call_deferred()
-	_setup_log.call_deferred()
+	_log.call_deferred()
 
 func _boot():
 	change_viewport(get_scene("_Starter"))
@@ -67,6 +68,6 @@ func remove_viewport(to_remove_viewport: _Core_Viewport): #, _container : Contai
 	await current_viewport._on_viewport_start()
 
 func test_log(): return "Test"
-func _setup_log():
+func _log():
 	%_Core_Log.add_log(test_log)
 	%_Core_Log.add_log(func fps(): return "FPS %s" % str(Engine.get_frames_per_second()))
