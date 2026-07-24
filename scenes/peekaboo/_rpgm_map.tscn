@@ -20,7 +20,7 @@
 [ext_resource type="Script" uid="uid://ipwj2rxnrjv3" path="res://scenes/peekaboo/scripts/common_scripts/_peekaboo_common_script_talker.gd" id="18_xp5op"]
 [ext_resource type="Shader" uid="uid://cc5d7uonuhvo" path="res://scenes/peekaboo/shaders/_sphere_and_correct_rgb_belnding.gdshader" id="19_cyfpt"]
 [ext_resource type="Script" uid="uid://li8gf7m6uhl3" path="res://scenes/peekaboo/scripts/level-1-1/script.event.1-1.gd" id="20_hxdjl"]
-[ext_resource type="Script" uid="uid://t32s55k36xah" path="res://scenes/peekaboo/scripts/_peekaboo_script.gd" id="20_txeor"]
+[ext_resource type="Script" uid="uid://t32s55k36xah" path="res://scenes/peekaboo/scripts/_rpgm_script.gd" id="20_txeor"]
 [ext_resource type="Script" uid="uid://bit0g8h83tbxs" path="res://scenes/peekaboo/scripts/level-1-1/script.event.2-1.gd" id="21_4gmig"]
 [ext_resource type="Script" uid="uid://brl88l8fl1w5u" path="res://scenes/peekaboo/scripts/common_scripts/_peekaboo_common_script_teleport.gd" id="23_tl7rd"]
 

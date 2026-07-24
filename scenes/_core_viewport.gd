@@ -17,7 +17,7 @@ signal started
 
 func _ready() -> void:
 	assert(has_signal("finished"))
-	_on_viewport_start()
+	# _on_viewport_start()
 
 var is_active = false
 
@@ -26,8 +26,9 @@ var is_active = false
 
 func _on_viewport_start():
 	await get_tree().process_frame
-	_activate()
 	started.emit()
+	await get_tree().process_frame
+	_activate()
 	
 func _on_viewport_finish():
 	await get_tree().process_frame

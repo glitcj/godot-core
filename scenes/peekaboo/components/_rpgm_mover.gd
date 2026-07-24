@@ -11,7 +11,6 @@ var is_moving = false:
 
 @export var speed = 0.5 as float
 @export var type = MovementType.Linear as MovementType
-
 @export var facing = Vector2i(1, 0) as Vector2i
 
 
