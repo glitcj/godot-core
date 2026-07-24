@@ -39,9 +39,6 @@ func _on_viewport_finish():
 	# expected pattern. 
 	# Make Doc for all core functionality.
 	# Start > Activate > Deactivate > Finish
-
-
-
 	
 # de/activation is needed in cases where the scene is paused and not finished
 func _activate():

@@ -3,6 +3,8 @@ class_name _Birds_Player
 
 func _get_viewport(): return find_parent("_Birds") as _Birds
 func get_hud(): return _get_viewport().get_hud() as _Core_Log
+func get_core(): return find_parent("_Core") as _Core
+func get_log(): return get_core().get_log()
 
 var birds_direction = Vector2(0,0)
 var player_input_direction = Vector2(0,0)
@@ -16,10 +18,10 @@ var input_plus_passive = Vector2(0,0)
 func _ready() -> void:
 	%_RPGM_Portrait.facing = Vector2(0,1)
 	
-	get_hud().add_log(_get_velocity)
-	get_hud().add_log(_get_absolute_velocity)
-	get_hud().add_log(get_accumulated_direction)
-	get_hud().add_log(get_input_plus_passive)
+	get_log().add_log(_get_velocity)
+	get_log().add_log(_get_absolute_velocity)
+	get_log().add_log(get_accumulated_direction)
+	get_log().add_log(get_input_plus_passive)
 	
 	%"Area2D HitBox".area_entered.connect(_on_hitbox_area_entered)
 	

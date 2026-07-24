@@ -13,12 +13,12 @@ var is_active = false:
 @onready var mover = find_child("_RPGM_Mover") as _RPGM_Mover
 @onready var map = find_parent("_RPGM_Map") as _RPGM_Map
 
+
+func get_core(): return find_parent("_Core") as _Core
 func get_RPGM(): return find_parent("_RPGM") as _RPGM
-func get_log(): return get_RPGM().get_log() as _Core_Log
+func get_log(): return get_core().get_log() as _Core_Log
 func get_portrait(): return find_child("_RPGM_Portrait") as _RPGM_Portrait
 func get_mover(): return find_child("_RPGM_Mover") as _RPGM_Mover
-
-
 
 var direction = Vector2i.ZERO as Vector2i
 var next_direction = Vector2i.ZERO:
@@ -32,16 +32,10 @@ func _ready() -> void:
 	setup_log()
 
 
-func get_log_header(): return "
-
-
-(%.2f, %.2f)
-Vector Log:" % [mover.map_position.x, mover.map_position.y]
 func get_direction(): return Vector2(direction) as Vector2
 func get_next_direction(): return Vector2(next_direction) as Vector2
 
 func setup_log():
-	get_log().add_log(get_log_header)
 	get_log().add_log(get_direction)
 	get_log().add_log(get_next_direction)
 	

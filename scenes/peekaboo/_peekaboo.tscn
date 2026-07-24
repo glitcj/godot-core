@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://caovffqs8nkct" path="res://scenes/peekaboo/peekaboo.scene.gd" id="1_3t57p"]
 [ext_resource type="Script" uid="uid://c6484wl627c5c" path="res://scenes/peekaboo/peekaboo.lambdas.gd" id="3_5dvgp"]
-[ext_resource type="PackedScene" uid="uid://dfg24h7bgrdws" path="res://scenes/birds/_core_log.tscn" id="4_jlhyk"]
 [ext_resource type="PackedScene" uid="uid://bc6scuw6gftg0" path="res://scenes/peekaboo/_rpgm_map.tscn" id="4_n54ed"]
 [ext_resource type="Texture2D" uid="uid://ck7xl51igarox" path="res://assets/rpgmaker/mv/parallaxes/DarkSpace1.png" id="7_4skqh"]
 [ext_resource type="Shader" uid="uid://cenoyxwifpvd0" path="res://scenes/peekaboo/shaders/_scroll.gdshader" id="7_stufm"]
@@ -97,26 +96,3 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-
-[node name="CanvasLayer _Core_Log" type="CanvasLayer" parent="SubViewport" unique_id=784913853]
-visible = false
-
-[node name="MarginContainer" type="MarginContainer" parent="SubViewport/CanvasLayer _Core_Log" unique_id=201478264]
-offset_right = 1920.0
-offset_bottom = 1080.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="SubViewport/CanvasLayer _Core_Log/MarginContainer" unique_id=934529428]
-layout_mode = 2
-
-[node name="MarginContainer 1" type="MarginContainer" parent="SubViewport/CanvasLayer _Core_Log/MarginContainer/HBoxContainer" unique_id=1848000549]
-custom_minimum_size = Vector2(1400, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="MarginContainer 2" type="MarginContainer" parent="SubViewport/CanvasLayer _Core_Log/MarginContainer/HBoxContainer" unique_id=1746315967]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="_Core_Log" parent="SubViewport/CanvasLayer _Core_Log/MarginContainer/HBoxContainer/MarginContainer 2" unique_id=1655611174 instance=ExtResource("4_jlhyk")]
-z_index = 100
-layout_mode = 2

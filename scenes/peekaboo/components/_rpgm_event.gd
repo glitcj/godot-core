@@ -46,6 +46,7 @@ func update_active_scripts():
 			is_collision = is_collision or s.is_collision
 
 func _ready():
+	if Engine.is_editor_hint(): return # new
 	_get_components.call_deferred()
 	update_active_scripts.call_deferred()
 	# get_core().get_log().add_log(func(): return name + str(portraits))

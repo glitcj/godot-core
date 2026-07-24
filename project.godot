@@ -21,6 +21,7 @@ config/features=PackedStringArray("4.7", "Forward Plus")
 [autoload]
 
 _Core_Time="*res://core/_core_time.gd"
+_Get="*uid://cb3jg3nb7ark"
 
 [display]
 
