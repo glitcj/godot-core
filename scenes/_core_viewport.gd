@@ -7,8 +7,6 @@ signal started
 # the signal <finished> is to be defined within 
 # each child of _Core_Viewport
 
-
-
 # REFACTOR: Do we really need start AND activate 
 # as concepts ?also do we really end, finished, 
 # and Deactivated as concepts ? may be over engineered 
@@ -17,7 +15,6 @@ signal started
 
 func _ready() -> void:
 	assert(has_signal("finished"))
-	# _on_viewport_start()
 
 var is_active = false
 
