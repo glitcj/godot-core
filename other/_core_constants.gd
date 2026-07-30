@@ -1,5 +1,5 @@
 extends Node
-class_name _Doomer_Constants
+class_name _Core_Constants
 
 static var immediate_action_time_delta : float = 0.001
 

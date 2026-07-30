@@ -10,7 +10,7 @@ func _init(to_call_ : Callable, to_bind_ : Array = [], wait_for_call_ : bool = t
 	turn_name = "LMD"
 	turn_colour = Color(0.5,.3,.5)
 	name = "_Core_Turn_Lambda"
-	turn_wait_time = _Doomer_Constants.immediate_action_time_delta
+	turn_wait_time = _Core_Constants.immediate_action_time_delta
 
 	to_call = to_call_
 	to_bind = to_bind_

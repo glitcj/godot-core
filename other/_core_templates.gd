@@ -20,7 +20,7 @@ var tscn_portrait = "res://nodes/portrait/doomer.portrait.tscn"
 
 # TSCN:
 var tscn_doomer = "res://doomer.tscn"
-var tscn_Doomer_Getter = "res://doomer.getter.gd"
+# var tscn_Doomer_Getter = "res://doomer.getter.gd"
 var tscn_card = "res://nodes/card/node.doomer.card.tscn"
 var tscn_card_mark = "res://nodes/card/doomer.card.mark.tscn"
 var tscn_message_box = "res://nodes/board/doomer.message_box.tscn"

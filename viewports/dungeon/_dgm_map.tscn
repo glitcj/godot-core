@@ -6,7 +6,7 @@
 [ext_resource type="TileSet" uid="uid://dmuy2eaehvonb" path="res://assets/rpgmaker/converted/tilesets/Dungeon_A4.tres" id="3_667se"]
 [ext_resource type="Texture2D" uid="uid://4qppoxfwn8d" path="res://assets/skies/rogland_clear_night_4k.exr" id="3_x1eu2"]
 [ext_resource type="PackedScene" uid="uid://xvskev5wt426" path="res://assets/basic_3d_models/Models/Male/Character_03.fbx" id="4_667se"]
-[ext_resource type="PackedScene" uid="uid://ulnxacinu8x" path="res://viewports/dungeon/_desert_player.tscn" id="5_ofueu"]
+[ext_resource type="PackedScene" uid="uid://ulnxacinu8x" path="res://viewports/dungeon/_dgm_player.tscn" id="5_ofueu"]
 [ext_resource type="PackedScene" uid="uid://dgkdu1c1mlwb" path="res://viewports/dungeon/_wrapped_inherited_godette.tscn" id="6_s2wsf"]
 [ext_resource type="PackedScene" uid="uid://bhl41amnaf1d1" path="res://viewports/dungeon/_wrapped_inherited_dummy.tscn" id="7_vjlhp"]
 [ext_resource type="PackedScene" uid="uid://caltidappke87" path="res://viewports/dungeon/_dgm_tilemap.tscn" id="8_fqjkr"]
