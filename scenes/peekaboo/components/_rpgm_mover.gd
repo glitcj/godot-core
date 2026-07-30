@@ -53,6 +53,8 @@ func teleport(tile_position : Vector2i):
 	get_parent().global_position = tilemap_to_global_position(tile_position)
 	
 func _quantise_position():
+	if not get_parent() != null: return
+	if not get_parent().is_node_ready(): return
 	get_parent().global_position = tilemap_to_global_position(map_position)
 
 func move_to_map_position(target_map_position):

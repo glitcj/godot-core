@@ -30,7 +30,13 @@ extends Node
 
 @export_tool_button(\"Run\") var callable : Callable = _run
 
-func _run():
+func _run(): _print_tree_pretty
+	
+func _print_tree_pretty():
+	print(get_parent())
+	get_parent().print_tree_pretty()
+	
+func _update_events():
 	print(\"Just ran..\")
 	for event in  get_parent().find_children(\"*\"): # find_children(\"_RPGM_Portrait\"):
 		if event.has_method(\"_editor_update\"):
@@ -11464,7 +11470,6 @@ y_sort_enabled = true
 [node name="L1 Base" type="TileMapLayer" parent="Tilemap" unique_id=1203869376]
 unique_name_in_owner = true
 texture_filter = 1
-tile_map_data = PackedByteArray("AAAoAeX/AQALAAUAAAApAeT/AQALAAUAAAApAeX/AQALAAUAAAAoAeT/AQALAAUAAAAoAeb/AQALAAUAAAApAeb/AQALAAUAAAA=")
 tile_set = SubResource("TileSet_b0sri")
 
 [node name="L0 NJ Floors" type="TileMapLayer" parent="Tilemap" unique_id=1920832674]
@@ -11929,7 +11934,7 @@ map_position = Vector2i(2, 19)
 metadata/_custom_type_script = "uid://cigfux3bal5ef"
 
 [node name="_npc_6_2" type="Node2D" parent="_map_6" unique_id=1064975660]
-position = Vector2(-72, 168)
+position = Vector2(120, 168)
 script = ExtResource("17_yspku")
 
 [node name="_script" type="Node2D" parent="_map_6/_npc_6_2" unique_id=1638407331]
@@ -11943,7 +11948,7 @@ scale = Vector2(1.0166667, 1.0833334)
 
 [node name="_RPGM_Mover" type="Node" parent="_map_6/_npc_6_2" unique_id=700966920]
 script = ExtResource("14_j4uy8")
-map_position = Vector2i(-2, 3)
+map_position = Vector2i(2, 3)
 metadata/_custom_type_script = "uid://cigfux3bal5ef"
 
 [node name="_npc_6_3" type="Node2D" parent="_map_6" unique_id=1158217167]

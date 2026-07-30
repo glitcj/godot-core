@@ -31,6 +31,7 @@ var facing := Vector2(-1, 0):
 var sprite : String = "cream":
 	set(v):
 		sprite = v
+		if not is_node_ready(): return
 		if %_sampler == null: return
 		%_sampler.animation = sprite
 		_update_atlas()
@@ -51,7 +52,8 @@ func _get_property_list() -> Array[Dictionary]:
 	return properties
 
 func _get_available_animation_names() -> Array:
-	var sprite_node =  %_sampler # get_node_or_null("AnimatedSprite2D")
+	if not is_node_ready(): return ["null"]
+	var sprite_node =  %_sampler
 	if sprite_node and sprite_node.sprite_frames:
 		return Array(sprite_node.sprite_frames.get_animation_names())
 	return ["None"]

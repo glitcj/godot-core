@@ -37,6 +37,9 @@ func mark_collision_dirty() -> void:
 
 var last_process_ms := 0.0
 func _process(_delta: float) -> void:
+	# if Engine.is_editor_hint(): return
+	if not is_node_ready(): return
+
 	var start = Time.get_ticks_usec()
 	# CLAUDE: deferred collision rebuild — at most once per frame, driven by the dirty flag
 	if collision_dirty:

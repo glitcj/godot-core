@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cm76nn6o61eiq"]
-
-[ext_resource type="Script" uid="uid://dq16iw42brksd" path="res://nodes/hud/hourglass.gd" id="1_w011a"]
-
-[node name="Node2D" type="Node2D"]
-script = ExtResource("1_w011a")
-
-[node name="Line2D" type="Line2D" parent="."]
-points = PackedVector2Array(0, 0, 0, -5)

@@ -3,10 +3,6 @@ class_name _Core_Templates
 
 static var window = preload("res://core/window/_core_window.tscn")
 
-static var portrait = preload("res://nodes/portrait/doomer.portrait.tscn")
-static var coin_box_coin = preload("res://nodes/coin_box/doomer.coin_box.coin.tscn")
-static var card_mark = preload("res://nodes/card/doomer.card.mark.tscn")
-
 # Recent:
 var tscn_gun = "res://nodes/gun/doomer.gun.tscn"
 var turn_start_screen_player_input = "res://nodes/turner/turns/doomer.turn.start_screen.player_input.gd"
