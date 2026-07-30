@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://dagb1lk25e5s"]
+
+[ext_resource type="Script" uid="uid://cdcmr7ld0yoao" path="res://viewports/dungeon/_dgm_tile.gd" id="1_78ajy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qimjf"]
+albedo_color = Color(1, 0.12941177, 0.12941177, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8unkd"]
+material = SubResource("StandardMaterial3D_qimjf")
+size = Vector3(1, 0.01, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_byui1"]
+size = Vector3(1, 0.01, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qimjf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qimjf"]
+
+[node name="_DGM_Tile" type="Node3D" unique_id=1656650967]
+script = ExtResource("1_78ajy")
+
+[node name="Area3D Floor" type="Area3D" parent="." unique_id=1440988273]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D Floor" unique_id=562264192]
+mesh = SubResource("BoxMesh_8unkd")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D Floor" unique_id=1042817224]
+shape = SubResource("BoxShape3D_byui1")
+disabled = true
+
+[node name="StaticBody3D Wall" type="StaticBody3D" parent="." unique_id=1626058972]
+unique_name_in_owner = true
+visible = false
+
+[node name="MeshInstance3D Wall" type="MeshInstance3D" parent="StaticBody3D Wall" unique_id=126852075]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("BoxMesh_qimjf")
+
+[node name="CollisionShape3D Wall" type="CollisionShape3D" parent="StaticBody3D Wall" unique_id=1862570223]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_qimjf")
+disabled = true

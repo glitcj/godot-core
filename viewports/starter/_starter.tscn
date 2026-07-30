@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://dcswdc80s3eyf"]
+
+[ext_resource type="Script" uid="uid://bqjex03bnff1y" path="res://viewports/starter/_starter.gd" id="1_id86s"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_iubvs"]
+line_spacing = 0.0
+font_size = 200
+
+[sub_resource type="LabelSettings" id="LabelSettings_id86s"]
+line_spacing = 0.0
+font_size = 130
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_1htd0"]
+
+[node name="_Starter" type="SubViewportContainer" unique_id=1103623308]
+offset_right = 1920.0
+offset_bottom = 2400.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_id86s")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=2005137771]
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="Camera2D" type="Camera2D" parent="SubViewport" unique_id=292345452]
+unique_name_in_owner = true
+anchor_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="SubViewport" unique_id=1933644858]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer Foreground" type="VBoxContainer" parent="SubViewport/MarginContainer" unique_id=889014090]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="SubViewport/MarginContainer/VBoxContainer Foreground" unique_id=2043071955]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label Title" type="Label" parent="SubViewport/MarginContainer/VBoxContainer Foreground/MarginContainer" unique_id=115758079]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Title"
+label_settings = SubResource("LabelSettings_iubvs")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="SubViewport/MarginContainer/VBoxContainer Foreground" unique_id=1869288304]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label Press Start" type="Label" parent="SubViewport/MarginContainer/VBoxContainer Foreground/MarginContainer2" unique_id=1637445163]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Press Start
+- Doomer opponents as resources with spritessheets, see selected map face in board
+- Lambdas instead of events, can be called or inserted
+- Add docstrings to  proof claude mods
+- Use lambda to replace many turns
+- Refactor turns to reudce and simplify
+- USE RESOURCES
+- Finish traits world map, floating message box w/ anim, randomised easy mode face and traits (high prob with given condition0"
+label_settings = SubResource("LabelSettings_id86s")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="m3" type="MarginContainer" parent="SubViewport/MarginContainer/VBoxContainer Foreground" unique_id=254005169]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect Background" type="TextureRect" parent="SubViewport/MarginContainer" unique_id=1994595756]
+modulate = Color(0.11797333, 0.1064, 0.28, 1)
+z_index = -10
+layout_mode = 2
+texture = SubResource("CanvasTexture_1htd0")

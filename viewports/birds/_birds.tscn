@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://p0nktsm07ev6"]
+
+[ext_resource type="Script" uid="uid://8itso7r1mes3" path="res://viewports/birds/_birds.gd" id="1_2cdxk"]
+[ext_resource type="Texture2D" uid="uid://c4ndustk7oa48" path="res://assets/rpgmaker/mv/parallaxes/CloudySky1.png" id="2_asp21"]
+[ext_resource type="PackedScene" uid="uid://b7x0tsw8mwysl" path="res://viewports/birds/_birds_level_1.tscn" id="4_jmqeq"]
+
+[node name="_Birds" type="SubViewportContainer" unique_id=329174216]
+offset_right = 1920.0
+offset_bottom = 1080.0
+script = ExtResource("1_2cdxk")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=754824159]
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="MarginContainer Parallax" type="MarginContainer" parent="SubViewport" unique_id=288567019]
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="CenterContainer" type="CenterContainer" parent="SubViewport/MarginContainer Parallax" unique_id=1679136394]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Node2D" type="Node2D" parent="SubViewport/MarginContainer Parallax/CenterContainer" unique_id=842976469]
+scale = Vector2(3, 3)
+
+[node name="Parallax2D" type="Parallax2D" parent="SubViewport/MarginContainer Parallax/CenterContainer/Node2D" unique_id=1070503410]
+repeat_size = Vector2(816, 0)
+autoscroll = Vector2(50, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewport/MarginContainer Parallax/CenterContainer/Node2D/Parallax2D" unique_id=1457135694]
+texture = ExtResource("2_asp21")
+
+[node name="MarginContainer Birds" type="MarginContainer" parent="SubViewport" unique_id=483384875]
+offset_right = 1920.0
+offset_bottom = 1080.0
+size_flags_horizontal = 3
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="SubViewport/MarginContainer Birds" unique_id=1722161590]
+layout_mode = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewport/MarginContainer Birds/SubViewportContainer" unique_id=266840286]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="_Birds_Level_1" parent="SubViewport/MarginContainer Birds/SubViewportContainer/SubViewport" unique_id=104780050 instance=ExtResource("4_jmqeq")]
+position = Vector2(28, 0)
+
+[node name="Camera2D" type="Camera2D" parent="SubViewport" unique_id=1983013226]
+unique_name_in_owner = true
+anchor_mode = 0
+
+[node name="ReferenceRect" type="ReferenceRect" parent="SubViewport/Camera2D" unique_id=518955437]
+offset_right = 1920.0
+offset_bottom = 1080.0
+border_width = 20.0

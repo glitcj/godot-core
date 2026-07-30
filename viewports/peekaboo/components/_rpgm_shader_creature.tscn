@@ -1,0 +1,181 @@
+[gd_scene format=3 uid="uid://b222ylc36ljdk"]
+
+[ext_resource type="Script" uid="uid://b7wxor5k74kyl" path="res://viewports/peekaboo/components/_rpgm_portrait.gd" id="1_ofv0q"]
+[ext_resource type="Shader" uid="uid://5dmscal31dgu" path="res://viewports/peekaboo/shaders/_random.gdshader" id="2_rd00h"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1nyrm"]
+shader = ExtResource("2_rd00h")
+
+[sub_resource type="SphereMesh" id="SphereMesh_ql15j"]
+radius = 10.0
+height = 20.0
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_tk76r"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ql15j"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3jca7"]
+animation = &"move_down"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jsjr8"]
+animation = &"move_up"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ql15j"]
+animation = &"move_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tk76r"]
+animation = &"move_right"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_0ltjw"]
+blend_mode = 1
+blend_point_0/node = SubResource("AnimationNodeAnimation_3jca7")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_0/name = &"0"
+blend_point_1/node = SubResource("AnimationNodeAnimation_jsjr8")
+blend_point_1/pos = Vector2(0, -1)
+blend_point_1/name = &"1"
+blend_point_2/node = SubResource("AnimationNodeAnimation_ql15j")
+blend_point_2/pos = Vector2(-1, 0)
+blend_point_2/name = &"2"
+blend_point_3/node = SubResource("AnimationNodeAnimation_tk76r")
+blend_point_3/pos = Vector2(1, 0)
+blend_point_3/name = &"3"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0ltjw"]
+animation = &"actioned"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uex0k"]
+animation = &"actioned"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3jca7"]
+advance_mode = 2
+advance_condition = &"actioned"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jsjr8"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ql15j"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_c7sps"]
+states/Start/position = Vector2(200, 100.03672)
+states/actioned/node = SubResource("AnimationNodeAnimation_0ltjw")
+states/actioned/position = Vector2(579.05005, 87.29376)
+states/nothing/node = SubResource("AnimationNodeAnimation_uex0k")
+states/nothing/position = Vector2(375, 194.78671)
+transitions = ["nothing", "actioned", SubResource("AnimationNodeStateMachineTransition_3jca7"), "actioned", "nothing", SubResource("AnimationNodeStateMachineTransition_jsjr8"), "Start", "nothing", SubResource("AnimationNodeStateMachineTransition_ql15j")]
+graph_offset = Vector2(30.720196, 42.52755)
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_uex0k"]
+nodes/BlendSpace2D/node = SubResource("AnimationNodeBlendSpace2D_0ltjw")
+nodes/BlendSpace2D/position = Vector2(-320, 140)
+nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_c7sps")
+nodes/StateMachine/position = Vector2(-1090, 330)
+node_connections = [&"output", 0, &"BlendSpace2D"]
+
+[sub_resource type="Animation" id="Animation_mh3n7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("_material_anchor/_scale_anchor:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.25, 1.25)]
+}
+
+[sub_resource type="Animation" id="Animation_hf2sj"]
+resource_name = "actioned"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("_material_anchor/_scale_anchor:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1.25, 1.25), Vector2(0.5, 1.2), Vector2(0.9, 1), Vector2(1.25, 1.25)]
+}
+
+[sub_resource type="Animation" id="Animation_d26c4"]
+resource_name = "idle"
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_801td"]
+resource_name = "move_down"
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_jrgv2"]
+resource_name = "move_left"
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_8wpup"]
+resource_name = "move_right"
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_b4mb6"]
+resource_name = "move_up"
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_wtpfx"]
+resource_name = "nothing"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8wpup"]
+_data = {
+&"RESET": SubResource("Animation_mh3n7"),
+&"actioned": SubResource("Animation_hf2sj"),
+&"idle": SubResource("Animation_d26c4"),
+&"move_down": SubResource("Animation_801td"),
+&"move_left": SubResource("Animation_jrgv2"),
+&"move_right": SubResource("Animation_8wpup"),
+&"move_up": SubResource("Animation_b4mb6"),
+&"nothing": SubResource("Animation_wtpfx")
+}
+
+[node name="_RPGM_Portrait" type="Node2D" unique_id=1972099319]
+script = ExtResource("1_ofv0q")
+sprite = "cream"
+metadata/_custom_type_script = "uid://7bue6k2pdo5t"
+
+[node name="_material_anchor" type="Node2D" parent="." unique_id=1651502217]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_1nyrm")
+
+[node name="_scale_anchor" type="Node2D" parent="_material_anchor" unique_id=644433867]
+use_parent_material = true
+scale = Vector2(1.25, 1.25)
+
+[node name="_RPGM_Shader_Creature" type="MeshInstance2D" parent="_material_anchor/_scale_anchor" unique_id=1944069110]
+visible = false
+mesh = SubResource("SphereMesh_ql15j")
+texture = SubResource("CanvasTexture_tk76r")
+
+[node name="Polygon2D" type="Polygon2D" parent="_material_anchor/_scale_anchor" unique_id=206516405]
+visible = false
+polygon = PackedVector2Array(33.6, 15.999999, 29.599998, -8.799999, 7.9999995, -10.4, 26.399998, 14.4)
+
+[node name="Sprite2D Shader Creature" type="Sprite2D" parent="_material_anchor/_scale_anchor" unique_id=2012109358]
+use_parent_material = true
+scale = Vector2(150, 150)
+texture = SubResource("CanvasTexture_ql15j")
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=267239862]
+unique_name_in_owner = true
+root_node = NodePath("%AnimationTree/..")
+tree_root = SubResource("AnimationNodeBlendTree_uex0k")
+advance_expression_base_node = NodePath("..")
+anim_player = NodePath("../AnimationPlayer")
+parameters/BlendSpace2D/blend_position = Vector2(0, 1)
+parameters/StateMachine/conditions/actioned = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=629944627]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_8wpup")

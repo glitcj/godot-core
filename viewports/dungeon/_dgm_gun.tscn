@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://twlklfx38pn0"]
+
+[ext_resource type="Script" uid="uid://ctnhv7pqwl0wh" path="res://viewports/dungeon/_dgm_gun.gd" id="1_hb5c7"]
+[ext_resource type="PackedScene" uid="uid://d1wl2a8k4r6up" path="res://assets/basic_3d_guns/Makarov/Makarov.fbx" id="2_yc7m8"]
+
+[sub_resource type="Animation" id="Animation_lnxfs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_47q4h"]
+resource_name = "fire"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.002, 0.05, 0.19),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -0.05, -0.1), Vector3(0, -0.01, -0.02), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_lh8tq"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.99),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.1, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.99),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.034906585), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lnxfs"]
+_data = {
+&"RESET": SubResource("Animation_lnxfs"),
+&"fire": SubResource("Animation_47q4h"),
+&"idle": SubResource("Animation_lh8tq")
+}
+
+[node name="_DGM_Gun" type="Node3D"]
+transform = Transform3D(-5.2453668e-08, 0, 1.2, 0, 1.2, 0, -1.2, 0, -5.2453668e-08, 0, 0, 0)
+script = ExtResource("1_hb5c7")
+
+[node name="Makarov" parent="." instance=ExtResource("2_yc7m8")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Makarov"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_lnxfs")
+}
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-2.1855695e-07, 10, 1.1368685e-14, -5, -4.371139e-07, -4.96941e-22, -6.310887e-29, -2.8421713e-14, 4, 0, 1.5493709, 0)
+target_position = Vector3(0, 10, 0)
