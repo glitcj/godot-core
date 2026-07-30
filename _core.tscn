@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bf52dr70k2ej5" path="res://_core.gd" id="1_110wm"]
 [ext_resource type="Script" uid="uid://djvk5f1dkttil" path="res://core/inspector.gd" id="2_2jvhd"]
-[ext_resource type="Script" uid="uid://chrqwcvjxpk7x" path="res://viewports/peekaboo/scripts/_core_variables.gd" id="2_swu0y"]
+[ext_resource type="Script" uid="uid://chrqwcvjxpk7x" path="res://viewports/rpgm/scripts/_core_variables.gd" id="2_swu0y"]
 [ext_resource type="PackedScene" uid="uid://cpdqupnudty53" path="res://core/turner/_core_turner.tscn" id="5_okhcm"]
 [ext_resource type="PackedScene" uid="uid://dfg24h7bgrdws" path="res://viewports/birds/_core_log.tscn" id="9_hqny6"]
 [ext_resource type="Script" uid="uid://byxa8sksknfmi" path="res://_core_data_lambdas.gd" id="9_swu0y"]
@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://p0nktsm07ev6" path="res://viewports/birds/_birds.tscn" id="15_wlg60"]
 [ext_resource type="PackedScene" uid="uid://dcswdc80s3eyf" path="res://viewports/starter/_starter.tscn" id="17_8i81m"]
 [ext_resource type="Script" uid="uid://ddlflx7lmomwr" path="res://core/turner/turns/_starter_turn.gd" id="18_sps4g"]
-[ext_resource type="PackedScene" uid="uid://d08p5bfc634r" path="res://viewports/peekaboo/_rpgm.tscn" id="21_pw4lx"]
+[ext_resource type="PackedScene" uid="uid://d08p5bfc634r" path="res://viewports/rpgm/_rpgm.tscn" id="21_pw4lx"]
 [ext_resource type="PackedScene" uid="uid://cxiw0m4n4emut" path="res://viewports/swiper/_swiper.tscn" id="22_t1t3w"]
 
 [sub_resource type="GDScript" id="GDScript_wlg60"]

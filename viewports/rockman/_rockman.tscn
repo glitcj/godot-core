@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://8itso7r1mes3" path="res://viewports/birds/_birds.gd" id="1_b33bt"]
 [ext_resource type="Texture2D" uid="uid://c4ndustk7oa48" path="res://assets/rpgmaker/mv/parallaxes/CloudySky1.png" id="2_vm3cm"]
 [ext_resource type="Texture2D" uid="uid://xpowxxhfyjbw" path="res://assets/rpgmaker/mv/parallaxes/StarlitSky.png" id="3_va0c1"]
-[ext_resource type="PackedScene" uid="uid://ca8vvptjr324n" path="res://viewports/peekaboo/components/_rpgm_portrait.tscn" id="4_msyky"]
-[ext_resource type="Shader" uid="uid://5dmscal31dgu" path="res://viewports/peekaboo/shaders/_random.gdshader" id="5_ntri7"]
+[ext_resource type="PackedScene" uid="uid://ca8vvptjr324n" path="res://viewports/rpgm/components/_rpgm_portrait.tscn" id="4_msyky"]
+[ext_resource type="Shader" uid="uid://5dmscal31dgu" path="res://viewports/rpgm/shaders/_random.gdshader" id="5_ntri7"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_lo0k1"]
 

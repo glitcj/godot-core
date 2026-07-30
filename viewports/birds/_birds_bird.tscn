@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://3ngwce08sjbc"]
 
-[ext_resource type="PackedScene" uid="uid://ca8vvptjr324n" path="res://viewports/peekaboo/components/_rpgm_portrait.tscn" id="1_oovju"]
+[ext_resource type="PackedScene" uid="uid://ca8vvptjr324n" path="res://viewports/rpgm/components/_rpgm_portrait.tscn" id="1_oovju"]
 [ext_resource type="Script" uid="uid://dem06um61pw7r" path="res://viewports/birds/_birds_bird.gd" id="1_qlbuy"]
-[ext_resource type="Shader" uid="uid://5dmscal31dgu" path="res://viewports/peekaboo/shaders/_random.gdshader" id="2_qlbuy"]
+[ext_resource type="Shader" uid="uid://5dmscal31dgu" path="res://viewports/rpgm/shaders/_random.gdshader" id="2_qlbuy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qlbuy"]
 radius = 66.23

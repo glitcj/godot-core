@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="_RPGM_Event_Data" format=3 uid="uid://bxts5doey0ppj"]
 
-[ext_resource type="Script" uid="uid://chjmmjesks5yj" path="res://viewports/peekaboo/data/_rpgm_event_data/_rpgm_event_data.gd" id="1_fabbb"]
+[ext_resource type="Script" uid="uid://chjmmjesks5yj" path="res://viewports/rpgm/data/_rpgm_event_data/_rpgm_event_data.gd" id="1_fabbb"]
 
 [resource]
 script = ExtResource("1_fabbb")

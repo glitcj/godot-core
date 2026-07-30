@@ -3,9 +3,6 @@ class_name _Core_Portrait
 
 enum EnemySprite {default, red}
 
-# const GHOST_MATERIAL = preload("res://scenes/peekaboo/peekaboo.shader.enemy.gdshader")
-
-
 @export var sprite : EnemySprite = EnemySprite.default:
 	set(v):
 		%AnimatedSprite2D.animation = EnemySprite.keys()[v]
@@ -36,8 +33,6 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
-
-
 
 var _tween : Tween
 

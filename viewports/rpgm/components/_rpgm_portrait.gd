@@ -61,29 +61,29 @@ func _get_available_animation_names() -> Array:
 func _update_material():
 		_material = ShaderMaterial.new() as ShaderMaterial
 		if type == "highlight":
-			_material.shader = load("res://viewports/peekaboo/shaders/_highlight.gdshader")
+			_material.shader = load("res://viewports/rpgm/shaders/_highlight.gdshader")
 		if type == "evaporate":
-			_material.shader = load("res://viewports/peekaboo/shaders/_evaporate.gdshader")
+			_material.shader = load("res://viewports/rpgm/shaders/_evaporate.gdshader")
 		if type == "ghost":
-			_material.shader = load("res://viewports/peekaboo/shaders/_ghost.gdshader")
+			_material.shader = load("res://viewports/rpgm/shaders/_ghost.gdshader")
 		if type == "random":
-			_material.shader = load("res://viewports/peekaboo/shaders/_random.gdshader")
+			_material.shader = load("res://viewports/rpgm/shaders/_random.gdshader")
 		if type == "wiggle":
-			_material.shader = load("res://viewports/peekaboo/shaders/_wiggle.gdshader")
+			_material.shader = load("res://viewports/rpgm/shaders/_wiggle.gdshader")
 		if type == "sphere":
-			_material.shader = load("res://viewports/peekaboo/shaders/_sphere_and_correct_rgb_belnding.gdshader")
+			_material.shader = load("res://viewports/rpgm/shaders/_sphere_and_correct_rgb_belnding.gdshader")
 		if type == "outline":
-			_material.shader = load("res://viewports/peekaboo/shaders/_outline.gdshader")
+			_material.shader = load("res://viewports/rpgm/shaders/_outline.gdshader")
 		if type == "fog":
-			_material.shader = load("res://viewports/peekaboo/shaders/_fog.gdshader")
+			_material.shader = load("res://viewports/rpgm/shaders/_fog.gdshader")
 		if type == "chessboard":
-			_material.shader = load("res://viewports/peekaboo/shaders/_chessboard.gdshader")
+			_material.shader = load("res://viewports/rpgm/shaders/_chessboard.gdshader")
 		if type == "shine":
-			_material.shader = load("res://viewports/peekaboo/shaders/_shine.gdshader")
+			_material.shader = load("res://viewports/rpgm/shaders/_shine.gdshader")
 		if type == "function":
-			_material.shader = load("res://viewports/peekaboo/shaders/_function.gdshader")
+			_material.shader = load("res://viewports/rpgm/shaders/_function.gdshader")
 		if type == "creature_v1":
-			_material.shader = load("res://viewports/peekaboo/shaders/_shader_creature_v1.gdshader")
+			_material.shader = load("res://viewports/rpgm/shaders/_shader_creature_v1.gdshader")
 			
 		if not is_node_ready(): return
 		# material = _material
