@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://caltidappke87"]
 
-[ext_resource type="Script" uid="uid://bv2cvrevi23q4" path="res://viewports/dungeon/_dgm_tilemap.gd" id="1_rn5rw"]
+[ext_resource type="Script" uid="uid://bv2cvrevi23q4" path="res://viewports/dgm/_dgm_tilemap.gd" id="1_rn5rw"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s4ae8"]
 

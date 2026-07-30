@@ -47,7 +47,7 @@ func _on_button(): pass
 
 const grid_cell_size = 1.
 
-var grid_cell_packed_scene = preload("res://viewports/dungeon/_dgm_tile.tscn")
+var grid_cell_packed_scene = preload("res://viewports/dgm/_dgm_tile.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

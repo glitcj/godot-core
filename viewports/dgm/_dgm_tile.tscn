@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dagb1lk25e5s"]
 
-[ext_resource type="Script" uid="uid://cdcmr7ld0yoao" path="res://viewports/dungeon/_dgm_tile.gd" id="1_78ajy"]
+[ext_resource type="Script" uid="uid://cdcmr7ld0yoao" path="res://viewports/dgm/_dgm_tile.gd" id="1_nhips"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qimjf"]
 albedo_color = Color(1, 0.12941177, 0.12941177, 1)
@@ -17,7 +17,7 @@ size = Vector3(1, 0.01, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_qimjf"]
 
 [node name="_DGM_Tile" type="Node3D" unique_id=1656650967]
-script = ExtResource("1_78ajy")
+script = ExtResource("1_nhips")
 
 [node name="Area3D Floor" type="Area3D" parent="." unique_id=1440988273]
 

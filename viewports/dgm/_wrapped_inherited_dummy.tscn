@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bhl41amnaf1d1"]
 
-[ext_resource type="PackedScene" uid="uid://dhrph8fyabx7t" path="res://_inherited_dummy.tscn" id="1_4nhkv"]
-[ext_resource type="Script" uid="uid://ds0xa6ykah01" path="res://viewports/dungeon/_wrapped_inherited_dummy.gd" id="1_odjbc"]
+[ext_resource type="PackedScene" uid="uid://dhrph8fyabx7t" path="res://viewports/dgm/_inherited_dummy.tscn" id="1_4nhkv"]
+[ext_resource type="Script" uid="uid://ds0xa6ykah01" path="res://viewports/dgm/_wrapped_inherited_dummy.gd" id="1_odjbc"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_odjbc"]
 

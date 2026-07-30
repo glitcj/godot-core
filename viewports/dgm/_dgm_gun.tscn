@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://twlklfx38pn0"]
 
-[ext_resource type="Script" uid="uid://ctnhv7pqwl0wh" path="res://viewports/dungeon/_dgm_gun.gd" id="1_hb5c7"]
+[ext_resource type="Script" uid="uid://ctnhv7pqwl0wh" path="res://viewports/dgm/_dgm_gun.gd" id="1_hb5c7"]
 [ext_resource type="PackedScene" uid="uid://d1wl2a8k4r6up" path="res://assets/basic_3d_guns/Makarov/Makarov.fbx" id="2_yc7m8"]
 
 [sub_resource type="Animation" id="Animation_lnxfs"]

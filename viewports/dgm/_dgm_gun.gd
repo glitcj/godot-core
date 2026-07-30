@@ -3,7 +3,7 @@ class_name _DGM_Gun
 
 @onready var ray : RayCast3D = %RayCast3D
 
-var dgm_tile_packed_scene = preload("res://viewports/dungeon/_dgm_tile.tscn")
+var dgm_tile_packed_scene = preload("res://viewports/dgm/_dgm_tile.tscn")
 
 func get_map(): return find_parent("_DGM_Map") as _DGM_Map
 

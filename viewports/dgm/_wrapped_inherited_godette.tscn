@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dgkdu1c1mlwb"]
 
-[ext_resource type="PackedScene" uid="uid://bweo6fvqtensi" path="res://viewports/dungeon/_inherited_godette.tscn" id="1_4smkt"]
-[ext_resource type="Script" uid="uid://b0eh4j2s6lsfu" path="res://viewports/dungeon/_wrapped_inherited_godette.gd" id="1_msbls"]
+[ext_resource type="PackedScene" uid="uid://bweo6fvqtensi" path="res://viewports/dgm/_inherited_godette.tscn" id="1_4smkt"]
+[ext_resource type="Script" uid="uid://b0eh4j2s6lsfu" path="res://viewports/dgm/_wrapped_inherited_godette.gd" id="1_msbls"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x8r0k"]
 
