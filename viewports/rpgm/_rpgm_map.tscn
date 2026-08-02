@@ -11133,7 +11133,7 @@ script/source = "extends _RPGM_Event
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super()
-	get_core().get_log().add_log(func(): return str(active_scripts))
+	get_core().get_log().add_log(func ACTIVE_SCRIPTS(): return str(active_scripts))
 	get_core().get_log().add_log(func(): return \"state: %s\" % state)
 "
 

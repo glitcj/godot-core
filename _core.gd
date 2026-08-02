@@ -10,11 +10,11 @@ var current_viewport : _Core_Viewport
 @onready var camera = %Camera2D as Camera2D
 @onready var turner : _Core_Turner = $Turner
 
-
 func get_scene(_name): return find_child(_name) as _Core_Viewport
 func get_lambdas(): return find_child("_Core_Lambdas") as _Core_Lambdas
 func get_variables(): return find_child("_Core_Variables") as _Core_Variables
 func get_log(): return %_Core_Log as _Core_Log
+
 
 func _input(event):
 	pass
