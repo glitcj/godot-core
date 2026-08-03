@@ -124,6 +124,10 @@ func _ready() -> void:
 	# this step might be heavy and can be GPU optimised later on
 	%_sampler.frame_changed.connect(_update_atlas)
 	
+	# CLAUDE: apply the stored sprite before the first sync — scene files assign
+	# properties pre-ready, so the sprite setter's is_node_ready() guard drops them
+	%_sampler.animation = sprite
+
 	# sync atlas to whatever frame is current on load
 	_update_atlas()
 	_update_material()
