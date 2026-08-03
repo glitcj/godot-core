@@ -39,32 +39,50 @@ func _boot():
 func change_viewport(viewport: _Core_Viewport):
 	if current_viewport:
 		await current_viewport._on_viewport_finish()
+		current_viewport._suspend()
 	current_viewport = viewport
 	
 	%"Current Viewport".texture = (viewport.find_child("SubViewport") as SubViewport).get_texture()
-	await viewport._on_viewport_start()
+	
+	current_viewport._resume()
+	await current_viewport._on_viewport_start()
 
 var viewport_stack = []
 # these functions do more than just add remove child logic
 # they also handle activation handover etc, so cannot be
 # refactored completely into the _Core_Viewport class
 func add_viewport(to_add_viewport: _Core_Viewport,  _container : Container, _scale := Vector2.ONE):
+	
+	# to_add_viewport.is_stacked_viewport = true
+	
 	await current_viewport._on_viewport_finish()
+	# current_viewport._suspend()
+	
 	viewport_stack.append(current_viewport)
 	current_viewport = to_add_viewport
+	
 	
 	# to_add_viewport.scale = Vector2(.5, .5)
 	_container.add_child(current_viewport)	
 	# to_add_viewport.scale = Vector2(.5, .5)
+	
+	# current_viewport._resume()
 	await current_viewport._on_viewport_start()
 
 func remove_viewport(to_remove_viewport: _Core_Viewport): #, _container : Container):
+	
+	# to_remove_viewport.is_stacked_viewport = true
+	
+	
 	await to_remove_viewport._on_viewport_finish()
+	# current_viewport._suspend()
+	
 	var next_viewport = viewport_stack.pop_at(0)
 	
 	current_viewport = next_viewport
 	to_remove_viewport.get_parent().remove_child(to_remove_viewport)
-
+	
+	# current_viewport._resume()
 	await current_viewport._on_viewport_start()
 
 func test_log(): return "Test"

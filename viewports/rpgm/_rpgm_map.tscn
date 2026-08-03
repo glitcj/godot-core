@@ -11290,9 +11290,6 @@ func _ready():
 	_viewport.scale = Vector2(.25, .25)
 	
 func _on_viewport_finished(selection):
-	# get_core().remove_scene(get_rpgm(), _viewport)
-	# get_core().remove_viewport(get_rpgm(), _viewport, get_rpgm().find_child(\"_canvas_top\"))
-	# get_core().remove_viewport(_viewport, get_rpgm().find_child(\"_canvas_top\"))
 	get_core().remove_viewport(_viewport)
 	await get_rpgm().activated
 	
@@ -11303,7 +11300,6 @@ func _on_viewport_finished(selection):
 func _on_action():
 	_viewport.finished.connect(_on_viewport_finished, CONNECT_ONE_SHOT)
 	get_core().add_viewport(_viewport, get_rpgm().find_child(\"_canvas_top\"))
-	# _viewport.scale = Vector2(.25, .25)
 	await returned_from_viewport_and_finished
 "
 
@@ -11570,6 +11566,7 @@ metadata/_custom_type_script = "uid://cigfux3bal5ef"
 y_sort_enabled = true
 texture_filter = 1
 scale = Vector2(1.0166667, 1.0833334)
+type = "wiggle"
 
 [node name="PointLight2D Enemies" type="PointLight2D" parent="Player" unique_id=1984515135]
 light_mask = 2
@@ -11594,6 +11591,7 @@ is_collision = true
 [node name="_RPGM_Portrait" parent="_map_1/_npc_1_1/_common_script_talker_1" unique_id=90792407 instance=ExtResource("15_2uryw")]
 material = SubResource("ShaderMaterial_vd6wf")
 scale = Vector2(1.0166667, 1.0833334)
+type = "outline"
 
 [node name="_common_script_talker_2" type="Node2D" parent="_map_1/_npc_1_1" unique_id=1358567461]
 visible = false
