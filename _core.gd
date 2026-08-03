@@ -69,20 +69,16 @@ func add_viewport(to_add_viewport: _Core_Viewport,  _container : Container, _sca
 	current_viewport._resume() # the viewport is suspended on _ready, so has to be awakened
 	await current_viewport._on_viewport_start()
 
-func remove_viewport(to_remove_viewport: _Core_Viewport): #, _container : Container):
-	
-	# to_remove_viewport.is_stacked_viewport = true
-	
-	
+func remove_viewport(to_remove_viewport: _Core_Viewport):
 	await to_remove_viewport._on_viewport_finish()
-	# current_viewport._suspend()
+	to_remove_viewport._suspend()
+
 	
 	var next_viewport = viewport_stack.pop_at(0)
 	
 	current_viewport = next_viewport
 	to_remove_viewport.get_parent().remove_child(to_remove_viewport)
 	
-	# current_viewport._resume()
 	await current_viewport._on_viewport_start()
 
 func test_log(): return "Test"
