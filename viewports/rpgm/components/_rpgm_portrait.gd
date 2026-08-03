@@ -128,24 +128,34 @@ func _ready() -> void:
 	_update_atlas()
 	_update_material()
 	
+# frames extracted once, shared by every portrait using the same sprite_frames
+static var _frame_cache : Dictionary = {}
+
 func _update_atlas():
+	var frames : SpriteFrames = %_sampler.sprite_frames
+	var anim = %_sampler.animation
 	var frame = %_sampler.frame
-	var tex = %_sampler.sprite_frames.get_frame_texture(%_sampler.animation, frame)
-	
-	var source_image : Image
-	var region : Rect2
-	
-	if tex is AtlasTexture:
-		source_image = tex.atlas.get_image()
-		region = tex.region
-	else:
-		source_image = tex.get_image()
-		region = Rect2(Vector2.ZERO, tex.get_size())
-	
-	# extract just this frame's pixels into a brand new standalone texture
-	# UV will now genuinely be 0→1 with no atlas behind it
-	var cropped = source_image.get_region(Rect2i(region))
-	%Sprite2D.texture = ImageTexture.create_from_image(cropped)
+	var key := "%d/%s/%d" % [frames.get_instance_id(), anim, frame]
+
+	if not _frame_cache.has(key):
+		var tex = frames.get_frame_texture(anim, frame)
+
+		var source_image : Image
+		var region : Rect2
+
+		if tex is AtlasTexture:
+			source_image = tex.atlas.get_image()
+			region = tex.region
+		else:
+			source_image = tex.get_image()
+			region = Rect2(Vector2.ZERO, tex.get_size())
+
+		# extract just this frame's pixels into a brand new standalone texture
+		# UV will now genuinely be 0→1 with no atlas behind it
+		var cropped = source_image.get_region(Rect2i(region))
+		_frame_cache[key] = ImageTexture.create_from_image(cropped)
+
+	%Sprite2D.texture = _frame_cache[key]
 	
 func _tween_material_progress(duration := 10.0):
 	var tween = create_tween()
