@@ -66,7 +66,7 @@ func add_viewport(to_add_viewport: _Core_Viewport,  _container : Container, _sca
 	_container.add_child(current_viewport)	
 	# to_add_viewport.scale = Vector2(.5, .5)
 	
-	# current_viewport._resume()
+	current_viewport._resume() # the viewport is suspended on _ready, so has to be awakened
 	await current_viewport._on_viewport_start()
 
 func remove_viewport(to_remove_viewport: _Core_Viewport): #, _container : Container):
