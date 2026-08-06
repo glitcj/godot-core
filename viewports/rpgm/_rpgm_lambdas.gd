@@ -17,11 +17,13 @@ func transport_player(player_position_node : _RPGM_Event):
 func transport_camera(camera_position_node):
 	assert(camera_position_node is _RPGM_Event or camera_position_node is _RPGM_Player)
 	if camera_position_node is _RPGM_Event:
+		(get_player().find_child("RemoteTransform2D") as RemoteTransform2D).update_position = false
+		get_map().find_child("_RPGM_Camera").find_child("Camera2D").position = Vector2.ZERO
 		var camera_mover = get_map().find_child("_RPGM_Camera").find_child("_RPGM_Mover") as _RPGM_Mover
 		camera_mover.teleport(camera_position_node.get_mover().map_position)
 		
 	if camera_position_node is _RPGM_Player:
-		pass
+		(get_player().find_child("RemoteTransform2D") as RemoteTransform2D).update_position = true
 	
 func move_event(event : _RPGM_Event, destination: Vector2i):
 	event.get_mover().move(destination)
