@@ -120,16 +120,6 @@ func face(tile_vector : Vector2i):
 		
 	
 	
-	"""
-	if get_parent() is _RPGM_Event:
-		for script : _RPGM_Script in get_parent().active_scripts:
-			if script.get_portrait():
-				script.get_portrait().facing = Vector2(facing)
-	elif get_parent() is _RPGM_Player:
-		(get_parent() as _RPGM_Player).get_portrait().facing = Vector2(facing)
-	"""
-		
-	
 	return self
 
 
@@ -148,7 +138,9 @@ func tile_has_collision(tile_pos: Vector2i) -> bool:
 		if tile_data == null:
 			continue
 	
-		if tile_data.get_collision_polygons_count(0) > 0:
+		# if tile_data.get_collision_polygons_count(0) > 0:
+		# 	return true
+		if tile_data.get_custom_data("rpgm-collision") == 1:
 			return true
 	if tile_has_rpgm_collision(tile_pos):
 		return true
