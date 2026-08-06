@@ -3,7 +3,6 @@
 extends Node2D
 class_name _RPGM_Event
 
-
 enum EventState {A, B, C, D, E, F, G}
 @export var state : EventState = EventState.A
 
@@ -15,7 +14,7 @@ var facing := Vector2(-1, 0):
 		for p in portraits: if p: p.facing = facing
 		
 var is_collision = false
-var deprecated = false
+# var deprecated = false
 
 # CLAUDE: cached references to avoid repeated find_parent/find_child in per-frame calls
 var _rpgm: _RPGM
@@ -55,11 +54,11 @@ func _get_components():
 	# CLAUDE: cache all node refs at ready to avoid repeated tree walks in per-frame calls
 	# deferred so sibling nodes (e.g. Player) are in the tree before we search for them
 	_rpgm = find_parent("_RPGM")
-	_map = find_parent("_RPGM_Map")
-	if _map: _player = _map.find_child("Player")
 	_area = find_child("Area2D")
 	_mover = find_child("_RPGM_Mover")
-
+	_map = find_parent("_RPGM_Map")
+	if _map: _player = _map.find_child("Player")
+	
 func _process(delta: float):
 	if Engine.is_editor_hint(): return
 
@@ -71,6 +70,8 @@ func _child_entered_tree(_node: Node) -> void:
 func _child_exiting_tree(_node: Node) -> void:
 	notify_property_list_changed()
 
+
+"""
 func _get_property_list() -> Array[Dictionary]:
 	if not is_inside_tree(): return []
 	var props: Array[Dictionary] = []
@@ -96,3 +97,4 @@ func _set(property: StringName, value: Variant) -> bool:
 		deprecated = value
 		return true
 	return false
+"""

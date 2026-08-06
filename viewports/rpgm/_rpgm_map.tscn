@@ -17,12 +17,10 @@
 [ext_resource type="PackedScene" uid="uid://ca8vvptjr324n" path="res://viewports/rpgm/components/_rpgm_portrait.tscn" id="15_2uryw"]
 [ext_resource type="Shader" uid="uid://5dmscal31dgu" path="res://viewports/rpgm/shaders/_random.gdshader" id="17_txeor"]
 [ext_resource type="Script" uid="uid://dxkbij13lf7tg" path="res://viewports/rpgm/components/_rpgm_event.gd" id="17_yspku"]
-[ext_resource type="Script" uid="uid://ipwj2rxnrjv3" path="res://viewports/rpgm/scripts/common_scripts/_peekaboo_common_script_talker.gd" id="18_xp5op"]
+[ext_resource type="Script" uid="uid://ipwj2rxnrjv3" path="res://viewports/rpgm/scripts/common_scripts/_rpgm_common_script_talker.gd" id="18_xp5op"]
 [ext_resource type="Shader" uid="uid://cc5d7uonuhvo" path="res://viewports/rpgm/shaders/_sphere_and_correct_rgb_belnding.gdshader" id="19_cyfpt"]
-[ext_resource type="Script" uid="uid://li8gf7m6uhl3" path="res://viewports/rpgm/scripts/level-1-1/script.event.1-1.gd" id="20_hxdjl"]
 [ext_resource type="Script" uid="uid://t32s55k36xah" path="res://viewports/rpgm/scripts/_rpgm_script.gd" id="20_txeor"]
-[ext_resource type="Script" uid="uid://bit0g8h83tbxs" path="res://viewports/rpgm/scripts/level-1-1/script.event.2-1.gd" id="21_4gmig"]
-[ext_resource type="Script" uid="uid://brl88l8fl1w5u" path="res://viewports/rpgm/scripts/common_scripts/_peekaboo_common_script_teleport.gd" id="23_tl7rd"]
+[ext_resource type="Script" uid="uid://brl88l8fl1w5u" path="res://viewports/rpgm/scripts/common_scripts/_rpgm_common_script_teleport.gd" id="23_tl7rd"]
 
 [sub_resource type="GDScript" id="GDScript_6le0f"]
 script/source = "@tool
@@ -11149,9 +11147,6 @@ func _is_active():
 func _on_action():
 	await super()
 	get_event().state = _RPGM_Event.EventState.B
-	# get_event().update_active_scripts()
-	# await get_tree().process_frame
-	# get_event().update_active_scripts()
 "
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vd6wf"]
@@ -11166,7 +11161,6 @@ func _is_active():
 func _on_action():
 	await super()
 	get_event().state = _RPGM_Event.EventState.A
-	# await get_tree().process_frame
 "
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6le0f"]
@@ -11189,6 +11183,16 @@ func _on_action():
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uc14m"]
 shader = ExtResource("17_txeor")
+
+[sub_resource type="GDScript" id="GDScript_5ubha"]
+script/source = "### Event 1-1 ###
+extends _RPGM_Script
+var slide_duration = 1.0
+
+func _on_viewport_start():
+	await get_rpgm().get_lambdas().show_messages([\"Map started..\"])
+	get_parent().queue_free()
+"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kl3l0"]
 shader = ExtResource("17_txeor")
@@ -11270,6 +11274,23 @@ func _on_area_entered():
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jo6ms"]
 shader = ExtResource("17_txeor")
+
+[sub_resource type="GDScript" id="GDScript_g67hk"]
+script/source = "### Event 2-1 ###
+extends _RPGM_Script
+
+var slide_duration = 1.0
+
+func _on_viewport_start():
+	pass
+
+func _on_frame():
+	if get_variables().l2_enemies_count == 2:
+		await get_rpgm().get_lambdas().show_messages([\"NPC: You got them !\", \"NPC: Go to the next location..\"])
+		get_lambdas().transport_player(get_map().find_child(\"_player_position_5_1\"))
+		get_lambdas().transport_camera(get_map().find_child(\"_camera_position_5_1\"))
+		parent.queue_free()
+"
 
 [sub_resource type="GDScript" id="GDScript_vvo4p"]
 script/source = "extends _RPGM_Common_Script_Talker
@@ -11581,7 +11602,7 @@ texture = SubResource("GradientTexture2D_6de6d")
 [node name="_map_1" type="Node" parent="." unique_id=2072237104]
 
 [node name="_npc_1_1" type="Node2D" parent="_map_1" unique_id=433880375]
-position = Vector2(72, 120)
+position = Vector2(72, 72)
 script = SubResource("GDScript_jo6ms")
 
 [node name="_common_script_talker_1" type="Node2D" parent="_map_1/_npc_1_1" unique_id=78072347]
@@ -11610,7 +11631,7 @@ sprite = "red_prince"
 [node name="_RPGM_Mover" type="Node" parent="_map_1/_npc_1_1" unique_id=1749570632]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
-map_position = Vector2i(1, 2)
+map_position = Vector2i(1, 1)
 metadata/_custom_type_script = "uid://cigfux3bal5ef"
 
 [node name="_npc_1_2" type="Node2D" parent="_map_1" unique_id=1041572364]
@@ -11637,13 +11658,14 @@ position = Vector2(24, -24)
 script = ExtResource("17_yspku")
 
 [node name="_RPGM_Script" type="Node2D" parent="_map_1/_event_1_1" unique_id=99814635]
-script = ExtResource("20_hxdjl")
+script = SubResource("GDScript_5ubha")
 
 [node name="_RPGM_Portrait" parent="_map_1/_event_1_1/_RPGM_Script" unique_id=315139393 instance=ExtResource("15_2uryw")]
 z_index = 1
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_kl3l0")
 scale = Vector2(1.0166667, 1.0833334)
+sprite = "event"
 
 [node name="_RPGM_Mover" type="Node" parent="_map_1/_event_1_1" unique_id=89747369]
 script = ExtResource("14_j4uy8")
@@ -11755,7 +11777,7 @@ position = Vector2(-648, -24)
 script = ExtResource("17_yspku")
 
 [node name="_RPGM_Script" type="Node2D" parent="_map_2/_event_2_1" unique_id=1055183704]
-script = ExtResource("21_4gmig")
+script = SubResource("GDScript_g67hk")
 
 [node name="_RPGM_Mover" type="Node" parent="_map_2/_event_2_1" unique_id=1356241716]
 script = ExtResource("14_j4uy8")
@@ -11851,7 +11873,7 @@ map_position = Vector2i(13, -26)
 metadata/_custom_type_script = "uid://cigfux3bal5ef"
 
 [node name="_npc_4_2" type="Node2D" parent="_map_4" unique_id=519240694]
-position = Vector2(24, 120)
+position = Vector2(-24, 72)
 script = ExtResource("17_yspku")
 
 [node name="_RPGM_Script" type="Node2D" parent="_map_4/_npc_4_2" unique_id=453401314]
@@ -11866,7 +11888,7 @@ scale = Vector2(1.0166667, 1.0833334)
 [node name="_RPGM_Mover" type="Node" parent="_map_4/_npc_4_2" unique_id=393434475]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
-map_position = Vector2i(0, 2)
+map_position = Vector2i(-1, 1)
 metadata/_custom_type_script = "uid://cigfux3bal5ef"
 
 [node name="_npc_4_3" type="Node2D" parent="_map_4" unique_id=523801611]
@@ -11933,7 +11955,7 @@ map_position = Vector2i(2, 19)
 metadata/_custom_type_script = "uid://cigfux3bal5ef"
 
 [node name="_npc_6_2" type="Node2D" parent="_map_6" unique_id=1064975660]
-position = Vector2(120, 168)
+position = Vector2(24, 72)
 script = ExtResource("17_yspku")
 
 [node name="_script" type="Node2D" parent="_map_6/_npc_6_2" unique_id=1638407331]
@@ -11947,7 +11969,8 @@ scale = Vector2(1.0166667, 1.0833334)
 
 [node name="_RPGM_Mover" type="Node" parent="_map_6/_npc_6_2" unique_id=700966920]
 script = ExtResource("14_j4uy8")
-map_position = Vector2i(2, 3)
+facing = Vector2i(0, 1)
+map_position = Vector2i(0, 1)
 metadata/_custom_type_script = "uid://cigfux3bal5ef"
 
 [node name="_npc_6_3" type="Node2D" parent="_map_6" unique_id=1158217167]
