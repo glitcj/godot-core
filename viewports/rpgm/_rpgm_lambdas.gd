@@ -46,7 +46,13 @@ func show_messages(messages: Array, _scale = Vector2(5, 5)):
 	
 	window.start(messages.duplicate())
 	await window.finished
-
+	
+func fade_in():
+	pass
+	
+func fade_out():
+	pass
+	
 func set_base_tilemap_to_rmz_standard():
 	# TODO: set tile pixel size to 48 and scale to 3.333 (159.9 pixels)
 	return
