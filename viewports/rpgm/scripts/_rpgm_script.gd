@@ -1,5 +1,7 @@
 @icon("res://addons/at-icons/control/anchor.svg")
-extends Node2D
+# CLAUDE: extends _RPGM_Node — common get_*() lazy cached getters inherited;
+# only the parent-scoped lookups are overridden below
+extends _RPGM_Node
 class_name _RPGM_Script
 
 signal actioned_within_area
@@ -12,44 +14,43 @@ signal actioned
 @export var is_active = true
 func _is_active() -> bool: return true
 
-# CLAUDE: cached node references — populated once at ready via _get_components
-# replaces repeated find_parent/find_child calls in hot paths
-var _rpgm: _RPGM
-var _map: _RPGM_Map
-var _player: _RPGM_Player
-var _area: Area2D
-
 # CLAUDE: avoids emitting frame_started every frame for scripts that don't override _on_frame
 var _has_on_frame_override: bool = false
 
-func get_core(): return find_parent("_Core") as _Core  # infrequent, leave as-is
-func get_rpgm(): return _rpgm
-func get_map(): return _map
-func get_player(): return _player
-func get_lambdas(): return get_map().get_lambdas() as _RPGM_Lambdas
-
-func get_variables(): return _RPGM_Variables
-func get_area(): return _area
-func get_mover(): return mover  # CLAUDE: already cached in _get_components
-func get_portrait(): return find_child("_RPGM_Portrait") as _RPGM_Portrait
+# CLAUDE: a script's area/mover live on its parent event, not on itself —
+# override the base class's self-scoped lookups
+func get_area() -> Area2D: return _cached(&"area", func(): return get_parent().find_child("Area2D")) as Area2D
+func get_mover() -> _RPGM_Mover: return mover
 
 func get_event(): return get_parent() as _RPGM_Event
 
 var last_distnace_from_player : Vector2 = Vector2.ZERO
 var current_distnace_from_player : Vector2 = Vector2.ZERO
 
-# TODO: replace with getters
-var parent : Object
-var mover : _RPGM_Mover
-var portrait : _RPGM_Portrait
+# CLAUDE: lazy properties instead of vars filled by _get_components — subclasses
+# access these bare (e.g. `mover.walk(...)` in ghost, `portrait.animation_player`
+# in talker), so they stay properties rather than becoming get_*() functions
+var parent : Object:
+	get:
+		if not is_instance_valid(parent): parent = get_parent()
+		return parent
+var mover : _RPGM_Mover:
+	get:
+		if not is_instance_valid(mover): mover = get_parent().find_child("_RPGM_Mover")
+		return mover
+var portrait : _RPGM_Portrait:
+	get:
+		if not is_instance_valid(portrait): portrait = get_parent().find_child("_RPGM_Portrait")
+		return portrait
 
 var trigger_is_running : Dictionary = {}
 
 func _ready():
-	_get_components.call_deferred()
+	# CLAUDE: _get_components removed — node refs now resolve lazily in their getters
+	_detect_on_frame_override()
 	bind_triggers.call_deferred()
 	await get_tree().process_frame
-	
+
 func bind_triggers():
 	var trigger_callables = [
 		_on_within_range, _on_viewport_start, 
@@ -70,19 +71,7 @@ func bind_triggers():
 	if get_area(): get_area().body_entered.connect(_check_area_signals)
 	area_entered_by_player.connect(_wrapped_callable.bind(_on_area_entered))
 	
-func _get_components():
-	parent = get_parent()
-	# CLAUDE: cache all node refs here to avoid repeated find_parent/find_child in per-frame calls
-	_rpgm = find_parent("_RPGM")
-	_map = find_parent("_RPGM_Map")
-	if _map:
-		_player = _map.find_child("Player")
-	if parent.find_children("*", "_RPGM_Mover").size() > 0:
-		mover = parent.find_child("_RPGM_Mover")
-	if parent.find_children("*", "_RPGM_Portrait").size() > 0:
-		portrait = parent.find_child("_RPGM_Portrait")
-	_area = parent.find_child("Area2D")
-	
+func _detect_on_frame_override():
 	# CLAUDE: walk the script chain (excluding the base) to detect if any derived class overrides
 	# _on_frame — uses get_script_method_list() which returns only methods defined in that specific
 	# script file, so the base class's no-op definition does not produce a false positive
