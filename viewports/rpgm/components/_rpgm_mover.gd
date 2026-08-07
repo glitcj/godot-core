@@ -1,5 +1,7 @@
 @tool
-extends Node
+# CLAUDE: extends _RPGM_Node — get_map() etc. now inherited (lazy cached);
+# the mover nodes in _rpgm_map.tscn were retyped Node -> Node2D to match
+extends _RPGM_Node
 class_name _RPGM_Mover
 
 signal finished_movement
@@ -28,7 +30,6 @@ func _editor_update():
 
 var destination : Vector2i = Vector2i(0, 0)
 
-func get_map(): return find_parent("_RPGM_Map") as _RPGM_Map
 func get_base_layer(): return get_map().find_child("L1 Base") as TileMapLayer
 func _get_event(): return get_parent() as _RPGM_Event 
 

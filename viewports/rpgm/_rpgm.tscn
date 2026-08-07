@@ -16,7 +16,7 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 script = ExtResource("1_3t57p")
 
-[node name="_RPGM_Lambdas" type="Node" parent="." unique_id=1900062065]
+[node name="_RPGM_Lambdas" type="Node2D" parent="." unique_id=1900062065]
 unique_name_in_owner = true
 script = ExtResource("3_5dvgp")
 

@@ -11482,7 +11482,7 @@ size = Vector2(1, 1)
 y_sort_enabled = true
 script = ExtResource("1_txeor")
 
-[node name="_RPGM_Lambdas" type="Node" parent="." unique_id=1310010166]
+[node name="_RPGM_Lambdas" type="Node2D" parent="." unique_id=1310010166]
 script = ExtResource("2_vd6wf")
 metadata/_custom_type_script = "uid://c6484wl627c5c"
 
@@ -11553,7 +11553,7 @@ position = Vector2(24, 24)
 script = ExtResource("17_yspku")
 state = Array[Node]([])
 
-[node name="_RPGM_Mover" type="Node" parent="_RPGM_Camera" unique_id=636468214]
+[node name="_RPGM_Mover" type="Node2D" parent="_RPGM_Camera" unique_id=636468214]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 metadata/_custom_type_script = "uid://cigfux3bal5ef"
@@ -11587,7 +11587,7 @@ script = ExtResource("13_jonhj")
 scale = Vector2(7, 7)
 shape = SubResource("CircleShape2D_wptde")
 
-[node name="_RPGM_Mover" type="Node" parent="Player" unique_id=1018373693]
+[node name="_RPGM_Mover" type="Node2D" parent="Player" unique_id=1018373693]
 script = ExtResource("14_j4uy8")
 speed = 5.0
 facing = Vector2i(0, 1)
@@ -11643,7 +11643,7 @@ material = SubResource("ShaderMaterial_6le0f")
 scale = Vector2(1.0166667, 1.0833334)
 sprite = "red_prince"
 
-[node name="_RPGM_Mover" type="Node" parent="_map_1/_npc_1_1" unique_id=1749570632]
+[node name="_RPGM_Mover" type="Node2D" parent="_map_1/_npc_1_1" unique_id=1749570632]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 map_position = Vector2i(1, 1)
@@ -11666,7 +11666,7 @@ material = SubResource("ShaderMaterial_uc14m")
 scale = Vector2(1.0166667, 1.0833334)
 sprite = "priest"
 
-[node name="_RPGM_Mover" type="Node" parent="_map_1/_npc_1_2" unique_id=138255344]
+[node name="_RPGM_Mover" type="Node2D" parent="_map_1/_npc_1_2" unique_id=138255344]
 script = ExtResource("14_j4uy8")
 map_position = Vector2i(-3, 1)
 metadata/_custom_type_script = "uid://cigfux3bal5ef"
@@ -11688,7 +11688,7 @@ material = SubResource("ShaderMaterial_kl3l0")
 scale = Vector2(1.0166667, 1.0833334)
 sprite = "event"
 
-[node name="_RPGM_Mover" type="Node" parent="_map_1/_event_1_1" unique_id=89747369]
+[node name="_RPGM_Mover" type="Node2D" parent="_map_1/_event_1_1" unique_id=89747369]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 map_position = Vector2i(0, -1)
@@ -11755,7 +11755,7 @@ is_collision = true
 material = SubResource("ShaderMaterial_loqga")
 scale = Vector2(1.0166667, 1.0833334)
 
-[node name="_RPGM_Mover" type="Node" parent="_map_2/_enemy_2_1" unique_id=1453384603]
+[node name="_RPGM_Mover" type="Node2D" parent="_map_2/_enemy_2_1" unique_id=1453384603]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 map_position = Vector2i(-12, 1)
@@ -11776,7 +11776,7 @@ is_collision = true
 material = SubResource("ShaderMaterial_lnpst")
 scale = Vector2(1.0166667, 1.0833334)
 
-[node name="_RPGM_Mover" type="Node" parent="_map_2/_enemy_2_2" unique_id=403485968]
+[node name="_RPGM_Mover" type="Node2D" parent="_map_2/_enemy_2_2" unique_id=403485968]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 map_position = Vector2i(-21, -3)
@@ -11798,7 +11798,7 @@ is_collision = true
 material = SubResource("ShaderMaterial_jo6ms")
 scale = Vector2(1.0166667, 1.0833334)
 
-[node name="_RPGM_Mover" type="Node" parent="_map_2/_enemy_2_3" unique_id=449328172]
+[node name="_RPGM_Mover" type="Node2D" parent="_map_2/_enemy_2_3" unique_id=449328172]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 map_position = Vector2i(-23, 1)
@@ -11814,7 +11814,7 @@ state = Array[Node]([Object(Node2D,"unique_name_in_owner":false,"process_mode":0
 [node name="_RPGM_Script" type="Node2D" parent="_map_2/_event_2_1" unique_id=1055183704]
 script = SubResource("GDScript_g67hk")
 
-[node name="_RPGM_Mover" type="Node" parent="_map_2/_event_2_1" unique_id=1356241716]
+[node name="_RPGM_Mover" type="Node2D" parent="_map_2/_event_2_1" unique_id=1356241716]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 map_position = Vector2i(-14, -1)
@@ -11835,7 +11835,7 @@ state = Array[Node]([])
 script = SubResource("GDScript_vvo4p")
 is_collision = true
 
-[node name="_RPGM_Mover" type="Node" parent="_map_3/_npc_3_2_talking_tree" unique_id=1657027955]
+[node name="_RPGM_Mover" type="Node2D" parent="_map_3/_npc_3_2_talking_tree" unique_id=1657027955]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 map_position = Vector2i(13, -5)
@@ -11851,7 +11851,7 @@ script = ExtResource("20_txeor")
 is_collision = true
 metadata/_custom_type_script = "uid://t32s55k36xah"
 
-[node name="_RPGM_Mover" type="Node" parent="_map_3/_npc_3_3_stuff" unique_id=2039085923]
+[node name="_RPGM_Mover" type="Node2D" parent="_map_3/_npc_3_3_stuff" unique_id=2039085923]
 script = ExtResource("14_j4uy8")
 map_position = Vector2i(15, -6)
 metadata/_custom_type_script = "uid://cigfux3bal5ef"
@@ -11867,7 +11867,7 @@ script = ExtResource("20_txeor")
 is_collision = true
 metadata/_custom_type_script = "uid://t32s55k36xah"
 
-[node name="_RPGM_Mover" type="Node" parent="_map_3/_npc_3_4_stuff" unique_id=639010227]
+[node name="_RPGM_Mover" type="Node2D" parent="_map_3/_npc_3_4_stuff" unique_id=639010227]
 script = ExtResource("14_j4uy8")
 map_position = Vector2i(14, -6)
 metadata/_custom_type_script = "uid://cigfux3bal5ef"
@@ -11890,7 +11890,7 @@ y_sort_enabled = true
 material = SubResource("ShaderMaterial_vvo4p")
 scale = Vector2(1.0166667, 1.0833334)
 
-[node name="_RPGM_Mover" type="Node" parent="_map_3/_npc_3_1" unique_id=1222431685]
+[node name="_RPGM_Mover" type="Node2D" parent="_map_3/_npc_3_1" unique_id=1222431685]
 script = ExtResource("14_j4uy8")
 map_position = Vector2i(11, -6)
 metadata/_custom_type_script = "uid://cigfux3bal5ef"
@@ -11908,7 +11908,7 @@ messages = Array[String](["I am talking a tree..", "With nothing much to say.", 
 is_collision = true
 metadata/_custom_type_script = "uid://ipwj2rxnrjv3"
 
-[node name="_RPGM_Mover" type="Node" parent="_map_4/_npc_4_1_talking_tree" unique_id=2063483195]
+[node name="_RPGM_Mover" type="Node2D" parent="_map_4/_npc_4_1_talking_tree" unique_id=2063483195]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 map_position = Vector2i(13, -26)
@@ -11930,7 +11930,7 @@ is_collision = true
 material = SubResource("ShaderMaterial_cjg66")
 scale = Vector2(1.0166667, 1.0833334)
 
-[node name="_RPGM_Mover" type="Node" parent="_map_4/_npc_4_2" unique_id=393434475]
+[node name="_RPGM_Mover" type="Node2D" parent="_map_4/_npc_4_2" unique_id=393434475]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 map_position = Vector2i(-1, 1)
@@ -11952,7 +11952,7 @@ is_collision = true
 material = SubResource("ShaderMaterial_jmbn5")
 scale = Vector2(1.0166667, 1.0833334)
 
-[node name="_RPGM_Mover" type="Node" parent="_map_4/_npc_4_3" unique_id=893327152]
+[node name="_RPGM_Mover" type="Node2D" parent="_map_4/_npc_4_3" unique_id=893327152]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 map_position = Vector2i(12, -28)
@@ -11978,7 +11978,7 @@ y_sort_enabled = true
 material = SubResource("ShaderMaterial_oaqr5")
 scale = Vector2(1.0166667, 1.0833334)
 
-[node name="_RPGM_Mover" type="Node" parent="_map_5/_npc_5_1" unique_id=1423734142]
+[node name="_RPGM_Mover" type="Node2D" parent="_map_5/_npc_5_1" unique_id=1423734142]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 map_position = Vector2i(-14, -31)
@@ -12002,7 +12002,7 @@ is_collision = true
 material = SubResource("ShaderMaterial_jonhj")
 scale = Vector2(1.0166667, 1.0833334)
 
-[node name="_RPGM_Mover" type="Node" parent="_map_6/_npc_6_1" unique_id=1863448399]
+[node name="_RPGM_Mover" type="Node2D" parent="_map_6/_npc_6_1" unique_id=1863448399]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(-1, 0)
 map_position = Vector2i(2, 19)
@@ -12024,7 +12024,7 @@ is_collision = true
 material = SubResource("ShaderMaterial_j4uy8")
 scale = Vector2(1.0166667, 1.0833334)
 
-[node name="_RPGM_Mover" type="Node" parent="_map_6/_npc_6_2" unique_id=700966920]
+[node name="_RPGM_Mover" type="Node2D" parent="_map_6/_npc_6_2" unique_id=700966920]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 map_position = Vector2i(0, 1)
@@ -12047,7 +12047,7 @@ is_collision = true
 material = SubResource("ShaderMaterial_2uryw")
 scale = Vector2(1.0166667, 1.0833334)
 
-[node name="_RPGM_Mover" type="Node" parent="_map_6/_npc_6_3" unique_id=1791472528]
+[node name="_RPGM_Mover" type="Node2D" parent="_map_6/_npc_6_3" unique_id=1791472528]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(-1, 0)
 map_position = Vector2i(2, 21)
@@ -12071,7 +12071,7 @@ y_sort_enabled = true
 material = SubResource("ShaderMaterial_a8qaw")
 scale = Vector2(1.0166667, 1.0833334)
 
-[node name="_RPGM_Mover" type="Node" parent="_map_6/_event_6_1" unique_id=1814372977]
+[node name="_RPGM_Mover" type="Node2D" parent="_map_6/_event_6_1" unique_id=1814372977]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 map_position = Vector2i(-2, 21)
@@ -12098,7 +12098,7 @@ y_sort_enabled = true
 material = SubResource("ShaderMaterial_yspku")
 scale = Vector2(1.0166667, 1.0833334)
 
-[node name="_RPGM_Mover" type="Node" parent="_map_7/_npc_7_1" unique_id=713560675]
+[node name="_RPGM_Mover" type="Node2D" parent="_map_7/_npc_7_1" unique_id=713560675]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 map_position = Vector2i(37, -5)
@@ -12124,7 +12124,7 @@ material = SubResource("ShaderMaterial_xp5op")
 scale = Vector2(1.0166667, 1.0833334)
 type = "sphere"
 
-[node name="_RPGM_Mover" type="Node" parent="_map_7/_npc_7_3" unique_id=1146411250]
+[node name="_RPGM_Mover" type="Node2D" parent="_map_7/_npc_7_3" unique_id=1146411250]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 map_position = Vector2i(43, -4)
@@ -12149,7 +12149,7 @@ y_sort_enabled = true
 material = SubResource("ShaderMaterial_cyfpt")
 scale = Vector2(1.0166667, 1.0833334)
 
-[node name="_RPGM_Mover" type="Node" parent="_map_7/_npc_7_2" unique_id=1530982746]
+[node name="_RPGM_Mover" type="Node2D" parent="_map_7/_npc_7_2" unique_id=1530982746]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 map_position = Vector2i(39, -5)
@@ -12167,7 +12167,7 @@ script = ExtResource("23_tl7rd")
 camera_position_node = NodePath("../../../_camera_positions/_camera_position_1_1")
 player_position_node = NodePath("../../../_player_positions/_player_position_1_6")
 
-[node name="_RPGM_Mover" type="Node" parent="_teleports/_teleport_6_1" unique_id=528359663]
+[node name="_RPGM_Mover" type="Node2D" parent="_teleports/_teleport_6_1" unique_id=528359663]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 map_position = Vector2i(0, 14)
@@ -12212,7 +12212,7 @@ script = ExtResource("23_tl7rd")
 camera_position_node = NodePath("../../../_camera_positions/_camera_position_6_1")
 player_position_node = NodePath("../../../_player_positions/_player_position_6_1")
 
-[node name="_RPGM_Mover" type="Node" parent="_teleports/_teleport_1_6" unique_id=52835073]
+[node name="_RPGM_Mover" type="Node2D" parent="_teleports/_teleport_1_6" unique_id=52835073]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 map_position = Vector2i(0, 6)
@@ -12257,7 +12257,7 @@ script = ExtResource("23_tl7rd")
 camera_position_node = NodePath("../../../Player")
 player_position_node = NodePath("../../../_player_positions/_player_position_3_1")
 
-[node name="_RPGM_Mover" type="Node" parent="_teleports/_teleport_1_2" unique_id=2124817841]
+[node name="_RPGM_Mover" type="Node2D" parent="_teleports/_teleport_1_2" unique_id=2124817841]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 map_position = Vector2i(4, -2)
@@ -12302,7 +12302,7 @@ script = ExtResource("23_tl7rd")
 camera_position_node = NodePath("../../../_camera_positions/_camera_position_2_1")
 player_position_node = NodePath("../../../_player_positions/_player_position_2_1")
 
-[node name="_RPGM_Mover" type="Node" parent="_teleports/_teleport_1_3" unique_id=2139404264]
+[node name="_RPGM_Mover" type="Node2D" parent="_teleports/_teleport_1_3" unique_id=2139404264]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 map_position = Vector2i(-4, -2)
@@ -12347,7 +12347,7 @@ script = ExtResource("23_tl7rd")
 camera_position_node = NodePath("../../../_camera_positions/_camera_position_8_1")
 player_position_node = NodePath("../../../_player_positions/_player_position_8_6")
 
-[node name="_RPGM_Mover" type="Node" parent="_teleports/_teleport_6_8" unique_id=383209052]
+[node name="_RPGM_Mover" type="Node2D" parent="_teleports/_teleport_6_8" unique_id=383209052]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 map_position = Vector2i(0, 24)
@@ -12392,7 +12392,7 @@ script = ExtResource("23_tl7rd")
 camera_position_node = NodePath("../../../_camera_positions/_camera_position_6_1")
 player_position_node = NodePath("../../../_player_positions/_player_position_6_8")
 
-[node name="_RPGM_Mover" type="Node" parent="_teleports/_teleport_8_6" unique_id=1838485630]
+[node name="_RPGM_Mover" type="Node2D" parent="_teleports/_teleport_8_6" unique_id=1838485630]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 map_position = Vector2i(0, 40)
@@ -12437,7 +12437,7 @@ script = ExtResource("23_tl7rd")
 camera_position_node = NodePath("../../../_camera_positions/_camera_position_1_1")
 player_position_node = NodePath("../../../_player_positions/_player_position_1_1")
 
-[node name="_RPGM_Mover" type="Node" parent="_teleports/_teleport_2_1" unique_id=151961201]
+[node name="_RPGM_Mover" type="Node2D" parent="_teleports/_teleport_2_1" unique_id=151961201]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 map_position = Vector2i(-10, -1)
@@ -12482,7 +12482,7 @@ script = ExtResource("23_tl7rd")
 camera_position_node = NodePath("../../../_camera_positions/_camera_position_7_1")
 player_position_node = NodePath("../../../_player_positions/_player_position_7_3")
 
-[node name="_RPGM_Mover" type="Node" parent="_teleports/_teleport_3_7" unique_id=1243467548]
+[node name="_RPGM_Mover" type="Node2D" parent="_teleports/_teleport_3_7" unique_id=1243467548]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 map_position = Vector2i(17, -1)
@@ -12527,7 +12527,7 @@ script = ExtResource("23_tl7rd")
 camera_position_node = NodePath("../../../_camera_positions/_camera_position_1_1")
 player_position_node = NodePath("../../../_player_positions/_player_position_1_2")
 
-[node name="_RPGM_Mover" type="Node" parent="_teleports/_teleport_3_1" unique_id=1856355253]
+[node name="_RPGM_Mover" type="Node2D" parent="_teleports/_teleport_3_1" unique_id=1856355253]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 map_position = Vector2i(9, -1)
@@ -12572,7 +12572,7 @@ script = ExtResource("23_tl7rd")
 camera_position_node = NodePath("../../../_camera_positions/_camera_position_3_1")
 player_position_node = NodePath("../../../_player_positions/_player_position_3_7")
 
-[node name="_RPGM_Mover" type="Node" parent="_teleports/_teleport_7_3" unique_id=693429451]
+[node name="_RPGM_Mover" type="Node2D" parent="_teleports/_teleport_7_3" unique_id=693429451]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 map_position = Vector2i(32, -1)
@@ -12617,7 +12617,7 @@ script = ExtResource("23_tl7rd")
 camera_position_node = NodePath("../../../_camera_positions/_camera_position_4_1")
 player_position_node = NodePath("../../../_player_positions/_player_position_4_3")
 
-[node name="_RPGM_Mover" type="Node" parent="_teleports/_teleport_3_2" unique_id=36168341]
+[node name="_RPGM_Mover" type="Node2D" parent="_teleports/_teleport_3_2" unique_id=36168341]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 map_position = Vector2i(13, -9)
@@ -12662,7 +12662,7 @@ script = ExtResource("23_tl7rd")
 camera_position_node = NodePath("../../../_camera_positions/_camera_position_3_1")
 player_position_node = NodePath("../../../_player_positions/_player_position_3_2")
 
-[node name="_RPGM_Mover" type="Node" parent="_teleports/_teleport_4_3" unique_id=169921520]
+[node name="_RPGM_Mover" type="Node2D" parent="_teleports/_teleport_4_3" unique_id=169921520]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 map_position = Vector2i(13, -22)
@@ -12706,7 +12706,7 @@ position = Vector2(-648, -1368)
 script = ExtResource("17_yspku")
 state = Array[Node]([])
 
-[node name="_RPGM_Mover" type="Node" parent="_camera_positions/_camera_position_5_1" unique_id=992085554]
+[node name="_RPGM_Mover" type="Node2D" parent="_camera_positions/_camera_position_5_1" unique_id=992085554]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 map_position = Vector2i(-14, -29)
@@ -12741,7 +12741,7 @@ position = Vector2(648, -1224)
 script = ExtResource("17_yspku")
 state = Array[Node]([])
 
-[node name="_RPGM_Mover" type="Node" parent="_camera_positions/_camera_position_4_1" unique_id=1555548166]
+[node name="_RPGM_Mover" type="Node2D" parent="_camera_positions/_camera_position_4_1" unique_id=1555548166]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 map_position = Vector2i(13, -26)
@@ -12776,7 +12776,7 @@ position = Vector2(24, 2136)
 script = ExtResource("17_yspku")
 state = Array[Node]([])
 
-[node name="_RPGM_Mover" type="Node" parent="_camera_positions/_camera_position_8_1" unique_id=1916155093]
+[node name="_RPGM_Mover" type="Node2D" parent="_camera_positions/_camera_position_8_1" unique_id=1916155093]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 map_position = Vector2i(0, 44)
@@ -12811,7 +12811,7 @@ position = Vector2(-840, -24)
 script = ExtResource("17_yspku")
 state = Array[Node]([])
 
-[node name="_RPGM_Mover" type="Node" parent="_camera_positions/_camera_position_2_1" unique_id=894112602]
+[node name="_RPGM_Mover" type="Node2D" parent="_camera_positions/_camera_position_2_1" unique_id=894112602]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 map_position = Vector2i(-18, -1)
@@ -12846,7 +12846,7 @@ position = Vector2(648, -168)
 script = ExtResource("17_yspku")
 state = Array[Node]([])
 
-[node name="_RPGM_Mover" type="Node" parent="_camera_positions/_camera_position_3_1" unique_id=1530418066]
+[node name="_RPGM_Mover" type="Node2D" parent="_camera_positions/_camera_position_3_1" unique_id=1530418066]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 map_position = Vector2i(13, -4)
@@ -12881,7 +12881,7 @@ position = Vector2(24, 984)
 script = ExtResource("17_yspku")
 state = Array[Node]([])
 
-[node name="_RPGM_Mover" type="Node" parent="_camera_positions/_camera_position_6_1" unique_id=1360472408]
+[node name="_RPGM_Mover" type="Node2D" parent="_camera_positions/_camera_position_6_1" unique_id=1360472408]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 map_position = Vector2i(0, 20)
@@ -12921,7 +12921,7 @@ position = Vector2(24, 24)
 script = ExtResource("17_yspku")
 state = Array[Node]([])
 
-[node name="_RPGM_Mover" type="Node" parent="_camera_positions/_camera_position_1_1" unique_id=401200729]
+[node name="_RPGM_Mover" type="Node2D" parent="_camera_positions/_camera_position_1_1" unique_id=401200729]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 metadata/_custom_type_script = "uid://cigfux3bal5ef"
@@ -12960,7 +12960,7 @@ position = Vector2(1848, -120)
 script = ExtResource("17_yspku")
 state = Array[Node]([])
 
-[node name="_RPGM_Mover" type="Node" parent="_camera_positions/_camera_position_7_1" unique_id=935490369]
+[node name="_RPGM_Mover" type="Node2D" parent="_camera_positions/_camera_position_7_1" unique_id=935490369]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 map_position = Vector2i(38, -3)
@@ -12997,7 +12997,7 @@ position = Vector2(648, -1080)
 script = ExtResource("17_yspku")
 state = Array[Node]([])
 
-[node name="_RPGM_Mover" type="Node" parent="_player_positions/_player_position_4_3" unique_id=1253762331]
+[node name="_RPGM_Mover" type="Node2D" parent="_player_positions/_player_position_4_3" unique_id=1253762331]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 map_position = Vector2i(13, -23)
@@ -13033,7 +13033,7 @@ position = Vector2(-648, -1224)
 script = ExtResource("17_yspku")
 state = Array[Node]([])
 
-[node name="_RPGM_Mover" type="Node" parent="_player_positions/_player_position_5_1" unique_id=1630862656]
+[node name="_RPGM_Mover" type="Node2D" parent="_player_positions/_player_position_5_1" unique_id=1630862656]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 map_position = Vector2i(-14, -26)
@@ -13068,7 +13068,7 @@ position = Vector2(648, -360)
 script = ExtResource("17_yspku")
 state = Array[Node]([])
 
-[node name="_RPGM_Mover" type="Node" parent="_player_positions/_player_position_3_2" unique_id=971659330]
+[node name="_RPGM_Mover" type="Node2D" parent="_player_positions/_player_position_3_2" unique_id=971659330]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 map_position = Vector2i(13, -8)
@@ -13103,7 +13103,7 @@ position = Vector2(1608, -24)
 script = ExtResource("17_yspku")
 state = Array[Node]([])
 
-[node name="_RPGM_Mover" type="Node" parent="_player_positions/_player_position_7_3" unique_id=104201319]
+[node name="_RPGM_Mover" type="Node2D" parent="_player_positions/_player_position_7_3" unique_id=104201319]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 map_position = Vector2i(33, -1)
@@ -13138,7 +13138,7 @@ position = Vector2(792, -24)
 script = ExtResource("17_yspku")
 state = Array[Node]([])
 
-[node name="_RPGM_Mover" type="Node" parent="_player_positions/_player_position_3_7" unique_id=1724419661]
+[node name="_RPGM_Mover" type="Node2D" parent="_player_positions/_player_position_3_7" unique_id=1724419661]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 map_position = Vector2i(16, -1)
@@ -13173,7 +13173,7 @@ position = Vector2(504, -24)
 script = ExtResource("17_yspku")
 state = Array[Node]([])
 
-[node name="_RPGM_Mover" type="Node" parent="_player_positions/_player_position_3_1" unique_id=1003765028]
+[node name="_RPGM_Mover" type="Node2D" parent="_player_positions/_player_position_3_1" unique_id=1003765028]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 map_position = Vector2i(10, -1)
@@ -13208,7 +13208,7 @@ position = Vector2(-504, -24)
 script = ExtResource("17_yspku")
 state = Array[Node]([])
 
-[node name="_RPGM_Mover" type="Node" parent="_player_positions/_player_position_2_1" unique_id=381820362]
+[node name="_RPGM_Mover" type="Node2D" parent="_player_positions/_player_position_2_1" unique_id=381820362]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 map_position = Vector2i(-11, -1)
@@ -13243,7 +13243,7 @@ position = Vector2(168, -72)
 script = ExtResource("17_yspku")
 state = Array[Node]([])
 
-[node name="_RPGM_Mover" type="Node" parent="_player_positions/_player_position_1_2" unique_id=1200891452]
+[node name="_RPGM_Mover" type="Node2D" parent="_player_positions/_player_position_1_2" unique_id=1200891452]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 map_position = Vector2i(3, -2)
@@ -13278,7 +13278,7 @@ position = Vector2(24, 1992)
 script = ExtResource("17_yspku")
 state = Array[Node]([])
 
-[node name="_RPGM_Mover" type="Node" parent="_player_positions/_player_position_8_6" unique_id=1223835970]
+[node name="_RPGM_Mover" type="Node2D" parent="_player_positions/_player_position_8_6" unique_id=1223835970]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 map_position = Vector2i(0, 41)
@@ -13313,7 +13313,7 @@ position = Vector2(24, 1128)
 script = ExtResource("17_yspku")
 state = Array[Node]([])
 
-[node name="_RPGM_Mover" type="Node" parent="_player_positions/_player_position_6_8" unique_id=1759719162]
+[node name="_RPGM_Mover" type="Node2D" parent="_player_positions/_player_position_6_8" unique_id=1759719162]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 map_position = Vector2i(0, 23)
@@ -13348,7 +13348,7 @@ position = Vector2(24, 744)
 script = ExtResource("17_yspku")
 state = Array[Node]([])
 
-[node name="_RPGM_Mover" type="Node" parent="_player_positions/_player_position_6_1" unique_id=654396755]
+[node name="_RPGM_Mover" type="Node2D" parent="_player_positions/_player_position_6_1" unique_id=654396755]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 map_position = Vector2i(0, 15)
@@ -13383,7 +13383,7 @@ position = Vector2(24, 264)
 script = ExtResource("17_yspku")
 state = Array[Node]([])
 
-[node name="_RPGM_Mover" type="Node" parent="_player_positions/_player_position_1_6" unique_id=2062622805]
+[node name="_RPGM_Mover" type="Node2D" parent="_player_positions/_player_position_1_6" unique_id=2062622805]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 map_position = Vector2i(0, 5)
@@ -13418,7 +13418,7 @@ position = Vector2(-120, -72)
 script = ExtResource("17_yspku")
 state = Array[Node]([])
 
-[node name="_RPGM_Mover" type="Node" parent="_player_positions/_player_position_1_1" unique_id=1791512296]
+[node name="_RPGM_Mover" type="Node2D" parent="_player_positions/_player_position_1_1" unique_id=1791512296]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 map_position = Vector2i(-3, -2)
@@ -13454,7 +13454,7 @@ position = Vector2(648, -1416)
 script = ExtResource("17_yspku")
 state = Array[Node]([])
 
-[node name="_RPGM_Mover" type="Node" parent="_player_positions/_player_position_4_transition" unique_id=1477106069]
+[node name="_RPGM_Mover" type="Node2D" parent="_player_positions/_player_position_4_transition" unique_id=1477106069]
 script = ExtResource("14_j4uy8")
 facing = Vector2i(0, 1)
 map_position = Vector2i(13, -30)

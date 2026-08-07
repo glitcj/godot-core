@@ -1,11 +1,10 @@
-extends Node
+# CLAUDE: extends _RPGM_Node — get_rpgm/get_map/get_player now inherited
+# (lazy cached); the lambdas nodes in both scenes were retyped Node -> Node2D
+extends _RPGM_Node
 class_name _RPGM_Lambdas
 
 @onready var core : _Core = find_parent("_Core")
 
-func get_rpgm(): return find_parent("_RPGM") as _RPGM
-func get_map(): return find_parent("_RPGM_Map") as _RPGM_Map
-func get_player(): return find_parent("_RPGM_Map").find_child("Player") as _RPGM_Player
 func get_camera(): return get_map().find_child("Camera2D") as Camera2D
 
 
