@@ -54,7 +54,8 @@ func highlight(tweenee : Node2D):
 	var base_scale = tweenee.scale as Vector2
 	tween.set_loops(1)
 
-	var mover = tweenee.find_child("_RPGM_Mover") as _RPGM_Mover
+	# CLAUDE: the tweenee (player/event) IS the mover now (mixin refactor)
+	var mover = tweenee as _RPGM_Mover
 	var base_speed = mover.speed
 
 	tween.tween_property(tweenee, "modulate", Color(1,0,1,1), duration)

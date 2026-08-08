@@ -36,7 +36,8 @@ var parent : Object:
 		return parent
 var mover : _RPGM_Mover:
 	get:
-		if not is_instance_valid(mover): mover = get_parent().find_child("_RPGM_Mover")
+		# CLAUDE: the parent event IS the mover now (mixin refactor)
+		if not is_instance_valid(mover): mover = get_parent() as _RPGM_Mover
 		return mover
 var portrait : _RPGM_Portrait:
 	get:
@@ -191,7 +192,8 @@ func is_running():
 	return trigger_is_running.values().any(func(x): return x)
 
 func _get_direction_to_player():
-	var player_position = get_player().find_child("_RPGM_Mover").map_position as Vector2i
+	# CLAUDE: the player IS the mover now (mixin refactor)
+	var player_position = get_player().map_position as Vector2i
 	var direction = Vector2(player_position - get_mover().map_position).normalized()
 	assert(direction.abs().x + direction.abs().y == 1) # make sure direction is in udlr
 	return Vector2i(direction)

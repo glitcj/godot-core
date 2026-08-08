@@ -1,6 +1,10 @@
 @tool
-# CLAUDE: extends _RPGM_Node — get_map() etc. now inherited (lazy cached);
-# the mover nodes in _rpgm_map.tscn were retyped Node -> Node2D to match
+# CLAUDE: refactored from an optional child node into a mixin base class:
+# _RPGM_Node <- _RPGM_Mover <- _RPGM_Event / _RPGM_Player. The host node IS
+# the mover now — every get_parent() manipulation below became self, and the
+# facing sync hacks (_editor_update, the parent type-switch in face()) are
+# replaced by the facing setter's _on_facing_changed() hook that subclasses
+# override. _get_event() removed (was get_parent(), meaningless on self).
 extends _RPGM_Node
 class_name _RPGM_Mover
 
@@ -13,25 +17,26 @@ var is_moving = false:
 
 @export var speed = 0.5 as float
 @export var type = MovementType.Linear as MovementType
-@export var facing = Vector2i(1, 0) as Vector2i
 
+# CLAUDE: merged with the old _RPGM_Event.facing var — subclasses override
+# _on_facing_changed() to forward the value to their portrait(s)
+@export var facing = Vector2i(1, 0) as Vector2i:
+	set(value):
+		facing = value
+		_on_facing_changed()
 
-func _editor_update():
-	if "facing" in  get_parent():
-		facing = get_parent().facing
-	face(facing)
-	
+func _on_facing_changed(): pass
+
 @export var map_position: Vector2i = Vector2i(0, 0):
 	set(v):
 		map_position = v
 		if get_map(): get_map().mark_collision_dirty()
 		if Engine.is_editor_hint(): _quantise_position()
-		
+
 
 var destination : Vector2i = Vector2i(0, 0)
 
 func get_base_layer(): return get_map().find_child("L1 Base") as TileMapLayer
-func _get_event(): return get_parent() as _RPGM_Event 
 
 @onready var base_layer = get_base_layer()
 
@@ -41,40 +46,39 @@ func _ready() -> void:
 	if get_map(): get_map().mark_collision_dirty()
 	await get_tree().process_frame
 	face(facing)
-	
-	
+
 
 func tilemap_to_global_position(tile_position : Vector2i):
 	return base_layer.to_global(base_layer.map_to_local(tile_position))
-	
+
 func teleport(tile_position : Vector2i):
 	if not is_inside_tree(): return
-	
+
 	map_position = tile_position
-	get_parent().global_position = tilemap_to_global_position(tile_position)
-	
+	global_position = tilemap_to_global_position(tile_position)
+
 func _quantise_position():
-	if not get_parent() != null: return
-	if not get_parent().is_node_ready(): return
-	get_parent().global_position = tilemap_to_global_position(map_position)
+	# CLAUDE: self-checks replace the old get_parent() null/ready checks
+	if not is_node_ready(): return
+	global_position = tilemap_to_global_position(map_position)
 
 func move_to_map_position(target_map_position):
 	await move(target_map_position - map_position)
 
 func face_map_position(target_map_position):
 	face(target_map_position - map_position)
-	
+
 
 func move(tile_vector : Vector2i) -> _RPGM_Mover:
 	while tile_has_collision(map_position + tile_vector):
 		await get_tree().process_frame
 	map_position = map_position + tile_vector # activates setter
-	var displacement = tilemap_to_global_position(map_position) - get_parent().global_position 
-	
+	var displacement = tilemap_to_global_position(map_position) - global_position
+
 	is_moving = true
 	await displace(displacement)
 	is_moving = false
-	
+
 	return self
 
 
@@ -93,49 +97,38 @@ func _process(delta: float) -> void: pass
 func walk(_destination_diff : Vector2i, face_direction = true):
 	assert(_destination_diff.x == 0 or _destination_diff.y == 0)
 	destination = _destination_diff + map_position
-	
+
 	if face_direction: face(_destination_diff)
-	
+
 	var next_movement_vector : Vector2i
 	while destination != map_position:
 		next_movement_vector = Vector2i(_destination_diff/_destination_diff.length())
-		
+
 		await move(next_movement_vector)
 
 func face(tile_vector : Vector2i):
+	# CLAUDE: the setter's _on_facing_changed() hook now propagates to
+	# portraits — the parent type-switch and dead debug print are gone
 	var normalised_vector = Vector2(tile_vector).normalized()
 	facing = Vector2i(normalised_vector)
-	
-	
-	if not (facing.length() != 1 or facing.length() != 0):
-		print(facing, facing.length())	
-	
-	
-	if get_parent() is _RPGM_Event:
-		get_parent().facing = Vector2(facing)
-	elif get_parent() is _RPGM_Player:
-		get_parent().get_portrait().facing = facing
-		
-	
-	
 	return self
 
 
 func displace(displacement : Vector2):
-	var tween = get_parent().create_tween()
+	var tween = create_tween()
 	if type == MovementType.Exponential:
 		tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-	await tween.tween_property(get_parent(), "global_position", get_parent().global_position + displacement, 1/speed).finished
-	
+	await tween.tween_property(self, "global_position", global_position + displacement, 1/speed).finished
+
 	finished_movement.emit()
-	
+
 func tile_has_collision(tile_pos: Vector2i) -> bool:
 	for layer : TileMapLayer in get_map().layers:
 		var tile_data = layer.get_cell_tile_data(tile_pos)
-		
+
 		if tile_data == null:
 			continue
-	
+
 		# if tile_data.get_collision_polygons_count(0) > 0:
 		# 	return true
 		# CLAUDE: only the converted .tres tilesets define the "rpgm-collision"

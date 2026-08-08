@@ -10,7 +10,8 @@ func get_camera(): return get_map().find_child("Camera2D") as Camera2D
 
 func transport_player(player_position_node : _RPGM_Event):
 	assert(player_position_node is _RPGM_Event)
-	var player_mover = get_player().find_child("_RPGM_Mover") as _RPGM_Mover
+	# CLAUDE: the player IS the mover now (mixin refactor)
+	var player_mover = get_player() as _RPGM_Mover
 	player_mover.teleport(player_position_node.get_mover().map_position)
 	
 func transport_camera(camera_position_node):
@@ -18,7 +19,8 @@ func transport_camera(camera_position_node):
 	if camera_position_node is _RPGM_Event:
 		(get_player().find_child("RemoteTransform2D") as RemoteTransform2D).update_position = false
 		get_map().find_child("_RPGM_Camera").find_child("Camera2D").position = Vector2.ZERO
-		var camera_mover = get_map().find_child("_RPGM_Camera").find_child("_RPGM_Mover") as _RPGM_Mover
+		# CLAUDE: the camera node (an _RPGM_Event) IS the mover now (mixin refactor)
+		var camera_mover = get_map().find_child("_RPGM_Camera") as _RPGM_Mover
 		camera_mover.teleport(camera_position_node.get_mover().map_position)
 		
 	if camera_position_node is _RPGM_Player:
@@ -34,7 +36,8 @@ func dettach_camera_from_player():
 	get_camera().reparent(get_map().find_child("Camera"))
 	
 func move_camera(delta : Vector2i):
-	var mover = get_map().find_child("_RPGM_Camera").find_child("_RPGM_Mover") as _RPGM_Mover
+	# CLAUDE: the camera node (an _RPGM_Event) IS the mover now (mixin refactor)
+	var mover = get_map().find_child("_RPGM_Camera") as _RPGM_Mover
 	await mover.move(delta)
 	
 func show_messages(messages: Array, _scale = Vector2(5, 5)):

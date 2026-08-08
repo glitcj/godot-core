@@ -41,14 +41,13 @@ func _process(_delta: float) -> void:
 
 func _rebuild_collision_tiles() -> void:
 	tiles_with_rpgm_collision = []
-	var p
+	# CLAUDE: movers are the events/player themselves now (mixin refactor) —
+	# type-check the mover directly instead of its parent
 	for m: _RPGM_Mover in find_children("*", "_RPGM_Mover"):
-		p = m.get_parent()
-		
-		if p is _RPGM_Player:
+		if m is _RPGM_Player:
 			pass
-		elif p is _RPGM_Event:
-			if not p.is_collision:
+		elif m is _RPGM_Event:
+			if not m.is_collision:
 				continue
 		else:
 			continue

@@ -1,6 +1,17 @@
-# CLAUDE: extends _RPGM_Node — get_core/get_mover/get_portrait etc. inherited
-extends _RPGM_Node
+# CLAUDE: @tool because the inherited mover behavior (editor quantise on
+# map_position edits, the map's Quantise All button) used to run on the @tool
+# mover child — it now lives on this node, so this script must be a tool
+# script too; _ready/_process gained editor-hint guards to compensate
+@tool
+# CLAUDE: extends _RPGM_Mover — mover is now a mixin base class, so the
+# player node itself carries the movement state/logic (no child mover node)
+extends _RPGM_Mover
 class_name _RPGM_Player
+
+# CLAUDE: replaces face()'s old parent type-switch — _RPGM_Mover's facing
+# setter calls this hook
+func _on_facing_changed():
+	if get_portrait(): get_portrait().facing = Vector2(facing)
 
 # func is_collision(): return true
 var is_collision = true
@@ -11,7 +22,7 @@ var is_active = false:
 			return
 		is_active = v
 
-@onready var mover = find_child("_RPGM_Mover") as _RPGM_Mover
+# CLAUDE: mover child ref removed — its members are inherited now
 @onready var map = find_parent("_RPGM_Map") as _RPGM_Map
 
 
@@ -28,6 +39,9 @@ var input_just_pressed = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# CLAUDE: run _RPGM_Mover's _ready (collision dirty + initial face)
+	super()
+	if Engine.is_editor_hint(): return
 	setup_log()
 
 
@@ -41,6 +55,7 @@ func setup_log():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if Engine.is_editor_hint(): return
 	if not get_RPGM().is_active:
 		return
 		
@@ -57,24 +72,25 @@ func _process_movement() -> void:
 	if not is_active:
 		return
 		
-	if mover.is_moving:
+	# CLAUDE: mover.* -> inherited members (mixin refactor)
+	if is_moving:
 		return
-	
+
 	if next_direction != direction:
 		# await get_tree().physics_frame # Allow time for future position collision physics
 		await get_tree().process_frame # Allow time for future position collision physics
-		if not mover.tile_has_collision(mover.map_position + next_direction):
+		if not tile_has_collision(map_position + next_direction):
 			direction = next_direction
-				
 
-	print(mover.map_position, direction, mover.map_position + direction)
-	if mover.tile_has_collision(mover.map_position + direction):
+
+	print(map_position, direction, map_position + direction)
+	if tile_has_collision(map_position + direction):
 		direction = Vector2i.ZERO
 		return
-	
+
 	if direction != Vector2i.ZERO:
 		# await mover.move(direction)
-		await mover.move(direction)
+		await move(direction)
 	
 func _valid_direction_is_pressed():
 	for d in ["ui_up", "ui_down", "ui_left", "ui_right"]:
@@ -89,14 +105,15 @@ func _process_input():# _on_input():
 	if _valid_direction_is_pressed():
 		next_direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 		next_direction = Vector2i(next_direction/next_direction.abs())
-		mover.face(next_direction)
+		face(next_direction) # CLAUDE: inherited from _RPGM_Mover
 
 	if Input.is_action_just_pressed("ui_accept"):
 		await stop()
 
 func stop():
-	if mover.is_moving:
-		await mover.finished_movement
+	# CLAUDE: mover.* -> inherited members (mixin refactor)
+	if is_moving:
+		await finished_movement
 	await get_tree().process_frame
 	direction = Vector2i.ZERO
 	next_direction = Vector2i.ZERO
