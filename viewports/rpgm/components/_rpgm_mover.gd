@@ -66,8 +66,6 @@ func face_map_position(target_map_position):
 	
 
 func move(tile_vector : Vector2i) -> _RPGM_Mover:
-	
-	
 	while tile_has_collision(map_position + tile_vector):
 		await get_tree().process_frame
 	map_position = map_position + tile_vector # activates setter
@@ -86,8 +84,7 @@ func walk_v1(tile_vector : Vector2i, face_direction = true) -> _RPGM_Mover:
 	return self
 
 # var state = State.Idle
-func _process(delta: float) -> void:
-	pass
+func _process(delta: float) -> void: pass
 	# if destination != map_position: state = State.Moving
 	# else: state = State.Idle
 

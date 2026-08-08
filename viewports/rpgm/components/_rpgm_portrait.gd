@@ -21,10 +21,17 @@ var is_moving = false
 var facing := Vector2(-1, 0):
 	set(value):
 		facing = value
-		if %AnimationTree: 
-			%AnimationTree.set("parameters/BlendSpace2D/blend_position",  facing)
-			%AnimationPlayer.stop()
-			%AnimationPlayer.play("actioned")
+		# CLAUDE: not every portrait scene has an AnimationTree — a bare
+		# %AnimationTree lookup logs "Node not found" on those, so probe with
+		# get_node_or_null; likewise only play "actioned" if it exists, which
+		# raised 'p_animation_library.is_null()' on scenes without it
+		var tree := get_node_or_null("%AnimationTree")
+		if tree:
+			tree.set("parameters/BlendSpace2D/blend_position", facing)
+			var player : AnimationPlayer = get_node_or_null("%AnimationPlayer")
+			if player and player.has_animation("actioned"):
+				player.stop()
+				player.play("actioned")
 
 
 
