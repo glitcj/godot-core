@@ -1,0 +1,39 @@
+// Reference copy of the user-level VS Code keybindings used with this repo.
+// VS Code has no per-workspace keybindings, so this file is not picked up
+// automatically — copy it to:
+//   macOS: ~/Library/Application Support/Code/User/keybindings.json
+//
+// cmd+l "focus mode": enters zen mode with a maximised terminal, pressing it
+// again un-maximises the panel and exits zen back to the normal layout.
+// Pairs with "zenMode.centerLayout": false in .vscode/settings.json.
+// cmd+k k toggles centered layout manually.
+[
+    {
+        "key": "cmd+k k",
+        "command": "workbench.action.toggleCenteredLayout"
+    },
+    {
+        "key": "cmd+l",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                "workbench.action.toggleZenMode",
+                "workbench.action.terminal.focus",
+                "workbench.action.toggleMaximizedPanel"
+            ]
+        },
+        "when": "!inZenMode"
+    },
+    {
+        "key": "cmd+l",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                "workbench.action.toggleMaximizedPanel",
+                "workbench.action.toggleZenMode",
+                "workbench.action.focusActiveEditorGroup"
+            ]
+        },
+        "when": "inZenMode"
+    }
+]
