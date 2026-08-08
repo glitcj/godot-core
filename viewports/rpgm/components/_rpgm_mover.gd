@@ -138,6 +138,11 @@ func tile_has_collision(tile_pos: Vector2i) -> bool:
 	
 		# if tile_data.get_collision_polygons_count(0) > 0:
 		# 	return true
+		# CLAUDE: only the converted .tres tilesets define the "rpgm-collision"
+		# custom data layer — get_custom_data errors (not null) on tilesets
+		# without it, so skip those layers
+		if layer.tile_set.get_custom_data_layer_by_name("rpgm-collision") == -1:
+			continue
 		if tile_data.get_custom_data("rpgm-collision") == 1:
 			return true
 	if tile_has_rpgm_collision(tile_pos):
