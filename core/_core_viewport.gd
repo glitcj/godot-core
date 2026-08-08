@@ -61,7 +61,11 @@ func _deactivate():
 # but audio keeps playing and must be stopped by the scene itself
 func _suspend():
 	sub_viewport.render_target_update_mode = SubViewport.UPDATE_DISABLED
-	process_mode = Node.PROCESS_MODE_DISABLED
+	# CLAUDE: set_deferred — _suspend can be reached from inside a physics
+	# callback (DGM Area3D.area_entered -> finished -> change_viewport), and
+	# disabling CollisionObjects mid-physics-flush is not allowed; deferring
+	# applies the change after the physics step
+	set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
 
 func _resume():
 	process_mode = Node.PROCESS_MODE_INHERIT
