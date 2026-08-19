@@ -2684,7 +2684,7 @@ tile_set = SubResource("TileSet_38inc")
 [node name="L0 RM_Dungeon_B Trees Decorations" type="TileMapLayer" parent="Tilemap" unique_id=2051451295]
 y_sort_enabled = true
 texture_filter = 1
-tile_map_data = PackedByteArray("AAAvAJv/AAAEAAkAAAANAPr/AAAHAAgAAAAOAPn/AAAGAAgAAAANAPv/AAAHAAkAAAAOAPr/AAAGAAkAAAAPAPr/AAAEAAcAAAANAOX/AAAHAAgAAAANAOb/AAAHAAkAAAA=")
+tile_map_data = PackedByteArray("AAAvAJv/AAAEAAkAAAANAPr/AAAHAAgAAAAOAPn/AAAGAAgAAAANAPv/AAAHAAkAAAAOAPr/AAAGAAkAAAAPAPr/AAAEAAcAAAANAOX/AAAHAAgAAAANAOb/AAAHAAkAAAAAAP7/AAAIAAcAAAAAAP//AAAIAAgAAAABAP3/AAABAAgAAAABAP7/AAABAAkAAAA=")
 tile_set = SubResource("TileSet_yx7f7")
 
 [node name="L0 Added Physics" type="TileMapLayer" parent="Tilemap" unique_id=912434512]
