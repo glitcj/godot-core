@@ -44,6 +44,7 @@ func start(message_queue_ : Array):
 	is_active = true
 	_show_next_message()
 	await _Core_Tweener.new().slide_in(self)
+	# await _Core_Tweener.new().slide_in(%"Animation Anchor")
 
 func _show_current_message(m):
 	message = m
@@ -55,6 +56,7 @@ func _show_next_message():
 	
 	if message_queue == [] and visible:
 		await _Core_Tweener.new().slide_out(self)
+		# await _Core_Tweener.new().slide_out(%"Animation Anchor")
 		finished.emit()
 		queue_free.call_deferred()
 		return
@@ -70,8 +72,6 @@ func _show_next_message():
 func _process_input():
 	if not is_active:
 		return
-	# if is_busy:
-	# 	return
 		
 	if Input.is_action_just_pressed("ui_accept"):
 		await get_tree().process_frame

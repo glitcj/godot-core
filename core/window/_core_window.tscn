@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://d0tgvegkh87bt" path="res://core/window/_core_window.gd" id="1_c2pol"]
 [ext_resource type="Texture2D" uid="uid://cqwqfiycxfrp" path="res://assets/doomer/frames/doomer.asset.frames.png" id="2_810en"]
-[ext_resource type="Script" uid="uid://5fqo6d3fleu4" path="res://core/_core_tweener.gd" id="3_4b78m"]
 
 [sub_resource type="Animation" id="Animation_7dksj"]
 resource_name = "Buzz"
@@ -10,7 +9,7 @@ length = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Animated Node:rotation")
+tracks/0/path = NodePath("Animation Anchor:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -26,7 +25,7 @@ length = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Animated Node:visible")
+tracks/0/path = NodePath("Animation Anchor:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -38,7 +37,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Animated Node:scale")
+tracks/1/path = NodePath("Animation Anchor:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -54,7 +53,7 @@ length = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Animated Node:visible")
+tracks/0/path = NodePath("Animation Anchor:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -66,7 +65,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Animated Node:scale")
+tracks/1/path = NodePath("Animation Anchor:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -84,7 +83,7 @@ resource_name = "RESET"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Animated Node:rotation")
+tracks/0/path = NodePath("Animation Anchor:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -96,7 +95,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Animated Node:position")
+tracks/1/path = NodePath("Animation Anchor:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -108,7 +107,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Animated Node:scale")
+tracks/2/path = NodePath("Animation Anchor:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -120,7 +119,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Animated Node/MarginContainer/Message Label:modulate")
+tracks/3/path = NodePath("Animation Anchor/MarginContainer/Message Label:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -150,7 +149,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Animated Node/MarginContainer/Message Label:modulate")
+tracks/1/path = NodePath("Animation Anchor/MarginContainer/Message Label:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -683,10 +682,10 @@ script = ExtResource("1_c2pol")
 libraries/ = SubResource("AnimationLibrary_dlr4c")
 autoplay = &"RESET"
 
-[node name="Animated Node" type="Node2D" parent="." unique_id=526336934]
+[node name="Animation Anchor" type="Node2D" parent="." unique_id=526336934]
 unique_name_in_owner = true
 
-[node name="MarginContainer" type="MarginContainer" parent="Animated Node" unique_id=1853084108]
+[node name="MarginContainer" type="MarginContainer" parent="Animation Anchor" unique_id=1853084108]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -699,18 +698,18 @@ offset_bottom = 25.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="Animated Node/MarginContainer" unique_id=275208156]
+[node name="CenterContainer" type="CenterContainer" parent="Animation Anchor/MarginContainer" unique_id=275208156]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Frame Tilemaps" type="Node2D" parent="Animated Node/MarginContainer/CenterContainer" unique_id=1275643015]
+[node name="Frame Tilemaps" type="Node2D" parent="Animation Anchor/MarginContainer/CenterContainer" unique_id=1275643015]
 
-[node name="TileMapLayer" type="TileMapLayer" parent="Animated Node/MarginContainer/CenterContainer/Frame Tilemaps" unique_id=1090032565]
+[node name="TileMapLayer" type="TileMapLayer" parent="Animation Anchor/MarginContainer/CenterContainer/Frame Tilemaps" unique_id=1090032565]
 tile_map_data = PackedByteArray("AAD+////AAABAAEAAAD+/wAAAAABAAEAAAD+/wEAAAABAAEAAAD+/wIAAAABAAEAAAD+/wMAAAABABsAAAD/////AAABAAEAAAAAAP//AAABAAEAAAD//wAAAAABAAEAAAD//wEAAAABAAEAAAAAAAAAAAABAAEAAAAAAAEAAAABAAEAAAD//wIAAAABAAEAAAD//wMAAAABABsAAAAAAAIAAAABAAEAAAAAAAMAAAABABsAAAABAP//AAABAAEAAAACAP//AAABAAEAAAABAAAAAAABAAEAAAABAAEAAAABAAEAAAACAAAAAAABAAEAAAACAAEAAAABAAEAAAABAAIAAAABAAEAAAABAAMAAAABABsAAAACAAIAAAABAAEAAAACAAMAAAABABsAAAADAP//AAABAAEAAAAEAP//AAABAAEAAAADAAAAAAABAAEAAAADAAEAAAABAAEAAAAEAAAAAAABAAEAAAAEAAEAAAABAAEAAAADAAIAAAABAAEAAAADAAMAAAABABsAAAAEAAIAAAABAAEAAAAEAAMAAAABABsAAAAFAP//AAABAAEAAAAGAP//AAABAAEAAAAFAAAAAAABAAEAAAAFAAEAAAABAAEAAAAGAAAAAAABAAEAAAAGAAEAAAABAAEAAAAFAAIAAAABAAEAAAAFAAMAAAABABsAAAAGAAIAAAABAAEAAAAGAAMAAAABABsAAAAHAP//AAABAAEAAAAIAP//AAABAAEAAAAHAAAAAAABAAEAAAAHAAEAAAABAAEAAAAIAAAAAAABAAEAAAAIAAEAAAABAAEAAAAHAAIAAAABAAEAAAAHAAMAAAABABsAAAAIAAIAAAABAAEAAAAIAAMAAAABABsAAAAJAP//AAABAAEAAAAKAP//AAABAAEAAAAJAAAAAAABAAEAAAAJAAEAAAABAAEAAAAKAAAAAAABAAEAAAAKAAEAAAABAAEAAAAJAAIAAAABAAEAAAAJAAMAAAABABsAAAAKAAIAAAABAAEAAAAKAAMAAAABABsAAAALAP//AAADABoAAAALAAAAAAADABoAAAALAAEAAAADABoAAAALAAIAAAADABoAAAALAAMAAAADABsAAAD0//z/AAAAABgAAAAIAPz/AAABABgAAAAIAP3/AAABAAEAAAAIAP7/AAABAAEAAAD1//z/AAABABgAAAD1//3/AAABAAEAAAD1//7/AAABAAEAAAD1////AAABAAEAAAD1/wAAAAABAAEAAAD1/wEAAAABAAEAAAD1/wIAAAABAAEAAAD2//z/AAABABgAAAD2//3/AAABAAEAAAD2//7/AAABAAEAAAD2////AAABAAEAAAD2/wAAAAABAAEAAAD2/wEAAAABAAEAAAD2/wIAAAABAAEAAAD2/wMAAAABABsAAAD3//z/AAABABgAAAD4//z/AAABABgAAAD5//z/AAABABgAAAD6//z/AAABABgAAAD7//z/AAABABgAAAD8//z/AAABABgAAAD9//z/AAABABgAAAD+//z/AAABABgAAAD///z/AAABABgAAAAAAPz/AAABABgAAAABAPz/AAABABgAAAACAPz/AAABABgAAAADAPz/AAABABgAAAAEAPz/AAABABgAAAAFAPz/AAABABgAAAAGAPz/AAABABgAAAAHAPz/AAABABgAAAALAPz/AAADABgAAAALAP3/AAADABoAAAALAP7/AAADABoAAAD0/wIAAAADABoAAAD0/wMAAAAAABsAAAD1/wMAAAABABsAAAD3/wIAAAABAAEAAAD3/wMAAAABABsAAAD4/wIAAAABAAEAAAD4/wMAAAABABsAAAD5/wIAAAABAAEAAAD5/wMAAAABABsAAAD6/wIAAAABAAEAAAD6/wMAAAABABsAAAD7/wIAAAABAAEAAAD7/wMAAAABABsAAAD8/wIAAAABAAEAAAD8/wMAAAABABsAAAD9/wIAAAABAAEAAAD9/wMAAAABABsAAAD0//3/AAADABoAAAD0//7/AAADABoAAAD0////AAADABoAAAD0/wAAAAADABoAAAD0/wEAAAADABoAAAD3//3/AAABAAEAAAD3//7/AAABAAEAAAD3////AAABAAEAAAD3/wAAAAABAAEAAAD3/wEAAAABAAEAAAD4//3/AAABAAEAAAD4//7/AAABAAEAAAD4////AAABAAEAAAD4/wAAAAABAAEAAAD4/wEAAAABAAEAAAD5//3/AAABAAEAAAD5//7/AAABAAEAAAD5////AAABAAEAAAD5/wAAAAABAAEAAAD5/wEAAAABAAEAAAD6//3/AAABAAEAAAD6//7/AAABAAEAAAD6////AAABAAEAAAD6/wAAAAABAAEAAAD6/wEAAAABAAEAAAD7//3/AAABAAEAAAD7//7/AAABAAEAAAD7////AAABAAEAAAD7/wAAAAABAAEAAAD7/wEAAAABAAEAAAD8//3/AAABAAEAAAD8//7/AAABAAEAAAD8////AAABAAEAAAD8/wAAAAABAAEAAAD8/wEAAAABAAEAAAD9//3/AAABAAEAAAD9//7/AAABAAEAAAD9////AAABAAEAAAD9/wAAAAABAAEAAAD9/wEAAAABAAEAAAD+//3/AAABAAEAAAD+//7/AAABAAEAAAD///3/AAABAAEAAAD///7/AAABAAEAAAAAAP3/AAABAAEAAAAAAP7/AAABAAEAAAABAP3/AAABAAEAAAABAP7/AAABAAEAAAACAP3/AAABAAEAAAACAP7/AAABAAEAAAADAP3/AAABAAEAAAADAP7/AAABAAEAAAAEAP3/AAABAAEAAAAEAP7/AAABAAEAAAAFAP3/AAABAAEAAAAFAP7/AAABAAEAAAAGAP3/AAABAAEAAAAGAP7/AAABAAEAAAAHAP3/AAABAAEAAAAHAP7/AAABAAEAAAAJAPz/AAABABgAAAAJAP3/AAABAAEAAAAJAP7/AAABAAEAAAAKAPz/AAABABgAAAAKAP3/AAABAAEAAAAKAP7/AAABAAEAAAA=")
 tile_set = SubResource("TileSet_dlr4c")
 
-[node name="Message Label" type="Label" parent="Animated Node/MarginContainer" unique_id=98295667]
+[node name="Message Label" type="Label" parent="Animation Anchor/MarginContainer" unique_id=98295667]
 texture_filter = 1
 custom_minimum_size = Vector2(20, 20)
 clip_contents = true
@@ -719,8 +718,3 @@ size_flags_vertical = 1
 text = "test"
 label_settings = SubResource("LabelSettings_msdvt")
 autowrap_mode = 2
-
-[node name="_Core_Tweener" type="Node" parent="." unique_id=1065484642]
-unique_name_in_owner = true
-script = ExtResource("3_4b78m")
-metadata/_custom_type_script = "uid://5fqo6d3fleu4"

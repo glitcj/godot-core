@@ -65,3 +65,17 @@ func highlight(tweenee : Node2D):
 	tween.tween_property(tweenee, "modulate", Color(1,1,1,1), duration)
 	tween.parallel().tween_property(tweenee, "scale", base_scale, duration)
 	tween.parallel().tween_property(mover, "speed", base_speed, 0.1)
+
+
+
+
+func fade_out(tweenee : Node, duration := 1., into_black := true):
+	tween = tweenee.create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_CUBIC)
+
+	tween.tween_callback(func(): tweenee.modulate = Color(1, 1, 1, 1))
+	if into_black: tween.tween_property(tweenee, "modulate", Color(0,0,0,1), duration)
+	else: tween.tween_property(tweenee, "modulate", Color(1,1,1,0), duration)
+
+	await tween.finished

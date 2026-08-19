@@ -42,7 +42,7 @@ func _play(frames: Array):
 	for f in frames:
 		_tween.tween_property(%AnimatedSprite2D, "frame", f, 1.0)
 
-func face_down():  _play([0, 1, 2])
-func face_right(): _play([6, 7, 8])
-func face_left():  _play([3, 4, 5])
-func face_up():    _play([11, 12, 13])
+# func face_down():  _play([0, 1, 2])
+# func face_right(): _play([6, 7, 8])
+# func face_left():  _play([3, 4, 5])
+# func face_up():    _play([11, 12, 13])

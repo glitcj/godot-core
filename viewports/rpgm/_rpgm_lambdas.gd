@@ -53,7 +53,7 @@ func fade_in():
 	pass
 	
 func fade_out():
-	pass
+	_Core_Tweener.new().fade_out(get_parent())
 	
 func set_base_tilemap_to_rmz_standard():
 	# TODO: set tile pixel size to 48 and scale to 3.333 (159.9 pixels)

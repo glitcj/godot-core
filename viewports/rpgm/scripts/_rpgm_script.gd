@@ -12,6 +12,8 @@ signal actioned
 @export var interrupt_player := false
 @export var is_collision := false
 @export var is_active = true
+@export var inplace_animation := true
+
 func _is_active() -> bool: return true
 
 # CLAUDE: avoids emitting frame_started every frame for scripts that don't override _on_frame

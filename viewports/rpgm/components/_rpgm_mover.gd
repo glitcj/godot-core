@@ -45,7 +45,7 @@ func _ready() -> void:
 	# CLAUDE: mark map dirty instead of rebuilding immediately; map's _process will pick it up
 	if get_map(): get_map().mark_collision_dirty()
 	await get_tree().process_frame
-	face(facing)
+	# face(facing)
 
 
 func tilemap_to_global_position(tile_position : Vector2i):

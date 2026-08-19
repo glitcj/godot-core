@@ -33,8 +33,6 @@ var facing := Vector2(-1, 0):
 				player.stop()
 				player.play("actioned")
 
-
-
 var sprite : String = "cream":
 	set(v):
 		sprite = v
@@ -92,9 +90,7 @@ func _update_material():
 		if type == "creature_v1":
 			_material.shader = load("res://viewports/rpgm/shaders/_shader_creature_v1.gdshader")
 			
-		if not is_node_ready(): return
-		# material = _material
-		
+		if not is_node_ready(): return		
 		
 		var shader = _material.shader
 		if shader:
@@ -110,16 +106,9 @@ func _update_material():
 				noise_tex.width = 256
 				noise_tex.height = 256
 				_material.set_shader_parameter("noise_tex", noise_tex)
-		
-		
-		
 		%_material_anchor.material = _material
 		
-		
-		# %Sprite2D.material = _material  # ← assign to the sprite, not self
-		# %AnimatedSprite2D.material = _material  # ← assign to the sprite, not self
 
-		
 func _ready() -> void:
 	# if get_tree().current_scene != self: %Camera2D.enabled = false
 	

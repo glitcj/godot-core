@@ -1,5 +1,5 @@
 @tool # This allows the static logic to run safely in the editor
-extends Node
+extends _RPGM_Node
 class_name _RPGM_Variables
 
 

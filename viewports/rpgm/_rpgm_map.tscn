@@ -2501,6 +2501,16 @@ func _on_action():
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jmbn5"]
 shader = ExtResource("17_txeor")
 
+[sub_resource type="GDScript" id="GDScript_iv8pj"]
+script/source = "extends _RPGM_Common_Script_Talker
+
+func _is_active() -> bool: return true
+
+func _on_action():
+	await super()
+	await get_lambdas().fade_out()
+"
+
 [sub_resource type="GDScript" id="GDScript_38inc"]
 script/source = "extends _RPGM_Script
 
@@ -2623,9 +2633,8 @@ script = ExtResource("1_txeor")
 script = ExtResource("2_vd6wf")
 metadata/_custom_type_script = "uid://c6484wl627c5c"
 
-[node name="_RPGM_Variables" type="Node" parent="." unique_id=21405553]
+[node name="_RPGM_Variables" type="Node2D" parent="." unique_id=634680203]
 script = ExtResource("3_6le0f")
-metadata/_custom_type_script = "uid://da77evou2la0g"
 
 [node name="_editor_script" type="Node" parent="." unique_id=905759584]
 script = SubResource("GDScript_6le0f")
@@ -2901,7 +2910,7 @@ map_position = Vector2i(-14, -1)
 [node name="_RPGM_Script" type="Node2D" parent="_map_2/_event_2_1" unique_id=1055183704]
 script = SubResource("GDScript_g67hk")
 
-[node name="_RPGM_Portrait" parent="_map_2/_event_2_1" unique_id=1972099319 instance=ExtResource("15_2uryw")]
+[node name="_RPGM_Portrait" parent="_map_2/_event_2_1/_RPGM_Script" unique_id=1972099319 instance=ExtResource("15_2uryw")]
 z_index = 10
 sprite = "system"
 
@@ -2997,6 +3006,19 @@ is_collision = true
 [node name="_RPGM_Portrait" parent="_map_4/_npc_4_3/_RPGM_Script" unique_id=2001145320 instance=ExtResource("15_2uryw")]
 material = SubResource("ShaderMaterial_jmbn5")
 scale = Vector2(1.0166667, 1.0833334)
+
+[node name="_npc_4_4" type="Node2D" parent="_map_4" unique_id=159527930]
+position = Vector2(696, -1320)
+script = ExtResource("17_yspku")
+facing = Vector2i(0, 1)
+map_position = Vector2i(14, -28)
+
+[node name="_RPGM_Script" type="Node2D" parent="_map_4/_npc_4_4" unique_id=394783808]
+script = SubResource("GDScript_iv8pj")
+messages = Array[String](["Fade out !"])
+is_collision = true
+
+[node name="_RPGM_Portrait" parent="_map_4/_npc_4_4/_RPGM_Script" unique_id=70162712 instance=ExtResource("15_2uryw")]
 
 [node name="_map_5" type="Node" parent="." unique_id=1635984655]
 
