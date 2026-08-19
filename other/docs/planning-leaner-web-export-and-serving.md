@@ -20,10 +20,11 @@ project including every untouched corner of every asset pack. Switching to
 **"Export selected scenes (and dependencies)"** with only `_core.tscn`
 ticked packs just what the dependency graph reaches.
 
-Full instructions and the safety caveat (no dynamic `load()` with
-constructed paths — verified safe 2026-08, must re-verify if added later)
-are in `how-to-make-web-exports-lean.md`. Do this first and re-measure;
-it decides whether anything below is worth doing.
+Full instructions are in `how-to-make-web-exports-lean.md`, including the
+**required Include Filters (`*.gd, *.gdshader`)** — the dependency walk
+misses `class_name` references and runtime `load()` calls, and without
+the filters the export grey-screens at boot (hit 2026-08-19). Do this
+first and re-measure; it decides whether anything below is worth doing.
 
 Expected outcome: the unused bulk of `assets/rpgmaker/` (280 MB source,
 only a handful of tilesets/parallaxes used) and unreferenced parts of the

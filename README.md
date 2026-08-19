@@ -25,6 +25,24 @@ the editor is open on this project.
 Other targets: `make invalidate` (cache-bust only), `make game-url`
 (prints the CloudFront domain).
 
+### Export gotchas (dependency-based export mode)
+
+The Web preset exports "selected scenes and dependencies" from
+`_core.tscn`. The dependency walk only follows *path* references
+(`ext_resource`, `preload`), so:
+
+- **`class_name` references aren't followed** (`extends _Core_Viewport`,
+  `_Core_Tweener.new()`). Fix: Include Filters `*.gd, *.gdshader` —
+  covers runtime `load()` of shaders too.
+- **Include filters don't walk dependencies** — a filtered-in script's
+  `preload()` target is still missing, and a scene missing any
+  ext_resource fails to load entirely. Fix: any scene loaded only from
+  script code must be **ticked in the export tree** next to `_core.tscn`
+  (currently: `_core_window.tscn`, `_core_log_item.tscn`,
+  `_dgm_tile.tscn`) — ticked scenes get the full walk.
+- Anything still missing fails loudly in the browser console (F12)
+  naming the file. Details: `other/docs/how-to-make-web-exports-lean.md`.
+
 ### AWS architecture
 
 All in account `084250373868`. The bucket is fully private — only the

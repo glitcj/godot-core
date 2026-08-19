@@ -18,10 +18,46 @@ reachable files. The unused bulk of `assets/rpgmaker/` (280MB, of which
 only a handful of tilesets/parallaxes are used) and every untouched
 pack drop out automatically.
 
-This is safe here because the scripts contain **no dynamic `load()`
-calls with constructed paths** (verified 2026-08). If any are added
-later, their targets must be listed in **Include Filters** on the same
-tab, or they will be missing from the pack.
+<!-- CLAUDE: corrected 2026-08-19 — the earlier "no dynamic load() calls"
+claim was wrong and this mode broke the build (grey screen at boot).
+The dependency walk misses two reference kinds this project uses heavily:
+class_name references (51 files) and runtime load() calls
+(_rpgm_portrait.gd shaders). -->
+**The walk only follows path-based references** — `ext_resource` in
+scenes and `preload()` in scripts. It misses:
+
+- **`class_name` references** (`extends _Core_Viewport`,
+  `_Core_Tweener.new()`) — resolved via the global class registry, no
+  path recorded. This project uses them in ~51 files; without a fix the
+  base scripts are dropped and the game grey-screens at boot.
+- **Runtime `load()` calls**, even with literal paths — e.g. the twelve
+  shader loads in `viewports/rpgm/components/_rpgm_portrait.gd`.
+- **Cascades**: a dropped script's `preload()`s drop with it
+  (`_core_templates.gd` → `core/window/_core_window.tscn`).
+
+So step 1 requires **Include Filters** on the same Resources tab:
+
+```
+*.gd, *.gdshader
+```
+
+Scripts and shaders are tiny, so this costs almost nothing.
+
+<!-- CLAUDE: added 2026-08-19 after the include-filter fix still broke
+rpgm — _core_templates.gd's preload of _core_window.tscn wasn't walked,
+and the window scene's own texture was missing too. -->
+Include filters only match files — they do **not** walk the matched
+files' dependencies. So a scene that is only ever `preload()`ed from a
+script must be **ticked in the export tree** next to `_core.tscn`;
+ticked scenes get the full dependency walk (their textures come along).
+Filter-including such a scene ships it without its ext_resources, and a
+scene missing any ext_resource fails to load entirely. Currently ticked:
+`core/window/_core_window.tscn`, `viewports/birds/_core_log_item.tscn`,
+`viewports/dgm/_dgm_tile.tscn`.
+
+Rule of thumb: filters for leaf files (scripts, shaders); ticks for
+anything with dependencies of its own. Any remaining miss fails loudly
+at runtime (see Verify) naming the file.
 
 ## 2. Verify
 
