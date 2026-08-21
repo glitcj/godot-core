@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!-- CLAUDE: windowed play mode — embeds the game (/play/) in a 16:9 iframe
+     (project renders at 1920x1080) with a header bar back to the homepage.
+     ?game=nest|kalam only changes the title shown; both load the same build. -->
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Bugg Studio</title>
+	<style>
+		:root {
+			--bg: #14121a;
+			--panel: #1e1b28;
+			--panel-edge: #2e2a3e;
+			--text: #e8e4f0;
+			--muted: #9a93ad;
+		}
+		* { margin: 0; padding: 0; box-sizing: border-box; }
+		body {
+			background: var(--bg);
+			color: var(--text);
+			font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+			min-height: 100vh;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			padding: 1.5rem 1.25rem;
+		}
+		header {
+			width: 100%;
+			max-width: 1024px;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			margin-bottom: 1rem;
+		}
+		header a {
+			color: var(--muted);
+			text-decoration: none;
+		}
+		header a:hover { color: var(--text); }
+		header h1 { font-size: 1.1rem; font-weight: 600; }
+		.frame {
+			width: 100%;
+			max-width: 1024px;
+			aspect-ratio: 16 / 9;
+			background: var(--panel);
+			border: 1px solid var(--panel-edge);
+			border-radius: 10px;
+			overflow: hidden;
+		}
+		.frame iframe {
+			width: 100%;
+			height: 100%;
+			border: 0;
+			display: block;
+		}
+		footer { margin-top: 1rem; color: var(--muted); font-size: 0.85rem; }
+	</style>
+</head>
+<body>
+	<header>
+		<a href="/">← Bugg Studio</a>
+		<h1 id="title">Now playing</h1>
+		<span></span>
+	</header>
+	<div class="frame">
+		<iframe src="/play/index.html" allow="autoplay; gamepad" allowfullscreen></iframe>
+	</div>
+	<footer>Press Esc in-game to come back home.</footer>
+	<script>
+		const games = { nest: "Nest", kalam: "Kalam" };
+		const name = games[new URLSearchParams(location.search).get("game")];
+		if (name) {
+			document.getElementById("title").textContent = "Now playing: " + name;
+			document.title = name + " — Bugg Studio";
+		}
+	</script>
+</body>
+</html>

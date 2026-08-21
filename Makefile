@@ -21,15 +21,20 @@ serve:
 
 # CLAUDE: sync build/web to S3 then bust the CloudFront cache. wasm/pck get
 # explicit content types — macOS's MIME database misses .wasm, and a wrong
-# Content-Type breaks WebAssembly.instantiateStreaming in the browser
+# Content-Type breaks WebAssembly.instantiateStreaming in the browser.
+# CLAUDE: the game now lives under /play/ and site/ (Bugg Studio homepage)
+# takes the bucket root. Game goes up first so the homepage never links to
+# a missing /play/. The root sync's --delete clears the old root-level game
+# files on the first run; --exclude "play/*" keeps it away from the game.
 deploy:
-	aws s3 sync build/web s3://$(BUCKET)/ --delete \
+	aws s3 sync build/web s3://$(BUCKET)/play/ --delete \
 		--exclude "*.import" \
 		--exclude "*.wasm" --exclude "*.pck"
-	aws s3 cp build/web/index.wasm s3://$(BUCKET)/index.wasm \
+	aws s3 cp build/web/index.wasm s3://$(BUCKET)/play/index.wasm \
 		--content-type application/wasm
-	aws s3 cp build/web/index.pck s3://$(BUCKET)/index.pck \
+	aws s3 cp build/web/index.pck s3://$(BUCKET)/play/index.pck \
 		--content-type application/octet-stream
+	aws s3 sync site s3://$(BUCKET)/ --delete --exclude "play/*"
 	$(MAKE) invalidate
 
 # CLAUDE: exports always reuse the same index.* filenames, so every deploy

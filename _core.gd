@@ -23,7 +23,13 @@ func _process_input():
 	if Input.is_action_just_pressed("ui_show_log"):
 		%_Core_Log.visible = !%_Core_Log.visible
 	if Input.is_action_just_pressed("ui_cancel"):
-		get_tree().quit()
+		# CLAUDE: on web, quit() only halts the engine and leaves a frozen
+		# canvas — navigate back to the homepage instead. window.top covers
+		# windowed mode, where the game runs inside an iframe.
+		if OS.has_feature("web"):
+			JavaScriptBridge.eval("(window.top || window).location.href = '/'")
+		else:
+			get_tree().quit()
 
 func _process(delta: float) -> void:
 	_process_input()

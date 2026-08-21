@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<!-- CLAUDE: static homepage served at the CloudFront root; the game build
+     now lives under /play/. Both game links point at the same build for
+     now — split them when a second export exists. -->
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Bugg Studio</title>
+	<style>
+		:root {
+			--bg: #14121a;
+			--panel: #1e1b28;
+			--panel-edge: #2e2a3e;
+			--text: #e8e4f0;
+			--muted: #9a93ad;
+			--accent: #8ee66e;
+			--accent-2: #e6b56e;
+		}
+		* { margin: 0; padding: 0; box-sizing: border-box; }
+		body {
+			background: var(--bg);
+			color: var(--text);
+			font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+			min-height: 100vh;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			padding: 3rem 1.25rem;
+		}
+		header { text-align: center; margin-bottom: 2.5rem; }
+		header .logo { font-size: 3rem; }
+		h1 {
+			font-size: 2.25rem;
+			letter-spacing: 0.02em;
+			margin-top: 0.5rem;
+		}
+		header p { color: var(--muted); margin-top: 0.5rem; }
+		main {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(280px, 340px));
+			gap: 1.5rem;
+			justify-content: center;
+			width: 100%;
+			max-width: 760px;
+		}
+		.game {
+			background: var(--panel);
+			border: 1px solid var(--panel-edge);
+			border-radius: 14px;
+			padding: 1.75rem 1.5rem;
+			display: flex;
+			flex-direction: column;
+			gap: 0.75rem;
+		}
+		.game .icon { font-size: 2.25rem; }
+		.game h2 { font-size: 1.4rem; }
+		.game.nest h2 { color: var(--accent); }
+		.game.kalam h2 { color: var(--accent-2); }
+		.game p { color: var(--muted); line-height: 1.5; flex: 1; }
+		/* CLAUDE: two play modes per game — solid button = fullscreen tab,
+		   outlined button = windowed page (window.html iframes the game) */
+		.game .buttons { display: flex; gap: 0.6rem; margin-top: 0.5rem; }
+		.game a {
+			flex: 1;
+			text-align: center;
+			text-decoration: none;
+			font-weight: 600;
+			color: var(--bg);
+			background: var(--accent);
+			border: 1px solid var(--accent);
+			border-radius: 8px;
+			padding: 0.6rem 1rem;
+		}
+		.game a.windowed {
+			background: transparent;
+			color: var(--accent);
+		}
+		.game.kalam a { background: var(--accent-2); border-color: var(--accent-2); }
+		.game.kalam a.windowed { background: transparent; color: var(--accent-2); }
+		.game a:hover { filter: brightness(1.1); }
+		footer { margin-top: 3rem; color: var(--muted); font-size: 0.85rem; }
+	</style>
+</head>
+<body>
+	<header>
+		<div class="logo">🐞</div>
+		<h1>Welcome to Bugg Studio</h1>
+		<p>Small games, made with care.</p>
+	</header>
+	<main>
+		<section class="game nest">
+			<div class="icon">🪺</div>
+			<h2>Nest</h2>
+			<p>Solve puzzles deep inside a nest of strange creatures.
+			Every chamber hides something odd — figure it out and go deeper.</p>
+			<div class="buttons">
+				<a href="/play/index.html">Fullscreen</a>
+				<a class="windowed" href="/window.html?game=nest">Windowed</a>
+			</div>
+		</section>
+		<section class="game kalam">
+			<div class="icon">📜</div>
+			<h2>Kalam</h2>
+			<p>An Arabic word game — words and definitions come at you,
+			swipe right or left to match them correctly, wrapped in
+			Arabic-themed music and art.</p>
+			<div class="buttons">
+				<a href="/play/index.html">Fullscreen</a>
+				<a class="windowed" href="/window.html?game=kalam">Windowed</a>
+			</div>
+		</section>
+	</main>
+	<footer>© Bugg Studio</footer>
+</body>
+</html>
