@@ -50,7 +50,7 @@ func show_messages(messages: Array, _scale = Vector2(5, 5)):
 	await window.finished
 	
 func fade_in():
-	pass
+	_Core_Tweener.new().fade_in(get_parent())
 	
 func fade_out():
 	_Core_Tweener.new().fade_out(get_parent())

@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://nrvnmkijidre" path="res://assets/rpgmaker/mv/tilesets/Dungeon_A5.png" id="9_vvo4p"]
 [ext_resource type="TileSet" uid="uid://dmuy2eaehvonb" path="res://assets/rpgmaker/converted/tilesets/Dungeon_A4.tres" id="10_cjg66"]
 [ext_resource type="TileSet" uid="uid://chbwhee5ecdx1" path="res://assets/rpgmaker/converted/tilesets/Dungeon_A1.tres" id="11_jmbn5"]
-[ext_resource type="Texture2D" uid="uid://dagwq224gg87f" path="res://assets/rpgmaker/mv/tilesets/Dungeon_B.png" id="12_oaqr5"]
+[ext_resource type="TileSet" uid="uid://dy6oski27nrcb" path="res://assets/rpgmaker/mv/tilesets/Dungeon_B.tres" id="12_i55rt"]
 [ext_resource type="Script" uid="uid://dgn8xx17xtp4n" path="res://viewports/rpgm/_rpgm_player.gd" id="13_jonhj"]
 [ext_resource type="PackedScene" uid="uid://ca8vvptjr324n" path="res://viewports/rpgm/components/_rpgm_portrait.tscn" id="15_2uryw"]
 [ext_resource type="Shader" uid="uid://5dmscal31dgu" path="res://viewports/rpgm/shaders/_random.gdshader" id="17_txeor"]
@@ -1842,275 +1842,6 @@ tile_size = Vector2i(48, 48)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_byr4j")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_htdhx"]
-texture = ExtResource("12_oaqr5")
-texture_region_size = Vector2i(48, 48)
-3:0/0 = 0
-4:0/0 = 0
-5:0/0 = 0
-6:0/0 = 0
-7:0/0 = 0
-8:0/0 = 0
-9:0/0 = 0
-10:0/0 = 0
-11:0/0 = 0
-12:0/0 = 0
-13:0/0 = 0
-14:0/0 = 0
-15:0/0 = 0
-3:1/0 = 0
-4:1/0 = 0
-5:1/0 = 0
-6:1/0 = 0
-7:1/0 = 0
-8:1/0 = 0
-9:1/0 = 0
-10:1/0 = 0
-11:1/0 = 0
-12:1/0 = 0
-13:1/0 = 0
-14:1/0 = 0
-15:1/0 = 0
-3:2/0 = 0
-4:2/0 = 0
-5:2/0 = 0
-6:2/0 = 0
-7:2/0 = 0
-8:2/0 = 0
-9:2/0 = 0
-10:2/0 = 0
-11:2/0 = 0
-12:2/0 = 0
-13:2/0 = 0
-14:2/0 = 0
-15:2/0 = 0
-0:3/0 = 0
-1:3/0 = 0
-2:3/0 = 0
-3:3/0 = 0
-4:3/0 = 0
-5:3/0 = 0
-6:3/0 = 0
-7:3/0 = 0
-8:3/0 = 0
-9:3/0 = 0
-10:3/0 = 0
-11:3/0 = 0
-12:3/0 = 0
-13:3/0 = 0
-14:3/0 = 0
-15:3/0 = 0
-0:4/0 = 0
-1:4/0 = 0
-2:4/0 = 0
-3:4/0 = 0
-4:4/0 = 0
-5:4/0 = 0
-6:4/0 = 0
-7:4/0 = 0
-8:4/0 = 0
-9:4/0 = 0
-10:4/0 = 0
-11:4/0 = 0
-12:4/0 = 0
-13:4/0 = 0
-14:4/0 = 0
-15:4/0 = 0
-0:5/0 = 0
-1:5/0 = 0
-2:5/0 = 0
-3:5/0 = 0
-4:5/0 = 0
-5:5/0 = 0
-6:5/0 = 0
-7:5/0 = 0
-8:5/0 = 0
-9:5/0 = 0
-10:5/0 = 0
-11:5/0 = 0
-12:5/0 = 0
-13:5/0 = 0
-14:5/0 = 0
-15:5/0 = 0
-0:6/0 = 0
-1:6/0 = 0
-2:6/0 = 0
-3:6/0 = 0
-4:6/0 = 0
-5:6/0 = 0
-6:6/0 = 0
-7:6/0 = 0
-8:6/0 = 0
-9:6/0 = 0
-10:6/0 = 0
-11:6/0 = 0
-12:6/0 = 0
-14:6/0 = 0
-15:6/0 = 0
-0:7/0 = 0
-1:7/0 = 0
-2:7/0 = 0
-3:7/0 = 0
-4:7/0 = 0
-5:7/0 = 0
-6:7/0 = 0
-7:7/0 = 0
-8:7/0 = 0
-8:7/0/z_index = 1
-9:7/0 = 0
-9:7/0/z_index = 1
-10:7/0 = 0
-10:7/0/z_index = 1
-11:7/0 = 0
-0:8/0 = 0
-0:8/0/z_index = 1
-1:8/0 = 0
-1:8/0/z_index = 1
-2:8/0 = 0
-2:8/0/z_index = 1
-3:8/0 = 0
-3:8/0/z_index = 1
-4:8/0 = 0
-4:8/0/z_index = 1
-5:8/0 = 0
-5:8/0/z_index = 1
-6:8/0 = 0
-6:8/0/z_index = 1
-7:8/0 = 0
-7:8/0/z_index = 1
-8:8/0 = 0
-9:8/0 = 0
-10:8/0 = 0
-11:8/0 = 0
-0:9/0 = 0
-1:9/0 = 0
-2:9/0 = 0
-3:9/0 = 0
-4:9/0 = 0
-5:9/0 = 0
-6:9/0 = 0
-7:9/0 = 0
-8:9/0 = 0
-8:9/0/z_index = 1
-9:9/0 = 0
-9:9/0/z_index = 1
-10:9/0 = 0
-10:9/0/z_index = 1
-11:9/0 = 0
-11:9/0/z_index = 1
-12:9/0 = 0
-13:9/0 = 0
-14:9/0 = 0
-15:9/0 = 0
-0:10/0 = 0
-0:10/0/z_index = 1
-1:10/0 = 0
-1:10/0/z_index = 1
-2:10/0 = 0
-2:10/0/z_index = 1
-3:10/0 = 0
-3:10/0/z_index = 1
-4:10/0 = 0
-4:10/0/z_index = 1
-5:10/0 = 0
-5:10/0/z_index = 1
-6:10/0 = 0
-6:10/0/z_index = 1
-7:10/0 = 0
-7:10/0/z_index = 1
-8:10/0 = 0
-9:10/0 = 0
-10:10/0 = 0
-11:10/0 = 0
-12:10/0 = 0
-13:10/0 = 0
-14:10/0 = 0
-15:10/0 = 0
-0:11/0 = 0
-1:11/0 = 0
-2:11/0 = 0
-3:11/0 = 0
-4:11/0 = 0
-5:11/0 = 0
-6:11/0 = 0
-7:11/0 = 0
-8:11/0 = 0
-9:11/0 = 0
-10:11/0 = 0
-11:11/0 = 0
-12:11/0 = 0
-13:11/0 = 0
-14:11/0 = 0
-15:11/0 = 0
-0:12/0 = 0
-1:12/0 = 0
-2:12/0 = 0
-3:12/0 = 0
-4:12/0 = 0
-5:12/0 = 0
-6:12/0 = 0
-7:12/0 = 0
-8:12/0 = 0
-9:12/0 = 0
-10:12/0 = 0
-11:12/0 = 0
-12:12/0 = 0
-13:12/0 = 0
-14:12/0 = 0
-15:12/0 = 0
-0:13/0 = 0
-1:13/0 = 0
-2:13/0 = 0
-3:13/0 = 0
-4:13/0 = 0
-5:13/0 = 0
-6:13/0 = 0
-7:13/0 = 0
-8:13/0 = 0
-9:13/0 = 0
-10:13/0 = 0
-11:13/0 = 0
-12:13/0 = 0
-13:13/0 = 0
-14:13/0 = 0
-15:13/0 = 0
-0:14/0 = 0
-1:14/0 = 0
-2:14/0 = 0
-3:14/0 = 0
-4:14/0 = 0
-5:14/0 = 0
-6:14/0 = 0
-7:14/0 = 0
-8:14/0 = 0
-9:14/0 = 0
-10:14/0 = 0
-11:14/0 = 0
-12:14/0 = 0
-13:14/0 = 0
-14:14/0 = 0
-15:14/0 = 0
-0:15/0 = 0
-1:15/0 = 0
-2:15/0 = 0
-3:15/0 = 0
-4:15/0 = 0
-5:15/0 = 0
-6:15/0 = 0
-7:15/0 = 0
-8:15/0 = 0
-9:15/0 = 0
-10:15/0 = 0
-11:15/0 = 0
-12:15/0 = 0
-13:15/0 = 0
-14:15/0 = 0
-15:15/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_yx7f7"]
-tile_size = Vector2i(48, 48)
-sources/0 = SubResource("TileSetAtlasSource_htdhx")
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_38inc"]
 texture = ExtResource("9_vvo4p")
 texture_region_size = Vector2i(48, 48)
@@ -2506,11 +2237,25 @@ shader = ExtResource("17_txeor")
 [sub_resource type="GDScript" id="GDScript_iv8pj"]
 script/source = "extends _RPGM_Common_Script_Talker
 
-func _is_active() -> bool: return true
+func _is_active() -> bool: return get_event().state == _RPGM_Event.EventState.A
 
 func _on_action():
 	await super()
 	await get_lambdas().fade_out()
+	get_event().state = _RPGM_Event.EventState.B
+"
+
+[sub_resource type="GDScript" id="GDScript_rycn8"]
+script/source = "extends _RPGM_Common_Script_Talker
+
+func _is_active() -> bool: return get_event().state == _RPGM_Event.EventState.B
+
+func _on_action():
+	await super()
+	await get_lambdas().fade_in()
+	get_event().state = _RPGM_Event.EventState.A
+
+	
 "
 
 [sub_resource type="GDScript" id="GDScript_38inc"]
@@ -2598,6 +2343,32 @@ func _on_action():
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a8qaw"]
 shader = ExtResource("17_txeor")
+
+[sub_resource type="GDScript" id="GDScript_i55rt"]
+script/source = "extends _RPGM_Script
+
+signal returned_from_viewport_and_finished
+@onready var _viewport = get_core().get_scene(\"_Birds\") as _Birds
+
+
+# adjust _on_viewport_finished such that it takes in 
+# the parameters returned from the connected _Core_Viewport
+func _on_viewport_finished():
+	get_core().change_viewport(get_rpgm())
+	await get_rpgm().activated
+	returned_from_viewport_and_finished.emit()
+
+
+func _on_action():
+	await get_mover().face(_get_direction_to_player())
+	await get_lambdas().show_messages([\"This will start the Kalam De Go mini game.\"])
+	await get_tree().create_timer(1).timeout
+	
+	_viewport.finished.connect(_on_viewport_finished, CONNECT_ONE_SHOT)
+	get_core().change_viewport(get_core().get_scene(\"_Birds\"))
+	await returned_from_viewport_and_finished
+	await get_lambdas().show_messages([\"You neither won nor lost.\"])
+"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yspku"]
 shader = ExtResource("17_txeor")
@@ -2688,7 +2459,13 @@ z_index = 2
 y_sort_enabled = true
 texture_filter = 1
 tile_map_data = PackedByteArray("AAAvAJv/AAAEAAkAAAANAPr/AAAHAAgAAAAOAPn/AAAGAAgAAAANAPv/AAAHAAkAAAAOAPr/AAAGAAkAAAAPAPr/AAAEAAcAAAANAOX/AAAHAAgAAAANAOb/AAAHAAkAAAAAAP7/AAAIAAcAAAAAAP//AAAIAAgAAAABAP3/AAABAAgAAAABAP7/AAABAAkAAAA=")
-tile_set = SubResource("TileSet_yx7f7")
+tile_set = ExtResource("12_i55rt")
+
+[node name="L1 RM_Dungeon_B Trees Decorations" type="TileMapLayer" parent="Tilemap" unique_id=1531483287]
+z_index = 3
+y_sort_enabled = true
+tile_map_data = PackedByteArray("AAD///3/AAABAAgAAAD///7/AAABAAkAAAA=")
+tile_set = ExtResource("12_i55rt")
 
 [node name="L0 Added Physics" type="TileMapLayer" parent="Tilemap" unique_id=912434512]
 visible = false
@@ -2790,12 +2567,12 @@ position = Vector2(-120, 72)
 script = ExtResource("17_yspku")
 map_position = Vector2i(-3, 1)
 
-[node name="_rpgm_script" type="Node2D" parent="_map_1/_npc_1_2" unique_id=182426219]
+[node name="_RPGM_script" type="Node2D" parent="_map_1/_npc_1_2" unique_id=182426219]
 script = SubResource("GDScript_x2jho")
 interrupt_player = true
 is_collision = true
 
-[node name="_RPGM_Portrait" parent="_map_1/_npc_1_2/_rpgm_script" unique_id=777738681 instance=ExtResource("15_2uryw")]
+[node name="_RPGM_Portrait" parent="_map_1/_npc_1_2/_RPGM_script" unique_id=777738681 instance=ExtResource("15_2uryw")]
 material = SubResource("ShaderMaterial_uc14m")
 scale = Vector2(1.0166667, 1.0833334)
 sprite = "priest"
@@ -3016,12 +2793,21 @@ script = ExtResource("17_yspku")
 facing = Vector2i(0, 1)
 map_position = Vector2i(14, -28)
 
-[node name="_RPGM_Script" type="Node2D" parent="_map_4/_npc_4_4" unique_id=394783808]
+[node name="_RPGM_Script_A" type="Node2D" parent="_map_4/_npc_4_4" unique_id=394783808]
 script = SubResource("GDScript_iv8pj")
 messages = Array[String](["Fade out !"])
+interrupt_player = true
 is_collision = true
 
-[node name="_RPGM_Portrait" parent="_map_4/_npc_4_4/_RPGM_Script" unique_id=70162712 instance=ExtResource("15_2uryw")]
+[node name="_RPGM_Portrait" parent="_map_4/_npc_4_4/_RPGM_Script_A" unique_id=70162712 instance=ExtResource("15_2uryw")]
+
+[node name="_RPGM_Script_B" type="Node2D" parent="_map_4/_npc_4_4" unique_id=135369943]
+script = SubResource("GDScript_rycn8")
+messages = Array[String](["Fade back in !"])
+interrupt_player = true
+is_collision = true
+
+[node name="_RPGM_Portrait" parent="_map_4/_npc_4_4/_RPGM_Script_B" unique_id=224678784 instance=ExtResource("15_2uryw")]
 
 [node name="_map_5" type="Node" parent="." unique_id=1635984655]
 
@@ -3102,6 +2888,23 @@ interrupt_player = true
 is_collision = true
 
 [node name="_RPGM_Portrait" parent="_map_6/_event_6_1/_RPGM_Script" unique_id=2067921300 instance=ExtResource("15_2uryw")]
+z_index = 1
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_a8qaw")
+scale = Vector2(1.0166667, 1.0833334)
+
+[node name="_event_6_2" type="Node2D" parent="_map_6" unique_id=483586661]
+position = Vector2(-72, 936)
+script = ExtResource("17_yspku")
+facing = Vector2i(0, 1)
+map_position = Vector2i(-2, 19)
+
+[node name="_RPGM_Script" type="Node2D" parent="_map_6/_event_6_2" unique_id=1874740471]
+script = SubResource("GDScript_i55rt")
+interrupt_player = true
+is_collision = true
+
+[node name="_RPGM_Portrait" parent="_map_6/_event_6_2/_RPGM_Script" unique_id=1354320007 instance=ExtResource("15_2uryw")]
 z_index = 1
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_a8qaw")

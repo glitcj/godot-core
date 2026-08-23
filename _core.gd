@@ -42,10 +42,13 @@ func _ready() -> void:
 func _boot():
 	change_viewport(get_scene("_Starter"))
 
+var viewport_change_history = []
 func change_viewport(viewport: _Core_Viewport):
 	if current_viewport:
 		await current_viewport._on_viewport_finish()
 		current_viewport._suspend()
+		viewport_change_history.append(current_viewport)
+		viewport_stack.append(current_viewport)
 	current_viewport = viewport
 	
 	%"Current Viewport".texture = (viewport.find_child("SubViewport") as SubViewport).get_texture()
@@ -54,23 +57,17 @@ func change_viewport(viewport: _Core_Viewport):
 	await current_viewport._on_viewport_start()
 
 var viewport_stack = []
+
 # these functions do more than just add remove child logic
 # they also handle activation handover etc, so cannot be
 # refactored completely into the _Core_Viewport class
-func add_viewport(to_add_viewport: _Core_Viewport,  _container : Container, _scale := Vector2.ONE):
-	
-	# to_add_viewport.is_stacked_viewport = true
-	
+func add_viewport(to_add_viewport: _Core_Viewport,  _container : Container, _scale := Vector2.ONE):	
 	await current_viewport._on_viewport_finish()
-	# current_viewport._suspend()
 	
 	viewport_stack.append(current_viewport)
 	current_viewport = to_add_viewport
 	
-	
-	# to_add_viewport.scale = Vector2(.5, .5)
 	_container.add_child(current_viewport)	
-	# to_add_viewport.scale = Vector2(.5, .5)
 	
 	current_viewport._resume() # the viewport is suspended on _ready, so has to be awakened
 	await current_viewport._on_viewport_start()
@@ -91,3 +88,44 @@ func test_log(): return "Test"
 func _log():
 	%_Core_Log.add_log(test_log)
 	%_Core_Log.add_log(func fps(): return "FPS %s" % str(Engine.get_frames_per_second()))
+
+
+
+
+
+
+
+
+
+
+
+
+"""
+
+- - - - - - - - - - - - - - - - - - - - - - - - - 
+
+
+signal returned_from_viewport_and_finished
+@onready var _viewport = get_core().get_scene("_Birds") as _Birds
+
+
+# adjust _on_viewport_finished such that it takes in 
+# the parameters returned from the connected _Core_Viewport
+func _on_viewport_finished():
+	get_core().change_viewport(get_rpgm())
+	await get_rpgm().activated
+	returned_from_viewport_and_finished.emit()
+
+
+func _on_action():
+	await get_mover().face(_get_direction_to_player())
+	await get_lambdas().show_messages(["This will start the Kalam De Go mini game."])
+	await get_tree().create_timer(1).timeout
+	
+	_viewport.finished.connect(_on_viewport_finished, CONNECT_ONE_SHOT)
+	get_core().change_viewport(get_core().get_scene("_Birds"))
+	await returned_from_viewport_and_finished
+	await get_lambdas().show_messages(["You neither won nor lost."])
+
+
+"""
