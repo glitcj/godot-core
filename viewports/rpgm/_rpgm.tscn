@@ -12,6 +12,7 @@ shader_parameter/x_speed = 0.10000000475
 shader_parameter/y_speed = 0.10000000475
 
 [node name="_RPGM" type="SubViewportContainer" unique_id=1781439656]
+process_mode = 4
 offset_right = 1920.0
 offset_bottom = 1080.0
 script = ExtResource("1_3t57p")

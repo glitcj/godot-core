@@ -50,10 +50,17 @@ func show_messages(messages: Array, _scale = Vector2(5, 5)):
 	await window.finished
 	
 func fade_in():
-	_Core_Tweener.new().fade_in(get_parent())
+	# _Core_Tweener.new().fade_out(get_parent())
+	_Core_Tweener.new().fade_in(get_map())
+	# _Core_Tweener.new().fade_in(get_viewport())
+	# _Core_Tweener.new().fade_in(get_core().viewport_texture_rect)
 	
 func fade_out():
-	_Core_Tweener.new().fade_out(get_parent())
+	# _Core_Tweener.new().fade_out(get_parent())
+	_Core_Tweener.new().fade_out(get_map())
+	# _Core_Tweener.new().fade_out(get_viewport())
+	# _Core_Tweener.new().fade_out(get_core().viewport_texture_rect)
+	
 	
 func set_base_tilemap_to_rmz_standard():
 	# TODO: set tile pixel size to 48 and scale to 3.333 (159.9 pixels)

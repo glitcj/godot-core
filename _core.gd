@@ -7,6 +7,8 @@ class_name _Core
 # Static here means that the object does not change throughout the game, and a Pointer is not needed (for example containers)
 
 var current_viewport : _Core_Viewport
+# @onready var viewport_texture = %"Current Viewport TextureRect".texture
+@onready var viewport_texture_rect = %"Current Viewport TextureRect"
 @onready var camera = %Camera2D as Camera2D
 @onready var turner : _Core_Turner = $Turner
 
@@ -51,7 +53,7 @@ func change_viewport(viewport: _Core_Viewport):
 		viewport_stack.append(current_viewport)
 	current_viewport = viewport
 	
-	%"Current Viewport".texture = (viewport.find_child("SubViewport") as SubViewport).get_texture()
+	%"Current Viewport TextureRect".texture = (viewport.find_child("SubViewport") as SubViewport).get_texture()
 	
 	current_viewport._resume()
 	await current_viewport._on_viewport_start()

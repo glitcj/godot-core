@@ -2254,8 +2254,6 @@ func _on_action():
 	await super()
 	await get_lambdas().fade_in()
 	get_event().state = _RPGM_Event.EventState.A
-
-	
 "
 
 [sub_resource type="GDScript" id="GDScript_38inc"]
@@ -2531,7 +2529,7 @@ update_position = false
 update_rotation = false
 update_scale = false
 
-[node name="_map_1" type="Node" parent="." unique_id=2072237104]
+[node name="_map_1" type="Node2D" parent="." unique_id=77238645]
 
 [node name="_npc_1_1" type="Node2D" parent="_map_1" unique_id=433880375]
 position = Vector2(72, 72)
@@ -2624,7 +2622,7 @@ text = "Level 1 notes:
 - refactor RPGM mover"
 label_settings = SubResource("LabelSettings_6le0f")
 
-[node name="_map_2" type="Node" parent="." unique_id=2032600138]
+[node name="_map_2" type="Node2D" parent="." unique_id=1019061853]
 
 [node name="_enemy_2_1" type="Node2D" parent="_map_2" unique_id=384155250]
 position = Vector2(-552, 72)
@@ -2694,7 +2692,7 @@ script = SubResource("GDScript_g67hk")
 z_index = 10
 sprite = "system"
 
-[node name="_map_3" type="Node" parent="." unique_id=115019887]
+[node name="_map_3" type="Node2D" parent="." unique_id=694183486]
 
 [node name="_npc_3_2_talking_tree" type="Node2D" parent="_map_3" unique_id=1901808844]
 position = Vector2(648, -216)
@@ -2743,7 +2741,7 @@ y_sort_enabled = true
 material = SubResource("ShaderMaterial_vvo4p")
 scale = Vector2(1.0166667, 1.0833334)
 
-[node name="_map_4" type="Node" parent="." unique_id=284440867]
+[node name="_map_4" type="Node2D" parent="." unique_id=383187229]
 
 [node name="_npc_4_1_talking_tree" type="Node2D" parent="_map_4" unique_id=2054076073]
 position = Vector2(648, -1224)
@@ -2809,7 +2807,7 @@ is_collision = true
 
 [node name="_RPGM_Portrait" parent="_map_4/_npc_4_4/_RPGM_Script_B" unique_id=224678784 instance=ExtResource("15_2uryw")]
 
-[node name="_map_5" type="Node" parent="." unique_id=1635984655]
+[node name="_map_5" type="Node2D" parent="." unique_id=193673490]
 
 [node name="_npc_5_1" type="Node2D" parent="_map_5" unique_id=83809832]
 position = Vector2(-648, -1464)
@@ -2828,7 +2826,7 @@ y_sort_enabled = true
 material = SubResource("ShaderMaterial_oaqr5")
 scale = Vector2(1.0166667, 1.0833334)
 
-[node name="_map_6" type="Node" parent="." unique_id=1336002175]
+[node name="_map_6" type="Node2D" parent="." unique_id=1211586459]
 
 [node name="_npc_6_1" type="Node2D" parent="_map_6" unique_id=1252690090]
 position = Vector2(120, 936)
@@ -2910,7 +2908,7 @@ y_sort_enabled = true
 material = SubResource("ShaderMaterial_a8qaw")
 scale = Vector2(1.0166667, 1.0833334)
 
-[node name="_map_7" type="Node" parent="." unique_id=1786694088]
+[node name="_map_7" type="Node2D" parent="." unique_id=2012197816]
 
 [node name="_npc_7_1" type="Node2D" parent="_map_7" unique_id=909650633]
 y_sort_enabled = true
