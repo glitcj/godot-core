@@ -19,6 +19,8 @@ var _all_collision_debugging_rects: Array[ColorRect] = []
 func _ready() -> void:
 	if false: print_tree_pretty()
 	Performance.add_custom_monitor("_rpgm_map/_rpgm_map_process", func(): return last_process_ms)
+	if not Engine.is_editor_hint(): modulate = Color(0,0,0,1)
+	# if not Engine.is_editor_hint(): modulate = Color(0,0,0,1)
 	
 func scripts_currently_on_map():
 	return find_children("*", "_RPGM_Script")
