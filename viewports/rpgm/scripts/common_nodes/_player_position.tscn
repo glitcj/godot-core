@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://du6w5cvgavu52"]
+
+[ext_resource type="Script" uid="uid://dxkbij13lf7tg" path="res://viewports/rpgm/components/_rpgm_event.gd" id="1_ry7oi"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_j52ey"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_x570f"]
+font_size = 15
+
+[node name="_player_position_0_0" type="Node2D" unique_id=779781816]
+script = ExtResource("1_ry7oi")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1458430625]
+z_index = 100
+scale = Vector2(25, 25)
+texture = SubResource("CanvasTexture_j52ey")
+
+[node name="Label" type="Label" parent="." unique_id=1206329214]
+modulate = Color(1, 0.15686275, 1, 1)
+z_index = 200
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -24.5
+offset_right = 33.0
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "PLR"
+label_settings = SubResource("LabelSettings_x570f")
+horizontal_alignment = 1

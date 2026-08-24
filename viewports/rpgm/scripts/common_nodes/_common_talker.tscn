@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://chyvuqkd2kobc"]
+
+[ext_resource type="PackedScene" uid="uid://ca8vvptjr324n" path="res://viewports/rpgm/components/_rpgm_portrait.tscn" id="1_65j8d"]
+[ext_resource type="Script" uid="uid://dxkbij13lf7tg" path="res://viewports/rpgm/components/_rpgm_event.gd" id="1_j4g4h"]
+[ext_resource type="Shader" uid="uid://5dmscal31dgu" path="res://viewports/rpgm/shaders/_random.gdshader" id="2_j4g4h"]
+
+[sub_resource type="GDScript" id="GDScript_w10v0"]
+script/source = "extends _RPGM_Common_Script_Talker
+
+func _is_active(): return true
+func _on_action():
+	await super()
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i55rt"]
+shader = ExtResource("2_j4g4h")
+
+[node name="_npc_0_0" type="Node2D" unique_id=1352452401]
+script = ExtResource("1_j4g4h")
+map_position = Vector2i(-1, 0)
+
+[node name="_common_script_talker_1" type="Node2D" parent="." unique_id=703101133]
+script = SubResource("GDScript_w10v0")
+messages = Array[String](["This is a common talker !"])
+interrupt_player = true
+is_collision = true
+
+[node name="_RPGM_Portrait" parent="_common_script_talker_1" unique_id=1972099319 instance=ExtResource("1_65j8d")]
+material = SubResource("ShaderMaterial_i55rt")
+scale = Vector2(1.0166667, 1.0833334)
+type = "outline"

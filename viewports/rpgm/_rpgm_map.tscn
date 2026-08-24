@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://3b6nx2ubod3b" path="res://viewports/rpgm/_rpgm_map.gd" id="1_txeor"]
 [ext_resource type="Script" uid="uid://c6484wl627c5c" path="res://viewports/rpgm/_rpgm_lambdas.gd" id="2_vd6wf"]
-[ext_resource type="Script" uid="uid://da77evou2la0g" path="res://viewports/rpgm/scripts/_rpgm_variables.gd" id="3_6le0f"]
+[ext_resource type="Script" uid="uid://da77evou2la0g" path="res://viewports/rpgm/components/_rpgm_variables.gd" id="3_6le0f"]
 [ext_resource type="Texture2D" uid="uid://cir837rpp1qt3" path="res://assets/rpgmaker/mv/tilesets/Dungeon_A1.png" id="4_uc14m"]
 [ext_resource type="Texture2D" uid="uid://cklccjgem4vvs" path="res://assets/ninja/Backgrounds/Tilesets/TilesetFloor.png" id="5_kl3l0"]
 [ext_resource type="Texture2D" uid="uid://dwo3ghnulbghq" path="res://assets/ninja/Backgrounds/Tilesets/TilesetField.png" id="6_loqga"]
@@ -18,7 +18,8 @@
 [ext_resource type="Script" uid="uid://dxkbij13lf7tg" path="res://viewports/rpgm/components/_rpgm_event.gd" id="17_yspku"]
 [ext_resource type="Script" uid="uid://ipwj2rxnrjv3" path="res://viewports/rpgm/scripts/common_scripts/_rpgm_common_script_talker.gd" id="18_xp5op"]
 [ext_resource type="Shader" uid="uid://cc5d7uonuhvo" path="res://viewports/rpgm/shaders/_sphere_and_correct_rgb_belnding.gdshader" id="19_cyfpt"]
-[ext_resource type="Script" uid="uid://t32s55k36xah" path="res://viewports/rpgm/scripts/_rpgm_script.gd" id="20_txeor"]
+[ext_resource type="PackedScene" uid="uid://chyvuqkd2kobc" path="res://viewports/rpgm/scripts/common_nodes/_common_talker.tscn" id="19_egxko"]
+[ext_resource type="Script" uid="uid://t32s55k36xah" path="res://viewports/rpgm/components/_rpgm_script.gd" id="20_txeor"]
 [ext_resource type="Script" uid="uid://brl88l8fl1w5u" path="res://viewports/rpgm/scripts/common_scripts/_rpgm_common_script_teleport.gd" id="23_tl7rd"]
 
 [sub_resource type="GDScript" id="GDScript_txeor"]
@@ -2732,7 +2733,7 @@ map_position = Vector2i(-14, -1)
 [node name="_RPGM_Script" type="Node2D" parent="_map_2/_event_2_1" unique_id=1055183704]
 script = SubResource("GDScript_g67hk")
 
-[node name="_RPGM_Portrait" parent="_map_2/_event_2_1/_RPGM_Script" unique_id=1972099319 instance=ExtResource("15_2uryw")]
+[node name="_RPGM_Portrait" parent="_map_2/_event_2_1/_RPGM_Script" unique_id=1743254104 instance=ExtResource("15_2uryw")]
 z_index = 10
 sprite = "system"
 
@@ -2829,6 +2830,21 @@ is_collision = true
 material = SubResource("ShaderMaterial_jmbn5")
 scale = Vector2(1.0166667, 1.0833334)
 
+[node name="_npc_4_5" type="Node2D" parent="_map_4" unique_id=2142673939]
+position = Vector2(552, -1320)
+script = ExtResource("17_yspku")
+facing = Vector2i(0, 1)
+map_position = Vector2i(11, -28)
+
+[node name="_RPGM_Script" type="Node2D" parent="_map_4/_npc_4_5" unique_id=157929650]
+script = SubResource("GDScript_byr4j")
+interrupt_player = true
+is_collision = true
+
+[node name="_RPGM_Portrait" parent="_map_4/_npc_4_5/_RPGM_Script" unique_id=1972099319 instance=ExtResource("15_2uryw")]
+material = SubResource("ShaderMaterial_jmbn5")
+scale = Vector2(1.0166667, 1.0833334)
+
 [node name="_npc_4_4" type="Node2D" parent="_map_4" unique_id=159527930]
 position = Vector2(696, -1320)
 script = ExtResource("17_yspku")
@@ -2850,6 +2866,14 @@ interrupt_player = true
 is_collision = true
 
 [node name="_RPGM_Portrait" parent="_map_4/_npc_4_4/_RPGM_Script_B" unique_id=224678784 instance=ExtResource("15_2uryw")]
+
+[node name="_npc_0_0" parent="_map_4" unique_id=1352452401 instance=ExtResource("19_egxko")]
+position = Vector2(-72, 24)
+map_position = Vector2i(-2, 0)
+
+[node name="_npc_0_1" parent="_map_4" unique_id=637085999 instance=ExtResource("19_egxko")]
+position = Vector2(120, 24)
+map_position = Vector2i(2, 0)
 
 [node name="_map_5" type="Node2D" parent="." unique_id=193673490]
 

@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://ygtlr5jrj6hf"]
+
+[ext_resource type="PackedScene" uid="uid://ca8vvptjr324n" path="res://viewports/rpgm/components/_rpgm_portrait.tscn" id="1_65j8d"]
+[ext_resource type="Shader" uid="uid://5dmscal31dgu" path="res://viewports/rpgm/shaders/_random.gdshader" id="2_j4g4h"]
+
+[sub_resource type="GDScript" id="GDScript_jo6ms"]
+script/source = "extends _RPGM_Event
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	super()
+	get_core().get_log().add_log(func ACTIVE_SCRIPTS(): return str(active_scripts))
+	get_core().get_log().add_log(func(): return \"state: %s\" % state)
+"
+
+[sub_resource type="GDScript" id="GDScript_w10v0"]
+script/source = "extends _RPGM_Common_Script_Talker
+
+func _is_active(): return true
+func _on_action():
+	await super()
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vd6wf"]
+shader = ExtResource("2_j4g4h")
+
+[node name="_npc_0_0" type="Node2D" unique_id=1699085269]
+script = SubResource("GDScript_jo6ms")
+
+[node name="_common_script_talker_1" type="Node2D" parent="." unique_id=645140305]
+script = SubResource("GDScript_w10v0")
+messages = Array[String](["This is a common talker !"])
+interrupt_player = true
+is_collision = true
+
+[node name="_RPGM_Portrait" parent="_common_script_talker_1" unique_id=1972099319 instance=ExtResource("1_65j8d")]
+material = SubResource("ShaderMaterial_vd6wf")
+scale = Vector2(1.0166667, 1.0833334)
+type = "outline"
