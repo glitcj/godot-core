@@ -2871,9 +2871,12 @@ is_collision = true
 position = Vector2(-72, 24)
 map_position = Vector2i(-2, 0)
 
-[node name="_npc_0_1" parent="_map_4" unique_id=637085999 instance=ExtResource("19_egxko")]
+[node name="_npc_0_1" parent="_map_4" unique_id=1782716927 instance=ExtResource("19_egxko")]
 position = Vector2(120, 24)
 map_position = Vector2i(2, 0)
+
+[node name="_common_script_talker_1" parent="_map_4/_npc_0_1" index="0" unique_id=703101133]
+messages = Array[String](["This was made from a common talker.", "Are editable children on a common instance a hazard ?"])
 
 [node name="_map_5" type="Node2D" parent="." unique_id=193673490]
 
@@ -4190,3 +4193,5 @@ grow_vertical = 2
 text = "PLR"
 label_settings = SubResource("LabelSettings_x570f")
 horizontal_alignment = 1
+
+[editable path="_map_4/_npc_0_1"]
