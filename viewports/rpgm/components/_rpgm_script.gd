@@ -144,7 +144,14 @@ func _distance_to_player() -> float:
 func _wrapped_callable(c: Callable):
 	if c.get_method() not in trigger_is_running.keys():
 		trigger_is_running[c.get_method()] = false
-		
+
+	# CLAUDE: save/load P3 — signals (e.g. rpgm.activated) still fire on
+	# process-disabled nodes, so a removed event's triggers must be gated
+	# here; _is_active() alone can't do it (scripts often override it to
+	# always-true)
+	if get_event() and get_event().state == _RPGM_Event.EventState.Removed:
+		return
+
 	if not _is_active():
 		return
 		

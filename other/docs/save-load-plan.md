@@ -80,19 +80,28 @@ One dictionary, one owner (a `_RPGM_State` or similar on the rpgm viewport):
 
 ## Phases
 
-- [ ] **P1 — state object**: create the state owner, migrate
-      `_RPGM_Variables` statics into `variables`, route all reads/writes
-      through it. No disk I/O yet; game behaves identically.
-- [ ] **P2 — collect/apply**: implement `collect_state`/`apply_state` for
-      variables + player. Debug key: collect, print, apply — verify no-op.
-- [ ] **P3 — events**: event states in collect/apply; convert `queue_free()`
-      deaths and one-shots to state transitions.
-- [ ] **P4 — disk**: JSON save/load to `user://`, version field, safe-moment
-      guard, hook up to input/menu.
+- [x] **P1 — state object**: `_RPGM_Variables.variables` dictionary is the
+      source of truth; the old static ints are property wrappers, so all
+      call sites (incl. embedded scripts) work unchanged.
+- [x] **P2 — collect/apply**: `_RPGM.collect_state()` / `apply_state()`
+      cover variables + event states + player position/facing.
+- [x] **P3 — events**: `EventState.Removed` appended to the enum;
+      `_RPGM_Event.remove()` hides/disables instead of freeing; the six
+      `queue_free()` sites in `_rpgm_map.tscn` converted;
+      `_RPGM_Script._wrapped_callable` gates triggers on removed events
+      (signals still fire on process-disabled nodes).
+- [x] **P4 — disk**: `save_game(slot)` / `load_game(slot)` → JSON at
+      `user://rpgm_save_<slot>.json`, `version` field, `can_save()`
+      safe-moment guard, debug-build keys **F5 save / F9 load**.
 - [ ] **P5 — verify**: unit test the round-trip
       (`apply_state(collect_state())` is a no-op; save→load→collect equals
       original). Smoke test: defeat an enemy, save, quit, load — enemy stays
-      dead; load an older save — enemy is back.
+      dead; load an older save — enemy is back. (Blocked on test infra /
+      a working headless check — engine-checklist §6.)
+
+Known v1 limitations: camera attachment/position is not part of the state
+(saves happen at safe moments, where the camera is on the player); debug
+F9 load is not guarded against loading mid-cutscene the way saving is.
 
 ## Out of scope (defer until a game demands it)
 

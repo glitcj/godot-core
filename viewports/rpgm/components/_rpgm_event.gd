@@ -5,8 +5,36 @@
 extends _RPGM_Mover
 class_name _RPGM_Event
 
-enum EventState {A, B, C, D, E, F, G}
-@export var state : EventState = EventState.A
+# CLAUDE: save/load P3 — Removed appended (existing exported state ints keep
+# their values). A "removed" event is hidden/disabled instead of freed so the
+# removal exists as data: it round-trips through saves, and loading an older
+# save can bring the event back — queue_free could do neither.
+enum EventState {A, B, C, D, E, F, G, Removed}
+@export var state : EventState = EventState.A:
+	set(v):
+		var changed = state != v
+		state = v
+		if Engine.is_editor_hint(): return
+		if not is_node_ready() or not changed: return
+		_apply_state_presentation()
+
+# CLAUDE: save/load P3 — the data-driven replacement for parent.queue_free()
+# in event scripts
+func remove():
+	state = EventState.Removed
+
+func _apply_state_presentation():
+	if state == EventState.Removed:
+		visible = false
+		process_mode = Node.PROCESS_MODE_DISABLED
+		# CLAUDE: set directly, not via update_active_scripts — enemy scripts
+		# override _is_active() to always-true, which would re-flag collision
+		is_collision = false
+	else:
+		visible = true
+		process_mode = Node.PROCESS_MODE_INHERIT
+		update_active_scripts()
+	if get_map(): get_map().mark_collision_dirty()
 
 @onready var portraits = find_children("*", "_RPGM_Portrait")
 

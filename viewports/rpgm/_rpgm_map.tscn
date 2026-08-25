@@ -2095,7 +2095,7 @@ func _on_viewport_start():
 	await get_rpgm().get_lambdas().show_messages([\"It should start soon..\"])
 	await get_lambdas().transport_camera(get_map().find_event(\"_camera_position_4_1\"))
 	await get_lambdas().fade_in()
-	get_parent().queue_free()
+	get_parent().remove() # CLAUDE: save/load P3 — removal as saveable state, not queue_free
 "
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kl3l0"]
@@ -2109,7 +2109,7 @@ func _is_active() -> bool:
 
 func _on_area_entered():
 	get_variables().l2_enemies_count += 1
-	parent.queue_free()
+	parent.remove() # CLAUDE: save/load P3 — removal as saveable state, not queue_free
 "
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hxdjl"]
@@ -2123,7 +2123,7 @@ func _is_active() -> bool:
 
 func _on_area_entered():
 	get_variables().l2_enemies_count += 1
-	parent.queue_free()
+	parent.remove() # CLAUDE: save/load P3 — removal as saveable state, not queue_free
 "
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_loqga"]
@@ -2137,7 +2137,7 @@ func _is_active() -> bool:
 	
 func _on_area_entered():
 	get_variables().l2_enemies_count += 1
-	parent.queue_free()
+	parent.remove() # CLAUDE: save/load P3 — removal as saveable state, not queue_free
 "
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lnpst"]
@@ -2151,7 +2151,7 @@ func _is_active() -> bool:
 	
 func _on_area_entered():
 	get_variables().l2_enemies_count += 1
-	parent.queue_free()
+	parent.remove() # CLAUDE: save/load P3 — removal as saveable state, not queue_free
 "
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jo6ms"]
@@ -2171,7 +2171,7 @@ func _on_frame():
 		await get_rpgm().get_lambdas().show_messages([\"NPC: You got them !\", \"NPC: Go to the next location..\"])
 		get_lambdas().transport_player(get_map().find_child(\"_player_position_5_1\"))
 		get_lambdas().transport_camera(get_map().find_child(\"_camera_position_5_1\"))
-		parent.queue_free()
+		parent.remove() # CLAUDE: save/load P3 — removal as saveable state, not queue_free
 "
 
 [sub_resource type="GDScript" id="GDScript_vvo4p"]
