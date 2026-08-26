@@ -26,8 +26,10 @@ this hands-on.
 - Tabs for indentation, always.
 - `res://` paths are case-sensitive in web exports; macOS hides mismatches.
   Match file casing exactly.
-- Docs live in `other/docs/` as `how-to-*.md` files. Repo-level build doc:
-  `how-to-build-and-host-project-in-html.md`.
+- Docs live in `other/docs/md/` (markdown, mostly `how-to-*.md`) and
+  `other/docs/gd/` (Godot doc-class mirrors). Repo-level build doc:
+  `how-to-build-and-host-project-in-html.md`. `other/docs/notes.gd` stays
+  where it is — `_core.tscn` references it as a script.
 - **When asked to make a doc, produce it in two formats with the same
   content**: a markdown file in `other/docs/md/`, and a Godot version in
   `other/docs/gd/` — a documentation-only script (`##` doc comments in doc
@@ -70,8 +72,8 @@ this hands-on.
 - Test locally: `python3 -m http.server` in `build/web` (file:// won't work).
 - Web runs the Compatibility renderer (not Forward+), wasm is 2-3x slower
   than native, and draw calls/texture uploads are the expensive operations —
-  performance guidance in `other/docs/how-to-improve-lag.md`, pack-size
-  guidance in `other/docs/how-to-make-web-exports-lean.md`.
+  performance guidance in `other/docs/md/how-to-improve-lag.md`, pack-size
+  guidance in `other/docs/md/how-to-make-web-exports-lean.md`.
 
 ## Verification
 

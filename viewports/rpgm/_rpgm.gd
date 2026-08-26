@@ -34,7 +34,7 @@ func _deactivate():
 	super()
 
 
-# CLAUDE: save/load P2+P4 (see other/docs/save-load-plan.md) — battery-save
+# CLAUDE: save/load P2+P4 (see other/docs/md/save-load-plan.md) — battery-save
 # style: collect a small explicit state dict, JSON it to user://, and on load
 # apply it back onto the live world. Vector2is stored as [x, y] arrays
 # (JSON-safe); everything comes back as floats, hence the int() casts.

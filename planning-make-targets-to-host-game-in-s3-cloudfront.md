@@ -151,7 +151,7 @@ Notes on the choices:
   costs **~$0.04 per first play** (repeat plays hit the browser cache).
   AWS free tier currently includes 1 TB/month of CloudFront egress, which
   covers ~2,400 fresh plays/month for free.
-- The real lever is pck size — `other/docs/how-to-make-web-exports-lean.md`
+- The real lever is pck size — `other/docs/md/how-to-make-web-exports-lean.md`
   applies directly here.
 
 ## Verification

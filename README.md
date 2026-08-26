@@ -41,7 +41,7 @@ The Web preset exports "selected scenes and dependencies" from
   (currently: `_core_window.tscn`, `_core_log_item.tscn`,
   `_dgm_tile.tscn`) — ticked scenes get the full walk.
 - Anything still missing fails loudly in the browser console (F12)
-  naming the file. Details: `other/docs/how-to-make-web-exports-lean.md`.
+  naming the file. Details: `other/docs/md/how-to-make-web-exports-lean.md`.
 
 ### AWS architecture
 

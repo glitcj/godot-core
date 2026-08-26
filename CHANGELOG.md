@@ -16,9 +16,9 @@ Notable changes to the core. Newest first.
   of decompressing the spritesheet and uploading a new `ImageTexture` on
   every animation tick of every portrait. Removed most of the remaining
   RPGM-scene lag on web.
-- **Docs**: `other/docs/how-to-improve-lag.md` (web perf findings: portrait
+- **Docs**: `other/docs/md/how-to-improve-lag.md` (web perf findings: portrait
   texture churn, double 1080p viewport chain, per-portrait materials),
-  `other/docs/how-to-make-web-exports-lean.md` (dependency-based export,
+  `other/docs/md/how-to-make-web-exports-lean.md` (dependency-based export,
   audio import compression).
 - **CLAUDE.md** — repo purpose, Claude working rules (small reviewed
   changes, `# CLAUDE:` comments), architecture notes, export workflow.
