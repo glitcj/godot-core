@@ -2868,9 +2868,9 @@ is_collision = true
 [node name="_RPGM_Portrait" parent="_map_4/_npc_4_4/_RPGM_Script_B" unique_id=224678784 instance=ExtResource("15_2uryw")]
 
 [node name="_npc_0_2" parent="_map_4" unique_id=1699085269 instance=ExtResource("22_g67hk")]
-position = Vector2(-72, 120)
+position = Vector2(-24, 120)
 messages = ["This is common talker message !", "Its backwards compatible too ~"]
-map_position = Vector2i(-2, 2)
+map_position = Vector2i(-1, 2)
 
 [node name="_map_5" type="Node2D" parent="." unique_id=193673490]
 

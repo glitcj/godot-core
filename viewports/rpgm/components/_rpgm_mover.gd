@@ -34,6 +34,12 @@ func _on_facing_changed(): pass
 		if Engine.is_editor_hint(): _quantise_position()
 
 
+# @export_category("Quantise")
+@export_subgroup("Quantise")
+
+@export_tool_button("Quantise via Map") var call_quantise_via_map : Callable = _quantise_via_map_position
+@export_tool_button("Quantise via Global") var call_quantise_via_global : Callable = _quantise_via_global_position
+
 var destination : Vector2i = Vector2i(0, 0)
 
 func get_base_layer(): return get_map().find_child("L1 Base") as TileMapLayer
@@ -68,12 +74,14 @@ func _quantise_position():
 
 func _quantise_via_map_position():
 	# CLAUDE: self-checks replace the old get_parent() null/ready checks
-	if not is_node_ready(): return
+	# if not is_node_ready(): return
+	if not Engine.is_editor_hint() or not is_node_ready(): return
 	global_position = tilemap_to_global_position(map_position)
 
 
 func _quantise_via_global_position():
-	if not is_node_ready(): return
+	if not Engine.is_editor_hint() or not is_node_ready(): return
+	
 	map_position = global_position_to_map_position(global_position)
 	
 	

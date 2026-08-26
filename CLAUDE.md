@@ -28,6 +28,12 @@ this hands-on.
   Match file casing exactly.
 - Docs live in `other/docs/` as `how-to-*.md` files. Repo-level build doc:
   `how-to-build-and-host-project-in-html.md`.
+- **When asked to make a doc, produce it in two formats with the same
+  content**: a markdown file in `other/docs/md/`, and a Godot version in
+  `other/docs/gd/` — a documentation-only script (`##` doc comments in doc
+  BBCode + `class_name`, `extends Object`, no code) so it renders in the
+  editor's built-in Help (F1). The `.md` is canonical; keep both in sync
+  when updating either.
 
 ## Architecture
 

@@ -9,7 +9,6 @@ func find_event(_name): return find_child(_name) as _RPGM_Event
 func get_lambdas(): return find_child("_RPGM_Lambdas") as _RPGM_Lambdas
 
 
-
 # CLAUDE: collision tile list and rebuild logic moved here from _RPGM_Mover static vars
 # _RPGM_Map is the correct owner — it owns the tile layers and can see all movers
 var tiles_with_rpgm_collision: Array[Vector2i] = []
@@ -20,7 +19,6 @@ func _ready() -> void:
 	if false: print_tree_pretty()
 	Performance.add_custom_monitor("_rpgm_map/_rpgm_map_process", func(): return last_process_ms)
 	if not Engine.is_editor_hint(): modulate = Color(0,0,0,1)
-	# if not Engine.is_editor_hint(): modulate = Color(0,0,0,1)
 	
 func scripts_currently_on_map():
 	return find_children("*", "_RPGM_Script")
@@ -81,7 +79,8 @@ func _quantise_all():
 		
 		# TODO: Quantise via global position no existing map position, the global pos should overwrite the map pos
 		if event.get_script() and event.get_script().is_tool():
-			(event as _RPGM_Event)._quantise_position()
+			# (event as _RPGM_Event)._quantise_position()
+			(event as _RPGM_Event)._quantise_via_global_position()
 		
 		
 		print("quantised %s" % event)
