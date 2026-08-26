@@ -77,5 +77,11 @@ func _update_tilemap_collision_debugger() -> void:
 
 @export_tool_button("Quantise All") var quantise_all_callable : Callable = _quantise_all
 func _quantise_all():
-	for mover in find_children("*", "_RPGM_Mover", true, false):
-		(mover as _RPGM_Mover)._quantise_position()
+	for event in find_children("*", "_RPGM_Event", true, false):
+		
+		# TODO: Quantise via global position no existing map position, the global pos should overwrite the map pos
+		if event.get_script() and event.get_script().is_tool():
+			(event as _RPGM_Event)._quantise_position()
+		
+		
+		print("quantised %s" % event)
