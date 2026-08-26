@@ -18,8 +18,9 @@
 [ext_resource type="Script" uid="uid://dxkbij13lf7tg" path="res://viewports/rpgm/components/_rpgm_event.gd" id="17_yspku"]
 [ext_resource type="Script" uid="uid://ipwj2rxnrjv3" path="res://viewports/rpgm/scripts/common_scripts/_rpgm_common_script_talker.gd" id="18_xp5op"]
 [ext_resource type="Shader" uid="uid://cc5d7uonuhvo" path="res://viewports/rpgm/shaders/_sphere_and_correct_rgb_belnding.gdshader" id="19_cyfpt"]
-[ext_resource type="PackedScene" uid="uid://chyvuqkd2kobc" path="res://viewports/rpgm/scripts/common_nodes/_common_talker.tscn" id="19_egxko"]
+[ext_resource type="PackedScene" uid="uid://chyvuqkd2kobc" path="res://viewports/rpgm/scripts/common_nodes/_common_talker_v1.tscn" id="19_egxko"]
 [ext_resource type="Script" uid="uid://t32s55k36xah" path="res://viewports/rpgm/components/_rpgm_script.gd" id="20_txeor"]
+[ext_resource type="PackedScene" uid="uid://ygtlr5jrj6hf" path="res://viewports/rpgm/scripts/common_nodes/_common_talker_v2.tscn" id="22_g67hk"]
 [ext_resource type="Script" uid="uid://brl88l8fl1w5u" path="res://viewports/rpgm/scripts/common_scripts/_rpgm_common_script_teleport.gd" id="23_tl7rd"]
 
 [sub_resource type="GDScript" id="GDScript_txeor"]
@@ -2872,11 +2873,16 @@ position = Vector2(-72, 24)
 map_position = Vector2i(-2, 0)
 
 [node name="_npc_0_1" parent="_map_4" unique_id=1782716927 instance=ExtResource("19_egxko")]
-position = Vector2(120, 24)
-map_position = Vector2i(2, 0)
+position = Vector2(120, -120)
+map_position = Vector2i(2, -3)
 
 [node name="_common_script_talker_1" parent="_map_4/_npc_0_1" index="0" unique_id=703101133]
 messages = Array[String](["This was made from a common talker.", "Are editable children on a common instance a hazard ?"])
+
+[node name="_npc_0_2" parent="_map_4" unique_id=1699085269 instance=ExtResource("22_g67hk")]
+position = Vector2(-72, 120)
+messages = ["This is common talker message !", "Its backwards compatible too ~"]
+map_position = Vector2i(-2, 2)
 
 [node name="_map_5" type="Node2D" parent="." unique_id=193673490]
 
@@ -3036,7 +3042,7 @@ y_sort_enabled = true
 material = SubResource("ShaderMaterial_cyfpt")
 scale = Vector2(1.0166667, 1.0833334)
 
-[node name="_teleports" type="Node" parent="." unique_id=145327720]
+[node name="_teleports" type="Node2D" parent="." unique_id=1690504303]
 
 [node name="_teleport_6_1" type="Node2D" parent="_teleports" unique_id=1575285908]
 position = Vector2(24, 696)
@@ -3518,7 +3524,7 @@ scale = Vector2(25, 25)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="_teleports/_teleport_4_3/Area2D" unique_id=1810399327]
 shape = SubResource("RectangleShape2D_ceddd")
 
-[node name="_camera_positions" type="Node" parent="." unique_id=1357759945]
+[node name="_camera_positions" type="Node2D" parent="." unique_id=1694296743]
 
 [node name="_camera_position_5_1" type="Node2D" parent="_camera_positions" unique_id=436198318]
 unique_name_in_owner = true
@@ -3770,7 +3776,7 @@ text = "CMR"
 label_settings = SubResource("LabelSettings_x570f")
 horizontal_alignment = 1
 
-[node name="_player_positions" type="Node" parent="." unique_id=1700224364]
+[node name="_player_positions" type="Node2D" parent="." unique_id=1051452941]
 
 [node name="_player_position_4_3" type="Node2D" parent="_player_positions" unique_id=251355010]
 unique_name_in_owner = true

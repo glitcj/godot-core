@@ -71,33 +71,33 @@ One dictionary, one owner (a `_RPGM_State` or similar on the rpgm viewport):
 
 6. **Persistence layer** — small and boring:
    - `collect_state() -> Dictionary` — scrape variables + event states +
-     player into the dict.
+	 player into the dict.
    - `apply_state(state: Dictionary)` — push the dict back into the world.
    - `save_to_disk(slot)` / `load_from_disk(slot)` — JSON at
-     `user://save_<slot>.json` (JSON keeps saves readable/debuggable; swap
-     for ConfigFile if preferred).
+	 `user://save_<slot>.json` (JSON keeps saves readable/debuggable; swap
+	 for ConfigFile if preferred).
    - Load flow: boot/reset the map scene fresh, then `apply_state`.
 
 ## Phases
 
 - [x] **P1 — state object**: `_RPGM_Variables.variables` dictionary is the
-      source of truth; the old static ints are property wrappers, so all
-      call sites (incl. embedded scripts) work unchanged.
+	  source of truth; the old static ints are property wrappers, so all
+	  call sites (incl. embedded scripts) work unchanged.
 - [x] **P2 — collect/apply**: `_RPGM.collect_state()` / `apply_state()`
-      cover variables + event states + player position/facing.
+	  cover variables + event states + player position/facing.
 - [x] **P3 — events**: `EventState.Removed` appended to the enum;
-      `_RPGM_Event.remove()` hides/disables instead of freeing; the six
-      `queue_free()` sites in `_rpgm_map.tscn` converted;
-      `_RPGM_Script._wrapped_callable` gates triggers on removed events
-      (signals still fire on process-disabled nodes).
+	  `_RPGM_Event.remove()` hides/disables instead of freeing; the six
+	  `queue_free()` sites in `_rpgm_map.tscn` converted;
+	  `_RPGM_Script._wrapped_callable` gates triggers on removed events
+	  (signals still fire on process-disabled nodes).
 - [x] **P4 — disk**: `save_game(slot)` / `load_game(slot)` → JSON at
-      `user://rpgm_save_<slot>.json`, `version` field, `can_save()`
-      safe-moment guard, debug-build keys **F5 save / F9 load**.
+	  `user://rpgm_save_<slot>.json`, `version` field, `can_save()`
+	  safe-moment guard, debug-build keys **F5 save / F9 load**.
 - [ ] **P5 — verify**: unit test the round-trip
-      (`apply_state(collect_state())` is a no-op; save→load→collect equals
-      original). Smoke test: defeat an enemy, save, quit, load — enemy stays
-      dead; load an older save — enemy is back. (Blocked on test infra /
-      a working headless check — engine-checklist §6.)
+	  (`apply_state(collect_state())` is a no-op; save→load→collect equals
+	  original). Smoke test: defeat an enemy, save, quit, load — enemy stays
+	  dead; load an older save — enemy is back. (Blocked on test infra /
+	  a working headless check — engine-checklist §6.)
 
 Known v1 limitations: camera attachment/position is not part of the state
 (saves happen at safe moments, where the camera is on the player); debug

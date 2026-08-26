@@ -3,8 +3,11 @@
 [ext_resource type="PackedScene" uid="uid://ca8vvptjr324n" path="res://viewports/rpgm/components/_rpgm_portrait.tscn" id="1_65j8d"]
 [ext_resource type="Shader" uid="uid://5dmscal31dgu" path="res://viewports/rpgm/shaders/_random.gdshader" id="2_j4g4h"]
 
-[sub_resource type="GDScript" id="GDScript_jo6ms"]
-script/source = "extends _RPGM_Event
+[sub_resource type="GDScript" id="GDScript_ptv3o"]
+script/source = "@tool
+extends _RPGM_Event
+
+@export var messages = [\"This is common talker message !\"]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -25,7 +28,7 @@ func _on_action():
 shader = ExtResource("2_j4g4h")
 
 [node name="_npc_0_0" type="Node2D" unique_id=1699085269]
-script = SubResource("GDScript_jo6ms")
+script = SubResource("GDScript_ptv3o")
 
 [node name="_common_script_talker_1" type="Node2D" parent="." unique_id=645140305]
 script = SubResource("GDScript_w10v0")
