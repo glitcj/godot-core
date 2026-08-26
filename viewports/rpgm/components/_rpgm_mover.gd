@@ -51,6 +51,9 @@ func _ready() -> void:
 func tilemap_to_global_position(tile_position : Vector2i):
 	return base_layer.to_global(base_layer.map_to_local(tile_position))
 
+func global_position_to_map_position(_global_position : Vector2):
+	return base_layer.local_to_map(base_layer.to_local(_global_position))
+
 func teleport(tile_position : Vector2i):
 	if not is_inside_tree(): return
 
@@ -62,6 +65,18 @@ func _quantise_position():
 	if not is_node_ready(): return
 	global_position = tilemap_to_global_position(map_position)
 
+
+func _quantise_via_map_position():
+	# CLAUDE: self-checks replace the old get_parent() null/ready checks
+	if not is_node_ready(): return
+	global_position = tilemap_to_global_position(map_position)
+
+
+func _quantise_via_global_position():
+	if not is_node_ready(): return
+	map_position = global_position_to_map_position(global_position)
+	
+	
 func move_to_map_position(target_map_position):
 	await move(target_map_position - map_position)
 
