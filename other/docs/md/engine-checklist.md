@@ -126,7 +126,8 @@ Core should compile and run without rpgm:
 
 - [ ] **Fix the headless check first.** The boot check's exit code is
       meaningless (`recursive_mutex` shutdown abort) and the log is drowned
-      by ~26k DGM TileSet errors. Until a headless run can say pass/fail,
+      by ~26k converted-TileSet headless errors (`ERRORS.md` §1). Until a
+      headless run can say pass/fail,
       automated testing is built on sand. (Per `CLAUDE.md`: never run
       headless while the editor is open.)
 - [ ] **gdUnit4 (or GUT) for pure logic only** (~a dozen tests): mover grid

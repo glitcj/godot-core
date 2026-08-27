@@ -78,8 +78,10 @@ this hands-on.
 ## Verification
 
 - Headless boot check: `--headless --quit-after 60` catches script errors.
-  Known pre-existing noise: ~26k TileSet errors from the DGM runtime tile
-  builder, and a `recursive_mutex` abort on headless shutdown.
+  Known pre-existing noise: ~26k TileSet errors from RPG-Maker-converted
+  TileSet resources failing to load under headless (see `ERRORS.md` §1 —
+  not the DGM tile builder), and a `recursive_mutex` abort on headless
+  shutdown.
 - **Warn before any headless run or export** (boot checks included): the
   owner usually has the editor open, and a second Godot instance sharing
   `.godot/` can destabilise it. Ask, then run.

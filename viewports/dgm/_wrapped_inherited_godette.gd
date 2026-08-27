@@ -31,7 +31,8 @@ func _physics_process(delta: float) -> void:
 		
 	
 	move_and_slide()
-	print(velocity, TIME)
+	# CLAUDE: removed print(velocity, TIME) — it ran every physics tick
+	# (60 string allocations + console writes/sec), a web-build killer
 	
 
 

@@ -23,9 +23,10 @@ Export the web build (release) to `build/web/`:
 $GODOT --headless --export-release "Web" build/web/index.html   # [make export]
 ```
 
-Known noise in headless output: ~26k TileSet errors from the DGM runtime
-tile builder, and a `recursive_mutex` abort on shutdown. Both pre-date
-2026-08 and are not caused by your change.
+Known noise in headless output: ~26k TileSet errors from RPG-Maker-converted
+TileSet resources failing to load under headless (see `ERRORS.md` §1), and a
+`recursive_mutex` abort on shutdown. Both pre-date 2026-08 and are not
+caused by your change.
 
 ## Host the web game
 

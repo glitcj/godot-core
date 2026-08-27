@@ -49,8 +49,8 @@ func change_viewport(viewport: _Core_Viewport):
 	if current_viewport:
 		await current_viewport._on_viewport_finish()
 		current_viewport._suspend()
-		viewport_change_history.append(current_viewport)
-		viewport_stack.append(current_viewport)
+		# viewport_change_history.append(current_viewport)
+		# viewport_stack.append(current_viewport)
 	current_viewport = viewport
 	
 	%"Current Viewport TextureRect".texture = (viewport.find_child("SubViewport") as SubViewport).get_texture()

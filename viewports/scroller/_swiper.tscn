@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cxiw0m4n4emut"]
 
-[ext_resource type="Script" uid="uid://yry6g6f3wyis" path="res://viewports/swiper/_swiper.gd" id="1_jhufk"]
+[ext_resource type="Script" uid="uid://yry6g6f3wyis" path="res://viewports/scroller/_swiper.gd" id="1_jhufk"]
 [ext_resource type="Texture2D" uid="uid://cbwh2bgycvref" path="res://assets/kooran_de_go/marubatsu-Sheet.png" id="2_r66b3"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_1htd0"]

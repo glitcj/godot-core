@@ -68,5 +68,11 @@ func _suspend():
 	set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
 
 func _resume():
-	process_mode = Node.PROCESS_MODE_INHERIT
+	# CLAUDE: set_deferred, symmetric with _suspend — add_viewport on a freshly
+	# instantiated scene runs _ready's suspend and this resume in the same
+	# frame, and the suspend's deferred process-mode write was landing AFTER
+	# the immediate resume, leaving the new scene visible but process-disabled
+	# ("stuck"). Deferred calls flush FIFO, so with both writes deferred the
+	# last call in a frame wins, in either direction.
+	set_deferred("process_mode", Node.PROCESS_MODE_INHERIT)
 	sub_viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://kdwtnvamx6of"]
 
-[ext_resource type="Script" uid="uid://dljcynf31eb7" path="res://viewports/swiper/_scroller.gd" id="1_fcb8s"]
+[ext_resource type="Script" uid="uid://dljcynf31eb7" path="res://viewports/scroller/_scroller.gd" id="1_fcb8s"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_1htd0"]
 
