@@ -46,9 +46,10 @@ func _show_questions_and_answers(current_verse_index):
 	(find_child("_word_%s" % incorrect_answer_index) as Label).text = koran_loader.quran_db[decoy_ayah_index]["ayah_ar"]
 	
 
-	await _Core_Tweener.new().slide_in(find_child("_definition"), .5)
-	await _Core_Tweener.new().slide_in(find_child("_word_0"), .5, Vector2i(-1, 0))
-	await _Core_Tweener.new().slide_in(find_child("_word_1"), .5, Vector2i(1, 0))
+	# CLAUDE: new static _Core_Tweener API — methods return the Tween
+	await _Core_Tweener.slide_in(find_child("_definition"), .5).finished
+	await _Core_Tweener.slide_in(find_child("_word_0"), .5, Vector2i(-1, 0)).finished
+	await _Core_Tweener.slide_in(find_child("_word_1"), .5, Vector2i(1, 0)).finished
 
 
 func _on_viewport_start():
@@ -75,11 +76,11 @@ func _input(event: InputEvent) -> void:
 	match (event as InputEventKey).keycode:
 		KEY_RIGHT:
 			selection = "_word_0"
-			await _Core_Tweener.new().slide_out(find_child("_word_0"), .5, Vector2i(1, 0))
+			await _Core_Tweener.slide_out(find_child("_word_0"), .5, Vector2i(1, 0)).finished
 			await _show_decision()
-			
-			await _Core_Tweener.new().slide_out(find_child("_word_1"), .5, Vector2i(0, 1))
-			await _Core_Tweener.new().slide_out(find_child("_definition"), .5, Vector2i(0, 1))
+
+			await _Core_Tweener.slide_out(find_child("_word_1"), .5, Vector2i(0, 1)).finished
+			await _Core_Tweener.slide_out(find_child("_definition"), .5, Vector2i(0, 1)).finished
 			
 			
 			if questions_counter > 0:
@@ -92,11 +93,11 @@ func _input(event: InputEvent) -> void:
 			
 		KEY_LEFT:
 			selection = "_word_1"
-			await _Core_Tweener.new().slide_out(find_child("_word_1"), .5, Vector2i(-1, 0))
+			await _Core_Tweener.slide_out(find_child("_word_1"), .5, Vector2i(-1, 0)).finished
 			await _show_decision()
-			
-			await _Core_Tweener.new().slide_out(find_child("_word_0"), .5, Vector2i(0, 1))
-			await _Core_Tweener.new().slide_out(find_child("_definition"), .5, Vector2i(0, 1))
+
+			await _Core_Tweener.slide_out(find_child("_word_0"), .5, Vector2i(0, 1)).finished
+			await _Core_Tweener.slide_out(find_child("_definition"), .5, Vector2i(0, 1)).finished
 			
 			if questions_counter > 0:
 				current_verse_index = current_verse_index + 1
@@ -114,6 +115,6 @@ func _show_decision():
 	else:
 		%_marubatsu.frame = 1
 	
-	await _Core_Tweener.new().slide_in(%_marubatsu)
+	await _Core_Tweener.slide_in(%_marubatsu).finished
 	await get_tree().create_timer(.25).timeout
-	await _Core_Tweener.new().slide_out(%_marubatsu)
+	await _Core_Tweener.slide_out(%_marubatsu).finished

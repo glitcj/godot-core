@@ -50,16 +50,17 @@ func show_messages(messages: Array, _scale = Vector2(5, 5)):
 	await window.finished
 	
 func fade_in():
-	# _Core_Tweener.new().fade_out(get_parent())
-	_Core_Tweener.new().fade_in(get_map())
-	# _Core_Tweener.new().fade_in(get_viewport())
-	# _Core_Tweener.new().fade_in(get_core().viewport_texture_rect)
-	
+	# CLAUDE: new static _Core_Tweener API — no instance needed
+	# _Core_Tweener.fade_out(get_parent())
+	_Core_Tweener.fade_in(get_map())
+	# _Core_Tweener.fade_in(get_viewport())
+	# _Core_Tweener.fade_in(get_core().viewport_texture_rect)
+
 func fade_out():
-	# _Core_Tweener.new().fade_out(get_parent())
-	_Core_Tweener.new().fade_out(get_map())
-	# _Core_Tweener.new().fade_out(get_viewport())
-	# _Core_Tweener.new().fade_out(get_core().viewport_texture_rect)
+	# _Core_Tweener.fade_out(get_parent())
+	_Core_Tweener.fade_out(get_map())
+	# _Core_Tweener.fade_out(get_viewport())
+	# _Core_Tweener.fade_out(get_core().viewport_texture_rect)
 	
 	
 func set_base_tilemap_to_rmz_standard():

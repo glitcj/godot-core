@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://cnesa484f115s"]
+
+[ext_resource type="Script" uid="uid://brl88l8fl1w5u" path="res://viewports/rpgm/scripts/common_scripts/_rpgm_common_script_teleport.gd" id="2_uvb1f"]
+
+[sub_resource type="GDScript" id="GDScript_iv8pj"]
+script/source = "
+@tool
+extends _RPGM_Event
+
+@export var camera_position_node : _RPGM_Event
+@export var player_position_node : _RPGM_Event
+"
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_j52ey"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_x570f"]
+font_size = 15
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ceddd"]
+size = Vector2(1, 1)
+
+[node name="_teleport_0_0" type="Node2D" unique_id=583292115]
+script = SubResource("GDScript_iv8pj")
+
+[node name="_common_script_teleport_0_0" type="Node2D" parent="." unique_id=1756741548]
+script = ExtResource("2_uvb1f")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=204707897]
+z_index = 100
+scale = Vector2(25, 25)
+texture = SubResource("CanvasTexture_j52ey")
+
+[node name="Label" type="Label" parent="." unique_id=348250918]
+modulate = Color(1, 0.11372549, 0.972549, 1)
+z_index = 200
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -38.0
+offset_top = -24.5
+offset_right = 38.0
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "TPT"
+label_settings = SubResource("LabelSettings_x570f")
+horizontal_alignment = 1
+
+[node name="Area2D" type="Area2D" parent="." unique_id=48854839]
+scale = Vector2(25, 25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=903337934]
+shape = SubResource("RectangleShape2D_ceddd")

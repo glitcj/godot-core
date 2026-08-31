@@ -100,7 +100,7 @@ func _valid_direction_is_pressed():
 	
 func _process_input():# _on_input():
 	if Input.is_action_just_pressed("ui_select"):
-		_Core_Tweener.new().highlight(self)
+		_Core_Tweener.highlight(self) # CLAUDE: new static _Core_Tweener API
 		
 	if _valid_direction_is_pressed():
 		next_direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")

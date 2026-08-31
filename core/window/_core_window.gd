@@ -43,8 +43,9 @@ func start(message_queue_ : Array):
 	message_queue = message_queue_
 	is_active = true
 	_show_next_message()
-	await _Core_Tweener.new().slide_in(self)
-	# await _Core_Tweener.new().slide_in(%"Animation Anchor")
+	# CLAUDE: new static _Core_Tweener API — methods return the Tween
+	await _Core_Tweener.slide_in(self).finished
+	# await _Core_Tweener.slide_in(%"Animation Anchor").finished
 
 func _show_current_message(m):
 	message = m
@@ -55,8 +56,8 @@ func _show_next_message():
 	is_active = false
 	
 	if message_queue == [] and visible:
-		await _Core_Tweener.new().slide_out(self)
-		# await _Core_Tweener.new().slide_out(%"Animation Anchor")
+		await _Core_Tweener.slide_out(self).finished
+		# await _Core_Tweener.slide_out(%"Animation Anchor").finished
 		finished.emit()
 		queue_free.call_deferred()
 		return

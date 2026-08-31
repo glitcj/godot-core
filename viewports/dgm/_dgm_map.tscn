@@ -109,6 +109,13 @@ sky = SubResource("Sky_kpayp")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rycn8"]
+albedo_color = Color(0, 0.66799605, 0.44555366, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_iv8pj"]
+material = SubResource("StandardMaterial3D_rycn8")
+size = Vector3(3, 3, 3)
+
 [node name="_DGM_Map" type="Node3D" unique_id=205358922 node_paths=PackedStringArray("start_position")]
 script = ExtResource("1_atvyf")
 start_position = NodePath("_room_1/_player_position")
@@ -247,3 +254,9 @@ environment = SubResource("Environment_nld87")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=509169825]
 transform = Transform3D(0.8660254, 0.25, -0.4330127, 0, 0.8660254, 0.5, 0.5, -0.4330127, 0.75, 0, 8.803447, 0)
+
+[node name="Node3D" type="Node3D" parent="." unique_id=293029838]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D" unique_id=174306643]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66.64693, 2.0476918, -46.4732)
+mesh = SubResource("BoxMesh_iv8pj")
