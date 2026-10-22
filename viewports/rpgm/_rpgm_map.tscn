@@ -19,9 +19,11 @@
 [ext_resource type="Script" uid="uid://ipwj2rxnrjv3" path="res://viewports/rpgm/scripts/common_scripts/_rpgm_common_script_talker.gd" id="18_xp5op"]
 [ext_resource type="Shader" uid="uid://cc5d7uonuhvo" path="res://viewports/rpgm/shaders/_sphere_and_correct_rgb_belnding.gdshader" id="19_cyfpt"]
 [ext_resource type="Script" uid="uid://t32s55k36xah" path="res://viewports/rpgm/components/_rpgm_script.gd" id="20_txeor"]
-[ext_resource type="PackedScene" uid="uid://ygtlr5jrj6hf" path="res://viewports/rpgm/scripts/common_nodes/_common_talker_v2.tscn" id="22_g67hk"]
-[ext_resource type="PackedScene" uid="uid://cnesa484f115s" path="res://viewports/rpgm/scripts/common_nodes/_teleport_0_0_v1.tscn" id="22_jfmav"]
+[ext_resource type="PackedScene" uid="uid://ygtlr5jrj6hf" path="res://viewports/rpgm/scripts/common_events/_common_talker_v2.tscn" id="22_g67hk"]
+[ext_resource type="PackedScene" uid="uid://cnesa484f115s" path="res://viewports/rpgm/scripts/common_events/_common_teleport_v1.tscn" id="22_jfmav"]
+[ext_resource type="PackedScene" uid="uid://du6w5cvgavu52" path="res://viewports/rpgm/scripts/common_events/_common_player_position_v1.tscn" id="23_jfmav"]
 [ext_resource type="Script" uid="uid://brl88l8fl1w5u" path="res://viewports/rpgm/scripts/common_scripts/_rpgm_common_script_teleport.gd" id="23_tl7rd"]
+[ext_resource type="PackedScene" uid="uid://xtndm6lmqlnp" path="res://viewports/rpgm/scripts/common_events/_common_camera_position_v1.tscn" id="24_5ubha"]
 
 [sub_resource type="GDScript" id="GDScript_txeor"]
 script/source = "@tool
@@ -2877,6 +2879,11 @@ is_collision = true
 material = SubResource("ShaderMaterial_jmbn5")
 scale = Vector2(1.0166667, 1.0833334)
 
+[node name="_npc_4_6" parent="_map_4" unique_id=671048060 instance=ExtResource("22_g67hk")]
+position = Vector2(0, 1)
+messages = ["Need to clear more errors.", "Add more common events."]
+map_position = Vector2i(11, -24)
+
 [node name="_npc_4_4" type="Node2D" parent="_map_4" unique_id=159527930]
 position = Vector2(696, -1320)
 script = ExtResource("17_yspku")
@@ -2899,10 +2906,20 @@ is_collision = true
 
 [node name="_RPGM_Portrait" parent="_map_4/_npc_4_4/_RPGM_Script_B" unique_id=224678784 instance=ExtResource("15_2uryw")]
 
-[node name="_npc_0_2" parent="_map_4" unique_id=1699085269 instance=ExtResource("22_g67hk")]
-position = Vector2(-24, 120)
-messages = ["This is common talker message !", "Its backwards compatible too ~"]
-map_position = Vector2i(-1, 2)
+[node name="_npc_8_1" parent="_map_4" unique_id=1699085269 instance=ExtResource("22_g67hk")]
+position = Vector2(1896, -1176)
+messages = ["This is a new section of"]
+map_position = Vector2i(39, -25)
+
+[node name="_teleport_4_8" parent="_map_4" unique_id=583292115 node_paths=PackedStringArray("camera_position_node", "player_position_node") instance=ExtResource("22_jfmav")]
+position = Vector2(888, -1224)
+camera_position_node = NodePath("../../_map_9/_camera_position_9_1")
+player_position_node = NodePath("../_player_position_9_4")
+map_position = Vector2i(18, -26)
+
+[node name="_player_position_9_4" parent="_map_4" unique_id=779781816 instance=ExtResource("23_jfmav")]
+position = Vector2(1560, -1224)
+map_position = Vector2i(32, -26)
 
 [node name="_map_5" type="Node2D" parent="." unique_id=193673490]
 
@@ -3075,6 +3092,16 @@ is_collision = true
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_cyfpt")
 scale = Vector2(1.0166667, 1.0833334)
+
+[node name="_map_8" type="Node2D" parent="." unique_id=361323984]
+position = Vector2(0, -1)
+
+[node name="_map_9" type="Node2D" parent="." unique_id=40899911]
+position = Vector2(0, -1)
+
+[node name="_camera_position_9_1" parent="_map_9" unique_id=773341136 instance=ExtResource("24_5ubha")]
+position = Vector2(1800, -1223)
+map_position = Vector2i(37, -26)
 
 [node name="_teleports" type="Node2D" parent="." unique_id=1690504303]
 
@@ -4233,14 +4260,3 @@ grow_vertical = 2
 text = "PLR"
 label_settings = SubResource("LabelSettings_x570f")
 horizontal_alignment = 1
-
-[node name="_npc_0_0" parent="." unique_id=1910534453 instance=ExtResource("22_g67hk")]
-position = Vector2(24, 24)
-
-[node name="_teleport_0_0" parent="." unique_id=583292115 node_paths=PackedStringArray("camera_position_node", "player_position_node") instance=ExtResource("22_jfmav")]
-position = Vector2(888, -1224)
-camera_position_node = NodePath("../_camera_positions/_camera_position_3_1")
-player_position_node = NodePath("../_player_positions/_player_position_3_1")
-map_position = Vector2i(18, -26)
-
-[editable path="_teleport_0_0"]

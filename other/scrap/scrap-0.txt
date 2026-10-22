@@ -1,0 +1,17 @@
+how about separating the data in a godot resource, i felt it was overkill but u think thats best practice ?
+
+For where you are now, I agree with you: it's overkill. A Resource doesn't fix the problem you raised. If you rename a field in a custom Resource class, saved .tres files and inline resources lose that value the same way instance overrides do. It's another layer that needs the same care.
+
+When a Resource is worth it:
+- Shared data. Several NPCs or maps use the same dialogue or config. You edit one .tres and they all follow, without touching the instances.
+- Structured data. Dialogue grows beyond plain strings, e.g. each line needs a speaker, portrait, emotion or choices, or there are conditions and branches. An Array[DialogueLine] is much nicer to edit in the Inspector than parallel arrays.
+- Content separate from scenes. You want to edit or diff dialogue without opening _rpgm_map.tscn, which is already a huge file, or you want writing and level layout to change independently.
+- Presets. E.g. shopkeeper.tres and guard.tres as ready-made talker configs you pick from a dropdown.
+
+When it isn't: each NPC has a few unique lines that nothing else uses. That's your case today. A typed export on the root is simpler, and the data stays next to the NPC it belongs to.
+
+Things to know before you use one:
+- Resources are shared by reference. If your code changes a resource at runtime (e.g. data.messages.append(...) or a "has talked" flag), every instance using that .tres sees the change. Keep resources read-only at runtime and put state on the node, or use duplicate() or resource_local_to_scene.
+- Inline vs. saved .tres. A resource created inline in the Inspector is saved inside the map .tscn, so you lose the separation benefit. Save it as a .tres file when you want it shared or separate.
+
+What I'd do: keep plain typed exports for now, and switch to a Resource when one of those triggers actually shows up. Structured dialogue lines is the most likely first one, given where the talker is heading. The switch doesn't have to break anything. Add an @export var dialogue : DialogueData next to messages, prefer it when it's set, and fall back to messages otherwise. Old instances keep working, and you migrate them whenever you like.

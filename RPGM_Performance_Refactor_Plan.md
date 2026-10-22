@@ -45,21 +45,21 @@ Replace the immediate rebuild with a dirty flag. The collision tile list is only
 
 ```gdscript
 @export var map_position: Vector2i = Vector2i(0, 0):
-    set(v):
-        map_position = v
-        # CLAUDE: removed direct rebuild call here — now uses dirty flag to defer to _process
-        collision_dirty = true
-        if Engine.is_editor_hint(): _quantise_position()
+	set(v):
+		map_position = v
+		# CLAUDE: removed direct rebuild call here — now uses dirty flag to defer to _process
+		collision_dirty = true
+		if Engine.is_editor_hint(): _quantise_position()
 
 static var collision_dirty: bool = false
 
 func _process(delta: float) -> void:
-    if destination != map_position: state = State.Moving
-    else: state = State.Idle
-    # CLAUDE: deferred collision rebuild — runs at most once per frame regardless of how many movers moved
-    if collision_dirty:
-        _update_tiles_with_rpgm_collision()
-        collision_dirty = false
+	if destination != map_position: state = State.Moving
+	else: state = State.Idle
+	# CLAUDE: deferred collision rebuild — runs at most once per frame regardless of how many movers moved
+	if collision_dirty:
+		_update_tiles_with_rpgm_collision()
+		collision_dirty = false
 ```
 
 ---
@@ -78,18 +78,18 @@ Inside the collision rebuild loop, `get_active_script()` is called on each event
 
 ```gdscript
 func _update_tiles_with_rpgm_collision():
-    if get_map() == null: return
-    tiles_with_rpgm_collision = []
-    for m: _RPGM_Mover in get_map().find_children("*", "_RPGM_Mover"):
-        if m.get_parent() is _RPGM_Player: continue
-        # CLAUDE: use cached active_script from the event instead of calling get_active_script()
-        # which internally does another find_children walk — avoids O(n*m) tree searches
-        var event := m.get_parent() as _RPGM_Event
-        if event == null: continue
-        var active := event.active_script
-        if active == null or not active.is_collision: continue
-        tiles_with_rpgm_collision.append(m.map_position)
-    _update_tilemap_collision_debugger()
+	if get_map() == null: return
+	tiles_with_rpgm_collision = []
+	for m: _RPGM_Mover in get_map().find_children("*", "_RPGM_Mover"):
+		if m.get_parent() is _RPGM_Player: continue
+		# CLAUDE: use cached active_script from the event instead of calling get_active_script()
+		# which internally does another find_children walk — avoids O(n*m) tree searches
+		var event := m.get_parent() as _RPGM_Event
+		if event == null: continue
+		var active := event.active_script
+		if active == null or not active.is_collision: continue
+		tiles_with_rpgm_collision.append(m.map_position)
+	_update_tilemap_collision_debugger()
 ```
 
 Additionally, the outer `find_children("*", "_RPGM_Mover")` call inside the rebuild still happens every time. To reduce this further, cache the mover list on the map level (see Problem 3).
@@ -129,16 +129,16 @@ var _player_cache: _RPGM_Player
 var _area_cache: Area2D
 
 func _get_components():
-    parent = get_parent()
-    _rpgm_cache = find_parent("_RPGM")
-    _map_cache = find_parent("_RPGM_Map")
-    if _map_cache:
-        _player_cache = _map_cache.find_child("Player")
-    if parent.find_children("*", "_RPGM_Mover").size() > 0:
-        mover = parent.find_child("_RPGM_Mover")
-    if parent.find_children("*", "_RPGM_Portrait").size() > 0:
-        portrait = parent.find_child("_RPGM_Portrait")
-    _area_cache = parent.find_child("Area2D")
+	parent = get_parent()
+	_rpgm_cache = find_parent("_RPGM")
+	_map_cache = find_parent("_RPGM_Map")
+	if _map_cache:
+		_player_cache = _map_cache.find_child("Player")
+	if parent.find_children("*", "_RPGM_Mover").size() > 0:
+		mover = parent.find_child("_RPGM_Mover")
+	if parent.find_children("*", "_RPGM_Portrait").size() > 0:
+		portrait = parent.find_child("_RPGM_Portrait")
+	_area_cache = parent.find_child("Area2D")
 
 func get_core(): return find_parent("_Core") as _Core   # infrequent, leave as-is
 func get_rpgm(): return _rpgm_cache
@@ -161,12 +161,12 @@ var _area_cache: Area2D
 var _mover_cache: _RPGM_Mover
 
 func _ready():
-    _rpgm_cache = find_parent("_RPGM")
-    _map_cache = find_parent("_RPGM_Map")
-    if _map_cache:
-        _player_cache = _map_cache.find_child("Player")
-    _area_cache = find_child("Area2D")
-    _mover_cache = find_child("_RPGM_Mover")
+	_rpgm_cache = find_parent("_RPGM")
+	_map_cache = find_parent("_RPGM_Map")
+	if _map_cache:
+		_player_cache = _map_cache.find_child("Player")
+	_area_cache = find_child("Area2D")
+	_mover_cache = find_child("_RPGM_Mover")
 
 func get_rpgm(): return _rpgm_cache
 func get_map(): return _map_cache
@@ -191,14 +191,14 @@ Wrap the entire function body in an early return when not in a debug/editor cont
 
 ```gdscript
 func _update_tilemap_collision_debugger():
-    # CLAUDE: debug visualisation is expensive (queue_free + add_child per tile per rebuild)
-    # skip entirely in non-debug runtime builds
-    if not OS.is_debug_build() and not Engine.is_editor_hint():
-        return
-    for r: ColorRect in all_collision_debugging_rects:
-        r.queue_free()
-    all_collision_debugging_rects = []
-    # ... rest of function unchanged
+	# CLAUDE: debug visualisation is expensive (queue_free + add_child per tile per rebuild)
+	# skip entirely in non-debug runtime builds
+	if not OS.is_debug_build() and not Engine.is_editor_hint():
+		return
+	for r: ColorRect in all_collision_debugging_rects:
+		r.queue_free()
+	all_collision_debugging_rects = []
+	# ... rest of function unchanged
 ```
 
 ---
@@ -260,17 +260,17 @@ After Problem 1's fix is in place, replace the direct call with the dirty flag:
 
 ```gdscript
 func _update_active_script():
-    if active_script and active_script._is_activatable():
-        return
-    if active_script and not active_script._is_activatable():
-        active_script._on_deactivated()
+	if active_script and active_script._is_activatable():
+		return
+	if active_script and not active_script._is_activatable():
+		active_script._on_deactivated()
 
-    active_script = get_active_script()
-    if active_script:
-        active_script._on_activated()
-    # CLAUDE: replaced direct _update_tiles_with_rpgm_collision() call with dirty flag
-    # the rebuild now happens at most once per frame in _RPGM_Mover._process
-    _RPGM_Mover.collision_dirty = true
+	active_script = get_active_script()
+	if active_script:
+		active_script._on_activated()
+	# CLAUDE: replaced direct _update_tiles_with_rpgm_collision() call with dirty flag
+	# the rebuild now happens at most once per frame in _RPGM_Mover._process
+	_RPGM_Mover.collision_dirty = true
 ```
 
 ---
@@ -294,23 +294,23 @@ var tiles_with_rpgm_collision: Array[Vector2i] = []
 var collision_dirty: bool = false
 
 func mark_collision_dirty():
-    collision_dirty = true
+	collision_dirty = true
 
 func _process(_delta):
-    if collision_dirty:
-        _rebuild_collision_tiles()
-        collision_dirty = false
+	if collision_dirty:
+		_rebuild_collision_tiles()
+		collision_dirty = false
 
 func _rebuild_collision_tiles():
-    tiles_with_rpgm_collision = []
-    for m: _RPGM_Mover in find_children("*", "_RPGM_Mover"):
-        if m.get_parent() is _RPGM_Player: continue
-        var event := m.get_parent() as _RPGM_Event
-        if event == null: continue
-        var active := event.active_script
-        if active == null or not active.is_collision: continue
-        tiles_with_rpgm_collision.append(m.map_position)
-    _update_tilemap_collision_debugger()
+	tiles_with_rpgm_collision = []
+	for m: _RPGM_Mover in find_children("*", "_RPGM_Mover"):
+		if m.get_parent() is _RPGM_Player: continue
+		var event := m.get_parent() as _RPGM_Event
+		if event == null: continue
+		var active := event.active_script
+		if active == null or not active.is_collision: continue
+		tiles_with_rpgm_collision.append(m.map_position)
+	_update_tilemap_collision_debugger()
 ```
 
 **In `_RPGM_Mover.gd`:**
@@ -322,10 +322,10 @@ func _rebuild_collision_tiles():
 
 ```gdscript
 func tile_has_rpgm_collision(position: Vector2i) -> bool:
-    # CLAUDE: reads from map-owned collision list instead of static var on _RPGM_Mover
-    var map := get_map()
-    if map == null: return false
-    return map.tiles_with_rpgm_collision.has(position)
+	# CLAUDE: reads from map-owned collision list instead of static var on _RPGM_Mover
+	var map := get_map()
+	if map == null: return false
+	return map.tiles_with_rpgm_collision.has(position)
 ```
 
 - In the `map_position` setter, call `get_map().mark_collision_dirty()` if map is available.
