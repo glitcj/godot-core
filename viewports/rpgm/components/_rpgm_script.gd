@@ -179,6 +179,7 @@ func _activate():
 	visible = true
 	is_active = true
 	get_map().mark_collision_dirty()
+
 	get_event().update_active_scripts()
 
 func _deactivate():

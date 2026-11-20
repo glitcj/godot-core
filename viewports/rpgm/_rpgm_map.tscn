@@ -2880,7 +2880,7 @@ material = SubResource("ShaderMaterial_jmbn5")
 scale = Vector2(1.0166667, 1.0833334)
 
 [node name="_npc_4_6" parent="_map_4" unique_id=671048060 instance=ExtResource("22_g67hk")]
-position = Vector2(0, 1)
+position = Vector2(552, -1128)
 messages = ["Need to clear more errors.", "Add more common events."]
 map_position = Vector2i(11, -24)
 
@@ -2911,15 +2911,15 @@ position = Vector2(1896, -1176)
 messages = ["This is a new section of"]
 map_position = Vector2i(39, -25)
 
-[node name="_teleport_4_8" parent="_map_4" unique_id=583292115 node_paths=PackedStringArray("camera_position_node", "player_position_node") instance=ExtResource("22_jfmav")]
+[node name="_teleport_4_9" parent="_map_4" unique_id=583292115 node_paths=PackedStringArray("camera_position_node", "player_position_node") instance=ExtResource("22_jfmav")]
 position = Vector2(888, -1224)
 camera_position_node = NodePath("../../_map_9/_camera_position_9_1")
-player_position_node = NodePath("../_player_position_9_4")
+player_position_node = NodePath("../../_map_9/_player_position_9_4")
 map_position = Vector2i(18, -26)
 
-[node name="_player_position_9_4" parent="_map_4" unique_id=779781816 instance=ExtResource("23_jfmav")]
-position = Vector2(1560, -1224)
-map_position = Vector2i(32, -26)
+[node name="_player_position_4_9" parent="_map_4" unique_id=779781816 instance=ExtResource("23_jfmav")]
+position = Vector2(840, -1224)
+map_position = Vector2i(17, -26)
 
 [node name="_map_5" type="Node2D" parent="." unique_id=193673490]
 
@@ -3102,6 +3102,16 @@ position = Vector2(0, -1)
 [node name="_camera_position_9_1" parent="_map_9" unique_id=773341136 instance=ExtResource("24_5ubha")]
 position = Vector2(1800, -1223)
 map_position = Vector2i(37, -26)
+
+[node name="_teleport_9_4" parent="_map_9" unique_id=2023954430 node_paths=PackedStringArray("camera_position_node", "player_position_node") instance=ExtResource("22_jfmav")]
+position = Vector2(1464, -1223)
+camera_position_node = NodePath("../../_camera_positions/_camera_position_4_1")
+player_position_node = NodePath("../../_map_4/_player_position_4_9")
+map_position = Vector2i(30, -26)
+
+[node name="_player_position_9_4" parent="_map_9" unique_id=310800555 instance=ExtResource("23_jfmav")]
+position = Vector2(1512, -1223)
+map_position = Vector2i(31, -26)
 
 [node name="_teleports" type="Node2D" parent="." unique_id=1690504303]
 

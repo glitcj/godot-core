@@ -2,6 +2,10 @@
 Claude ignores this files, this file is only for the human developer to see, use, and maintain.
 
 
+- Make RPGM Editor SUPER TIGHT, Super Tight means: The user does NOT TOUCH ANY CODE, only plays with the editor. E.g., Running lambdas is MUST NOT BE CODE. i.e., Add _Core_Lambda and _Core_Lambda_Queue
+
+- Add _Core_Lambda and _Core_Lambda_Queue
+
 - Refactor and finish _RPGM_Script
 
 - Remove Disctinction between RPGM and DGM, both share same lambdas and system

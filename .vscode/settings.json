@@ -1,4 +1,5 @@
 {
   "workbench.colorTheme": "Solarized Light",
-  "zenMode.centerLayout": false
+  "zenMode.centerLayout": false,
+  "godotTools.editorPath.godot4": "/Applications/Godot.app"
 }
