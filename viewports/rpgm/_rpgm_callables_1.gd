@@ -1,7 +1,13 @@
 # CLAUDE: extends _RPGM_Node — get_rpgm/get_map/get_player now inherited
 # (lazy cached); the lambdas nodes in both scenes were retyped Node -> Node2D
+
+
+# i0 this is a Custom Typed Node and NOT an instanced .tscn
+# i0 custom type nodes are fuly defined by their attached script
+# and do not need children to be defined fully
+# (they can generate children if needed)
 extends _RPGM_Node
-class_name _RPGM_Lambdas
+class_name _RPGM_Callables
 
 @onready var core : _Core = find_parent("_Core")
 

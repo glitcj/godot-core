@@ -9,6 +9,21 @@ signal frame_started
 signal area_entered_by_player
 signal actioned
 
+
+
+
+@export_category("Lambdas")
+@export var on_action : Array[_RPGM_Action]
+@export var on_frame : Array[_RPGM_Action]
+@export var on_area_entered : Array[_RPGM_Action]
+@export var on_within_area : Array[_RPGM_Action]
+
+
+
+
+
+@export_category("Conditions")
+
 @export var interrupt_player := false
 @export var is_collision := false
 @export var is_active = true

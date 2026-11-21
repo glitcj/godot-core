@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://bc6scuw6gftg0"]
 
 [ext_resource type="Script" uid="uid://3b6nx2ubod3b" path="res://viewports/rpgm/_rpgm_map.gd" id="1_txeor"]
-[ext_resource type="Script" uid="uid://c6484wl627c5c" path="res://viewports/rpgm/_rpgm_lambdas.gd" id="2_vd6wf"]
+[ext_resource type="Script" uid="uid://c6484wl627c5c" path="res://viewports/rpgm/_rpgm_callables_1.gd" id="2_vd6wf"]
 [ext_resource type="Script" uid="uid://da77evou2la0g" path="res://viewports/rpgm/components/_rpgm_variables.gd" id="3_6le0f"]
 [ext_resource type="Texture2D" uid="uid://cir837rpp1qt3" path="res://assets/rpgmaker/mv/tilesets/Dungeon_A1.png" id="4_uc14m"]
 [ext_resource type="Texture2D" uid="uid://cklccjgem4vvs" path="res://assets/ninja/Backgrounds/Tilesets/TilesetFloor.png" id="5_kl3l0"]
@@ -16,14 +16,15 @@
 [ext_resource type="PackedScene" uid="uid://ca8vvptjr324n" path="res://viewports/rpgm/components/_rpgm_portrait.tscn" id="15_2uryw"]
 [ext_resource type="Shader" uid="uid://5dmscal31dgu" path="res://viewports/rpgm/shaders/_random.gdshader" id="17_txeor"]
 [ext_resource type="Script" uid="uid://dxkbij13lf7tg" path="res://viewports/rpgm/components/_rpgm_event.gd" id="17_yspku"]
-[ext_resource type="Script" uid="uid://ipwj2rxnrjv3" path="res://viewports/rpgm/scripts/common_scripts/_rpgm_common_script_talker.gd" id="18_xp5op"]
+[ext_resource type="Script" uid="uid://ipwj2rxnrjv3" path="res://viewports/rpgm/common/common_scripts/_rpgm_common_script_talker.gd" id="18_xp5op"]
 [ext_resource type="Shader" uid="uid://cc5d7uonuhvo" path="res://viewports/rpgm/shaders/_sphere_and_correct_rgb_belnding.gdshader" id="19_cyfpt"]
 [ext_resource type="Script" uid="uid://t32s55k36xah" path="res://viewports/rpgm/components/_rpgm_script.gd" id="20_txeor"]
-[ext_resource type="PackedScene" uid="uid://ygtlr5jrj6hf" path="res://viewports/rpgm/scripts/common_events/_common_talker_v2.tscn" id="22_g67hk"]
-[ext_resource type="PackedScene" uid="uid://cnesa484f115s" path="res://viewports/rpgm/scripts/common_events/_common_teleport_v1.tscn" id="22_jfmav"]
-[ext_resource type="PackedScene" uid="uid://du6w5cvgavu52" path="res://viewports/rpgm/scripts/common_events/_common_player_position_v1.tscn" id="23_jfmav"]
-[ext_resource type="Script" uid="uid://brl88l8fl1w5u" path="res://viewports/rpgm/scripts/common_scripts/_rpgm_common_script_teleport.gd" id="23_tl7rd"]
-[ext_resource type="PackedScene" uid="uid://xtndm6lmqlnp" path="res://viewports/rpgm/scripts/common_events/_common_camera_position_v1.tscn" id="24_5ubha"]
+[ext_resource type="PackedScene" uid="uid://ygtlr5jrj6hf" path="res://viewports/rpgm/common/common_events/_common_talker_v2.tscn" id="22_g67hk"]
+[ext_resource type="PackedScene" uid="uid://cnesa484f115s" path="res://viewports/rpgm/common/common_events/_common_teleport_v1.tscn" id="22_jfmav"]
+[ext_resource type="Script" uid="uid://bo0dmi82n1uvj" path="res://viewports/rpgm/lambdas/_rpgm_lambda.gd" id="22_x4k2m"]
+[ext_resource type="PackedScene" uid="uid://du6w5cvgavu52" path="res://viewports/rpgm/common/common_events/_common_player_position_v1.tscn" id="23_jfmav"]
+[ext_resource type="Script" uid="uid://brl88l8fl1w5u" path="res://viewports/rpgm/common/common_scripts/_rpgm_common_script_teleport.gd" id="23_tl7rd"]
+[ext_resource type="PackedScene" uid="uid://xtndm6lmqlnp" path="res://viewports/rpgm/common/common_events/_common_camera_position_v1.tscn" id="24_5ubha"]
 
 [sub_resource type="GDScript" id="GDScript_txeor"]
 script/source = "@tool
@@ -2067,7 +2068,7 @@ script/source = "extends _RPGM_Script
 
 
 func _on_action():
-	await get_lambdas().show_messages([\"Wait here.\"])
+	await get_callables().show_messages([\"Wait here.\"])
 	await get_tree().create_timer(1).timeout
 	await get_event().get_mover().walk(Vector2i(-1, 0))
 	await get_tree().create_timer(1).timeout
@@ -2083,7 +2084,7 @@ func _on_action():
 	await get_tree().create_timer(1).timeout
 	await get_map().find_event(\"_npc_1_1\").get_mover().face(Vector2(0, 1))
 	
-	await get_lambdas().show_messages([\"Okay you can go now.\"])
+	await get_callables().show_messages([\"Okay you can go now.\"])
 "
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uc14m"]
@@ -2095,9 +2096,9 @@ extends _RPGM_Script
 var slide_duration = 1.0
 
 func _on_viewport_start():
-	await get_rpgm().get_lambdas().show_messages([\"It should start soon..\"])
-	await get_lambdas().transport_camera(get_map().find_event(\"_camera_position_4_1\"))
-	await get_lambdas().fade_in()
+	await get_rpgm().get_callables().show_messages([\"It should start soon..\"])
+	await get_callables().transport_camera(get_map().find_event(\"_camera_position_4_1\"))
+	await get_callables().fade_in()
 	get_parent().remove() # CLAUDE: save/load P3 — removal as saveable state, not queue_free
 "
 
@@ -2171,9 +2172,9 @@ func _on_viewport_start():
 
 func _on_frame():
 	if get_variables().l2_enemies_count == 2:
-		await get_rpgm().get_lambdas().show_messages([\"NPC: You got them !\", \"NPC: Go to the next location..\"])
-		get_lambdas().transport_player(get_map().find_child(\"_player_position_5_1\"))
-		get_lambdas().transport_camera(get_map().find_child(\"_camera_position_5_1\"))
+		await get_rpgm().get_callables().show_messages([\"NPC: You got them !\", \"NPC: Go to the next location..\"])
+		get_callables().transport_player(get_map().find_child(\"_player_position_5_1\"))
+		get_callables().transport_camera(get_map().find_child(\"_camera_position_5_1\"))
 		parent.remove() # CLAUDE: save/load P3 — removal as saveable state, not queue_free
 "
 
@@ -2202,7 +2203,7 @@ func _on_viewport_finished(selection):
 	get_core().remove_viewport(_viewport)
 	await get_rpgm().activated
 	
-	await get_lambdas().show_messages([\"You selected %s.\" % selection])
+	await get_callables().show_messages([\"You selected %s.\" % selection])
 	returned_from_viewport_and_finished.emit()
 
 
@@ -2228,7 +2229,7 @@ func _on_viewport_finished(selection):
 	get_core().change_viewport(get_rpgm())
 	await get_rpgm().activated
 	
-	await get_lambdas().show_messages([\"You selected %s.\" % selection])
+	await get_callables().show_messages([\"You selected %s.\" % selection])
 	returned_from_viewport_and_finished.emit()
 
 
@@ -2248,7 +2249,7 @@ func _is_active() -> bool: return get_event().state == _RPGM_Event.EventState.A
 
 func _on_action():
 	await super()
-	await get_lambdas().fade_out()
+	await get_callables().fade_out()
 	get_event().state = _RPGM_Event.EventState.B
 "
 
@@ -2259,15 +2260,50 @@ func _is_active() -> bool: return get_event().state == _RPGM_Event.EventState.B
 
 func _on_action():
 	await super()
-	await get_lambdas().fade_in()
+	await get_callables().fade_in()
 	get_event().state = _RPGM_Event.EventState.A
 "
+
+[sub_resource type="GDScript" id="GDScript_hlfob"]
+script/source = "extends Node2D
+
+
+@export var action_queue : Array[_RPGM_Action]
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="Resource" id="Resource_5ubha"]
+script = ExtResource("22_x4k2m")
+messages = Array[String](["The thing about resources.."])
+metadata/_custom_type_script = "uid://bo0dmi82n1uvj"
+
+[sub_resource type="Resource" id="Resource_lisvm"]
+script = ExtResource("22_x4k2m")
+messages = Array[String](["Is that they can be instanced on the go."])
+metadata/_custom_type_script = "uid://bo0dmi82n1uvj"
+
+[sub_resource type="Resource" id="Resource_v270i"]
+script = ExtResource("22_x4k2m")
+messages = Array[String](["And STILL, they can hold functions."])
+metadata/_custom_type_script = "uid://bo0dmi82n1uvj"
+
+[sub_resource type="Resource" id="Resource_ctvm8"]
+script = ExtResource("22_x4k2m")
+messages = Array[String](["And if you want them to see a node, you can just pass it in."])
+metadata/_custom_type_script = "uid://bo0dmi82n1uvj"
 
 [sub_resource type="GDScript" id="GDScript_38inc"]
 script/source = "extends _RPGM_Script
 
 func _on_action_within_area():
-	await get_lambdas().show_messages([\"Congratulation.\", \"You neither won or lost.\", \"You ended.\"])
+	await get_callables().show_messages([\"Congratulation.\", \"You neither won or lost.\", \"You ended.\"])
 	await get_tree().create_timer(.5).timeout
 	get_tree().quit()
 "
@@ -2288,13 +2324,13 @@ func _on_viewport_finished():
 	get_core().change_viewport(get_rpgm())
 	await get_rpgm().activated
 	
-	await get_lambdas().show_messages([\"You neither won nor lost.\"])
+	await get_callables().show_messages([\"You neither won nor lost.\"])
 	returned_from_viewport_and_finished.emit()
 
 
 func _on_action():
 	await get_mover().face(_get_direction_to_player())
-	await get_lambdas().show_messages([\"This will start the Flying Birds Mario Party mini game.\"])
+	await get_callables().show_messages([\"This will start the Flying Birds Mario Party mini game.\"])
 	await get_tree().create_timer(1).timeout
 	
 	_viewport.finished.connect(_on_viewport_finished, CONNECT_ONE_SHOT)
@@ -2318,14 +2354,14 @@ func _on_viewport_finished():
 	get_core().change_viewport(get_rpgm())
 	await get_rpgm().activated
 	
-	await get_lambdas().show_messages([\"You neither won nor lost.\"])
+	await get_callables().show_messages([\"You neither won nor lost.\"])
 	returned_from_viewport_and_finished.emit()
 	
 func _on_action():
 	var _viewport = get_core().get_scene(\"_DGM\") as _DGM
 	
 	await get_mover().face(_get_direction_to_player())
-	await get_lambdas().show_messages([\"This will start the Mole Hole Mario Party mini game.\"])
+	await get_callables().show_messages([\"This will start the Mole Hole Mario Party mini game.\"])
 	await get_tree().create_timer(1).timeout
 	
 	_viewport.finished.connect(_on_viewport_finished, CONNECT_ONE_SHOT)
@@ -2372,7 +2408,7 @@ script/source = "extends _RPGM_Script
 
 
 func _on_action():
-	await get_rpgm().get_lambdas().show_messages([\"Add third-event control.\"])
+	await get_rpgm().get_callables().show_messages([\"Add third-event control.\"])
 "
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a8qaw"]
@@ -2395,13 +2431,13 @@ func _on_viewport_finished():
 
 func _on_action():
 	await get_mover().face(_get_direction_to_player())
-	await get_lambdas().show_messages([\"This will start the Kalam De Go mini game.\"])
+	await get_callables().show_messages([\"This will start the Kalam De Go mini game.\"])
 	await get_tree().create_timer(1).timeout
 	
 	_viewport.finished.connect(_on_viewport_finished, CONNECT_ONE_SHOT)
 	get_core().change_viewport(get_core().get_scene(\"_Birds\"))
 	await returned_from_viewport_and_finished
-	await get_lambdas().show_messages([\"You neither won nor lost.\"])
+	await get_callables().show_messages([\"You neither won nor lost.\"])
 "
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yspku"]
@@ -2477,7 +2513,7 @@ text = "- Finish RPGM Engine > Add Tests > Make SUPER SUPER tight > Make simple 
 "
 label_settings = SubResource("LabelSettings_6le0f")
 
-[node name="_RPGM_Lambdas" type="Node2D" parent="." unique_id=1310010166]
+[node name="_RPGM_Callables" type="Node2D" parent="." unique_id=1310010166]
 unique_name_in_owner = true
 script = ExtResource("2_vd6wf")
 metadata/_custom_type_script = "uid://c6484wl627c5c"
@@ -2832,7 +2868,6 @@ map_position = Vector2i(13, -26)
 script = ExtResource("18_xp5op")
 messages = Array[String](["I am talking a tree..", "With nothing much to say.", "Hmm mmmm hmm.."])
 is_collision = true
-metadata/_custom_type_script = "uid://ipwj2rxnrjv3"
 
 [node name="_npc_4_2" type="Node2D" parent="_map_4" unique_id=519240694]
 position = Vector2(-24, 72)
@@ -2928,6 +2963,10 @@ map_position = Vector2i(15, -24)
 [node name="_npc_4_7" parent="_map_4" unique_id=1447790585 instance=ExtResource("22_g67hk")]
 position = Vector2(744, -1320)
 map_position = Vector2i(15, -28)
+
+[node name="Node2D" type="Node2D" parent="_map_4/_npc_4_7" unique_id=1375265053]
+script = SubResource("GDScript_hlfob")
+action_queue = Array[ExtResource("22_x4k2m")]([SubResource("Resource_5ubha"), SubResource("Resource_lisvm"), SubResource("Resource_v270i"), SubResource("Resource_ctvm8")])
 
 [node name="_map_5" type="Node2D" parent="." unique_id=193673490]
 

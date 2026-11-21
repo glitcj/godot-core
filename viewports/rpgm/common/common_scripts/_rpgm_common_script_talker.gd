@@ -19,6 +19,6 @@ func _on_exited_range():
 func _on_action():
 	await get_mover().face(_get_direction_to_player())
 	if "messages" in get_event() and get_event().messages != []:
-		await get_rpgm().get_lambdas().show_messages(get_event().messages)
+		await get_rpgm().get_callables().show_messages(get_event().messages)
 	elif messages != []:
-		await get_rpgm().get_lambdas().show_messages(messages)
+		await get_rpgm().get_callables().show_messages(messages)
