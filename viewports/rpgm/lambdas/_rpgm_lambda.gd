@@ -1,16 +1,5 @@
-class_name _RPGM_Action
-extends Resource
+extends _Core_Lambda
+class_name _RPGM_Lambda
 
-@export var messages : Array[String] = ["Empty array."]
-
-func run(_rpgm_map : _RPGM_Map):
+func run(rpgm_script : _RPGM_Script):
 	return
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass

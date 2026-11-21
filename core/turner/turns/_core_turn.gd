@@ -9,9 +9,7 @@ var scene : _Core_Viewport
 var turn_name : String
 var turn_colour : Color
 var turn_wait_time : float = 5.0
-var show_in_turnboard : bool = true
-
-
+# var show_in_turnboard : bool = true
 
 
 func get_core(): return find_parent("_Core")

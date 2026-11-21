@@ -13,7 +13,7 @@ var current_viewport : _Core_Viewport
 @onready var turner : _Core_Turner = $Turner
 
 func get_scene(_name): return find_child(_name) as _Core_Viewport
-func get_callables(): return find_child("_Core_Lambdas") as _Core_Lambdas
+func get_callables(): return find_child("_Core_Callables") as _Core_Callables
 func get_variables(): return find_child("_Core_Variables") as _Core_Variables
 func get_log(): return %_Core_Log as _Core_Log
 
@@ -90,44 +90,18 @@ func test_log(): return "Test"
 func _log():
 	%_Core_Log.add_log(test_log)
 	%_Core_Log.add_log(func fps(): return "FPS %s" % str(Engine.get_frames_per_second()))
-
-
-
-
-
-
-
-
-
-
-
-
-"""
-
-- - - - - - - - - - - - - - - - - - - - - - - - - 
-
-
-signal returned_from_viewport_and_finished
-@onready var _viewport = get_core().get_scene("_Birds") as _Birds
-
-
-# adjust _on_viewport_finished such that it takes in 
-# the parameters returned from the connected _Core_Viewport
-func _on_viewport_finished():
-	get_core().change_viewport(get_rpgm())
-	await get_rpgm().activated
-	returned_from_viewport_and_finished.emit()
-
-
-func _on_action():
-	await get_mover().face(_get_direction_to_player())
-	await get_callables().show_messages(["This will start the Kalam De Go mini game."])
-	await get_tree().create_timer(1).timeout
 	
-	_viewport.finished.connect(_on_viewport_finished, CONNECT_ONE_SHOT)
-	get_core().change_viewport(get_core().get_scene("_Birds"))
-	await returned_from_viewport_and_finished
-	await get_callables().show_messages(["You neither won nor lost."])
-
-
-"""
+func run_lambda_queue(rpgm_script : _RPGM_Script, lambda_queue : Array):
+	if lambda_queue == []: return
+	var processed = []
+	while true:
+		if lambda_queue == []: break
+		var lambda = lambda_queue.pop_front() as _RPGM_Lambda
+		await lambda.run(rpgm_script)
+		processed.append(lambda)
+		
+	# i0 this way breaks bcs it means the 
+	# lambda_queue already assigned to the 
+	# node stays []
+	# if lambda_queue == []: break
+	for p in processed: lambda_queue.append(p)

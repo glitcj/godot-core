@@ -40,5 +40,5 @@ func _update_hud():
 func insert_turn(_turn : _Core_Turn, _position = 0):
 	turn_queue.insert(_position, _turn)
 
-func insert_lambda(_callable : Callable):
-	insert_turn(_Core_Turn_Lambda.new(_callable))
+func insert_lambda(_lambda : _Core_Lambda):
+	insert_turn(_Core_Turn_Lambda.new(_lambda))

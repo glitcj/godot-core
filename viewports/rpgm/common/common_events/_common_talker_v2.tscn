@@ -21,7 +21,11 @@ script/source = "extends _RPGM_Common_Script_Talker
 
 func _is_active(): return true
 func _on_action():
-	await super()
+	# i0 check lambda queue
+	if on_action == []: 
+		await super()
+	else: 
+		await get_core().run_lambda_queue(self, on_action)
 "
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vd6wf"]

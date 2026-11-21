@@ -2,6 +2,18 @@
 Claude ignores this files, this file is only for the human developer to see, use, and maintain.
 
 
+- Complete LAMBDA AS RESOURCE and deprecate callables_1
+
+- Code Dev v.s. Data Dev Finish COMPLETE EDITOR that does not need scipts at all
+
+- Run the Event Creating via lambda queues flow several times until comfortable
+
+- Replace all existing events with Lambda Queued events
+
+- Replace _RPGM with _RPGM_Viewport and _RPGM_Map with _RPGM ? Same for _DGM
+
+- Refactor Viewport to be super clean and clear
+
 - Make RPGM Editor SUPER TIGHT, Super Tight means: The user does NOT TOUCH ANY CODE, only plays with the editor. E.g., Running lambdas is MUST NOT BE CODE. i.e., Add _Core_Lambda and _Core_Lambda_Queue
 
 - Add _Core_Lambda and _Core_Lambda_Queue

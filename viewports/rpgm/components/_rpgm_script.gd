@@ -13,10 +13,10 @@ signal actioned
 
 
 @export_category("Lambdas")
-@export var on_action : Array[_RPGM_Action]
-@export var on_frame : Array[_RPGM_Action]
-@export var on_area_entered : Array[_RPGM_Action]
-@export var on_within_area : Array[_RPGM_Action]
+@export var on_action : Array[_RPGM_Lambda]
+@export var on_frame : Array[_RPGM_Lambda]
+@export var on_area_entered : Array[_RPGM_Lambda]
+@export var on_within_area : Array[_RPGM_Lambda]
 
 
 
@@ -72,7 +72,7 @@ func _ready():
 func bind_triggers():
 	var trigger_callables = [
 		_on_within_range, _on_viewport_start, 
-		_on_action_within_area,
+		# _on_action_within_area,
 		_on_frame, _on_area_entered
 		]
 	for c : Callable in trigger_callables:
@@ -80,7 +80,7 @@ func bind_triggers():
 	
 	
 	actioned.connect(_wrapped_callable.bind(_on_action))
-	actioned_within_area.connect(_wrapped_callable.bind(_on_action_within_area))
+	# actioned_within_area.connect(_wrapped_callable.bind(_on_action_within_area))
 	frame_started.connect(_wrapped_callable.bind(_on_frame))
 	# get_rpgm().started.connect(_wrapped_callable.bind(_on_viewport_start))
 	# get_rpgm().started.connect(_wrapped_callable.bind(_on_viewport_start))
@@ -187,8 +187,8 @@ func _on_frame():
 func _on_within_range():
 	pass
 
-func _on_action_within_area():
-	pass
+# func _on_action_within_area():
+# 	pass
 
 func _activate():
 	visible = true

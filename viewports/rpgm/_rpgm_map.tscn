@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://bc6scuw6gftg0"]
 
 [ext_resource type="Script" uid="uid://3b6nx2ubod3b" path="res://viewports/rpgm/_rpgm_map.gd" id="1_txeor"]
-[ext_resource type="Script" uid="uid://c6484wl627c5c" path="res://viewports/rpgm/_rpgm_callables_1.gd" id="2_vd6wf"]
+[ext_resource type="Script" uid="uid://c6484wl627c5c" path="res://viewports/rpgm/callables/_rpgm_callables_1.gd" id="2_vd6wf"]
 [ext_resource type="Script" uid="uid://da77evou2la0g" path="res://viewports/rpgm/components/_rpgm_variables.gd" id="3_6le0f"]
 [ext_resource type="Texture2D" uid="uid://cir837rpp1qt3" path="res://assets/rpgmaker/mv/tilesets/Dungeon_A1.png" id="4_uc14m"]
 [ext_resource type="Texture2D" uid="uid://cklccjgem4vvs" path="res://assets/ninja/Backgrounds/Tilesets/TilesetFloor.png" id="5_kl3l0"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://cnesa484f115s" path="res://viewports/rpgm/common/common_events/_common_teleport_v1.tscn" id="22_jfmav"]
 [ext_resource type="Script" uid="uid://bo0dmi82n1uvj" path="res://viewports/rpgm/lambdas/_rpgm_lambda.gd" id="22_x4k2m"]
 [ext_resource type="PackedScene" uid="uid://du6w5cvgavu52" path="res://viewports/rpgm/common/common_events/_common_player_position_v1.tscn" id="23_jfmav"]
+[ext_resource type="Script" uid="uid://mhwrdc5y8886" path="res://viewports/rpgm/lambdas/_rpgm_lambda_show_messages.gd" id="23_lisvm"]
 [ext_resource type="Script" uid="uid://brl88l8fl1w5u" path="res://viewports/rpgm/common/common_scripts/_rpgm_common_script_teleport.gd" id="23_tl7rd"]
 [ext_resource type="PackedScene" uid="uid://xtndm6lmqlnp" path="res://viewports/rpgm/common/common_events/_common_camera_position_v1.tscn" id="24_5ubha"]
 
@@ -2264,40 +2265,20 @@ func _on_action():
 	get_event().state = _RPGM_Event.EventState.A
 "
 
-[sub_resource type="GDScript" id="GDScript_hlfob"]
-script/source = "extends Node2D
-
-
-@export var action_queue : Array[_RPGM_Action]
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-"
-
-[sub_resource type="Resource" id="Resource_5ubha"]
-script = ExtResource("22_x4k2m")
-messages = Array[String](["The thing about resources.."])
-metadata/_custom_type_script = "uid://bo0dmi82n1uvj"
+[sub_resource type="Resource" id="Resource_x4k2m"]
+script = ExtResource("23_lisvm")
+messages = Array[String](["Change to turner.", "It would seem that.."])
+metadata/_custom_type_script = "uid://mhwrdc5y8886"
 
 [sub_resource type="Resource" id="Resource_lisvm"]
-script = ExtResource("22_x4k2m")
-messages = Array[String](["Is that they can be instanced on the go."])
-metadata/_custom_type_script = "uid://bo0dmi82n1uvj"
+script = ExtResource("23_lisvm")
+messages = Array[String](["Resource can define functions, and see children via a passed in proxy node."])
+metadata/_custom_type_script = "uid://mhwrdc5y8886"
 
 [sub_resource type="Resource" id="Resource_v270i"]
-script = ExtResource("22_x4k2m")
-messages = Array[String](["And STILL, they can hold functions."])
-metadata/_custom_type_script = "uid://bo0dmi82n1uvj"
-
-[sub_resource type="Resource" id="Resource_ctvm8"]
-script = ExtResource("22_x4k2m")
-messages = Array[String](["And if you want them to see a node, you can just pass it in."])
-metadata/_custom_type_script = "uid://bo0dmi82n1uvj"
+script = ExtResource("23_lisvm")
+messages = Array[String](["Bring back Core Turner pls, what was called \"Core Turn\" before is called Core Lambda now"])
+metadata/_custom_type_script = "uid://mhwrdc5y8886"
 
 [sub_resource type="GDScript" id="GDScript_38inc"]
 script/source = "extends _RPGM_Script
@@ -2960,13 +2941,12 @@ map_position = Vector2i(17, -26)
 position = Vector2(744, -1128)
 map_position = Vector2i(15, -24)
 
-[node name="_npc_4_7" parent="_map_4" unique_id=1447790585 instance=ExtResource("22_g67hk")]
+[node name="_npc_0_1" parent="_map_4" unique_id=1471214746 instance=ExtResource("22_g67hk")]
 position = Vector2(744, -1320)
 map_position = Vector2i(15, -28)
 
-[node name="Node2D" type="Node2D" parent="_map_4/_npc_4_7" unique_id=1375265053]
-script = SubResource("GDScript_hlfob")
-action_queue = Array[ExtResource("22_x4k2m")]([SubResource("Resource_5ubha"), SubResource("Resource_lisvm"), SubResource("Resource_v270i"), SubResource("Resource_ctvm8")])
+[node name="_common_script_talker_1" parent="_map_4/_npc_0_1" index="0" unique_id=645140305]
+on_action = Array[ExtResource("22_x4k2m")]([SubResource("Resource_x4k2m"), SubResource("Resource_lisvm"), SubResource("Resource_v270i")])
 
 [node name="_map_5" type="Node2D" parent="." unique_id=193673490]
 
@@ -4317,3 +4297,5 @@ grow_vertical = 2
 text = "PLR"
 label_settings = SubResource("LabelSettings_x570f")
 horizontal_alignment = 1
+
+[editable path="_map_4/_npc_0_1"]

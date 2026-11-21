@@ -1,5 +1,3 @@
-# CLAUDE: extends _RPGM_Node — get_rpgm/get_map/get_player now inherited
-# (lazy cached); the lambdas nodes in both scenes were retyped Node -> Node2D
 
 
 # i0 this is a Custom Typed Node and NOT an instanced .tscn
@@ -12,7 +10,6 @@ class_name _RPGM_Callables
 @onready var core : _Core = find_parent("_Core")
 
 func get_camera(): return get_map().find_child("Camera2D") as Camera2D
-
 
 func transport_player(player_position_node : _RPGM_Event):
 	assert(player_position_node is _RPGM_Event)
