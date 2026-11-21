@@ -2908,7 +2908,7 @@ is_collision = true
 
 [node name="_npc_8_1" parent="_map_4" unique_id=1699085269 instance=ExtResource("22_g67hk")]
 position = Vector2(1896, -1176)
-messages = ["This is a new section of"]
+messages = ["This is a new section of", null]
 map_position = Vector2i(39, -25)
 
 [node name="_teleport_4_9" parent="_map_4" unique_id=583292115 node_paths=PackedStringArray("camera_position_node", "player_position_node") instance=ExtResource("22_jfmav")]
@@ -2920,6 +2920,14 @@ map_position = Vector2i(18, -26)
 [node name="_player_position_4_9" parent="_map_4" unique_id=779781816 instance=ExtResource("23_jfmav")]
 position = Vector2(840, -1224)
 map_position = Vector2i(17, -26)
+
+[node name="_npc_0_0" parent="_map_4" unique_id=288827950 instance=ExtResource("22_g67hk")]
+position = Vector2(744, -1128)
+map_position = Vector2i(15, -24)
+
+[node name="_npc_4_7" parent="_map_4" unique_id=1447790585 instance=ExtResource("22_g67hk")]
+position = Vector2(744, -1320)
+map_position = Vector2i(15, -28)
 
 [node name="_map_5" type="Node2D" parent="." unique_id=193673490]
 
