@@ -22,7 +22,7 @@ func get_area() -> Area2D: return _cached(&"area", func(): return find_child("Ar
 # _RPGM_Mover directly, so the node itself is the mover (null for non-movers)
 func get_mover() -> _RPGM_Mover: return self as _RPGM_Mover
 func get_portrait() -> _RPGM_Portrait: return _cached(&"portrait", func(): return find_child("_RPGM_Portrait")) as _RPGM_Portrait
-# func get_variables(): return _RPGM_Variables
+# func get_data(): return _RPGM_Variables
 
 # CLAUDE: one-line way to run a lambda from code, instead of
 # X.new(args).run(self): `await run_lambda(X.new(args))`. Holding the lambda

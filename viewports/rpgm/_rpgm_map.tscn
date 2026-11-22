@@ -2121,7 +2121,7 @@ func _is_active() -> bool:
 	return true
 
 func _on_area_entered():
-	get_variables().l2_enemies_count += 1
+	get_data().l2_enemies_count += 1
 	parent.remove() # CLAUDE: save/load P3 — removal as saveable state, not queue_free
 "
 
@@ -2135,7 +2135,7 @@ func _is_active() -> bool:
 	return true
 
 func _on_area_entered():
-	get_variables().l2_enemies_count += 1
+	get_data().l2_enemies_count += 1
 	parent.remove() # CLAUDE: save/load P3 — removal as saveable state, not queue_free
 "
 
@@ -2149,7 +2149,7 @@ func _is_active() -> bool:
 	return true
 	
 func _on_area_entered():
-	get_variables().l2_enemies_count += 1
+	get_data().l2_enemies_count += 1
 	parent.remove() # CLAUDE: save/load P3 — removal as saveable state, not queue_free
 "
 
@@ -2163,7 +2163,7 @@ func _is_active() -> bool:
 	return true
 	
 func _on_area_entered():
-	get_variables().l2_enemies_count += 1
+	get_data().l2_enemies_count += 1
 	parent.remove() # CLAUDE: save/load P3 — removal as saveable state, not queue_free
 "
 
@@ -2181,7 +2181,7 @@ func _on_viewport_start():
 
 func _on_frame():
 
-	if get_variables().l2_enemies_count == 2:
+	if get_data().l2_enemies_count == 2:
 		# CLAUDE: _RPGM_Callables removed — the action is its own lambda, run via run_lambda
 		await run_lambda(_RPGM_Lambda_Show_Messages.new([\"NPC: You got them !\", \"NPC: Go to the next location..\"]))
 		run_lambda(_RPGM_Lambda_Transport_Player.new(get_map().find_child(\"_player_position_5_1\")))

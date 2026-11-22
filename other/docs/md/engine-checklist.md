@@ -49,7 +49,7 @@ resists it.
       `state`, player position (+ current map region).
 - [ ] Replace `_RPGM_Variables`'s four hardcoded static ints
       (`l1..l4_enemies_count`) with that dictionary — quest checks like
-      `if get_variables().l2_enemies_count == 2` should read named keys.
+      `if get_data().l2_enemies_count == 2` should read named keys.
 - [ ] Make all systems read/write through the canonical state.
 - [ ] Implement save/load (e.g. `ConfigFile` or JSON in `user://`) while the
       state is still small.
