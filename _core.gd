@@ -91,13 +91,14 @@ func _log():
 	%_Core_Log.add_log(test_log)
 	%_Core_Log.add_log(func fps(): return "FPS %s" % str(Engine.get_frames_per_second()))
 	
-func run_lambda_queue(rpgm_script : _RPGM_Script, lambda_queue : Array):
+# CLAUDE: takes any _RPGM_Node (was _RPGM_Script), matching _RPGM_Lambda.run()
+func run_lambda_queue(rpgm_node : _RPGM_Node, lambda_queue : Array):
 	if lambda_queue == []: return
 	var processed = []
 	while true:
 		if lambda_queue == []: break
 		var lambda = lambda_queue.pop_front() as _RPGM_Lambda
-		await lambda.run(rpgm_script)
+		await lambda.run(rpgm_node)
 		processed.append(lambda)
 		
 	# i0 this way breaks bcs it means the 

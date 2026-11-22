@@ -19,8 +19,8 @@ func _on_exited_range():
 func _on_action():
 	await get_mover().face(_get_direction_to_player())
 	if "messages" in get_event() and get_event().messages != []:
-		# CLAUDE: _RPGM_Callables removed — the action is its own lambda now
-		await _RPGM_Lambda_Show_Messages.new(get_event().messages).run(self)
+		# CLAUDE: _RPGM_Callables removed — the action is its own lambda, run via run_lambda
+		await run_lambda(_RPGM_Lambda_Show_Messages.new(get_event().messages))
 	elif messages != []:
-		# CLAUDE: _RPGM_Callables removed — the action is its own lambda now
-		await _RPGM_Lambda_Show_Messages.new(messages).run(self)
+		# CLAUDE: _RPGM_Callables removed — the action is its own lambda, run via run_lambda
+		await run_lambda(_RPGM_Lambda_Show_Messages.new(messages))

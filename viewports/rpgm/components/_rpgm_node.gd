@@ -16,10 +16,16 @@ func get_map() -> _RPGM_Map: return _cached(&"map", func(): return find_parent("
 func get_player() -> _RPGM_Player: return _cached(&"player", func(): return get_map().find_child("Player") if get_map() else null) as _RPGM_Player
 func get_core() -> _Core: return _cached(&"core", func(): return find_parent("_Core")) as _Core
 # CLAUDE: get_callables() removed with _RPGM_Callables — each action is now
-# an _RPGM_Lambda (viewports/rpgm/lambdas/), called as X.new(...).run(self)
+# an _RPGM_Lambda (viewports/rpgm/lambdas/), called as run_lambda(X.new(...))
 func get_area() -> Area2D: return _cached(&"area", func(): return find_child("Area2D")) as Area2D
 # CLAUDE: mover is no longer a child node — _RPGM_Event/_RPGM_Player extend
 # _RPGM_Mover directly, so the node itself is the mover (null for non-movers)
 func get_mover() -> _RPGM_Mover: return self as _RPGM_Mover
 func get_portrait() -> _RPGM_Portrait: return _cached(&"portrait", func(): return find_child("_RPGM_Portrait")) as _RPGM_Portrait
 func get_variables(): return _RPGM_Variables
+
+# CLAUDE: one-line way to run a lambda from code, instead of
+# X.new(args).run(self): `await run_lambda(X.new(args))`. Holding the lambda
+# in a named parameter also keeps it alive for the whole await.
+func run_lambda(lambda : _RPGM_Lambda):
+	await lambda.run(self)

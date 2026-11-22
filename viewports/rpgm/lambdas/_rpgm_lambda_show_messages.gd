@@ -8,9 +8,11 @@ func _init(messages_ = null, scale_ = null):
 	if messages_ != null: messages.assign(messages_)	
 	_scale = scale_ if scale_ != null else _scale
 	
-func run(rpgm_script : _RPGM_Script):
+# CLAUDE: parameter widened from _RPGM_Script to _RPGM_Node (see _RPGM_Lambda)
+func run(rpgm_node : _RPGM_Node):
+	super(rpgm_node)
 	var window = _Core_Templates.window.instantiate() as _Core_Window
-	var container =  rpgm_script.get_rpgm().find_child("_canvas_bottom") as CenterContainer
+	var container =  rpgm_node.get_rpgm().find_child("_canvas_bottom") as CenterContainer
 	container.add_child(window)
 	window.scale = _scale
 	

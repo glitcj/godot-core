@@ -12,15 +12,16 @@ func _init(target_ = null):
 	if target_ is Node: _target = target_
 	elif target_ != null: target_path = NodePath(target_)
 
-func run(rpgm_script : _RPGM_Script):
-	var target = _target if _target else rpgm_script.get_node_or_null(target_path)
+# CLAUDE: parameter widened from _RPGM_Script to _RPGM_Node (see _RPGM_Lambda)
+func run(rpgm_node : _RPGM_Node):
+	var target = _target if _target else rpgm_node.get_node_or_null(target_path)
 	if target == null:
 		push_error("_RPGM_Lambda_Transport_Camera: no target at '%s'" % target_path)
 		return
 	assert(target is _RPGM_Event or target is _RPGM_Player)
 
-	var player = rpgm_script.get_player()
-	var map = rpgm_script.get_map()
+	var player = rpgm_node.get_player()
+	var map = rpgm_node.get_map()
 	if target is _RPGM_Event:
 		(player.find_child("RemoteTransform2D") as RemoteTransform2D).update_position = false
 		map.find_child("_RPGM_Camera").find_child("Camera2D").position = Vector2.ZERO
