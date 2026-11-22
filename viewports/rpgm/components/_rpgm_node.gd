@@ -11,7 +11,7 @@ func _cached(key: StringName, finder: Callable) -> Node:
 	if not is_instance_valid(_refs.get(key)): _refs[key] = finder.call()
 	return _refs[key]
 
-func get_rpgm() -> _RPGM: return _cached(&"rpgm", func(): return find_parent("_RPGM")) as _RPGM
+func get_rpgm_viewport() -> _RPGM_Viewport: return _cached(&"rpgm_viewport", func(): return find_parent("_RPGM_Viewport")) as _RPGM_Viewport
 func get_map() -> _RPGM_Map: return _cached(&"map", func(): return find_parent("_RPGM_Map")) as _RPGM_Map
 func get_player() -> _RPGM_Player: return _cached(&"player", func(): return get_map().find_child("Player") if get_map() else null) as _RPGM_Player
 func get_core() -> _Core: return _cached(&"core", func(): return find_parent("_Core")) as _Core

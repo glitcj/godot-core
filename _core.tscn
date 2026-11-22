@@ -125,10 +125,10 @@ columns = 2
 [node name="_Starter" parent="Scenes/Scene Grid" unique_id=518186998 node_paths=PackedStringArray("next_scene") instance=ExtResource("17_8i81m")]
 unique_name_in_owner = true
 layout_mode = 2
-next_scene = NodePath("../_RPGM")
+next_scene = NodePath("../_RPGM_Viewport")
 player_turn = ExtResource("18_sps4g")
 
-[node name="_RPGM" parent="Scenes/Scene Grid" unique_id=1387192614 instance=ExtResource("21_pw4lx")]
+[node name="_RPGM_Viewport" parent="Scenes/Scene Grid" unique_id=1387192614 instance=ExtResource("21_pw4lx")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3

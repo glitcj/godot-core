@@ -18,7 +18,7 @@ var is_collision = true
 
 var is_active = false:
 	set(v):
-		if get_RPGM() and not get_RPGM().is_active:
+		if get_rpgm_viewport() and not get_rpgm_viewport().is_active:
 			return
 		is_active = v
 
@@ -27,7 +27,8 @@ var is_active = false:
 
 
 # CLAUDE: kept as alias for existing call sites; resolution now inherited
-func get_RPGM(): return get_rpgm()
+
+# func get_rpgm_viewport(): return get_rp
 func get_log(): return get_core().get_log() as _Core_Log
 
 var direction = Vector2i.ZERO as Vector2i
@@ -56,11 +57,11 @@ func setup_log():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Engine.is_editor_hint(): return
-	if not get_RPGM().is_active:
+	if not get_rpgm_viewport().is_active:
 		return
 		
 	is_active = true	
-	for script : _RPGM_Script in get_RPGM().get_map().scripts_currently_on_map():
+	for script : _RPGM_Script in get_rpgm_viewport().get_map().scripts_currently_on_map():
 		if script.is_running() and script.interrupt_player:
 			is_active = false
 			

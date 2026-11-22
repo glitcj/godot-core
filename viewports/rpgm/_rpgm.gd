@@ -1,6 +1,6 @@
 @tool
 extends _Core_Viewport
-class_name _RPGM
+class_name _RPGM_Viewport
 
 
 signal finished

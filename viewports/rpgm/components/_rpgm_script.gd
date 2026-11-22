@@ -50,7 +50,7 @@ func get_mover() -> _RPGM_Mover: return mover
 func get_event(): return get_parent() as _RPGM_Event
 
 
-func get_data(): return get_rpgm().get_data() as _RPGM_Data
+func get_data(): return get_rpgm_viewport().get_data() as _RPGM_Data
 
 
 var last_distnace_from_player : Vector2 = Vector2.ZERO
@@ -94,9 +94,9 @@ func bind_triggers():
 	actioned.connect(_wrapped_callable.bind(_on_action))
 	# actioned_within_area.connect(_wrapped_callable.bind(_on_action_within_area))
 	frame_started.connect(_wrapped_callable.bind(_on_frame))
-	# get_rpgm().started.connect(_wrapped_callable.bind(_on_viewport_start))
-	# get_rpgm().started.connect(_wrapped_callable.bind(_on_viewport_start))
-	get_rpgm().activated.connect(_wrapped_callable.bind(_on_viewport_start))
+	# get_rpgm_viewport().started.connect(_wrapped_callable.bind(_on_viewport_start))
+	# get_rpgm_viewport().started.connect(_wrapped_callable.bind(_on_viewport_start))
+	get_rpgm_viewport().activated.connect(_wrapped_callable.bind(_on_viewport_start))
 	
 	if get_area(): get_area().body_entered.connect(_check_area_signals)
 	area_entered_by_player.connect(_wrapped_callable.bind(_on_area_entered))
@@ -128,10 +128,10 @@ func _update_active_state():
 	last_is_active = _is_active()
 
 func _process(_delta: float):
-	if not get_rpgm() or not get_player():
+	if not get_rpgm_viewport() or not get_player():
 		return
 		
-	if not get_rpgm().is_active:
+	if not get_rpgm_viewport().is_active:
 		return
 	
 	

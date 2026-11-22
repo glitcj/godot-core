@@ -103,14 +103,14 @@ Additionally, the outer `find_children("*", "_RPGM_Mover")` call inside the rebu
 `_RPGM_Script` defines many helper functions that are called frequently during `_process`:
 
 ```gdscript
-func get_rpgm(): return find_parent("_RPGM") as _RPGM
+func get_rpgm_viewport(): return find_parent("_RPGM") as _RPGM
 func get_player(): return find_parent("_RPGM_Map").find_child("Player") as _RPGM_Player
 func get_area(): return get_parent().find_child("Area2D") as Area2D
 func get_mover(): return get_parent().find_child("_RPGM_Mover") as _RPGM_Mover
 func get_map(): return find_parent("_RPGM_Map") as _RPGM_Map
 ```
 
-These are not cached — every call traverses the scene tree. Several of them are called inside `_process` on every frame (e.g. `get_rpgm()`, `get_player()`, `get_mover()`).
+These are not cached — every call traverses the scene tree. Several of them are called inside `_process` on every frame (e.g. `get_rpgm_viewport()`, `get_player()`, `get_mover()`).
 
 `_RPGM_Event` has the same pattern with its own set of identical helpers, all uncached.
 
@@ -141,7 +141,7 @@ func _get_components():
 	_area_cache = parent.find_child("Area2D")
 
 func get_core(): return find_parent("_Core") as _Core   # infrequent, leave as-is
-func get_rpgm(): return _rpgm_cache
+func get_rpgm_viewport(): return _rpgm_cache
 func get_map(): return _map_cache
 func get_player(): return _player_cache
 func get_area(): return _area_cache
@@ -168,7 +168,7 @@ func _ready():
 	_area_cache = find_child("Area2D")
 	_mover_cache = find_child("_RPGM_Mover")
 
-func get_rpgm(): return _rpgm_cache
+func get_rpgm_viewport(): return _rpgm_cache
 func get_map(): return _map_cache
 func get_player(): return _player_cache
 func get_area(): return _area_cache

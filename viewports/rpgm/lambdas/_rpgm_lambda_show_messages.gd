@@ -12,7 +12,7 @@ func _init(messages_ = null, scale_ = null):
 func run(rpgm_node : _RPGM_Node):
 	super(rpgm_node)
 	var window = _Core_Templates.window.instantiate() as _Core_Window
-	var container =  rpgm_node.get_rpgm().find_child("_canvas_bottom") as CenterContainer
+	var container =  rpgm_node.get_rpgm_viewport().find_child("_canvas_bottom") as CenterContainer
 	container.add_child(window)
 	window.scale = _scale
 	

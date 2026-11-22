@@ -2212,7 +2212,7 @@ func _ready():
 	
 func _on_viewport_finished(selection):
 	get_core().remove_viewport(_viewport)
-	await get_rpgm().activated
+	await get_rpgm_viewport().activated
 	
 	# CLAUDE: _RPGM_Callables removed — the action is its own lambda, run via run_lambda
 	await run_lambda(_RPGM_Lambda_Show_Messages.new([\"You selected %s.\" % selection]))
@@ -2221,7 +2221,7 @@ func _on_viewport_finished(selection):
 
 func _on_action():
 	_viewport.finished.connect(_on_viewport_finished, CONNECT_ONE_SHOT)
-	get_core().add_viewport(_viewport, get_rpgm().find_child(\"_canvas_top\"))
+	get_core().add_viewport(_viewport, get_rpgm_viewport().find_child(\"_canvas_top\"))
 	await returned_from_viewport_and_finished
 "
 
@@ -2238,8 +2238,8 @@ signal returned_from_viewport_and_finished
 # adjust _on_viewport_finished such that it takes in 
 # the parameters returned from the connected _Core_Viewport
 func _on_viewport_finished(selection):
-	get_core().change_viewport(get_rpgm())
-	await get_rpgm().activated
+	get_core().change_viewport(get_rpgm_viewport())
+	await get_rpgm_viewport().activated
 	
 	# CLAUDE: _RPGM_Callables removed — the action is its own lambda, run via run_lambda
 	await run_lambda(_RPGM_Lambda_Show_Messages.new([\"You selected %s.\" % selection]))
@@ -2317,8 +2317,8 @@ signal returned_from_viewport_and_finished
 # adjust _on_viewport_finished such that it takes in 
 # the parameters returned from the connected _Core_Viewport
 func _on_viewport_finished():
-	get_core().change_viewport(get_rpgm())
-	await get_rpgm().activated
+	get_core().change_viewport(get_rpgm_viewport())
+	await get_rpgm_viewport().activated
 	
 	# CLAUDE: _RPGM_Callables removed — the action is its own lambda, run via run_lambda
 	await run_lambda(_RPGM_Lambda_Show_Messages.new([\"You neither won nor lost.\"]))
@@ -2348,8 +2348,8 @@ signal returned_from_viewport_and_finished
 # adjust _on_viewport_finished such that it takes in 
 # the parameters returned from the connected _Core_Viewport
 func _on_viewport_finished():
-	get_core().change_viewport(get_rpgm())
-	await get_rpgm().activated
+	get_core().change_viewport(get_rpgm_viewport())
+	await get_rpgm_viewport().activated
 	
 	# CLAUDE: _RPGM_Callables removed — the action is its own lambda, run via run_lambda
 	await run_lambda(_RPGM_Lambda_Show_Messages.new([\"You neither won nor lost.\"]))
@@ -2423,8 +2423,8 @@ signal returned_from_viewport_and_finished
 # adjust _on_viewport_finished such that it takes in 
 # the parameters returned from the connected _Core_Viewport
 func _on_viewport_finished():
-	get_core().change_viewport(get_rpgm())
-	await get_rpgm().activated
+	get_core().change_viewport(get_rpgm_viewport())
+	await get_rpgm_viewport().activated
 	returned_from_viewport_and_finished.emit()
 
 

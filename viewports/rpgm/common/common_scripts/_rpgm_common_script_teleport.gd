@@ -21,7 +21,7 @@ func _on_area_entered():
 	camera_position_node_3D = get_event().camera_position_node_3D if "camera_position_node_3D" in get_event() else camera_position_node_3D
 	player_position_node_3D = get_event().player_position_node_3D if "player_position_node_3D" in get_event() else player_position_node_3D
 	
-	if get_core().current_viewport is _RPGM:
+	if get_core().current_viewport is _RPGM_Viewport:
 		if not camera_position_node == null and not player_position_node == null:
 			assert(camera_position_node != null)
 			# CLAUDE: _RPGM_Callables removed — the action is its own lambda, run via run_lambda

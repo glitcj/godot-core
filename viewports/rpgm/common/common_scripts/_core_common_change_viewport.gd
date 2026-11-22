@@ -14,8 +14,8 @@ func _init(_core_viewport_name_) -> void:
 # adjust _on_viewport_finished such that it takes in 
 # the parameters returned from the connected _Core_Viewport
 func _on_viewport_finished():
-	get_core().change_viewport(get_rpgm())
-	await get_rpgm().activated
+	get_core().change_viewport(get_rpgm_viewport())
+	await get_rpgm_viewport().activated
 	
 	# CLAUDE: _RPGM_Callables removed — the action is its own lambda, run via run_lambda
 	await run_lambda(_RPGM_Lambda_Show_Messages.new(["You neither won nor lost."]))
