@@ -28,7 +28,9 @@ const VERSE_SCENE = preload("res://viewports/scroller/_verse.tscn")
 @export var slot_scales : Array[float] = [1.0, 0.6, 0.2]
 @export var slot_alphas : Array[float] = [1.0, 0.5882353, 0.0]
 
-func get_variables(): return (find_parent("_Core").find_child("_Core_Variables") as _Core_Variables)
+# func get_variables(): return (find_parent("_Core").find_child("_Core_Variables") as _Core_Variables)
+
+# func get_variables(): return (find_parent("_Core").find_child("_Core_Variables") as _Core_Variables)
 func get_core(): return find_parent("_Core") as _Core
 
 var interrupt_scroll = true
@@ -37,7 +39,8 @@ var scroll_counter = 100
 var current_verse_index = 1
 var verses : Array[_Scroller_Verse] = []
 
-@onready var scroll_messages = get_variables().koran as Array
+# @onready var scroll_messages = get_variables().koran as Array
+@onready var scroll_messages = get_core().get_data().koran as Array
 
 
 func _ready() -> void:

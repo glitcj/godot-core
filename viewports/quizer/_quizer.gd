@@ -61,6 +61,10 @@ func _on_viewport_start():
 	
 	questions_counter = 3
 	
+	# koran_loader = _Core_DataLoader.new()
+	koran_loader = (find_parent("_Core") as _Core).get_data()
+
+	
 	koran_loader = _Core_DataLoader.new()
 
 	koran_loader.load_quran_csv("res://assets/kooran_de_go/quran.csv")

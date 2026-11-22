@@ -2,6 +2,8 @@
 Claude ignores this files, this file is only for the human developer to see, use, and maintain.
 
 
+- /Users/alhabib/Desktop/glitcj-repos/godot-core/viewports/rpgm/_rpgm.gd:48
+48: # TODO: FIX collect AND apply_state, they should load the correct _RPGM_Data
 
 - _Core_Data and _RPGM_Data _RPGM_Variable _Core_Variable
 

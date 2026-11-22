@@ -14,7 +14,7 @@ var current_viewport : _Core_Viewport
 
 func get_scene(_name): return find_child(_name) as _Core_Viewport
 func get_callables(): return find_child("_Core_Callables") as _Core_Callables
-func get_variables(): return find_child("_Core_Variables") as _Core_Variables
+# func get_variables(): return find_child("_Core_Variables") as _Core_Variables
 func get_log(): return %_Core_Log as _Core_Log
 
 

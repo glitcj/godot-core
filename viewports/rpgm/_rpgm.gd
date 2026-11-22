@@ -42,6 +42,10 @@ const SAVE_VERSION = 1
 
 func _save_path(slot: int) -> String: return "user://rpgm_save_%d.json" % slot
 
+
+
+
+# TODO: FIX collect AND apply_state, they should load the correct _RPGM_Data
 func collect_state() -> Dictionary:
 	var events := {}
 	for e : _RPGM_Event in get_map().find_children("*", "_RPGM_Event"):
@@ -49,7 +53,8 @@ func collect_state() -> Dictionary:
 	var p : _RPGM_Player = get_player()
 	return {
 		"version": SAVE_VERSION,
-		"variables": _RPGM_Variables.variables.duplicate(),
+		# "variables": _RPGM_Variables.variables.duplicate(),
+		"variables": get_core().get_data().tmp_variables.duplicate(),
 		"events": events,
 		"player": {
 			"map_position": [p.map_position.x, p.map_position.y],
@@ -58,7 +63,7 @@ func collect_state() -> Dictionary:
 	}
 
 func apply_state(state: Dictionary) -> void:
-	_RPGM_Variables.variables = state.get("variables", {}).duplicate()
+	get_core().get_data().tmp_variables = state.get("variables", {}).duplicate()
 	var events : Dictionary = state.get("events", {})
 	for e : _RPGM_Event in get_map().find_children("*", "_RPGM_Event"):
 		if events.has(String(e.name)):

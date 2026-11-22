@@ -90,4 +90,47 @@ func load_quran_csv(file_path: String):
 func _parse_csv_list(list_string: String) -> Array:
 	var clean = list_string.replace("[", "").replace("]", "")
 	return clean.split(",")
+
+var koran = []
+func _load_koran():
+	# koran_loader = _Core_DataLoader.new()
 	
+	# koran_loader = (find_parent("_Core") as _Core).get_data()
+	
+	load_quran_csv("res://assets/kooran_de_go/quran.csv")
+	for row in quran_db.values():
+		koran.append(row["ayah_ar"])
+		
+	# pad
+	for i in range(3):
+		koran.append("- - - - -")
+		koran.insert(0, "- - - - -")
+		
+
+
+
+
+
+# CLAUDE: save/load P1 — the single source of truth for global game state is
+# now this dictionary (serialized as-is by _RPGM.collect_state). The old
+# static ints survive as property wrappers so every existing call site
+# (get_variables().l2_enemies_count etc.) keeps working unchanged.
+static var tmp_variables : Dictionary = {
+	"l1_enemies_count": 0,
+	"l2_enemies_count": 0,
+	"l3_enemies_count": 0,
+	"l4_enemies_count": 0,
+}
+
+static var l1_enemies_count : int:
+	get: return tmp_variables.get("l1_enemies_count", 0)
+	set(v): tmp_variables["l1_enemies_count"] = v
+static var l2_enemies_count : int:
+	get: return tmp_variables.get("l2_enemies_count", 0)
+	set(v): tmp_variables["l2_enemies_count"] = v
+static var l3_enemies_count : int:
+	get: return tmp_variables.get("l3_enemies_count", 0)
+	set(v): tmp_variables["l3_enemies_count"] = v
+static var l4_enemies_count : int:
+	get: return tmp_variables.get("l4_enemies_count", 0)
+	set(v): tmp_variables["l4_enemies_count"] = v
