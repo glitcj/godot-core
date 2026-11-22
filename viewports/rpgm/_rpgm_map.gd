@@ -6,7 +6,7 @@ class_name _RPGM_Map
 @onready var layers = find_children("L*", "TileMapLayer")
 
 func find_event(_name): return find_child(_name) as _RPGM_Event
-func get_callables(): return find_child("_RPGM_Callables") as _RPGM_Callables
+# CLAUDE: get_callables() removed with _RPGM_Callables (see viewports/rpgm/lambdas/)
 
 
 # CLAUDE: collision tile list and rebuild logic moved here from _RPGM_Mover static vars

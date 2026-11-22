@@ -15,7 +15,8 @@ func get_rpgm() -> _RPGM: return _cached(&"rpgm", func(): return find_parent("_R
 func get_map() -> _RPGM_Map: return _cached(&"map", func(): return find_parent("_RPGM_Map")) as _RPGM_Map
 func get_player() -> _RPGM_Player: return _cached(&"player", func(): return get_map().find_child("Player") if get_map() else null) as _RPGM_Player
 func get_core() -> _Core: return _cached(&"core", func(): return find_parent("_Core")) as _Core
-func get_callables() -> _RPGM_Callables: return _cached(&"lambdas", func(): return get_map().find_child("_RPGM_Callables") if get_map() else null) as _RPGM_Callables
+# CLAUDE: get_callables() removed with _RPGM_Callables — each action is now
+# an _RPGM_Lambda (viewports/rpgm/lambdas/), called as X.new(...).run(self)
 func get_area() -> Area2D: return _cached(&"area", func(): return find_child("Area2D")) as Area2D
 # CLAUDE: mover is no longer a child node — _RPGM_Event/_RPGM_Player extend
 # _RPGM_Mover directly, so the node itself is the mover (null for non-movers)

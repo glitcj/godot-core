@@ -24,10 +24,12 @@ func _on_area_entered():
 	if get_core().current_viewport is _RPGM:
 		if not camera_position_node == null and not player_position_node == null:
 			assert(camera_position_node != null)
-			get_callables().transport_camera(camera_position_node)# camera_position_node.find_child("_RPGM_Mover").map_position)
+			# CLAUDE: _RPGM_Callables removed — the action is its own lambda now
+			_RPGM_Lambda_Transport_Camera.new(camera_position_node).run(self)# camera_position_node.find_child("_RPGM_Mover").map_position)
 			
 			assert(player_position_node != null)
-			get_callables().transport_player(player_position_node) # player_position_node.find_child("_RPGM_Mover").map_position)
+			# CLAUDE: _RPGM_Callables removed — the action is its own lambda now
+			_RPGM_Lambda_Transport_Player.new(player_position_node).run(self) # player_position_node.find_child("_RPGM_Mover").map_position)
 
 		elif not camera_position_node_3D == null and not player_position_node_3D == null:
 			pass
@@ -36,10 +38,12 @@ func _on_area_entered():
 	elif get_core().current_viewport is _DGM:
 		if not camera_position_node == null and not player_position_node == null:
 			assert(camera_position_node != null)
-			get_callables().transport_camera(camera_position_node)# camera_position_node.find_child("_RPGM_Mover").map_position)
+			# CLAUDE: _RPGM_Callables removed — the action is its own lambda now
+			_RPGM_Lambda_Transport_Camera.new(camera_position_node).run(self)# camera_position_node.find_child("_RPGM_Mover").map_position)
 			
 			assert(player_position_node != null)
-			get_callables().transport_player(player_position_node) # player_position_node.find_child("_RPGM_Mover").map_position)
+			# CLAUDE: _RPGM_Callables removed — the action is its own lambda now
+			_RPGM_Lambda_Transport_Player.new(player_position_node).run(self) # player_position_node.find_child("_RPGM_Mover").map_position)
 
 		elif not camera_position_node_3D == null and not player_position_node_3D == null:
 			pass

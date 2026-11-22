@@ -10,7 +10,7 @@ func get_core(): return find_parent("_Core") as _Core
 func get_map(): return find_child("_RPGM_Map") as _RPGM_Map
 func get_player(): return find_child("_RPGM_Map").find_child("Player") as _RPGM_Player
 func get_camera(): return get_map().find_child("Camera2D") as Camera2D
-func get_callables(): return find_child("_RPGM_Callables") as _RPGM_Callables
+# CLAUDE: get_callables() removed with _RPGM_Callables (see viewports/rpgm/lambdas/)
 func get_log(): return find_child("_Core_Log") as _Core_Log
 
 func _ready() -> void:

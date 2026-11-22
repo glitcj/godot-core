@@ -1,7 +1,6 @@
 [gd_scene format=4 uid="uid://bc6scuw6gftg0"]
 
 [ext_resource type="Script" uid="uid://3b6nx2ubod3b" path="res://viewports/rpgm/_rpgm_map.gd" id="1_txeor"]
-[ext_resource type="Script" uid="uid://c6484wl627c5c" path="res://viewports/rpgm/callables/_rpgm_callables_1.gd" id="2_vd6wf"]
 [ext_resource type="Script" uid="uid://da77evou2la0g" path="res://viewports/rpgm/components/_rpgm_variables.gd" id="3_6le0f"]
 [ext_resource type="Texture2D" uid="uid://cir837rpp1qt3" path="res://assets/rpgmaker/mv/tilesets/Dungeon_A1.png" id="4_uc14m"]
 [ext_resource type="Texture2D" uid="uid://cklccjgem4vvs" path="res://assets/ninja/Backgrounds/Tilesets/TilesetFloor.png" id="5_kl3l0"]
@@ -2069,7 +2068,8 @@ script/source = "extends _RPGM_Script
 
 
 func _on_action():
-	await get_callables().show_messages([\"Wait here.\"])
+	# CLAUDE: _RPGM_Callables removed — the action is its own lambda now
+	await _RPGM_Lambda_Show_Messages.new([\"Wait here.\"]).run(self)
 	await get_tree().create_timer(1).timeout
 	await get_event().get_mover().walk(Vector2i(-1, 0))
 	await get_tree().create_timer(1).timeout
@@ -2085,7 +2085,7 @@ func _on_action():
 	await get_tree().create_timer(1).timeout
 	await get_map().find_event(\"_npc_1_1\").get_mover().face(Vector2(0, 1))
 	
-	await get_callables().show_messages([\"Okay you can go now.\"])
+	await _RPGM_Lambda_Show_Messages.new([\"Okay you can go now.\"]).run(self)
 "
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uc14m"]
@@ -2097,9 +2097,10 @@ extends _RPGM_Script
 var slide_duration = 1.0
 
 func _on_viewport_start():
-	await get_rpgm().get_callables().show_messages([\"It should start soon..\"])
-	await get_callables().transport_camera(get_map().find_event(\"_camera_position_4_1\"))
-	await get_callables().fade_in()
+	# CLAUDE: _RPGM_Callables removed — the action is its own lambda now
+	await _RPGM_Lambda_Show_Messages.new([\"It should start soon..\"]).run(self)
+	await _RPGM_Lambda_Transport_Camera.new(get_map().find_event(\"_camera_position_4_1\")).run(self)
+	await _RPGM_Lambda_Fade_In.new().run(self)
 	get_parent().remove() # CLAUDE: save/load P3 — removal as saveable state, not queue_free
 "
 
@@ -2173,9 +2174,10 @@ func _on_viewport_start():
 
 func _on_frame():
 	if get_variables().l2_enemies_count == 2:
-		await get_rpgm().get_callables().show_messages([\"NPC: You got them !\", \"NPC: Go to the next location..\"])
-		get_callables().transport_player(get_map().find_child(\"_player_position_5_1\"))
-		get_callables().transport_camera(get_map().find_child(\"_camera_position_5_1\"))
+		# CLAUDE: _RPGM_Callables removed — the action is its own lambda now
+		await _RPGM_Lambda_Show_Messages.new([\"NPC: You got them !\", \"NPC: Go to the next location..\"]).run(self)
+		_RPGM_Lambda_Transport_Player.new(get_map().find_child(\"_player_position_5_1\")).run(self)
+		_RPGM_Lambda_Transport_Camera.new(get_map().find_child(\"_camera_position_5_1\")).run(self)
 		parent.remove() # CLAUDE: save/load P3 — removal as saveable state, not queue_free
 "
 
@@ -2204,7 +2206,8 @@ func _on_viewport_finished(selection):
 	get_core().remove_viewport(_viewport)
 	await get_rpgm().activated
 	
-	await get_callables().show_messages([\"You selected %s.\" % selection])
+	# CLAUDE: _RPGM_Callables removed — the action is its own lambda now
+	await _RPGM_Lambda_Show_Messages.new([\"You selected %s.\" % selection]).run(self)
 	returned_from_viewport_and_finished.emit()
 
 
@@ -2230,7 +2233,8 @@ func _on_viewport_finished(selection):
 	get_core().change_viewport(get_rpgm())
 	await get_rpgm().activated
 	
-	await get_callables().show_messages([\"You selected %s.\" % selection])
+	# CLAUDE: _RPGM_Callables removed — the action is its own lambda now
+	await _RPGM_Lambda_Show_Messages.new([\"You selected %s.\" % selection]).run(self)
 	returned_from_viewport_and_finished.emit()
 
 
@@ -2250,7 +2254,8 @@ func _is_active() -> bool: return get_event().state == _RPGM_Event.EventState.A
 
 func _on_action():
 	await super()
-	await get_callables().fade_out()
+	# CLAUDE: _RPGM_Callables removed — the action is its own lambda now
+	await _RPGM_Lambda_Fade_Out.new().run(self)
 	get_event().state = _RPGM_Event.EventState.B
 "
 
@@ -2261,7 +2266,8 @@ func _is_active() -> bool: return get_event().state == _RPGM_Event.EventState.B
 
 func _on_action():
 	await super()
-	await get_callables().fade_in()
+	# CLAUDE: _RPGM_Callables removed — the action is its own lambda now
+	await _RPGM_Lambda_Fade_In.new().run(self)
 	get_event().state = _RPGM_Event.EventState.A
 "
 
@@ -2284,7 +2290,8 @@ metadata/_custom_type_script = "uid://mhwrdc5y8886"
 script/source = "extends _RPGM_Script
 
 func _on_action_within_area():
-	await get_callables().show_messages([\"Congratulation.\", \"You neither won or lost.\", \"You ended.\"])
+	# CLAUDE: _RPGM_Callables removed — the action is its own lambda now
+	await _RPGM_Lambda_Show_Messages.new([\"Congratulation.\", \"You neither won or lost.\", \"You ended.\"]).run(self)
 	await get_tree().create_timer(.5).timeout
 	get_tree().quit()
 "
@@ -2305,13 +2312,14 @@ func _on_viewport_finished():
 	get_core().change_viewport(get_rpgm())
 	await get_rpgm().activated
 	
-	await get_callables().show_messages([\"You neither won nor lost.\"])
+	# CLAUDE: _RPGM_Callables removed — the action is its own lambda now
+	await _RPGM_Lambda_Show_Messages.new([\"You neither won nor lost.\"]).run(self)
 	returned_from_viewport_and_finished.emit()
 
 
 func _on_action():
 	await get_mover().face(_get_direction_to_player())
-	await get_callables().show_messages([\"This will start the Flying Birds Mario Party mini game.\"])
+	await _RPGM_Lambda_Show_Messages.new([\"This will start the Flying Birds Mario Party mini game.\"]).run(self)
 	await get_tree().create_timer(1).timeout
 	
 	_viewport.finished.connect(_on_viewport_finished, CONNECT_ONE_SHOT)
@@ -2335,14 +2343,15 @@ func _on_viewport_finished():
 	get_core().change_viewport(get_rpgm())
 	await get_rpgm().activated
 	
-	await get_callables().show_messages([\"You neither won nor lost.\"])
+	# CLAUDE: _RPGM_Callables removed — the action is its own lambda now
+	await _RPGM_Lambda_Show_Messages.new([\"You neither won nor lost.\"]).run(self)
 	returned_from_viewport_and_finished.emit()
 	
 func _on_action():
 	var _viewport = get_core().get_scene(\"_DGM\") as _DGM
 	
 	await get_mover().face(_get_direction_to_player())
-	await get_callables().show_messages([\"This will start the Mole Hole Mario Party mini game.\"])
+	await _RPGM_Lambda_Show_Messages.new([\"This will start the Mole Hole Mario Party mini game.\"]).run(self)
 	await get_tree().create_timer(1).timeout
 	
 	_viewport.finished.connect(_on_viewport_finished, CONNECT_ONE_SHOT)
@@ -2389,7 +2398,8 @@ script/source = "extends _RPGM_Script
 
 
 func _on_action():
-	await get_rpgm().get_callables().show_messages([\"Add third-event control.\"])
+	# CLAUDE: _RPGM_Callables removed — the action is its own lambda now
+	await _RPGM_Lambda_Show_Messages.new([\"Add third-event control.\"]).run(self)
 "
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a8qaw"]
@@ -2412,13 +2422,14 @@ func _on_viewport_finished():
 
 func _on_action():
 	await get_mover().face(_get_direction_to_player())
-	await get_callables().show_messages([\"This will start the Kalam De Go mini game.\"])
+	# CLAUDE: _RPGM_Callables removed — the action is its own lambda now
+	await _RPGM_Lambda_Show_Messages.new([\"This will start the Kalam De Go mini game.\"]).run(self)
 	await get_tree().create_timer(1).timeout
 	
 	_viewport.finished.connect(_on_viewport_finished, CONNECT_ONE_SHOT)
 	get_core().change_viewport(get_core().get_scene(\"_Birds\"))
 	await returned_from_viewport_and_finished
-	await get_callables().show_messages([\"You neither won nor lost.\"])
+	await _RPGM_Lambda_Show_Messages.new([\"You neither won nor lost.\"]).run(self)
 "
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yspku"]
@@ -2493,11 +2504,6 @@ text = "- Finish RPGM Engine > Add Tests > Make SUPER SUPER tight > Make simple 
 - add common nodes, includes prefabs of talker walkntalker scene adder scene changer killableghost
 "
 label_settings = SubResource("LabelSettings_6le0f")
-
-[node name="_RPGM_Callables" type="Node2D" parent="." unique_id=1310010166]
-unique_name_in_owner = true
-script = ExtResource("2_vd6wf")
-metadata/_custom_type_script = "uid://c6484wl627c5c"
 
 [node name="_RPGM_Variables" type="Node2D" parent="." unique_id=634680203]
 script = ExtResource("3_6le0f")
