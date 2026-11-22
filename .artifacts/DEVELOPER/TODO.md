@@ -2,7 +2,10 @@
 Claude ignores this files, this file is only for the human developer to see, use, and maintain.
 
 
+
 - Complete LAMBDA AS RESOURCE and deprecate callables_1
+
+- Add a "Add Event" that generates an event on the go ? use godot native ?
 
 - Code Dev v.s. Data Dev Finish COMPLETE EDITOR that does not need scipts at all
 

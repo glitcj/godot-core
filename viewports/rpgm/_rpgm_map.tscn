@@ -26,7 +26,6 @@
 [ext_resource type="Script" uid="uid://brl88l8fl1w5u" path="res://viewports/rpgm/common/common_scripts/_rpgm_common_script_teleport.gd" id="23_tl7rd"]
 [ext_resource type="PackedScene" uid="uid://xtndm6lmqlnp" path="res://viewports/rpgm/common/common_events/_common_camera_position_v1.tscn" id="24_5ubha"]
 [ext_resource type="PackedScene" uid="uid://bfksw2782klor" path="res://viewports/rpgm/components/_rpgm_script.tscn" id="27_0u55c"]
-[ext_resource type="PackedScene" uid="uid://c17mg1quyc816" path="res://viewports/rpgm/common/common_events/_common_base_0_0_no_resource.tscn" id="27_v270i"]
 
 [sub_resource type="GDScript" id="GDScript_txeor"]
 script/source = "@tool
@@ -2469,7 +2468,17 @@ metadata/_custom_type_script = "uid://mhwrdc5y8886"
 
 [sub_resource type="Resource" id="Resource_ctvm8"]
 script = ExtResource("23_lisvm")
-messages = Array[String](["Resources are sgared In Memory, but not On Disk.", "That explains the bugginess of savig resources in common components and events."])
+messages = Array[String](["Resources are shared In Memory, but not On Disk.", "That explains the bugginess of savig resources in common components and events."])
+metadata/_custom_type_script = "uid://mhwrdc5y8886"
+
+[sub_resource type="Resource" id="Resource_0u55c"]
+script = ExtResource("23_lisvm")
+messages = Array[String](["I am in state A, changing to state B !"])
+metadata/_custom_type_script = "uid://mhwrdc5y8886"
+
+[sub_resource type="Resource" id="Resource_o56lo"]
+script = ExtResource("23_lisvm")
+messages = Array[String](["Another tester message."])
 metadata/_custom_type_script = "uid://mhwrdc5y8886"
 
 [node name="_RPGM_Map" type="Node2D" unique_id=401710376]
@@ -4332,21 +4341,29 @@ is_collision = true
 [node name="_RPGM_Portrait" parent="_common_base_0_0/_RPGM_Script" unique_id=227629877 instance=ExtResource("15_2uryw")]
 type = "wiggle"
 
-[node name="_common_base_0_0_no_resource" type="Node2D" parent="." unique_id=909921870]
+[node name="_common_base_0_1" type="Node2D" parent="." unique_id=909921870]
 position = Vector2(1752, -1272)
 script = ExtResource("17_yspku")
 map_position = Vector2i(36, -27)
 
-[node name="_RPGM_Script" parent="_common_base_0_0_no_resource" unique_id=1629462265 instance=ExtResource("27_0u55c")]
+[node name="_RPGM_Script" parent="_common_base_0_1" unique_id=1629462265 instance=ExtResource("27_0u55c")]
 on_action = Array[ExtResource("22_x4k2m")]([SubResource("Resource_ctvm8")])
 interrupt_player = true
 is_collision = true
 
-[node name="_RPGM_Portrait" parent="_common_base_0_0_no_resource/_RPGM_Script" unique_id=1546962927 instance=ExtResource("15_2uryw")]
+[node name="_RPGM_Portrait" parent="_common_base_0_1/_RPGM_Script" unique_id=1546962927 instance=ExtResource("15_2uryw")]
 sprite = "red"
 
-[node name="_common_base_0_0_no_resource" parent="_common_base_0_0_no_resource/_RPGM_Script" unique_id=2038055896 instance=ExtResource("27_v270i")]
-position = Vector2(48, 0)
+[node name="_common_base_0_2" type="Node2D" parent="." unique_id=895568689]
+position = Vector2(1800, -1272)
+script = ExtResource("17_yspku")
 map_position = Vector2i(37, -27)
+
+[node name="_RPGM_Script" parent="_common_base_0_2" unique_id=144276679 instance=ExtResource("27_0u55c")]
+on_action = Array[ExtResource("22_x4k2m")]([SubResource("Resource_0u55c"), SubResource("Resource_o56lo")])
+interrupt_player = true
+is_collision = true
+
+[node name="_RPGM_Portrait" parent="_common_base_0_2/_RPGM_Script" unique_id=1032021177 instance=ExtResource("15_2uryw")]
 
 [editable path="_map_4/_npc_0_1"]
