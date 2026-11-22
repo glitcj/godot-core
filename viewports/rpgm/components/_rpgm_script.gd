@@ -12,6 +12,8 @@ signal actioned
 
 
 
+
+
 @export_category("Lambdas")
 @export var on_action : Array[_RPGM_Lambda]
 @export var on_frame : Array[_RPGM_Lambda]
@@ -20,9 +22,15 @@ signal actioned
 
 
 
-
-
 @export_category("Conditions")
+@export_enum("A", "B", "C") var state_condition := "A"
+
+
+# i0 add _RPGM_Variable database
+@export var variable_condition := "_RPGM_Variable"
+
+
+@export_category("Properties")
 
 @export var interrupt_player := false
 @export var is_collision := false

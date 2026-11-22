@@ -15,7 +15,7 @@ var total_verses_on_page = 5
 var selection : String
 var scroll_counter = 100
 
-var koran_loader : _Core_Data
+var koran_loader : _Core_Data#Loader
 var current_verse_index
 
 
@@ -29,7 +29,10 @@ func _on_viewport_finish():
 func _ready() -> void:
 	super()
 	camera = %Camera2D as Camera2D
-	koran_loader = _Core_Data.new()
+	# koran_loader = _Core_DataLoader.new()
+	koran_loader = (find_parent("_Core") as _Core).get_data()
+	
+	
 	koran_loader.load_quran_csv("res://assets/kooran_de_go/quran.csv")
 	
 func _initiate_visible_labels(current_verse_index):

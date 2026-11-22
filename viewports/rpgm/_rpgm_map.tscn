@@ -1,7 +1,9 @@
 [gd_scene format=4 uid="uid://bc6scuw6gftg0"]
 
 [ext_resource type="Script" uid="uid://3b6nx2ubod3b" path="res://viewports/rpgm/_rpgm_map.gd" id="1_txeor"]
+[ext_resource type="Script" uid="uid://cxaspxscbeecu" path="res://viewports/rpgm/_rpgm_data/_rpgm_data.gd" id="2_v270i"]
 [ext_resource type="Script" uid="uid://da77evou2la0g" path="res://viewports/rpgm/components/_rpgm_variables.gd" id="3_6le0f"]
+[ext_resource type="Script" uid="uid://b0hs2kaet7rxe" path="res://viewports/rpgm/_rpgm_data/_rpgm_variable.gd" id="3_ctvm8"]
 [ext_resource type="Texture2D" uid="uid://cir837rpp1qt3" path="res://assets/rpgmaker/mv/tilesets/Dungeon_A1.png" id="4_uc14m"]
 [ext_resource type="Texture2D" uid="uid://cklccjgem4vvs" path="res://assets/ninja/Backgrounds/Tilesets/TilesetFloor.png" id="5_kl3l0"]
 [ext_resource type="Texture2D" uid="uid://dwo3ghnulbghq" path="res://assets/ninja/Backgrounds/Tilesets/TilesetField.png" id="6_loqga"]
@@ -35,7 +37,10 @@ extends Control
 	set(value):
 		if not Engine.is_editor_hint(): return
 		notes = value
-		(find_child(\"Label\") as Label).text = notes
+		# CLAUDE: null-guard — this setter runs while the scene loads, before
+		# the Label child exists, which errored on every editor startup
+		var label := find_child(\"Label\") as Label
+		if label: label.text = notes
 		
 
 func _ready():
@@ -48,6 +53,22 @@ func _ready():
 [sub_resource type="LabelSettings" id="LabelSettings_6le0f"]
 font_size = 20
 font_color = Color(0.32941177, 0.14509805, 1, 1)
+
+[sub_resource type="Resource" id="Resource_v270i"]
+script = ExtResource("3_ctvm8")
+name = "PI"
+metadata/_custom_type_script = "uid://b0hs2kaet7rxe"
+
+[sub_resource type="Resource" id="Resource_ctvm8"]
+script = ExtResource("3_ctvm8")
+name = "_level_1_win_condition"
+metadata/_custom_type_script = "uid://b0hs2kaet7rxe"
+
+[sub_resource type="Resource" id="Resource_apn4w"]
+script = ExtResource("3_ctvm8")
+name = "_level_1_name"
+type = "String"
+metadata/_custom_type_script = "uid://b0hs2kaet7rxe"
 
 [sub_resource type="GDScript" id="GDScript_6le0f"]
 script/source = "@tool
@@ -2026,11 +2047,15 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="GDScript" id="GDScript_jo6ms"]
-script/source = "extends _RPGM_Event
+script/source = "@tool
+extends _RPGM_Event
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super()
+	# CLAUDE: skip debug logging in the editor — this script is @tool and
+	# there is no _Core parent there, so get_core() is null
+	if Engine.is_editor_hint(): return
 	get_core().get_log().add_log(func ACTIVE_SCRIPTS(): return str(active_scripts))
 	get_core().get_log().add_log(func(): return \"state: %s\" % state)
 "
@@ -2282,7 +2307,7 @@ script = ExtResource("23_lisvm")
 messages = Array[String](["Resource can define functions, and see children via a passed in proxy node."])
 metadata/_custom_type_script = "uid://mhwrdc5y8886"
 
-[sub_resource type="Resource" id="Resource_v270i"]
+[sub_resource type="Resource" id="Resource_dl2ih"]
 script = ExtResource("23_lisvm")
 messages = Array[String](["Bring back Core Turner pls, what was called \"Core Turn\" before is called Core Lambda now"])
 metadata/_custom_type_script = "uid://mhwrdc5y8886"
@@ -2466,7 +2491,7 @@ script = ExtResource("23_lisvm")
 messages = Array[String](["Lo !"])
 metadata/_custom_type_script = "uid://mhwrdc5y8886"
 
-[sub_resource type="Resource" id="Resource_ctvm8"]
+[sub_resource type="Resource" id="Resource_0dxda"]
 script = ExtResource("23_lisvm")
 messages = Array[String](["Resources are shared In Memory, but not On Disk.", "That explains the bugginess of savig resources in common components and events."])
 metadata/_custom_type_script = "uid://mhwrdc5y8886"
@@ -2525,6 +2550,10 @@ text = "- Finish RPGM Engine > Add Tests > Make SUPER SUPER tight > Make simple 
 - add common nodes, includes prefabs of talker walkntalker scene adder scene changer killableghost
 "
 label_settings = SubResource("LabelSettings_6le0f")
+
+[node name="_RPGM_Data" type="Node" parent="." unique_id=1648591191]
+script = ExtResource("2_v270i")
+variables = Array[ExtResource("3_ctvm8")]([SubResource("Resource_v270i"), SubResource("Resource_ctvm8"), SubResource("Resource_apn4w")])
 
 [node name="_RPGM_Variables" type="Node2D" parent="." unique_id=634680203]
 script = ExtResource("3_6le0f")
@@ -2973,7 +3002,7 @@ position = Vector2(744, -1320)
 map_position = Vector2i(15, -28)
 
 [node name="_common_script_talker_1" parent="_map_4/_npc_0_1" index="0" unique_id=645140305]
-on_action = Array[ExtResource("22_x4k2m")]([SubResource("Resource_x4k2m"), SubResource("Resource_lisvm"), SubResource("Resource_v270i")])
+on_action = Array[ExtResource("22_x4k2m")]([SubResource("Resource_x4k2m"), SubResource("Resource_lisvm"), SubResource("Resource_dl2ih")])
 
 [node name="_RPGM_Portrait" parent="_map_4/_npc_0_1/_common_script_talker_1" index="0" unique_id=1972099319]
 sprite = "blue"
@@ -4347,7 +4376,7 @@ script = ExtResource("17_yspku")
 map_position = Vector2i(36, -27)
 
 [node name="_RPGM_Script" parent="_common_base_0_1" unique_id=1629462265 instance=ExtResource("27_0u55c")]
-on_action = Array[ExtResource("22_x4k2m")]([SubResource("Resource_ctvm8")])
+on_action = Array[ExtResource("22_x4k2m")]([SubResource("Resource_0dxda")])
 interrupt_player = true
 is_collision = true
 
@@ -4365,5 +4394,18 @@ interrupt_player = true
 is_collision = true
 
 [node name="_RPGM_Portrait" parent="_common_base_0_2/_RPGM_Script" unique_id=1032021177 instance=ExtResource("15_2uryw")]
+type = "sphere"
+sprite = "skeleton"
+
+[node name="_common_base_0_3" type="Node2D" parent="." unique_id=1743163205]
+position = Vector2(1848, -1320)
+script = ExtResource("17_yspku")
+map_position = Vector2i(38, -28)
+
+[node name="_RPGM_Script" parent="_common_base_0_3" unique_id=1574568363 instance=ExtResource("27_0u55c")]
+interrupt_player = true
+is_collision = true
+
+[node name="_RPGM_Portrait" parent="_common_base_0_3/_RPGM_Script" unique_id=905552253 instance=ExtResource("15_2uryw")]
 
 [editable path="_map_4/_npc_0_1"]

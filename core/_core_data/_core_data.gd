@@ -1,5 +1,8 @@
-extends Node
+extends Resource
 class_name _Core_Data
+
+
+@export var variables : Array[_Core_Variable] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -9,7 +12,9 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
-
+	
+	
+	
 
 func load_csv(file_path: String) -> Array:
 	var data = []

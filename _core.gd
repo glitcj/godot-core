@@ -18,6 +18,10 @@ func get_variables(): return find_child("_Core_Variables") as _Core_Variables
 func get_log(): return %_Core_Log as _Core_Log
 
 
+@export var data : _Core_Data
+func get_data(): return data as _Core_Data
+
+
 func _input(event):
 	pass
 	

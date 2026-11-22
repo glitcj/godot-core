@@ -3,6 +3,8 @@ Claude ignores this files, this file is only for the human developer to see, use
 
 
 
+- _Core_Data and _RPGM_Data _RPGM_Variable _Core_Variable
+
 - Complete LAMBDA AS RESOURCE and deprecate callables_1
 
 - Add a "Add Event" that generates an event on the go ? use godot native ?

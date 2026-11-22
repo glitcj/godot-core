@@ -12,6 +12,9 @@ extends _RPGM_Event
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super()
+	# CLAUDE: skip debug logging in the editor — this script is @tool and
+	# there is no _Core parent there, so get_core() is null
+	if Engine.is_editor_hint(): return
 	get_core().get_log().add_log(func ACTIVE_SCRIPTS(): return str(active_scripts))
 	get_core().get_log().add_log(func(): return \"state: %s\" % state)
 "

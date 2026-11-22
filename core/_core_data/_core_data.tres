@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="_Core_Data" format=3 uid="uid://dd0mrxb13d6vy"]
+
+[ext_resource type="Script" uid="uid://cb7w6ls2wh2y" path="res://core/_core_data/_core_data.gd" id="1_cg272"]
+[ext_resource type="Script" uid="uid://bbhptcavav36h" path="res://core/_core_data/_core_variable.gd" id="2_lmweo"]
+
+[sub_resource type="Resource" id="Resource_o1kih"]
+script = ExtResource("2_lmweo")
+name = "PI"
+metadata/_custom_type_script = "uid://bbhptcavav36h"
+
+[sub_resource type="Resource" id="Resource_a5t62"]
+script = ExtResource("2_lmweo")
+metadata/_custom_type_script = "uid://bbhptcavav36h"
+
+[sub_resource type="Resource" id="Resource_bbl1o"]
+script = ExtResource("2_lmweo")
+metadata/_custom_type_script = "uid://bbhptcavav36h"
+
+[sub_resource type="Resource" id="Resource_hqny6"]
+script = ExtResource("2_lmweo")
+name = "_fourth_dummy"
+metadata/_custom_type_script = "uid://bbhptcavav36h"
+
+[resource]
+script = ExtResource("1_cg272")
+variables = Array[ExtResource("2_lmweo")]([SubResource("Resource_o1kih"), SubResource("Resource_a5t62"), SubResource("Resource_bbl1o"), SubResource("Resource_hqny6")])
+metadata/_custom_type_script = "uid://cb7w6ls2wh2y"

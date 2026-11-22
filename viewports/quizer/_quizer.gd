@@ -15,7 +15,7 @@ var selection : String
 var questions_counter
 
 
-var koran_loader : _Core_Data
+var koran_loader : _Core_DataLoader
 var current_verse_index
 
 func _on_viewport_finish():
@@ -61,7 +61,7 @@ func _on_viewport_start():
 	
 	questions_counter = 3
 	
-	koran_loader = _Core_Data.new()
+	koran_loader = _Core_DataLoader.new()
 
 	koran_loader.load_quran_csv("res://assets/kooran_de_go/quran.csv")
 	
