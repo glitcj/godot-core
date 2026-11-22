@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://d08p5bfc634r"]
 
 [ext_resource type="Script" uid="uid://caovffqs8nkct" path="res://viewports/rpgm/_rpgm.gd" id="1_3t57p"]
+[ext_resource type="Resource" uid="uid://b4tp4ni8oj3d3" path="res://viewports/rpgm/_rpgm_data/_rpgm_data.tres" id="2_wu42d"]
 [ext_resource type="PackedScene" uid="uid://bc6scuw6gftg0" path="res://viewports/rpgm/_rpgm_map.tscn" id="4_n54ed"]
 [ext_resource type="Texture2D" uid="uid://ck7xl51igarox" path="res://assets/rpgmaker/mv/parallaxes/DarkSpace1.png" id="7_4skqh"]
 [ext_resource type="Shader" uid="uid://cenoyxwifpvd0" path="res://viewports/rpgm/shaders/_scroll.gdshader" id="7_stufm"]
@@ -15,6 +16,7 @@ process_mode = 4
 offset_right = 1920.0
 offset_bottom = 1080.0
 script = ExtResource("1_3t57p")
+data = ExtResource("2_wu42d")
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=431755219]
 transparent_bg = true

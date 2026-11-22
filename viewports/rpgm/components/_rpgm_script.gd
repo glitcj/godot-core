@@ -50,7 +50,7 @@ func get_mover() -> _RPGM_Mover: return mover
 func get_event(): return get_parent() as _RPGM_Event
 
 
-func get_variables(): return get_core().get_data() as _Core_Data
+func get_variables(): return get_rpgm().get_data() as _RPGM_Data
 
 
 var last_distnace_from_player : Vector2 = Vector2.ZERO

@@ -5,6 +5,8 @@ class_name _RPGM
 
 signal finished
 
+@export var data : _RPGM_Data
+
 
 func get_core(): return find_parent("_Core") as _Core
 func get_map(): return find_child("_RPGM_Map") as _RPGM_Map
@@ -12,6 +14,8 @@ func get_player(): return find_child("_RPGM_Map").find_child("Player") as _RPGM_
 func get_camera(): return get_map().find_child("Camera2D") as Camera2D
 # CLAUDE: get_callables() removed with _RPGM_Callables (see viewports/rpgm/lambdas/)
 func get_log(): return find_child("_Core_Log") as _Core_Log
+
+func get_data(): return data as _RPGM_Data
 
 func _ready() -> void:
 	super()
@@ -54,7 +58,7 @@ func collect_state() -> Dictionary:
 	return {
 		"version": SAVE_VERSION,
 		# "variables": _RPGM_Variables.variables.duplicate(),
-		"variables": get_core().get_data().tmp_variables.duplicate(),
+		"variables": get_data().rpgm_state_variables.duplicate(),
 		"events": events,
 		"player": {
 			"map_position": [p.map_position.x, p.map_position.y],
@@ -63,7 +67,7 @@ func collect_state() -> Dictionary:
 	}
 
 func apply_state(state: Dictionary) -> void:
-	get_core().get_data().tmp_variables = state.get("variables", {}).duplicate()
+	get_data().rpgm_state_variables = state.get("variables", {}).duplicate()
 	var events : Dictionary = state.get("events", {})
 	for e : _RPGM_Event in get_map().find_children("*", "_RPGM_Event"):
 		if events.has(String(e.name)):

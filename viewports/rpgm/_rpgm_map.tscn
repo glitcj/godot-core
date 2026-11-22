@@ -2180,6 +2180,7 @@ func _on_viewport_start():
 	pass
 
 func _on_frame():
+
 	if get_variables().l2_enemies_count == 2:
 		# CLAUDE: _RPGM_Callables removed — the action is its own lambda, run via run_lambda
 		await run_lambda(_RPGM_Lambda_Show_Messages.new([\"NPC: You got them !\", \"NPC: Go to the next location..\"]))

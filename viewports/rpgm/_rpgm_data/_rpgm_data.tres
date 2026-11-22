@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="_RPGM_Data" format=3 uid="uid://b4tp4ni8oj3d3"]
+
+[ext_resource type="Script" uid="uid://bsdsm0cuxggnf" path="res://viewports/rpgm/_rpgm_data/_rpgm_data.gd" id="1_26afg"]
+[ext_resource type="Script" uid="uid://bbhptcavav36h" path="res://core/_core_data/_core_variable.gd" id="2_gk7dn"]
+
+[resource]
+script = ExtResource("1_26afg")
+metadata/_custom_type_script = "uid://bsdsm0cuxggnf"
