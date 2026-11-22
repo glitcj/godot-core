@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://c17mg1quyc816"]
+
+[ext_resource type="Script" uid="uid://dxkbij13lf7tg" path="res://viewports/rpgm/components/_rpgm_event.gd" id="1_k3851"]
+[ext_resource type="PackedScene" uid="uid://bfksw2782klor" path="res://viewports/rpgm/components/_rpgm_script.tscn" id="2_shuxs"]
+[ext_resource type="PackedScene" uid="uid://ca8vvptjr324n" path="res://viewports/rpgm/components/_rpgm_portrait.tscn" id="3_c2osw"]
+
+[node name="_common_base_0_0_no_resource" type="Node2D" unique_id=909921870]
+script = ExtResource("1_k3851")
+
+[node name="_RPGM_Script" parent="." unique_id=1629462265 instance=ExtResource("2_shuxs")]
+interrupt_player = true
+is_collision = true
+
+[node name="_RPGM_Portrait" parent="_RPGM_Script" unique_id=1972099319 instance=ExtResource("3_c2osw")]

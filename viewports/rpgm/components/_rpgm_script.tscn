@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bfksw2782klor"]
+
+[ext_resource type="Script" uid="uid://t32s55k36xah" path="res://viewports/rpgm/components/_rpgm_script.gd" id="1_vdwc6"]
+
+[node name="_RPGM_Script" type="Node2D" unique_id=1629462265]
+script = ExtResource("1_vdwc6")

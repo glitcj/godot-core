@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dqyj1irujxwkl"]
+
+[ext_resource type="Script" uid="uid://dxkbij13lf7tg" path="res://viewports/rpgm/components/_rpgm_event.gd" id="1_22ywv"]
+[ext_resource type="PackedScene" uid="uid://bfksw2782klor" path="res://viewports/rpgm/components/_rpgm_script.tscn" id="2_11dvb"]
+[ext_resource type="Script" uid="uid://bo0dmi82n1uvj" path="res://viewports/rpgm/lambdas/_rpgm_lambda.gd" id="3_tjjl4"]
+[ext_resource type="Script" uid="uid://mhwrdc5y8886" path="res://viewports/rpgm/lambdas/_rpgm_lambda_show_messages.gd" id="4_fxafh"]
+[ext_resource type="PackedScene" uid="uid://ca8vvptjr324n" path="res://viewports/rpgm/components/_rpgm_portrait.tscn" id="5_kkx8r"]
+
+[sub_resource type="Resource" id="Resource_kvxu2"]
+script = ExtResource("4_fxafh")
+messages = Array[String](["Dim Nodes and Dimmed Scripts denote nodes that are instantiated from script files .GD", "Solid Scripts denote nodes that are instantiated from packed scenes .TSCN", "Scripts dont hold packed scene data and so on.", "So instantiating from scripts sometimes breaks nodes.", "Is there a rule of thumb to instantiate dim nodes ?"])
+metadata/_custom_type_script = "uid://mhwrdc5y8886"
+
+[node name="_common_base_0_0" type="Node2D" unique_id=942458357]
+script = ExtResource("1_22ywv")
+map_position = Vector2i(38, -27)
+
+[node name="_RPGM_Script" parent="." unique_id=1629462265 instance=ExtResource("2_11dvb")]
+on_action = Array[ExtResource("3_tjjl4")]([SubResource("Resource_kvxu2")])
+interrupt_player = true
+is_collision = true
+
+[node name="_RPGM_Portrait" parent="_RPGM_Script" unique_id=1972099319 instance=ExtResource("5_kkx8r")]
+type = "wiggle"

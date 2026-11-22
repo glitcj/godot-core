@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://ca054h48qpl7g"]
+
+[ext_resource type="Script" uid="uid://dxkbij13lf7tg" path="res://viewports/rpgm/components/_rpgm_event.gd" id="1_xc8cg"]
+
+[node name="_RPGM_Event" type="Node2D" unique_id=1360051267]
+script = ExtResource("1_xc8cg")

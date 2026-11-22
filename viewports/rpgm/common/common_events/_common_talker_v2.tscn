@@ -23,6 +23,8 @@ func _is_active(): return true
 func _on_action():
 	# i0 check lambda queue
 	if on_action == []: 
+
+
 		await super()
 	else: 
 		await get_core().run_lambda_queue(self, on_action)

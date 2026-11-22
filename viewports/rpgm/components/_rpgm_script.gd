@@ -206,8 +206,19 @@ func _deactivate():
 func _on_area_entered():
 	pass
 
+# func _on_action():
+# 	pass
+
+
+
 func _on_action():
-	pass
+	# i0 check lambda queue
+	if on_action != []: 
+		await get_core().run_lambda_queue(self, on_action)
+		return
+	else:
+		return
+
 
 
 func _log():
