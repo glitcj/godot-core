@@ -4,9 +4,12 @@ class_name _Core_Data
 
 @export var variables : Array[_Core_Variable] = []
 
+func load_cache():
+	_load_koran()
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	pass # ignored for Resource ?
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

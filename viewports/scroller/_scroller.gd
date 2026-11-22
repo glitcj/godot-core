@@ -92,6 +92,7 @@ func _initiate_visible_labels():
 	for i in range(total_verses_on_page):
 		var verse = verses[i]
 		verse.index = current_verse_index + i
+		print(scroll_messages)
 		verse.text = scroll_messages[current_verse_index + i]
 		verse.position = _slot_position(i)
 		verse.modulate = _slot_modulate(i)

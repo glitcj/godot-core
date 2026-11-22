@@ -44,6 +44,7 @@ func _process(delta: float) -> void:
 func _ready() -> void:
 	_boot.call_deferred()
 	_log.call_deferred()
+	get_data().load_cache()
 
 func _boot():
 	change_viewport(get_scene("_Starter"))
