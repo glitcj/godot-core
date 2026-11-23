@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://bc6scuw6gftg0"]
 
 [ext_resource type="Script" uid="uid://3b6nx2ubod3b" path="res://viewports/rpgm/_rpgm_map.gd" id="1_liwig"]
+[ext_resource type="Script" uid="uid://5u2vec6gokiq" path="res://core/_core_todo.gd" id="2_jkq8p"]
 [ext_resource type="Texture2D" uid="uid://cir837rpp1qt3" path="res://assets/rpgmaker/mv/tilesets/Dungeon_A1.png" id="2_l6f8o"]
 [ext_resource type="Texture2D" uid="uid://cklccjgem4vvs" path="res://assets/ninja/Backgrounds/Tilesets/TilesetFloor.png" id="3_jkq8p"]
 [ext_resource type="Texture2D" uid="uid://dwo3ghnulbghq" path="res://assets/ninja/Backgrounds/Tilesets/TilesetField.png" id="4_q33eq"]
@@ -25,25 +26,6 @@
 [ext_resource type="PackedScene" uid="uid://xtndm6lmqlnp" path="res://viewports/rpgm/common/common_events/_common_camera_position_v1.tscn" id="23_ej2nw"]
 [ext_resource type="Script" uid="uid://brl88l8fl1w5u" path="res://viewports/rpgm/common/common_scripts/_rpgm_common_script_teleport.gd" id="24_jvimy"]
 [ext_resource type="PackedScene" uid="uid://bfksw2782klor" path="res://viewports/rpgm/components/_rpgm_script.tscn" id="25_os0wp"]
-
-[sub_resource type="GDScript" id="GDScript_txeor"]
-script/source = "@tool
-extends Control
-
-@export_multiline var notes : String = \"\":
-	set(value):
-		if not Engine.is_editor_hint(): return
-		notes = value
-		# CLAUDE: null-guard — this setter runs while the scene loads, before
-		# the Label child exists, which errored on every editor startup
-		var label := find_child(\"Label\") as Label
-		if label: label.text = notes
-		
-
-func _ready():
-	if not Engine.is_editor_hint():
-		visible = false
-"
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_vd6wf"]
 
@@ -2114,6 +2096,25 @@ func _on_viewport_start():
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kl3l0"]
 shader = ExtResource("14_umjq4")
 
+[sub_resource type="GDScript" id="GDScript_txeor"]
+script/source = "@tool
+extends Control
+
+@export_multiline var notes : String = \"\":
+	set(value):
+		if not Engine.is_editor_hint(): return
+		notes = value
+		# CLAUDE: null-guard — this setter runs while the scene loads, before
+		# the Label child exists, which errored on every editor startup
+		var label := find_child(\"Label\") as Label
+		if label: label.text = notes
+		
+
+func _ready():
+	if not Engine.is_editor_hint():
+		visible = false
+"
+
 [sub_resource type="GDScript" id="GDScript_ceddd"]
 script/source = "extends _RPGM_Script
 
@@ -2492,45 +2493,65 @@ metadata/_custom_type_script = "uid://mhwrdc5y8886"
 y_sort_enabled = true
 script = ExtResource("1_liwig")
 
-[node name="_RPGM_TODOs" type="Control" parent="." unique_id=879696122]
+[node name="TODOs" type="Node2D" parent="." unique_id=1842255841]
+position = Vector2(0, -1)
+
+[node name="todo_1" type="Control" parent="TODOs" unique_id=879696122]
 z_index = 100
 layout_mode = 3
 anchors_preset = 0
-offset_left = 1084.0
-offset_top = -1761.0
-offset_right = 1084.0
-offset_bottom = -1761.0
-script = SubResource("GDScript_txeor")
-notes = "- Finish RPGM Engine > Add Tests > Make SUPER SUPER tight > Make simple Nest game with cutscenes and Persona pushing puzzles > Publish on itch > Make no-thinking version of the game with brain clearning mini game shader heavy mini game no puzzles
+offset_left = 807.0
+offset_top = -1186.0
+offset_right = 807.0
+offset_bottom = -1186.0
+script = ExtResource("2_jkq8p")
+notes = "- finish v1 of _RPGM_Plugin"
 
-- add quantise position to _RPGM_event, converts global position to map positions and sets map position
-
-- Add draggable node templates
-
-- add common nodes, includes prefabs of talker walkntalker scene adder scene changer killableghost
-"
-
-[node name="MarginContainer" type="MarginContainer" parent="_RPGM_TODOs" unique_id=1812118877]
+[node name="MarginContainer" type="MarginContainer" parent="TODOs/todo_1" unique_id=1812118877]
 layout_mode = 0
-offset_right = 1008.0
+offset_right = 400.0
 offset_bottom = 200.0
+scale = Vector2(0.5489382, 0.43426898)
 
-[node name="TextureRect" type="TextureRect" parent="_RPGM_TODOs/MarginContainer" unique_id=547013756]
+[node name="TextureRect" type="TextureRect" parent="TODOs/todo_1/MarginContainer" unique_id=547013756]
 layout_mode = 2
 texture = SubResource("CanvasTexture_vd6wf")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="_RPGM_TODOs/MarginContainer" unique_id=2036306495]
+[node name="Label" type="Label" parent="TODOs/todo_1/MarginContainer" unique_id=2036306495]
 layout_mode = 2
 size_flags_vertical = 1
-text = "- Finish RPGM Engine > Add Tests > Make SUPER SUPER tight > Make simple Nest game with cutscenes and Persona pushing puzzles > Publish on itch > Make no-thinking version of the game with brain clearning mini game shader heavy mini game no puzzles
+text = "- finish v1 of _RPGM_Plugin"
+label_settings = SubResource("LabelSettings_6le0f")
 
-- add quantise position to _RPGM_event, converts global position to map positions and sets map position
+[node name="todo_2" type="Control" parent="TODOs" unique_id=383856739]
+z_index = 100
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1507.0
+offset_top = -1188.0
+offset_right = 1507.0
+offset_bottom = -1188.0
+script = ExtResource("2_jkq8p")
+notes = "- this is \"map 9\" find a better way
+ to name and identify maps"
 
-- Add draggable node templates
+[node name="MarginContainer" type="MarginContainer" parent="TODOs/todo_2" unique_id=1141525433]
+layout_mode = 0
+offset_right = 400.0
+offset_bottom = 200.0
+scale = Vector2(0.5489382, 0.43426898)
 
-- add common nodes, includes prefabs of talker walkntalker scene adder scene changer killableghost
-"
+[node name="TextureRect" type="TextureRect" parent="TODOs/todo_2/MarginContainer" unique_id=2094250131]
+layout_mode = 2
+texture = SubResource("CanvasTexture_vd6wf")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="TODOs/todo_2/MarginContainer" unique_id=647823987]
+layout_mode = 2
+size_flags_vertical = 1
+text = "- this is \"map 9\" find a better way
+ to name and identify maps"
 label_settings = SubResource("LabelSettings_6le0f")
 
 [node name="_editor_script" type="Node" parent="." unique_id=905759584]
