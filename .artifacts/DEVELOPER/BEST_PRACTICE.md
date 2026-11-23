@@ -13,3 +13,4 @@ Resource v.s. Node:
 - Resource CAN be instanced INSIDE the Inspector 
 - Resource CAN see runtime Nodes and Scene Trees via functions that take in one runtime node
 - Node CANNOT be instanced INSIDE Inspector
+- https://www.youtube.com/watch?v=knjtHyDnmgo

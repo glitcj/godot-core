@@ -21,7 +21,7 @@ func run(rpgm_node : _RPGM_Node):
 	assert(target is _RPGM_Event or target is _RPGM_Player)
 
 	var player = rpgm_node.get_player()
-	var map = rpgm_node.get_map()
+	var map = rpgm_node.get_rpgm()
 	if target is _RPGM_Event:
 		(player.find_child("RemoteTransform2D") as RemoteTransform2D).update_position = false
 		map.find_child("_RPGM_Camera").find_child("Camera2D").position = Vector2.ZERO

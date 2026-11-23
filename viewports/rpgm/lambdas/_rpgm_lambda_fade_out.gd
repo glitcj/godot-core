@@ -5,4 +5,4 @@ class_name _RPGM_Lambda_Fade_Out
 # it starts the tween and returns without waiting for it to finish.
 # CLAUDE: parameter widened from _RPGM_Script to _RPGM_Node (see _RPGM_Lambda)
 func run(rpgm_node : _RPGM_Node):
-	_Core_Tweener.fade_out(rpgm_node.get_map())
+	_Core_Tweener.fade_out(rpgm_node.get_rpgm())

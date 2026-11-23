@@ -221,7 +221,7 @@ md('''## 6. Rules that hold for every method
 
 md('''## 7. How is my map built today?
 
-Reads `_rpgm_map.tscn` (read-only) and counts how events got there.
+Reads `_RPGM.tscn` (read-only) and counts how events got there.
 ''')
 
 code(r'''import os, re
@@ -231,7 +231,7 @@ root = os.getcwd()
 while not os.path.exists(os.path.join(root, "project.godot")) and root != "/":
 	root = os.path.dirname(root)
 
-text = open(os.path.join(root, "viewports/rpgm/_rpgm_map.tscn"), errors="ignore").read()
+text = open(os.path.join(root, "viewports/rpgm/_RPGM.tscn"), errors="ignore").read()
 
 scenes = {m.group(2): m.group(1) for m in re.finditer(r'\[ext_resource type="PackedScene"[^\]]*path="([^"]*)" id="([^"]*)"\]', text)}
 editable = set(re.findall(r'\[editable path="([^"]*)"\]', text))

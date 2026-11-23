@@ -5,7 +5,7 @@ Finish line (see "When to stop" at the bottom): rebuild the existing level-1
 content on the hardened engine as the acceptance test — then stop hardening
 and start the game.
 
-Decision on record: the game keeps **one map scene** (`_rpgm_map.tscn`) with
+Decision on record: the game keeps **one map scene** (`_RPGM.tscn`) with
 embedded scripts, version-controlled in git. The owner prefers fewer files and
 a smoother dev cycle over splitting maps into separate scenes/files. The
 checklist below works within that decision.
@@ -102,7 +102,7 @@ Specific bugs to kill before they're buried under content:
 
 Core should compile and run without rpgm:
 
-- [ ] `core/autoload/_get.gd` (`grab` autoload) returns `_RPGM_Map` /
+- [ ] `core/autoload/_get.gd` (`grab` autoload) returns `_RPGM` /
       `_RPGM_Event` — core depends on a game folder.
 - [ ] `core/_core_tweener.gd:57-67` — generic tween utility casts to
       `_RPGM_Mover`.

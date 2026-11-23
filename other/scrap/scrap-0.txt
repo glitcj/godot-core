@@ -5,7 +5,7 @@ For where you are now, I agree with you: it's overkill. A Resource doesn't fix t
 When a Resource is worth it:
 - Shared data. Several NPCs or maps use the same dialogue or config. You edit one .tres and they all follow, without touching the instances.
 - Structured data. Dialogue grows beyond plain strings, e.g. each line needs a speaker, portrait, emotion or choices, or there are conditions and branches. An Array[DialogueLine] is much nicer to edit in the Inspector than parallel arrays.
-- Content separate from scenes. You want to edit or diff dialogue without opening _rpgm_map.tscn, which is already a huge file, or you want writing and level layout to change independently.
+- Content separate from scenes. You want to edit or diff dialogue without opening _RPGM.tscn, which is already a huge file, or you want writing and level layout to change independently.
 - Presets. E.g. shopkeeper.tres and guard.tres as ready-made talker configs you pick from a dropdown.
 
 When it isn't: each NPC has a few unique lines that nothing else uses. That's your case today. A typed export on the root is simpler, and the data stays next to the NPC it belongs to.

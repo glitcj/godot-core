@@ -12,5 +12,5 @@ func _init(delta_ = null):
 # CLAUDE: parameter widened from _RPGM_Script to _RPGM_Node (see _RPGM_Lambda)
 func run(rpgm_node : _RPGM_Node):
 	# the camera node (an _RPGM_Event) IS the mover (mixin refactor)
-	var mover = rpgm_node.get_map().find_child("_RPGM_Camera") as _RPGM_Mover
+	var mover = rpgm_node.get_rpgm().find_child("_RPGM_Camera") as _RPGM_Mover
 	await mover.move(delta)

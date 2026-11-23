@@ -5,14 +5,14 @@ class_name _DGM_Gun
 
 var dgm_tile_packed_scene = preload("res://viewports/dgm/_dgm_tile.tscn")
 
-func get_map(): return find_parent("_DGM_Map") as _DGM_Map
+func get_rpgm(): return find_parent("_DGM_Map") as _DGM_Map
 
 
 func create_tile(position):
 	var tile3D = dgm_tile_packed_scene.instantiate() as _DGM_Tile
 	tile3D.position = position
-	get_map().add_child(tile3D)
-	# get_map().add_child(tile3D)
+	get_rpgm().add_child(tile3D)
+	# get_rpgm().add_child(tile3D)
 	tile3D.type = "wall"
 	# tile3D.owner = get_tree().edited_scene_root
 	tile3D._update_cell()

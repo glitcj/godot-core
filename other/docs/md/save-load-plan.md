@@ -87,7 +87,7 @@ One dictionary, one owner (a `_RPGM_State` or similar on the rpgm viewport):
 	  cover variables + event states + player position/facing.
 - [x] **P3 — events**: `EventState.Removed` appended to the enum;
 	  `_RPGM_Event.remove()` hides/disables instead of freeing; the six
-	  `queue_free()` sites in `_rpgm_map.tscn` converted;
+	  `queue_free()` sites in `_RPGM.tscn` converted;
 	  `_RPGM_Script._wrapped_callable` gates triggers on removed events
 	  (signals still fire on process-disabled nodes).
 - [x] **P4 — disk**: `save_game(slot)` / `load_game(slot)` → JSON at

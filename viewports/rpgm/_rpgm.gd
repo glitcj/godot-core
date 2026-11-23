@@ -9,9 +9,9 @@ signal finished
 
 
 func get_core(): return find_parent("_Core") as _Core
-func get_map(): return find_child("_RPGM_Map") as _RPGM_Map
-func get_player(): return find_child("_RPGM_Map").find_child("Player") as _RPGM_Player
-func get_camera(): return get_map().find_child("Camera2D") as Camera2D
+func get_rpgm(): return find_child("_RPGM") as _RPGM
+func get_player(): return find_child("_RPGM").find_child("Player") as _RPGM_Player
+func get_camera(): return get_rpgm().find_child("Camera2D") as Camera2D
 # CLAUDE: get_callables() removed with _RPGM_Callables (see viewports/rpgm/lambdas/)
 func get_log(): return find_child("_Core_Log") as _Core_Log
 
@@ -52,7 +52,7 @@ func _save_path(slot: int) -> String: return "user://rpgm_save_%d.json" % slot
 # TODO: FIX collect AND apply_state, they should load the correct _RPGM_Data
 func collect_state() -> Dictionary:
 	var events := {}
-	for e : _RPGM_Event in get_map().find_children("*", "_RPGM_Event"):
+	for e : _RPGM_Event in get_rpgm().find_children("*", "_RPGM_Event"):
 		events[String(e.name)] = e.state
 	var p : _RPGM_Player = get_player()
 	return {
@@ -69,7 +69,7 @@ func collect_state() -> Dictionary:
 func apply_state(state: Dictionary) -> void:
 	get_data().rpgm_state_variables = state.get("variables", {}).duplicate()
 	var events : Dictionary = state.get("events", {})
-	for e : _RPGM_Event in get_map().find_children("*", "_RPGM_Event"):
+	for e : _RPGM_Event in get_rpgm().find_children("*", "_RPGM_Event"):
 		if events.has(String(e.name)):
 			# CLAUDE: the state setter handles presentation (incl. Removed)
 			e.state = int(events[String(e.name)]) as _RPGM_Event.EventState
@@ -92,7 +92,7 @@ func can_save() -> bool:
 	if not is_active: return false
 	var p : _RPGM_Player = get_player()
 	if p == null or p.is_moving: return false
-	for s : _RPGM_Script in get_map().scripts_currently_on_map():
+	for s : _RPGM_Script in get_rpgm().scripts_currently_on_map():
 		if s.interrupt_player and s.is_running(): return false
 	return true
 

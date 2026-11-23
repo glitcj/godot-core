@@ -22,7 +22,7 @@ This document describes a set of targeted performance refactors for the RPGM GDS
 
 `_RPGM_Mover.map_position` has a setter. Every time a mover moves one tile, the setter fires `_update_tiles_with_rpgm_collision()`. That function:
 
-1. Calls `get_map().find_children("*", "_RPGM_Mover")` — a full scene-tree walk.
+1. Calls `get_rpgm().find_children("*", "_RPGM_Mover")` — a full scene-tree walk.
 2. For each mover found, calls `(m.get_parent() as _RPGM_Event).get_active_script()`, which itself calls `find_children("*", "_RPGM_Script")` — a **nested** scene-tree walk.
 3. Rebuilds the entire `tiles_with_rpgm_collision` static array from scratch.
 4. Calls `_update_tilemap_collision_debugger()`, which `queue_free()`s every existing debug `ColorRect` and instantiates new ones.
@@ -78,9 +78,9 @@ Inside the collision rebuild loop, `get_active_script()` is called on each event
 
 ```gdscript
 func _update_tiles_with_rpgm_collision():
-	if get_map() == null: return
+	if get_rpgm() == null: return
 	tiles_with_rpgm_collision = []
-	for m: _RPGM_Mover in get_map().find_children("*", "_RPGM_Mover"):
+	for m: _RPGM_Mover in get_rpgm().find_children("*", "_RPGM_Mover"):
 		if m.get_parent() is _RPGM_Player: continue
 		# CLAUDE: use cached active_script from the event instead of calling get_active_script()
 		# which internally does another find_children walk — avoids O(n*m) tree searches
@@ -104,10 +104,10 @@ Additionally, the outer `find_children("*", "_RPGM_Mover")` call inside the rebu
 
 ```gdscript
 func get_rpgm_viewport(): return find_parent("_RPGM") as _RPGM
-func get_player(): return find_parent("_RPGM_Map").find_child("Player") as _RPGM_Player
+func get_player(): return find_parent("_RPGM").find_child("Player") as _RPGM_Player
 func get_area(): return get_parent().find_child("Area2D") as Area2D
 func get_mover(): return get_parent().find_child("_RPGM_Mover") as _RPGM_Mover
-func get_map(): return find_parent("_RPGM_Map") as _RPGM_Map
+func get_rpgm(): return find_parent("_RPGM") as _RPGM
 ```
 
 These are not cached — every call traverses the scene tree. Several of them are called inside `_process` on every frame (e.g. `get_rpgm_viewport()`, `get_player()`, `get_mover()`).
@@ -124,14 +124,14 @@ Extend `_get_components()` (which is already deferred at ready) to cache all fre
 # CLAUDE: cached node references — populated once at ready via _get_components
 # replaces repeated find_parent/find_child calls in hot paths
 var _rpgm_cache: _RPGM
-var _map_cache: _RPGM_Map
+var _map_cache: _RPGM
 var _player_cache: _RPGM_Player
 var _area_cache: Area2D
 
 func _get_components():
 	parent = get_parent()
 	_rpgm_cache = find_parent("_RPGM")
-	_map_cache = find_parent("_RPGM_Map")
+	_map_cache = find_parent("_RPGM")
 	if _map_cache:
 		_player_cache = _map_cache.find_child("Player")
 	if parent.find_children("*", "_RPGM_Mover").size() > 0:
@@ -142,7 +142,7 @@ func _get_components():
 
 func get_core(): return find_parent("_Core") as _Core   # infrequent, leave as-is
 func get_rpgm_viewport(): return _rpgm_cache
-func get_map(): return _map_cache
+func get_rpgm(): return _map_cache
 func get_player(): return _player_cache
 func get_area(): return _area_cache
 func get_mover(): return mover  # already cached
@@ -155,21 +155,21 @@ Same pattern. Add cached vars for rpgm, map, player, area, mover and populate at
 ```gdscript
 # CLAUDE: cached references to avoid repeated find_parent/find_child in per-frame calls
 var _rpgm_cache: _RPGM
-var _map_cache: _RPGM_Map
+var _map_cache: _RPGM
 var _player_cache: _RPGM_Player
 var _area_cache: Area2D
 var _mover_cache: _RPGM_Mover
 
 func _ready():
 	_rpgm_cache = find_parent("_RPGM")
-	_map_cache = find_parent("_RPGM_Map")
+	_map_cache = find_parent("_RPGM")
 	if _map_cache:
 		_player_cache = _map_cache.find_child("Player")
 	_area_cache = find_child("Area2D")
 	_mover_cache = find_child("_RPGM_Mover")
 
 func get_rpgm_viewport(): return _rpgm_cache
-func get_map(): return _map_cache
+func get_rpgm(): return _map_cache
 func get_player(): return _player_cache
 func get_area(): return _area_cache
 func get_mover(): return _mover_cache
@@ -283,13 +283,13 @@ func _update_active_script():
 
 ### Desired Change — Move Ownership to the Map
 
-This is a slightly larger structural change. Move `tiles_with_rpgm_collision` and the rebuild logic to `_RPGM_Map`, which is the natural owner (it already owns the `TileMapLayer`s used for tile collision checks).
+This is a slightly larger structural change. Move `tiles_with_rpgm_collision` and the rebuild logic to `_RPGM`, which is the natural owner (it already owns the `TileMapLayer`s used for tile collision checks).
 
-**In `_RPGM_Map.gd` (new additions):**
+**In `_RPGM.gd` (new additions):**
 
 ```gdscript
 # CLAUDE: collision tile list moved here from _RPGM_Mover static var
-# _RPGM_Map is the correct owner — it already owns the tile layers and the mover list
+# _RPGM is the correct owner — it already owns the tile layers and the mover list
 var tiles_with_rpgm_collision: Array[Vector2i] = []
 var collision_dirty: bool = false
 
@@ -323,12 +323,12 @@ func _rebuild_collision_tiles():
 ```gdscript
 func tile_has_rpgm_collision(position: Vector2i) -> bool:
 	# CLAUDE: reads from map-owned collision list instead of static var on _RPGM_Mover
-	var map := get_map()
+	var map := get_rpgm()
 	if map == null: return false
 	return map.tiles_with_rpgm_collision.has(position)
 ```
 
-- In the `map_position` setter, call `get_map().mark_collision_dirty()` if map is available.
+- In the `map_position` setter, call `get_rpgm().mark_collision_dirty()` if map is available.
 
 > **Note:** Problem 7 is the most structural change. If doing all problems in one pass, do Problem 7 last and make sure Problems 1–6 are consistent with the new ownership model (i.e. `collision_dirty` lives on the map, not on `_RPGM_Mover`).
 
@@ -345,7 +345,7 @@ func tile_has_rpgm_collision(position: Vector2i) -> bool:
 | 4 | `_RPGM_Mover.gd` | `_update_tilemap_collision_debugger` | Gate behind `OS.is_debug_build()` | Low | **DONE** |
 | 5 | `_RPGM_Script.gd` | `_process` | Only emit `frame_started` if `_on_frame` overridden | Medium | **DONE** |
 | 6 | `_RPGM_Event.gd` | `_update_active_script` | Replace direct rebuild call with dirty flag | Low | **DONE** |
-| 7 | `_RPGM_Mover.gd` + `_RPGM_Map.gd` | Collision list ownership | Move static collision state to `_RPGM_Map` | Medium | **DONE** |
+| 7 | `_RPGM_Mover.gd` + `_RPGM.gd` | Collision list ownership | Move static collision state to `_RPGM` | Medium | **DONE** |
 
 ---
 
@@ -356,7 +356,7 @@ func tile_has_rpgm_collision(position: Vector2i) -> bool:
 3. ~~**Problem 3** — cache node refs in both files; verify `_get_components` deferred call timing is correct (it already uses `call_deferred` in `_RPGM_Script`, match this in `_RPGM_Event`).~~ **DONE** — `_RPGM_Event` uses `_cache_components.call_deferred()` to mirror the `_RPGM_Script` pattern; sibling-node lookup (Player) is safe because the deferred call runs after all `_ready()` calls complete.
 4. ~~**Problem 1 + 6 together** — introduce `collision_dirty` flag on `_RPGM_Mover`, update both the setter and `_update_active_script` to use it.~~ **DONE**
 5. ~~**Problem 5** — test carefully; make sure override detection works for all existing script subclasses before shipping.~~ **DONE** — uses `get_script_method_list()` (direct-definition only, not inherited) and walks the script chain so multi-level subclasses are detected correctly.
-6. ~~**Problem 7 last** — most structural, requires `_RPGM_Map.gd` changes and touching the most files. Do in a separate commit/branch.~~ **DONE** — `tiles_with_rpgm_collision`, `collision_dirty`, `_all_collision_debugging_rects`, `_rebuild_collision_tiles`, and `_update_tilemap_collision_debugger` all live on `_RPGM_Map` now. `_RPGM_Mover` static vars removed.
+6. ~~**Problem 7 last** — most structural, requires `_RPGM.gd` changes and touching the most files. Do in a separate commit/branch.~~ **DONE** — `tiles_with_rpgm_collision`, `collision_dirty`, `_all_collision_debugging_rects`, `_rebuild_collision_tiles`, and `_update_tilemap_collision_debugger` all live on `_RPGM` now. `_RPGM_Mover` static vars removed.
 
 ---
 

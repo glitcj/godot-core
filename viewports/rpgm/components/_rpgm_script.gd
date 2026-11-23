@@ -205,14 +205,14 @@ func _on_within_range():
 func _activate():
 	visible = true
 	is_active = true
-	get_map().mark_collision_dirty()
+	get_rpgm().mark_collision_dirty()
 
 	get_event().update_active_scripts()
 
 func _deactivate():
 	visible = false
 	is_active = false
-	get_map().mark_collision_dirty()
+	get_rpgm().mark_collision_dirty()
 	get_event().update_active_scripts()
 
 func _on_area_entered():

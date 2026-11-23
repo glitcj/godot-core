@@ -30,7 +30,7 @@ func _on_facing_changed(): pass
 @export var map_position: Vector2i = Vector2i(0, 0):
 	set(v):
 		map_position = v
-		if get_map(): get_map().mark_collision_dirty()
+		if get_rpgm(): get_rpgm().mark_collision_dirty()
 		if Engine.is_editor_hint(): _quantise_position()
 
 
@@ -41,14 +41,14 @@ func _on_facing_changed(): pass
 
 var destination : Vector2i = Vector2i(0, 0)
 
-func get_base_layer(): return get_map().find_child("L1 Base") as TileMapLayer
+func get_base_layer(): return get_rpgm().find_child("L1 Base") as TileMapLayer
 
 @onready var base_layer = get_base_layer()
 
 func _ready() -> void:
 	await get_tree().process_frame
 	# CLAUDE: mark map dirty instead of rebuilding immediately; map's _process will pick it up
-	if get_map(): get_map().mark_collision_dirty()
+	if get_rpgm(): get_rpgm().mark_collision_dirty()
 	await get_tree().process_frame
 	# face(facing)
 
@@ -145,7 +145,7 @@ func displace(displacement : Vector2):
 	finished_movement.emit()
 
 func tile_has_collision(tile_pos: Vector2i) -> bool:
-	for layer : TileMapLayer in get_map().layers:
+	for layer : TileMapLayer in get_rpgm().layers:
 		var tile_data = layer.get_cell_tile_data(tile_pos)
 
 		if tile_data == null:
@@ -165,8 +165,8 @@ func tile_has_collision(tile_pos: Vector2i) -> bool:
 	return false
 
 func tile_has_rpgm_collision(position: Vector2i) -> bool:
-	# CLAUDE: reads from map-owned collision list — static var removed when ownership moved to _RPGM_Map
-	var map : _RPGM_Map = get_map()
+	# CLAUDE: reads from map-owned collision list — static var removed when ownership moved to _RPGM
+	var map : _RPGM = get_rpgm()
 	if map == null: return false
 	return map.tiles_with_rpgm_collision.has(position)
 

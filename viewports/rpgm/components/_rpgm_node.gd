@@ -12,8 +12,8 @@ func _cached(key: StringName, finder: Callable) -> Node:
 	return _refs[key]
 
 func get_rpgm_viewport() -> _RPGM_Viewport: return _cached(&"rpgm_viewport", func(): return find_parent("_RPGM_Viewport")) as _RPGM_Viewport
-func get_map() -> _RPGM_Map: return _cached(&"map", func(): return find_parent("_RPGM_Map")) as _RPGM_Map
-func get_player() -> _RPGM_Player: return _cached(&"player", func(): return get_map().find_child("Player") if get_map() else null) as _RPGM_Player
+func get_rpgm() -> _RPGM: return _cached(&"map", func(): return find_parent("_RPGM")) as _RPGM
+func get_player() -> _RPGM_Player: return _cached(&"player", func(): return get_rpgm().find_child("Player") if get_rpgm() else null) as _RPGM_Player
 func get_core() -> _Core: return _cached(&"core", func(): return find_parent("_Core")) as _Core
 # CLAUDE: get_callables() removed with _RPGM_Callables — each action is now
 # an _RPGM_Lambda (viewports/rpgm/lambdas/), called as run_lambda(X.new(...))

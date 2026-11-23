@@ -66,7 +66,7 @@ digraph {
     b [label="Resource_kvxu2\\n\\"Dim Nodes and Dimmed...\\""];
   }
   subgraph cluster_map {
-    label="_rpgm_map.tscn"; fontname="Helvetica"; fontsize=12; color="#8a9bb0"; style="rounded";
+    label="_RPGM.tscn"; fontname="Helvetica"; fontsize=12; color="#8a9bb0"; style="rounded";
     m [label="Resource_kvxu2\\n\\"Lo !\\""];
   }
   b -> m [label="same ID, different lambda", dir=none, style=dashed, color="#c0392b", fontcolor="#c0392b"];
@@ -280,7 +280,7 @@ md("## 5. Sub-resource IDs are local to their file\n\n" + dot_md(D_CLASH, alt="t
 | File | ID | Messages |
 |---|---|---|
 | `viewports/rpgm/common/common_events/_common_base_0_0.tscn` | `Resource_kvxu2` | "Dim Nodes and Dimmed Scripts denote..." |
-| `viewports/rpgm/_rpgm_map.tscn` | `Resource_kvxu2` | "Lo !" |
+| `viewports/rpgm/_RPGM.tscn` | `Resource_kvxu2` | "Lo !" |
 
 Two different lambdas, two different files, one name. Which one a node gets depends only on **which file the node is written in**:
 
@@ -329,7 +329,7 @@ while not os.path.exists(os.path.join(root, "project.godot")) and root != "/":
 
 FILES = {
 	"BASE": "viewports/rpgm/common/common_events/_common_base_0_0.tscn",
-	"MAP":  "viewports/rpgm/_rpgm_map.tscn",
+	"MAP":  "viewports/rpgm/_RPGM.tscn",
 }
 
 def read_scene(path):
@@ -384,7 +384,7 @@ md("## 8. Getting out, and the rules from here\n\n" + dot_md(D_CHOICE, alt="keep
 | The **base scene's own tab**, after a base-owned lambda was edited through an instance | Fact 1 directly: the tab and the instance show the same live object. The file on disk is still correct |
 | The **base scene's own tab**, with no such edit | The editor showing the map's lambda in place of the base's (the ID clash). The file on disk is still correct |
 
-To tell which: hover over the lambda in the Inspector. Its path ends in either `_rpgm_map.tscn::Resource_kvxu2` or `_common_base_0_0.tscn::Resource_kvxu2`.
+To tell which: hover over the lambda in the Inspector. Its path ends in either `_RPGM.tscn::Resource_kvxu2` or `_common_base_0_0.tscn::Resource_kvxu2`.
 
 **Clean-up, in order:**
 

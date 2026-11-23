@@ -1,7 +1,7 @@
 extends Node
 class_name _DGM_Lambdas
 
-func get_map(): return get_parent() as _DGM_Map
+func get_rpgm(): return get_parent() as _DGM_Map
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

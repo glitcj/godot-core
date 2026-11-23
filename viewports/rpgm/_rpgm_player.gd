@@ -23,7 +23,7 @@ var is_active = false:
 		is_active = v
 
 # CLAUDE: mover child ref removed — its members are inherited now
-@onready var map = find_parent("_RPGM_Map") as _RPGM_Map
+@onready var map = find_parent("_RPGM") as _RPGM
 
 
 # CLAUDE: kept as alias for existing call sites; resolution now inherited
@@ -61,7 +61,7 @@ func _process(delta: float) -> void:
 		return
 		
 	is_active = true	
-	for script : _RPGM_Script in get_rpgm_viewport().get_map().scripts_currently_on_map():
+	for script : _RPGM_Script in get_rpgm_viewport().get_rpgm().scripts_currently_on_map():
 		if script.is_running() and script.interrupt_player:
 			is_active = false
 			

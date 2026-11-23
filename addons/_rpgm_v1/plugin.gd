@@ -7,8 +7,11 @@ var panel : Control
 var mover_inspector := preload("res://addons/_rpgm_v1/mover_inspector_plugin.gd").new()
 
 func _enter_tree():
+	# mover quantise buttons
 	add_inspector_plugin(mover_inspector)
-	# panel = Control.new()
+	
+	
+	# i0 node inspection dock
 	panel = _rpgm_v1.instantiate()
 	add_control_to_bottom_panel(panel, "_rpgm_v1")
 

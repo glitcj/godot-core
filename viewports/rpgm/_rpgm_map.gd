@@ -1,6 +1,6 @@
 @tool
 extends Node2D
-class_name _RPGM_Map
+class_name _RPGM
 
 @onready var player : CharacterBody2D = %Player
 @onready var layers = find_children("L*", "TileMapLayer")
@@ -10,14 +10,14 @@ func find_event(_name): return find_child(_name) as _RPGM_Event
 
 
 # CLAUDE: collision tile list and rebuild logic moved here from _RPGM_Mover static vars
-# _RPGM_Map is the correct owner — it owns the tile layers and can see all movers
+# _RPGM is the correct owner — it owns the tile layers and can see all movers
 var tiles_with_rpgm_collision: Array[Vector2i] = []
 var collision_dirty: bool = false
 var _all_collision_debugging_rects: Array[ColorRect] = []
 
 func _ready() -> void:
 	if false: print_tree_pretty()
-	Performance.add_custom_monitor("_rpgm_map/_rpgm_map_process", func(): return last_process_ms)
+	Performance.add_custom_monitor("_RPGM/_RPGM_process", func(): return last_process_ms)
 	if not Engine.is_editor_hint(): modulate = Color(0,0,0,1)
 	
 func scripts_currently_on_map():

@@ -1,13 +1,16 @@
 
 Claude ignores this files, this file is only for the human developer to see, use, and maintain.
 
+- Add RPGM UnitEditor:
+https://www.youtube.com/watch?v=knjtHyDnmgo
+
+
+- Refactor _RPGM to _RPGM everywhere
 
 - /Users/alhabib/Desktop/glitcj-repos/godot-core/viewports/rpgm/_rpgm.gd:48
 48: # TODO: FIX collect AND apply_state, they should load the correct _RPGM_Data
 
 - _Core_Data and _RPGM_Data _RPGM_Variable _Core_Variable
-
-- Complete LAMBDA AS RESOURCE and deprecate callables_1
 
 - Add a "Add Event" that generates an event on the go ? use godot native ?
 
@@ -17,7 +20,7 @@ Claude ignores this files, this file is only for the human developer to see, use
 
 - Replace all existing events with Lambda Queued events
 
-- Replace _RPGM with _RPGM_Viewport and _RPGM_Map with _RPGM ? Same for _DGM
+- Replace _RPGM with _RPGM_Viewport and _RPGM with _RPGM ? Same for _DGM
 
 - Refactor Viewport to be super clean and clear
 

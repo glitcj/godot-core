@@ -34,7 +34,7 @@ func _apply_state_presentation():
 		visible = true
 		process_mode = Node.PROCESS_MODE_INHERIT
 		update_active_scripts()
-	if get_map(): get_map().mark_collision_dirty()
+	if get_rpgm(): get_rpgm().mark_collision_dirty()
 
 @onready var portraits = find_children("*", "_RPGM_Portrait")
 
