@@ -2676,11 +2676,11 @@ border_width = 50.0
 unique_name_in_owner = true
 z_index = 1
 y_sort_enabled = true
-position = Vector2(600, -1176)
+position = Vector2(648, -1176)
 script = ExtResource("12_4532m")
 speed = 5.0
 facing = Vector2i(0, 1)
-map_position = Vector2i(12, -25)
+map_position = Vector2i(13, -25)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=106171044]
 scale = Vector2(7, 7)
