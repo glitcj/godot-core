@@ -1,9 +1,10 @@
 
 Claude ignores this files, this file is only for the human developer to see, use, and maintain.
 
+- Add _RPGM_Lambda Queue editor in _RPGM_Plugin_Bottom_Dock
+
 - Add RPGM UnitEditor:
 https://www.youtube.com/watch?v=knjtHyDnmgo
-
 
 - Refactor _RPGM to _RPGM everywhere
 
