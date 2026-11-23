@@ -7,3 +7,4 @@ ignored/*
 .android/
 .android/*
 /android/
+.DS_Store
