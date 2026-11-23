@@ -4,8 +4,11 @@ class_name _RPGM_Plugin_Bottom_Dock
 
 signal bottom_dock_requested
 
-var on_selection_interface := HBoxContainer.new()
+var on_selection_interface : VBoxContainer = VBoxContainer.new()
+
 func _ready() -> void:
+	
+	
 	%_clicker_button.pressed.connect(func(): _log("clicked !"))
 	%_describe_node_button.pressed.connect(func(): print("clicked !"))
 	%_on_selection_interface_margin_box.add_child(on_selection_interface)
@@ -44,27 +47,37 @@ func _on_rpgm_event_node_selected(node : _RPGM_Mover):
 func _on_rpgm_tilemap_node_selected(node : TileMapLayer):
 	_add_button("Describe Tilemap", func(): print(node))
 
-func _on_rpgm_script_node_selected(node : TileMapLayer):
-	bottom_dock_requested.emit()
-	_add_button("Describe Script", func(): print(node))
-
-"""
+# CLAUDE: parameter was typed TileMapLayer, which rejects an _RPGM_Script
 func _on_rpgm_script_node_selected(node : _RPGM_Script):
-        for p in node.get_property_list():
-                if p.name != "on_action": continue
+	# on_selection_interface.size = Vector2(0, 0)
+	on_selection_interface.custom_maximum_size = Vector2(500, 0)
+	bottom_dock_requested.emit()
+	# _add_button("Describe Script", func(): print(node))
+	_add_property_editor(node, &"on_action", "On Action")
 
-                var editor := EditorInspector.instantiate_property_editor(
-                        node, p.type, p.name, p.hint, p.hint_string, p.usage)
-                editor.set_object_and_property(node, p.name)
-                editor.label = "On Action"
-                editor.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+# CLAUDE: shows one of the selected node's properties in the dock using the
+# same widget the Inspector uses (for on_action: the lambda list with its
+# "Add Element" button). The widget only reports edits, so they are applied
+# here through the editor's undo system, which also marks the scene unsaved.
+func _add_property_editor(node : Object, property : StringName, label : String) -> void:
+	for p in node.get_property_list():
+		if p.name != property: continue
 
-                # the widget only REPORTS edits; applying them is your job
-                editor.property_changed.connect(
-                        func(property, value, _field, _changing):
-                                node.set(property, value)
-                                editor.update_property())
+		var editor := EditorInspector.instantiate_property_editor(
+			node, p.type, p.name, p.hint, p.hint_string, p.usage)
+		editor.set_object_and_property(node, p.name)
+		editor.label = label
+		editor.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 
-                on_selection_interface.add_child(editor)
-                editor.update_property()
-"""
+		editor.property_changed.connect(
+			func(changed : StringName, value : Variant, _field : StringName, _changing : bool):
+				var undo := EditorInterface.get_editor_undo_redo()
+				undo.create_action("Set %s" % changed)
+				undo.add_do_property(node, changed, value)
+				undo.add_undo_property(node, changed, node.get(changed))
+				undo.commit_action()
+				editor.update_property())
+
+		on_selection_interface.add_child(editor)
+		editor.update_property()
+		return
