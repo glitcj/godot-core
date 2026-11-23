@@ -30,9 +30,16 @@ window/size/viewport_height=1080
 window/size/always_on_top=true
 window/stretch/mode="viewport"
 
+[editor_overrides]
+
+interface/theme/color_preset="Custom"
+interface/theme/base_color=Color(0.098, 0.114, 0.153, 1)
+interface/theme/accent_color=Color(0.404, 0.71, 0.929, 1)
+interface/theme/contrast=0.3
+
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/_rpgm_v2/plugin.cfg", "res://addons/copy_with_path/plugin.cfg")
+enabled=PackedStringArray("res://addons/_rpgm_v2/plugin.cfg", "res://addons/copy_with_path/plugin.cfg", "res://addons/toggle_inspector/plugin.cfg")
 
 [filesystem]
 
