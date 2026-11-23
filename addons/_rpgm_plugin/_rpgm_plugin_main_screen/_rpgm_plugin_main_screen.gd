@@ -8,6 +8,7 @@ var button_row := HBoxContainer.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	return
 	%Button2.button_down.connect(func(): print("clicked !"))
 	
 	%Button2.get_parent().add_child(button_row)
@@ -15,6 +16,7 @@ func _ready() -> void:
 	_on_selection_changed()
 	
 func _on_selection_changed() -> void:
+	return
 	for child in button_row.get_children(): child.queue_free()
 
 	var nodes := EditorInterface.get_selection().get_selected_nodes()
@@ -26,6 +28,7 @@ func _on_selection_changed() -> void:
 		_add_button("Quantise via Global", node._quantise_via_global_position)
 
 func _add_button(text : String, callback : Callable) -> void:
+	return
 	var button := Button.new()
 	button.text = text
 	button.pressed.connect(callback)

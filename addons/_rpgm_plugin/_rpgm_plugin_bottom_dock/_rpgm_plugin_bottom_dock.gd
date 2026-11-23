@@ -9,7 +9,6 @@ func _ready() -> void:
 	%_describe_node_button.pressed.connect(func(): print("clicked !"))
 	%_on_selection_interface_margin_box.add_child(on_selection_interface)
 	
-	# i0 mover quantisation buttons
 	EditorInterface.get_selection().selection_changed.connect(_on_selection_changed)
 	_on_selection_changed()
 	
@@ -26,8 +25,9 @@ func _on_selection_changed() -> void:
 	if nodes.size() != 1: return
 	var node := nodes[0]
 
-	# _on_mover_button_selected()
-	if node is _RPGM_Mover: _on_mover_button_selected(node)
+	if node is _RPGM_Event: _on_rpgm_event_node_selected(node)
+	if node is TileMapLayer: _on_rpgm_tilemap_node_selected(node)
+	if node is _RPGM_Script: _on_rpgm_script_node_selected(node)
 
 
 func _add_button(text : String, callback : Callable) -> void:
@@ -36,9 +36,15 @@ func _add_button(text : String, callback : Callable) -> void:
 	button.pressed.connect(callback)
 	on_selection_interface.add_child(button)
 
-func _on_mover_button_selected(node : _RPGM_Mover):
+func _on_rpgm_event_node_selected(node : _RPGM_Mover):
 	_add_button("Quantise via Map", node._quantise_via_map_position)
 	_add_button("Quantise via Global", node._quantise_via_global_position)
+
+func _on_rpgm_tilemap_node_selected(node : TileMapLayer):
+	_add_button("Describe Tilemap", func(): print(node))
+
+func _on_rpgm_script_node_selected(node : TileMapLayer):
+	_add_button("Describe Script", func(): print(node))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
