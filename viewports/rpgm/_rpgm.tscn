@@ -2554,6 +2554,36 @@ text = "- this is \"map 9\" find a better way
  to name and identify maps"
 label_settings = SubResource("LabelSettings_6le0f")
 
+[node name="todo_3" type="Control" parent="TODOs" unique_id=1445066190]
+z_index = 100
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1756.0
+offset_top = -1100.0
+offset_right = 1756.0
+offset_bottom = -1100.0
+script = ExtResource("2_jkq8p")
+notes = "why do events like this not 
+face the player while others do ?"
+
+[node name="MarginContainer" type="MarginContainer" parent="TODOs/todo_3" unique_id=605614282]
+layout_mode = 0
+offset_right = 575.0
+offset_bottom = 200.0
+scale = Vector2(0.5489382, 0.43426898)
+
+[node name="TextureRect" type="TextureRect" parent="TODOs/todo_3/MarginContainer" unique_id=1104244221]
+layout_mode = 2
+texture = SubResource("CanvasTexture_vd6wf")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="TODOs/todo_3/MarginContainer" unique_id=1599430203]
+layout_mode = 2
+size_flags_vertical = 1
+text = "why do events like this not 
+face the player while others do ?"
+label_settings = SubResource("LabelSettings_6le0f")
+
 [node name="_editor_script" type="Node" parent="." unique_id=905759584]
 script = SubResource("GDScript_6le0f")
 

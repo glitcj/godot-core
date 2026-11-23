@@ -15,12 +15,14 @@ var is_moving = false:
 	set(value):
 		is_moving = value
 
-@export var speed = 0.5 as float
-@export var type = MovementType.Linear as MovementType
+# CLAUDE: typed exports — the untyped versions were written out as null
+# when the scene was saved while this script had an error
+@export var speed : float = 0.5
+@export var type : MovementType = MovementType.Linear
 
 # CLAUDE: merged with the old _RPGM_Event.facing var — subclasses override
 # _on_facing_changed() to forward the value to their portrait(s)
-@export var facing = Vector2i(1, 0) as Vector2i:
+@export var facing : Vector2i = Vector2i(1, 0):
 	set(value):
 		facing = value
 		_on_facing_changed()
@@ -31,7 +33,9 @@ func _on_facing_changed(): pass
 	set(v):
 		map_position = v
 		if get_rpgm(): get_rpgm().mark_collision_dirty()
-		if Engine.is_editor_hint(): _quantise_position()
+		if Engine.is_editor_hint():
+			_quantise_position()
+			update_configuration_warnings()
 
 
 # @export_category("Quantise")
@@ -46,6 +50,9 @@ func get_base_layer(): return get_rpgm().find_child("L1 Base") as TileMapLayer
 @onready var base_layer = get_base_layer()
 
 func _ready() -> void:
+	# CLAUDE: in the editor, get told when the node is moved so the
+	# map_position warning can be re-checked (see _notification)
+	if Engine.is_editor_hint(): set_notify_transform(true)
 	await get_tree().process_frame
 	# CLAUDE: mark map dirty instead of rebuilding immediately; map's _process will pick it up
 	if get_rpgm(): get_rpgm().mark_collision_dirty()
@@ -82,8 +89,23 @@ func _quantise_via_global_position():
 	if not Engine.is_editor_hint() or not is_node_ready(): return
 	
 	map_position = global_position_to_map_position(global_position)
-	
-	
+
+
+# CLAUDE: flags a mover whose saved map_position disagrees with where it
+# sits on the map — makes lost or stale values visible in the Scene dock
+# instead of failing silently at runtime
+func _get_configuration_warnings() -> PackedStringArray:
+	if not is_node_ready() or not get_rpgm() or base_layer == null: return []
+	var tile : Vector2i = global_position_to_map_position(global_position)
+	if tile == map_position: return []
+	return ["map_position %s does not match its position (tile %s). Use Quantise via Global or Quantise via Map." % [map_position, tile]]
+
+# CLAUDE: re-check that warning whenever the node is moved in the editor
+func _notification(what : int) -> void:
+	if what == NOTIFICATION_TRANSFORM_CHANGED and Engine.is_editor_hint():
+		update_configuration_warnings()
+
+
 func move_to_map_position(target_map_position):
 	await move(target_map_position - map_position)
 
