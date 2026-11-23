@@ -2,6 +2,7 @@
 extends Control
 class_name _RPGM_Plugin_Bottom_Dock
 
+signal bottom_dock_requested
 
 var on_selection_interface := HBoxContainer.new()
 func _ready() -> void:
@@ -44,8 +45,26 @@ func _on_rpgm_tilemap_node_selected(node : TileMapLayer):
 	_add_button("Describe Tilemap", func(): print(node))
 
 func _on_rpgm_script_node_selected(node : TileMapLayer):
+	bottom_dock_requested.emit()
 	_add_button("Describe Script", func(): print(node))
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+"""
+func _on_rpgm_script_node_selected(node : _RPGM_Script):
+        for p in node.get_property_list():
+                if p.name != "on_action": continue
+
+                var editor := EditorInspector.instantiate_property_editor(
+                        node, p.type, p.name, p.hint, p.hint_string, p.usage)
+                editor.set_object_and_property(node, p.name)
+                editor.label = "On Action"
+                editor.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+
+                # the widget only REPORTS edits; applying them is your job
+                editor.property_changed.connect(
+                        func(property, value, _field, _changing):
+                                node.set(property, value)
+                                editor.update_property())
+
+                on_selection_interface.add_child(editor)
+                editor.update_property()
+"""

@@ -1,8 +1,8 @@
 @tool
 extends EditorPlugin
 
-var _bottom_dock_control : Control
-var _main_screen_control : Control
+var _bottom_dock_control : _RPGM_Plugin_Bottom_Dock
+var _main_screen_control : _RPGM_Plugin_Main_Screen
 
 
 # i0 PackedScene.instantiate() creates solid
@@ -20,8 +20,12 @@ func _enter_tree():
 		EditorInterface.get_editor_main_screen().add_child(_main_screen_control)
 		_make_visible(false) # hidden until its tab is clicked
 
-		_bottom_dock_control = BOTTOM_DOCK.instantiate()
+		# _bottom_dock_control : _RPGM_Plugin_Bottom_Dock = BOTTOM_DOCK.instantiate()
+		_bottom_dock_control = BOTTOM_DOCK.instantiate() as _RPGM_Plugin_Bottom_Dock
 		add_control_to_bottom_panel(_bottom_dock_control, "RPGM")
+		_bottom_dock_control.bottom_dock_requested.connect(func(): make_bottom_panel_item_visible(_bottom_dock_control))
+		
+		
 
 		add_inspector_plugin(INSPECTOR.new())
 
