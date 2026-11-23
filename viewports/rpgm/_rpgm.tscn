@@ -2601,9 +2601,7 @@ tile_set = SubResource("TileSet_x2jho")
 [node name="_RPGM_Camera" type="Node2D" parent="." unique_id=1806915797]
 position = Vector2(24, 24)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
 
 [node name="Camera2D" type="Camera2D" parent="_RPGM_Camera" unique_id=1218904277]
 z_index = 100
@@ -2627,11 +2625,11 @@ border_width = 50.0
 unique_name_in_owner = true
 z_index = 1
 y_sort_enabled = true
-position = Vector2(648, -1176)
+position = Vector2(600, -1176)
 script = ExtResource("12_4532m")
 speed = 5.0
 facing = Vector2i(0, 1)
-map_position = Vector2i(13, -25)
+map_position = Vector2i(12, -25)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=106171044]
 scale = Vector2(7, 7)
@@ -2662,9 +2660,8 @@ update_scale = false
 [node name="_npc_1_1" type="Node2D" parent="_map_1" unique_id=433880375]
 position = Vector2(72, 72)
 script = SubResource("GDScript_jo6ms")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(1, 1)
 
 [node name="_common_script_talker_1" type="Node2D" parent="_map_1/_npc_1_1" unique_id=78072347]
 script = SubResource("GDScript_uc14m")
@@ -2692,9 +2689,7 @@ sprite = "red_prince"
 [node name="_npc_1_2" type="Node2D" parent="_map_1" unique_id=1041572364]
 position = Vector2(-120, 72)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+map_position = Vector2i(-3, 1)
 
 [node name="_RPGM_script" type="Node2D" parent="_map_1/_npc_1_2" unique_id=182426219]
 script = SubResource("GDScript_x2jho")
@@ -2709,9 +2704,8 @@ sprite = "priest"
 [node name="_event_1_1" type="Node2D" parent="_map_1" unique_id=1839221708]
 position = Vector2(648, -1416)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(13, -30)
 
 [node name="_RPGM_Script" type="Node2D" parent="_map_1/_event_1_1" unique_id=99814635]
 script = SubResource("GDScript_5ubha")
@@ -2760,9 +2754,8 @@ label_settings = SubResource("LabelSettings_6le0f")
 [node name="_enemy_2_1" type="Node2D" parent="_map_2" unique_id=384155250]
 position = Vector2(-552, 72)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(-12, 1)
 
 [node name="_enemy_script_2_1" type="Node2D" parent="_map_2/_enemy_2_1" unique_id=1155407201]
 script = SubResource("GDScript_ceddd")
@@ -2786,9 +2779,8 @@ scale = Vector2(1.0166667, 1.0833334)
 [node name="_enemy_2_2" type="Node2D" parent="_map_2" unique_id=169736033]
 position = Vector2(-984, -120)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(-21, -3)
 
 [node name="_common_script_ghost" type="Node2D" parent="_map_2/_enemy_2_2" unique_id=877032653]
 script = SubResource("GDScript_lnpst")
@@ -2802,9 +2794,8 @@ scale = Vector2(1.0166667, 1.0833334)
 [node name="_enemy_2_3" type="Node2D" parent="_map_2" unique_id=130958144]
 position = Vector2(-1080, 72)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(-23, 1)
 
 [node name="_common_script_ghost" type="Node2D" parent="_map_2/_enemy_2_3" unique_id=1933306583]
 script = SubResource("GDScript_fchqt")
@@ -2818,9 +2809,8 @@ scale = Vector2(1.0166667, 1.0833334)
 [node name="_event_2_1" type="Node2D" parent="_map_2" unique_id=1539386637]
 position = Vector2(-648, -24)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(-14, -1)
 
 [node name="_RPGM_Script" type="Node2D" parent="_map_2/_event_2_1" unique_id=1055183704]
 script = SubResource("GDScript_g67hk")
@@ -2834,9 +2824,8 @@ sprite = "system"
 [node name="_npc_3_2_talking_tree" type="Node2D" parent="_map_3" unique_id=1901808844]
 position = Vector2(648, -216)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(13, -5)
 
 [node name="_RPGM_Common_Script_Talker" type="Node2D" parent="_map_3/_npc_3_2_talking_tree" unique_id=1782417348]
 script = SubResource("GDScript_vvo4p")
@@ -2845,9 +2834,7 @@ is_collision = true
 [node name="_npc_3_3_stuff" type="Node2D" parent="_map_3" unique_id=1535082856]
 position = Vector2(744, -264)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+map_position = Vector2i(15, -6)
 
 [node name="_RPGM_Script" type="Node2D" parent="_map_3/_npc_3_3_stuff" unique_id=1333190918]
 script = ExtResource("15_hgbt8")
@@ -2857,9 +2844,7 @@ metadata/_custom_type_script = "uid://t32s55k36xah"
 [node name="_npc_3_4_stuff" type="Node2D" parent="_map_3" unique_id=1089850911]
 position = Vector2(696, -264)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+map_position = Vector2i(14, -6)
 
 [node name="_RPGM_Script" type="Node2D" parent="_map_3/_npc_3_4_stuff" unique_id=1778908953]
 position = Vector2(48, 0)
@@ -2871,9 +2856,7 @@ metadata/_custom_type_script = "uid://t32s55k36xah"
 y_sort_enabled = true
 position = Vector2(552, -264)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+map_position = Vector2i(11, -6)
 
 [node name="_rpgm_common_script_talker_3_1" type="Node2D" parent="_map_3/_npc_3_1" unique_id=1384893167]
 script = ExtResource("16_nffw3")
@@ -2890,9 +2873,8 @@ scale = Vector2(1.0166667, 1.0833334)
 [node name="_npc_4_1_talking_tree" type="Node2D" parent="_map_4" unique_id=2054076073]
 position = Vector2(648, -1224)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(13, -26)
 
 [node name="_RPGM_Common_Script_Talker" type="Node2D" parent="_map_4/_npc_4_1_talking_tree" unique_id=1751104104]
 script = ExtResource("16_nffw3")
@@ -2902,9 +2884,8 @@ is_collision = true
 [node name="_npc_4_2" type="Node2D" parent="_map_4" unique_id=519240694]
 position = Vector2(-24, 72)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(-1, 1)
 
 [node name="_RPGM_Script" type="Node2D" parent="_map_4/_npc_4_2" unique_id=453401314]
 script = SubResource("GDScript_eu0qy")
@@ -2918,9 +2899,8 @@ scale = Vector2(1.0166667, 1.0833334)
 [node name="_npc_4_3" type="Node2D" parent="_map_4" unique_id=523801611]
 position = Vector2(600, -1320)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(12, -28)
 
 [node name="_RPGM_Script" type="Node2D" parent="_map_4/_npc_4_3" unique_id=142225957]
 script = SubResource("GDScript_byr4j")
@@ -2934,9 +2914,8 @@ scale = Vector2(1.0166667, 1.0833334)
 [node name="_npc_4_5" type="Node2D" parent="_map_4" unique_id=2142673939]
 position = Vector2(552, -1320)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(11, -28)
 
 [node name="_RPGM_Script" type="Node2D" parent="_map_4/_npc_4_5" unique_id=157929650]
 script = SubResource("GDScript_byr4j")
@@ -2950,16 +2929,13 @@ scale = Vector2(1.0166667, 1.0833334)
 [node name="_npc_4_6" parent="_map_4" unique_id=671048060 instance=ExtResource("17_t765c")]
 position = Vector2(552, -1128)
 messages = ["Need to clear more errors.", "Add more common events."]
-speed = null
-type = null
-facing = null
+map_position = Vector2i(11, -24)
 
 [node name="_npc_4_4" type="Node2D" parent="_map_4" unique_id=159527930]
 position = Vector2(696, -1320)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(14, -28)
 
 [node name="_RPGM_Script_A" type="Node2D" parent="_map_4/_npc_4_4" unique_id=394783808]
 script = SubResource("GDScript_iv8pj")
@@ -2980,36 +2956,25 @@ is_collision = true
 [node name="_npc_8_1" parent="_map_4" unique_id=1699085269 instance=ExtResource("17_t765c")]
 position = Vector2(1896, -1176)
 messages = ["This is a new section of", null]
-speed = null
-type = null
-facing = null
 map_position = Vector2i(39, -25)
 
 [node name="_teleport_4_9" parent="_map_4" unique_id=583292115 node_paths=PackedStringArray("camera_position_node", "player_position_node") instance=ExtResource("18_jcy6k")]
 position = Vector2(888, -1224)
 camera_position_node = NodePath("../../_map_9/_camera_position_9_1")
 player_position_node = NodePath("../../_map_9/_player_position_9_4")
-speed = null
-type = null
-facing = null
+map_position = Vector2i(18, -26)
 
 [node name="_player_position_4_9" parent="_map_4" unique_id=779781816 instance=ExtResource("19_dk3i2")]
 position = Vector2(840, -1224)
-speed = null
-type = null
-facing = null
+map_position = Vector2i(17, -26)
 
 [node name="_npc_0_0" parent="_map_4" unique_id=288827950 instance=ExtResource("17_t765c")]
 position = Vector2(744, -1128)
-speed = null
-type = null
-facing = null
+map_position = Vector2i(15, -24)
 
 [node name="_npc_0_1" parent="_map_4" unique_id=1471214746 instance=ExtResource("17_t765c")]
 position = Vector2(744, -1320)
-speed = null
-type = null
-facing = null
+map_position = Vector2i(15, -28)
 
 [node name="_common_script_talker_1" parent="_map_4/_npc_0_1" index="0" unique_id=645140305]
 on_action = Array[ExtResource("20_qyd70")]([SubResource("Resource_x4k2m"), SubResource("Resource_lisvm"), SubResource("Resource_dl2ih")])
@@ -3022,9 +2987,8 @@ sprite = "blue"
 [node name="_npc_5_1" type="Node2D" parent="_map_5" unique_id=83809832]
 position = Vector2(-648, -1464)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(-14, -31)
 
 [node name="_RPGM_Script" type="Node2D" parent="_map_5/_npc_5_1" unique_id=962681152]
 script = SubResource("GDScript_38inc")
@@ -3042,9 +3006,8 @@ scale = Vector2(1.0166667, 1.0833334)
 [node name="_npc_6_1" type="Node2D" parent="_map_6" unique_id=1252690090]
 position = Vector2(120, 936)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(-1, 0)
+map_position = Vector2i(2, 19)
 
 [node name="_script" type="Node2D" parent="_map_6/_npc_6_1" unique_id=533204874]
 script = SubResource("GDScript_05s22")
@@ -3058,9 +3021,8 @@ scale = Vector2(1.0166667, 1.0833334)
 [node name="_npc_6_2" type="Node2D" parent="_map_6" unique_id=1064975660]
 position = Vector2(24, 72)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(0, 1)
 
 [node name="_script" type="Node2D" parent="_map_6/_npc_6_2" unique_id=1638407331]
 script = SubResource("GDScript_vd6wf")
@@ -3074,9 +3036,7 @@ scale = Vector2(1.0166667, 1.0833334)
 [node name="_common_change_event_0_0" type="Node2D" parent="_map_6" unique_id=1716667468]
 position = Vector2(72, 168)
 script = SubResource("GDScript_jfmav")
-speed = null
-type = null
-facing = null
+map_position = Vector2i(1, 3)
 
 [node name="_script" type="Node2D" parent="_map_6/_common_change_event_0_0" unique_id=738694081]
 script = SubResource("GDScript_x4k2m")
@@ -3090,9 +3050,8 @@ scale = Vector2(1.0166667, 1.0833334)
 [node name="_npc_6_3" type="Node2D" parent="_map_6" unique_id=1158217167]
 position = Vector2(120, 1032)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(-1, 0)
+map_position = Vector2i(2, 21)
 
 [node name="_rpgm_common_script_talker_6_3" type="Node2D" parent="_map_6/_npc_6_3" unique_id=675078666]
 script = ExtResource("16_nffw3")
@@ -3107,9 +3066,8 @@ scale = Vector2(1.0166667, 1.0833334)
 [node name="_event_6_1" type="Node2D" parent="_map_6" unique_id=1465020280]
 position = Vector2(-72, 1032)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(-2, 21)
 
 [node name="_RPGM_Script" type="Node2D" parent="_map_6/_event_6_1" unique_id=1019395856]
 script = SubResource("GDScript_4lb6x")
@@ -3125,9 +3083,8 @@ scale = Vector2(1.0166667, 1.0833334)
 [node name="_event_6_2" type="Node2D" parent="_map_6" unique_id=483586661]
 position = Vector2(-72, 936)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(-2, 19)
 
 [node name="_RPGM_Script" type="Node2D" parent="_map_6/_event_6_2" unique_id=1874740471]
 script = SubResource("GDScript_i55rt")
@@ -3146,9 +3103,8 @@ scale = Vector2(1.0166667, 1.0833334)
 y_sort_enabled = true
 position = Vector2(1800, -216)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(37, -5)
 
 [node name="_rpgm_common_script_talker" type="Node2D" parent="_map_7/_npc_7_1" unique_id=749624767]
 script = ExtResource("16_nffw3")
@@ -3165,9 +3121,8 @@ scale = Vector2(1.0166667, 1.0833334)
 y_sort_enabled = true
 position = Vector2(2088, -168)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(43, -4)
 
 [node name="_rpgm_common_script_talker" type="Node2D" parent="_map_7/_npc_7_3" unique_id=973394962]
 script = ExtResource("16_nffw3")
@@ -3185,9 +3140,8 @@ type = "sphere"
 y_sort_enabled = true
 position = Vector2(1896, -216)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(39, -5)
 
 [node name="_rpgm_common_script_talker" type="Node2D" parent="_map_7/_npc_7_2" unique_id=764121597]
 script = ExtResource("16_nffw3")
@@ -3208,32 +3162,25 @@ position = Vector2(0, -1)
 
 [node name="_camera_position_9_1" parent="_map_9" unique_id=773341136 instance=ExtResource("23_ej2nw")]
 position = Vector2(1800, -1223)
-speed = null
-type = null
-facing = null
+map_position = Vector2i(37, -26)
 
 [node name="_teleport_9_4" parent="_map_9" unique_id=2023954430 node_paths=PackedStringArray("camera_position_node", "player_position_node") instance=ExtResource("18_jcy6k")]
 position = Vector2(1464, -1223)
 camera_position_node = NodePath("../../_camera_positions/_camera_position_4_1")
 player_position_node = NodePath("../../_map_4/_player_position_4_9")
-speed = null
-type = null
-facing = null
+map_position = Vector2i(30, -26)
 
 [node name="_player_position_9_4" parent="_map_9" unique_id=310800555 instance=ExtResource("19_dk3i2")]
 position = Vector2(1512, -1223)
-speed = null
-type = null
-facing = null
+map_position = Vector2i(31, -26)
 
 [node name="_teleports" type="Node2D" parent="." unique_id=1690504303]
 
 [node name="_teleport_6_1" type="Node2D" parent="_teleports" unique_id=1575285908]
 position = Vector2(24, 696)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(0, 14)
 
 [node name="_common_script_teleport_6_1" type="Node2D" parent="_teleports/_teleport_6_1" unique_id=771934062 node_paths=PackedStringArray("camera_position_node", "player_position_node")]
 script = ExtResource("24_jvimy")
@@ -3272,9 +3219,8 @@ shape = SubResource("RectangleShape2D_ceddd")
 [node name="_teleport_1_6" type="Node2D" parent="_teleports" unique_id=1356118567]
 position = Vector2(24, 312)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(0, 6)
 
 [node name="_common_script_teleport_1_6" type="Node2D" parent="_teleports/_teleport_1_6" unique_id=1488423350 node_paths=PackedStringArray("camera_position_node", "player_position_node")]
 script = ExtResource("24_jvimy")
@@ -3313,9 +3259,8 @@ shape = SubResource("RectangleShape2D_ceddd")
 [node name="_teleport_1_2" type="Node2D" parent="_teleports" unique_id=1159705767]
 position = Vector2(216, -72)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(4, -2)
 
 [node name="_common_script_teleport_1_2" type="Node2D" parent="_teleports/_teleport_1_2" unique_id=1612556890 node_paths=PackedStringArray("camera_position_node", "player_position_node")]
 script = ExtResource("24_jvimy")
@@ -3354,9 +3299,8 @@ shape = SubResource("RectangleShape2D_ceddd")
 [node name="_teleport_1_3" type="Node2D" parent="_teleports" unique_id=1802139196]
 position = Vector2(-168, -72)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(-4, -2)
 
 [node name="_common_script_teleport_1_3" type="Node2D" parent="_teleports/_teleport_1_3" unique_id=881670915 node_paths=PackedStringArray("camera_position_node", "player_position_node")]
 script = ExtResource("24_jvimy")
@@ -3395,9 +3339,8 @@ shape = SubResource("RectangleShape2D_ceddd")
 [node name="_teleport_6_8" type="Node2D" parent="_teleports" unique_id=1352845840]
 position = Vector2(24, 1176)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(0, 24)
 
 [node name="_common_script_teleport" type="Node2D" parent="_teleports/_teleport_6_8" unique_id=574511413 node_paths=PackedStringArray("camera_position_node", "player_position_node")]
 script = ExtResource("24_jvimy")
@@ -3436,9 +3379,8 @@ shape = SubResource("RectangleShape2D_ceddd")
 [node name="_teleport_8_6" type="Node2D" parent="_teleports" unique_id=1333061306]
 position = Vector2(24, 1944)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(0, 40)
 
 [node name="_common_script_teleport" type="Node2D" parent="_teleports/_teleport_8_6" unique_id=2107796815 node_paths=PackedStringArray("camera_position_node", "player_position_node")]
 script = ExtResource("24_jvimy")
@@ -3477,9 +3419,8 @@ shape = SubResource("RectangleShape2D_ceddd")
 [node name="_teleport_2_1" type="Node2D" parent="_teleports" unique_id=48745072]
 position = Vector2(-456, -24)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(-10, -1)
 
 [node name="_common_script_teleport_2_1" type="Node2D" parent="_teleports/_teleport_2_1" unique_id=1553532971 node_paths=PackedStringArray("camera_position_node", "player_position_node")]
 script = ExtResource("24_jvimy")
@@ -3518,9 +3459,8 @@ shape = SubResource("RectangleShape2D_ceddd")
 [node name="_teleport_3_7" type="Node2D" parent="_teleports" unique_id=23464572]
 position = Vector2(840, -24)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(17, -1)
 
 [node name="_common_script_teleport_3_1" type="Node2D" parent="_teleports/_teleport_3_7" unique_id=255406865 node_paths=PackedStringArray("camera_position_node", "player_position_node")]
 script = ExtResource("24_jvimy")
@@ -3559,9 +3499,8 @@ shape = SubResource("RectangleShape2D_ceddd")
 [node name="_teleport_3_1" type="Node2D" parent="_teleports" unique_id=1782395983]
 position = Vector2(456, -24)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(9, -1)
 
 [node name="_common_script_teleport_3_1" type="Node2D" parent="_teleports/_teleport_3_1" unique_id=66884466 node_paths=PackedStringArray("camera_position_node", "player_position_node")]
 script = ExtResource("24_jvimy")
@@ -3600,9 +3539,8 @@ shape = SubResource("RectangleShape2D_ceddd")
 [node name="_teleport_7_3" type="Node2D" parent="_teleports" unique_id=272208020]
 position = Vector2(1560, -24)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(32, -1)
 
 [node name="_common_script_teleport_3_1" type="Node2D" parent="_teleports/_teleport_7_3" unique_id=461219721 node_paths=PackedStringArray("camera_position_node", "player_position_node")]
 script = ExtResource("24_jvimy")
@@ -3641,9 +3579,8 @@ shape = SubResource("RectangleShape2D_ceddd")
 [node name="_teleport_3_2" type="Node2D" parent="_teleports" unique_id=104013461]
 position = Vector2(648, -408)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(13, -9)
 
 [node name="_common_script_teleport_3_2" type="Node2D" parent="_teleports/_teleport_3_2" unique_id=1985626519 node_paths=PackedStringArray("camera_position_node", "player_position_node")]
 script = ExtResource("24_jvimy")
@@ -3682,9 +3619,8 @@ shape = SubResource("RectangleShape2D_ceddd")
 [node name="_teleport_4_3" type="Node2D" parent="_teleports" unique_id=1354397568]
 position = Vector2(648, -1032)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(13, -22)
 
 [node name="_common_script_teleport_4_1" type="Node2D" parent="_teleports/_teleport_4_3" unique_id=1872628943 node_paths=PackedStringArray("camera_position_node", "player_position_node")]
 script = ExtResource("24_jvimy")
@@ -3727,9 +3663,8 @@ unique_name_in_owner = true
 visible = false
 position = Vector2(-648, -1368)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(-14, -29)
 
 [node name="Sprite2D" type="Sprite2D" parent="_camera_positions/_camera_position_5_1" unique_id=93041500]
 z_index = 100
@@ -3758,9 +3693,8 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 position = Vector2(648, -1224)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(13, -26)
 
 [node name="Sprite2D" type="Sprite2D" parent="_camera_positions/_camera_position_4_1" unique_id=22335233]
 z_index = 100
@@ -3789,9 +3723,8 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 position = Vector2(24, 2136)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(0, 44)
 
 [node name="Sprite2D" type="Sprite2D" parent="_camera_positions/_camera_position_8_1" unique_id=2118435861]
 z_index = 100
@@ -3820,9 +3753,8 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 position = Vector2(-840, -24)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(-18, -1)
 
 [node name="Sprite2D" type="Sprite2D" parent="_camera_positions/_camera_position_2_1" unique_id=568894690]
 z_index = 100
@@ -3851,9 +3783,8 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 position = Vector2(648, -168)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(13, -4)
 
 [node name="Sprite2D" type="Sprite2D" parent="_camera_positions/_camera_position_3_1" unique_id=706450651]
 z_index = 100
@@ -3882,9 +3813,8 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 position = Vector2(24, 984)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(0, 20)
 
 [node name="Sprite2D" type="Sprite2D" parent="_camera_positions/_camera_position_6_1" unique_id=1225399854]
 z_index = 100
@@ -3918,9 +3848,7 @@ shape = SubResource("RectangleShape2D_ceddd")
 unique_name_in_owner = true
 position = Vector2(24, 24)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="_camera_positions/_camera_position_1_1" unique_id=531748346]
 z_index = 100
@@ -3954,9 +3882,8 @@ shape = SubResource("RectangleShape2D_ceddd")
 unique_name_in_owner = true
 position = Vector2(1848, -120)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(38, -3)
 
 [node name="Sprite2D" type="Sprite2D" parent="_camera_positions/_camera_position_7_1" unique_id=739874279]
 z_index = 100
@@ -3987,9 +3914,8 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 position = Vector2(648, -1080)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(13, -23)
 
 [node name="Sprite2D" type="Sprite2D" parent="_player_positions/_player_position_4_3" unique_id=232106058]
 z_index = 100
@@ -4019,9 +3945,8 @@ unique_name_in_owner = true
 visible = false
 position = Vector2(-648, -1224)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(-14, -26)
 
 [node name="Sprite2D" type="Sprite2D" parent="_player_positions/_player_position_5_1" unique_id=83093484]
 z_index = 100
@@ -4050,9 +3975,8 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 position = Vector2(648, -360)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(13, -8)
 
 [node name="Sprite2D" type="Sprite2D" parent="_player_positions/_player_position_3_2" unique_id=674532606]
 z_index = 100
@@ -4081,9 +4005,8 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 position = Vector2(1608, -24)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(33, -1)
 
 [node name="Sprite2D" type="Sprite2D" parent="_player_positions/_player_position_7_3" unique_id=1053792529]
 z_index = 100
@@ -4112,9 +4035,8 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 position = Vector2(792, -24)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(16, -1)
 
 [node name="Sprite2D" type="Sprite2D" parent="_player_positions/_player_position_3_7" unique_id=1334267183]
 z_index = 100
@@ -4143,9 +4065,8 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 position = Vector2(504, -24)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(10, -1)
 
 [node name="Sprite2D" type="Sprite2D" parent="_player_positions/_player_position_3_1" unique_id=293284088]
 z_index = 100
@@ -4174,9 +4095,8 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 position = Vector2(-504, -24)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(-11, -1)
 
 [node name="Sprite2D" type="Sprite2D" parent="_player_positions/_player_position_2_1" unique_id=1633322875]
 z_index = 100
@@ -4205,9 +4125,8 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 position = Vector2(168, -72)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(3, -2)
 
 [node name="Sprite2D" type="Sprite2D" parent="_player_positions/_player_position_1_2" unique_id=403616303]
 z_index = 100
@@ -4236,9 +4155,8 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 position = Vector2(24, 1992)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(0, 41)
 
 [node name="Sprite2D" type="Sprite2D" parent="_player_positions/_player_position_8_6" unique_id=498941029]
 z_index = 100
@@ -4267,9 +4185,8 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 position = Vector2(24, 1128)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(0, 23)
 
 [node name="Sprite2D" type="Sprite2D" parent="_player_positions/_player_position_6_8" unique_id=2115368007]
 z_index = 100
@@ -4298,9 +4215,8 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 position = Vector2(24, 744)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(0, 15)
 
 [node name="Sprite2D" type="Sprite2D" parent="_player_positions/_player_position_6_1" unique_id=377614737]
 z_index = 100
@@ -4329,9 +4245,8 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 position = Vector2(24, 264)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(0, 5)
 
 [node name="Sprite2D" type="Sprite2D" parent="_player_positions/_player_position_1_6" unique_id=2130693222]
 z_index = 100
@@ -4360,9 +4275,8 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 position = Vector2(-120, -72)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(-3, -2)
 
 [node name="Sprite2D" type="Sprite2D" parent="_player_positions/_player_position_1_1" unique_id=711845646]
 z_index = 100
@@ -4392,9 +4306,8 @@ unique_name_in_owner = true
 visible = false
 position = Vector2(648, -1416)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+facing = Vector2i(0, 1)
+map_position = Vector2i(13, -30)
 
 [node name="Sprite2D" type="Sprite2D" parent="_player_positions/_player_position_4_transition" unique_id=1792481493]
 z_index = 100
@@ -4422,9 +4335,7 @@ horizontal_alignment = 1
 [node name="_common_base_0_0" type="Node2D" parent="." unique_id=93330364]
 position = Vector2(1752, -1128)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+map_position = Vector2i(36, -24)
 
 [node name="_RPGM_Script" parent="_common_base_0_0" unique_id=1318247456 instance=ExtResource("25_os0wp")]
 on_action = Array[ExtResource("20_qyd70")]([SubResource("Resource_kvxu2")])
@@ -4437,9 +4348,7 @@ type = "wiggle"
 [node name="_common_base_0_1" type="Node2D" parent="." unique_id=909921870]
 position = Vector2(1752, -1272)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+map_position = Vector2i(36, -27)
 
 [node name="_RPGM_Script" parent="_common_base_0_1" unique_id=1629462265 instance=ExtResource("25_os0wp")]
 on_action = Array[ExtResource("20_qyd70")]([SubResource("Resource_0dxda")])
@@ -4452,9 +4361,7 @@ sprite = "red"
 [node name="_common_base_0_2" type="Node2D" parent="." unique_id=895568689]
 position = Vector2(1800, -1272)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+map_position = Vector2i(37, -27)
 
 [node name="_RPGM_Script" parent="_common_base_0_2" unique_id=144276679 instance=ExtResource("25_os0wp")]
 on_action = Array[ExtResource("20_qyd70")]([SubResource("Resource_0u55c"), SubResource("Resource_o56lo")])
@@ -4468,9 +4375,7 @@ sprite = "skeleton"
 [node name="_common_base_0_3" type="Node2D" parent="." unique_id=1743163205]
 position = Vector2(1848, -1320)
 script = ExtResource("11_mp8pu")
-speed = null
-type = null
-facing = null
+map_position = Vector2i(38, -28)
 
 [node name="_RPGM_Script" parent="_common_base_0_3" unique_id=1574568363 instance=ExtResource("25_os0wp")]
 interrupt_player = true

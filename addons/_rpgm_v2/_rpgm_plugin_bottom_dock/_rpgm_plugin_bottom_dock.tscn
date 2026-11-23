@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://dmg6p38mlw20h"]
+[gd_scene format=3 uid="uid://ne5n1nmh5xyo"]
 
-[ext_resource type="Script" uid="uid://j3g4o72ka33f" path="res://addons/_rpgm_v2/_rpgm_v2.gd" id="1_r8523"]
+[ext_resource type="Script" uid="uid://b4fqm0l2vbunn" path="res://addons/_rpgm_v2/_rpgm_plugin_bottom_dock/_rpgm_plugin_bottom_dock.gd" id="1_t2j7j"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_nj6x7"]
 font_size = 64
@@ -10,10 +10,10 @@ font_color = Color(0, 0, 0, 1)
 width = 32
 height = 32
 
-[node name="RpgmV1" type="Control" unique_id=1783734628]
+[node name="_RPGM_Plugin_Bottom_Dock" type="Control" unique_id=1783734628]
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1_r8523")
+script = ExtResource("1_t2j7j")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=654936984]
 layout_mode = 0

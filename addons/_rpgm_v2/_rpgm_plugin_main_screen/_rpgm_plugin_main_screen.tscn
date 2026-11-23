@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://clkvb3jiqe7hl"]
 
-[ext_resource type="Script" uid="uid://j3g4o72ka33f" path="res://addons/_rpgm_v2/_rpgm_v2.gd" id="1_6ktsf"]
+[ext_resource type="Script" uid="uid://j3g4o72ka33f" path="res://addons/_rpgm_v2/_rpgm_plugin_main_screen/_rpgm_plugin_main_screen.gd" id="1_6ktsf"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_nj6x7"]
 font_size = 64
@@ -10,7 +10,7 @@ font_color = Color(0, 0, 0, 1)
 width = 32
 height = 32
 
-[node name="RpgmV1" type="Control" unique_id=1783734628]
+[node name="_RPGM_Plugin_Main_Screen" type="Control" unique_id=1783734628]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_6ktsf")

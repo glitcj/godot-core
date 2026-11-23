@@ -1,15 +1,15 @@
 @tool
 extends EditorPlugin
 
-var _rpgm_v2 := preload("res://addons/_rpgm_v2/_rpgm_v2.tscn")
+# var _rpgm_v2 := preload("res://addons/_rpgm_v2/_rpgm_v2.tscn")
 var panel : Control
 var screen : Control
 
 
 
 
-const MAIN_SCREEN : PackedScene = preload("res://addons/_rpgm_v2/main_screen/main_screen.tscn")
-const BOTTOM_DOCK : PackedScene = preload("res://addons/_rpgm_v2/bottom_dock/bottom_dock.tscn")
+const MAIN_SCREEN : PackedScene = preload("res://addons/_rpgm_v2/_rpgm_plugin_main_screen/_rpgm_plugin_main_screen.tscn")
+const BOTTOM_DOCK : PackedScene = preload("res://addons/_rpgm_v2/_rpgm_plugin_bottom_dock/_rpgm_plugin_bottom_dock.tscn")
 
 
 
@@ -22,7 +22,7 @@ const BOTTOM_DOCK : PackedScene = preload("res://addons/_rpgm_v2/bottom_dock/bot
 # _enter_tree(), _exit_tree()
 
 
-var mover_inspector := preload("res://addons/_rpgm_v2/inspector/inspector_plugin.gd").new()
+var mover_inspector := preload("res://addons/_rpgm_v2/_rpgm_plugin_inspector/_rpgm_plugin_inspector.gd").new()
 
 # CLAUDE: removed the bottom_plugin .new() line — it created a node that was
 # never added to the tree or freed
