@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://ne5n1nmh5xyo"]
+
+[ext_resource type="Script" uid="uid://b4fqm0l2vbunn" path="res://addons/_rpgm_plugin/_rpgm_plugin_bottom_dock/_rpgm_plugin_bottom_dock.gd" id="1_t2j7j"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nj6x7"]
+font_size = 64
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_nj6x7"]
+width = 32
+height = 32
+
+[node name="_RPGM_Plugin_Bottom_Dock" type="Control" unique_id=1783734628]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_t2j7j")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=654936984]
+layout_mode = 0
+offset_right = 404.0
+offset_bottom = 285.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=739646984]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1763414131]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=149549435]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/CenterContainer" unique_id=1475782329]
+layout_mode = 2
+size_flags_vertical = 3
+text = "RPGM"
+label_settings = SubResource("LabelSettings_nj6x7")
+
+[node name="_clicker_button" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1742106628]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+text = "Clicker"
+icon = SubResource("NoiseTexture2D_nj6x7")
+
+[node name="_describe_node_button" type="Button" parent="MarginContainer/VBoxContainer" unique_id=361178065]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+text = "Describe Node"
+icon = SubResource("NoiseTexture2D_nj6x7")
+
+[node name="_on_selection_interface_margin_box" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=2052088854]
+unique_name_in_owner = true
+layout_mode = 2

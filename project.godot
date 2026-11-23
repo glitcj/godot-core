@@ -39,7 +39,7 @@ interface/theme/contrast=-0.06
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/_rpgm_v2/plugin.cfg", "res://addons/copy_with_path/plugin.cfg", "res://addons/toggle_inspector/plugin.cfg")
+enabled=PackedStringArray("res://addons/_rpgm_plugin/plugin.cfg", "res://addons/copy_with_path/plugin.cfg", "res://addons/toggle_inspector/plugin.cfg")
 
 [filesystem]
 
