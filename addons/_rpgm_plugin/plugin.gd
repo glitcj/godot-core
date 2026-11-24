@@ -1,20 +1,8 @@
 @tool
 extends EditorPlugin
 
-# CLAUDE: map of the plugin, and which editor class is for what.
-#
-# LESSON: the EditorPlugin is the table of contents. It registers things in
-# _enter_tree and unregisters the same things in _exit_tree; the real work
-# lives in the files it points to.
-#
-#	EditorPlugin            this file: the entry point the editor loads
-#	bottom panel / dock     your own Control, full freedom  -> the queue editor
-#	main screen             same, but as a tab beside 2D / 3D / Script
-#	EditorInspectorPlugin   changes the Inspector for one kind of object
-#	EditorProperty          one Inspector row for one property
-#
-# Rule of thumb: build the UI as a plain Control first, then pick the
-# smallest host that shows it where you want it.
+# CLAUDE: the EditorPlugin is the table of contents: it registers things in
+# _enter_tree and unregisters the same things in _exit_tree.
 
 var _bottom_dock_control : _RPGM_Plugin_Bottom_Dock
 var _main_screen_control : _RPGM_Plugin_Main_Screen
@@ -31,10 +19,7 @@ var INSPECTOR : GDScript = preload("res://addons/_rpgm_plugin/_rpgm_plugin_inspe
 # CLAUDE: second inspector plugin — readable lambda queue rows on _RPGM_Script
 var SCRIPT_INSPECTOR : GDScript = preload("res://addons/_rpgm_plugin/_rpgm_plugin_inspector/_rpgm_plugin_script_inspector.gd")
 
-# CLAUDE: the registered instances are kept so _exit_tree can remove them.
-# It used to call remove_inspector_plugin(INSPECTOR.new()), which removed a
-# brand-new instance and left the real one registered.
-# LESSON: unregister the same instance you registered.
+# LESSON: keep the registered instances; _exit_tree must remove the same ones.
 var _mover_inspector : EditorInspectorPlugin
 var _script_inspector : EditorInspectorPlugin
 
@@ -65,8 +50,6 @@ func _enter_tree():
 		add_inspector_plugin(_mover_inspector)
 
 		# CLAUDE: the Inspector row's "Edit in RPGM dock" button ends up here.
-		# LESSON: the plugin is the only place that knows both the Inspector
-		# row and the dock, so it is the one that connects them.
 		_script_inspector = SCRIPT_INSPECTOR.new()
 		_script_inspector.edit_requested.connect(_bottom_dock_control.show_queue)
 		add_inspector_plugin(_script_inspector)

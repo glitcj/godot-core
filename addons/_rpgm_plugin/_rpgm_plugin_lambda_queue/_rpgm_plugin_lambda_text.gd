@@ -1,86 +1,26 @@
 @tool
-# CLAUDE: the one place that knows how to name, summarise, list and create
-# lambdas for the editor. The dock's queue editor and the Inspector row both
-# call it, so they can never describe the same lambda differently.
-#
-# LESSON: put "how do I describe this data" in one helper; every view calls it.
-#
-# LESSON: lambda scripts are not @tool, so inside the editor a lambda is only
-# a placeholder: its values are there, its code is not. Ask the SCRIPT what
-# a lambda has (exported_properties), ask the INSTANCE what its values are
-# (get / set), and never call its methods.
+# CLAUDE: what the editor needs to know about lambdas: their class name, their
+# @export values, which properties are lambda queues, which classes exist.
 extends Object
 class_name _RPGM_Plugin_Lambda_Text
 
 const BASE_CLASS := &"_RPGM_Lambda"
-const NAME_PREFIX := "_RPGM_Lambda_"
 
 
-# ---------------------------------------------------------------- describing
-
-# _RPGM_Lambda_Show_Messages -> Show Messages
-static func friendly_class_name(global_name : String) -> String:
-	if global_name == String(BASE_CLASS): return "Lambda"
-	return global_name.trim_prefix(NAME_PREFIX).replace("_", " ")
-
-
-static func friendly_name(lambda : Resource) -> String:
+# CLAUDE: the raw class name, e.g. _RPGM_Lambda_Show_Messages. Replaces the
+# friendly_* functions; the UI now shows the same names the scripts use.
+static func class_name_of(lambda : Resource) -> String:
 	if lambda == null: return "<empty>"
-	var script := lambda.get_script() as Script
-	if script == null: return lambda.get_class()
-	var global_name := String(script.get_global_name())
-	if global_name.is_empty(): return script.resource_path.get_file().get_basename()
-	return friendly_class_name(global_name)
+	return String((lambda.get_script() as Script).get_global_name())
 
 
-# on_action -> On Action,  _scale -> Scale
-static func friendly_property_name(property : StringName) -> String:
-	return String(property).trim_prefix("_").capitalize()
-
-
-# One line describing the lambda's values, e.g.  "Hello", "Bye"
-# A lone value is shown bare; several are labelled so they can be told apart.
-static func summary(lambda : Resource) -> String:
-	var properties := exported_properties(lambda)
-	if properties.size() == 1:
-		return _value_text(lambda.get(properties[0].name))
-	var parts : PackedStringArray = []
-	for p in properties:
-		parts.append("%s %s" % [friendly_property_name(p.name), _value_text(lambda.get(p.name))])
-	return "  ·  ".join(parts)
-
-
-static func _value_text(value : Variant) -> String:
-	if value is String or value is StringName:
-		return '"%s"' % value
-	if value is Array:
-		var parts : PackedStringArray = []
-		for element in value: parts.append(_value_text(element))
-		return ", ".join(parts)
-	var text := str(value)
-	return text if not text.is_empty() else "—"
-
-
-# ---------------------------------------------------------------- discovering
-
-# LESSON: discover instead of listing. A new @export on a lambda, a new lambda
-# class, or a new queue on the node shows up without editing the plugin.
-
-# The lambda's @export values.
-# CLAUDE: read from the script, not the instance. The instance is a
-# placeholder in the editor and its property list did not carry the
-# script-variable flag this used to filter on, so every lambda looked like
-# it had no values: no summary in the list, nothing to edit in the pane.
-# The script's own list has no built-ins (resource_name, ...), and the
-# EDITOR flag keeps the @export ones while dropping plain vars and groups.
+# LESSON: lambda scripts are not @tool, so in the editor a lambda is only a
+# placeholder. Read its @export list from the script, its values with get().
 static func exported_properties(lambda : Resource) -> Array[Dictionary]:
 	var properties : Array[Dictionary] = []
 	if lambda == null: return properties
-	var script := lambda.get_script() as Script
-	if script == null: return properties
-	for p in script.get_script_property_list():
-		if not (p.usage & PROPERTY_USAGE_EDITOR): continue
-		properties.append(p)
+	for p in (lambda.get_script() as Script).get_script_property_list():
+		if p.usage & PROPERTY_USAGE_EDITOR: properties.append(p)
 	return properties
 
 
@@ -105,33 +45,23 @@ static func queue_properties(node : Object) -> Array[StringName]:
 	return names
 
 
-# Every global class whose base chain reaches _RPGM_Lambda, sorted by name.
-# Each entry: { "name" : String, "path" : String }
+# CLAUDE: one pass over the project's class list instead of building, sorting
+# and re-packing. Returns the entries as they are: { "class", "base", "path" }.
 static func lambda_classes() -> Array[Dictionary]:
-	var bases : Dictionary = {}
-	var paths : Dictionary = {}
-	for global_class in ProjectSettings.get_global_class_list():
-		bases[String(global_class["class"])] = String(global_class["base"])
-		paths[String(global_class["class"])] = String(global_class["path"])
+	var all := ProjectSettings.get_global_class_list()
+	var base_of := {}
+	for c in all: base_of[String(c["class"])] = String(c["base"])
 
-	var names : Array[String] = []
-	for global_name in bases:
-		var base : String = bases[global_name]
-		while base != String(BASE_CLASS) and bases.has(base): base = bases[base]
-		if base == String(BASE_CLASS): names.append(global_name)
-	names.sort()
-
-	var classes : Array[Dictionary] = []
-	for global_name in names:
-		classes.append({ "name" : global_name, "path" : paths[global_name] })
-	return classes
+	var found : Array[Dictionary] = []
+	for c in all:
+		var base := String(c["base"])
+		while base != BASE_CLASS and base_of.has(base): base = base_of[base]
+		if base == BASE_CLASS: found.append(c)
+	return found
 
 
-# ---------------------------------------------------------------- creating
-
-# Attaches the script to a plain Resource instead of calling Script.new():
-# that gives the same placeholder a saved scene would load, with the @export
-# defaults filled in, and does not run the game's _init() inside the editor.
+# Attaches the script to a plain Resource instead of calling Script.new(), so
+# the game's _init() does not run inside the editor.
 static func new_lambda(script_path : String) -> Resource:
 	var lambda := Resource.new()
 	lambda.set_script(load(script_path))

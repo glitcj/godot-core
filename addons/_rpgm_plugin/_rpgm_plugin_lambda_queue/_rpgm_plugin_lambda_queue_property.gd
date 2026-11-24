@@ -1,17 +1,11 @@
 @tool
-# CLAUDE: the Inspector row for a lambda queue. Replaces the stock array
-# editor (opaque resource slots) with one readable line per command and a
-# button that opens the queue in the RPGM dock, where the editing happens.
-#
-# LESSON: an EditorProperty is one row of the Inspector for one property.
-#	read  -> only in _update_property()
-#	write -> only with emit_changed(); the Inspector applies it with undo
-# This row is read-only, so it never calls emit_changed().
+# CLAUDE: the Inspector row for a lambda queue: one line per command and a
+# button that opens the queue in the RPGM dock.
+# LESSON: an EditorProperty reads in _update_property() and writes with
+# emit_changed(). This row is read-only, so it never writes.
 class_name _RPGM_Plugin_Lambda_Queue_Property
 extends EditorProperty
 
-# LESSON: signals go up, calls go down. The row does not know the dock
-# exists; it only says "edit was pressed" and whoever created it decides.
 signal edit_pressed
 
 var _box := VBoxContainer.new()
@@ -31,39 +25,23 @@ func _init() -> void:
 	set_bottom_editor(_box)
 
 
-# The Inspector refreshes a row when the array itself changes, but not when
-# a value inside one of its lambdas does — so listen for every edit.
-func _enter_tree() -> void:
-	EditorInterface.get_editor_undo_redo().history_changed.connect(update_property)
-
-
-func _exit_tree() -> void:
-	EditorInterface.get_editor_undo_redo().history_changed.disconnect(update_property)
-
-
+# CLAUDE: the lines show only number and class name now, so the row no longer
+# listens to history_changed; the Inspector refreshes it when the array changes.
 func _update_property() -> void:
 	for child in _lines.get_children():
 		_lines.remove_child(child)
 		child.queue_free()
 
-	var object := get_edited_object()
-	if object == null: return
-	var queue = object.get(get_edited_property())
+	var queue = get_edited_object().get(get_edited_property())
 	if not queue is Array: return
 
-	if queue.is_empty():
-		_lines.add_child(_make_line("No commands", true))
+	if queue.is_empty(): _add_line("No commands")
 	for i in queue.size():
-		_lines.add_child(_make_line("%d   %s   %s" % [
-			i + 1,
-			_RPGM_Plugin_Lambda_Text.friendly_name(queue[i]),
-			_RPGM_Plugin_Lambda_Text.summary(queue[i])], false))
+		_add_line("%d   %s" % [i + 1, _RPGM_Plugin_Lambda_Text.class_name_of(queue[i])])
 
 
-func _make_line(text : String, dim : bool) -> Label:
+func _add_line(text : String) -> void:
 	var line := Label.new()
 	line.text = text
 	line.clip_text = true
-	line.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
-	if dim: line.modulate.a = 0.55
-	return line
+	_lines.add_child(line)

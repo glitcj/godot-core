@@ -9,15 +9,8 @@ class_name _RPGM_Plugin_Bottom_Dock
 # i0 the lambda queue "widget" is complicated so needs its own def
 
 
-# CLAUDE: the dock is now only a router. It follows the editor selection and
-# decides what to show for the selected node; the actual UIs live in their
-# own scripts (the lambda queue editor) or are a couple of buttons.
-# Removed: the RPGM title, the Clicker / Describe Node placeholder buttons,
-# the debug prints and the fixed 500px box (see the .tscn — the dock now
-# fills the bottom panel).
-#
-# LESSON: keep a dock thin. "What is selected?" belongs here; "how do I edit
-# a lambda queue?" belongs to the widget, so each file answers one question.
+# CLAUDE: the dock only follows the editor selection and decides what to
+# show; the UIs themselves live in their own scripts.
 
 signal bottom_dock_requested
 signal rpgm_dock_requested
@@ -41,8 +34,7 @@ func _ready() -> void:
 	_on_selection_changed()
 
 
-# LESSON: disconnect from editor singletons when leaving, so disabling the
-# plugin leaves nothing behind.
+# LESSON: disconnect from editor singletons when leaving.
 func _exit_tree() -> void:
 	var selection := EditorInterface.get_selection()
 	if selection.selection_changed.is_connected(_on_selection_changed):
