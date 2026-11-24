@@ -1,7 +1,18 @@
 
 Claude ignores this files, this file is only for the human developer to see, use, and maintain.
 
+
+- ALL IN means ? Means alhabibabbas.com as allingamedev.com ?
+
+- ALL IN means ? Mean Hidetaka Miyazaki at 29
+
+- ALL IN gamedev interactabledev, professional money beggar in the background backburner, how will the beggar be managed and ignored ? 0 Seconds Power Model or Power Model 0 Seconds 
+
 - Add _RPGM_Lambda Queue editor in _RPGM_Plugin_Bottom_Dock
+
+- REFACTOR INTO _DGM_Viewport and DEPRECATE old shite like quiz show and kalam
+
+- REFACTOR INTO _MAP_1 _MAP_2 FILES ?????
 
 - Add RPGM UnitEditor:
 https://www.youtube.com/watch?v=knjtHyDnmgo

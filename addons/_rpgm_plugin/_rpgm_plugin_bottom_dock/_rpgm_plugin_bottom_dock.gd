@@ -60,11 +60,16 @@ func _on_rpgm_script_node_selected(node : _RPGM_Script):
 # "Add Element" button). The widget only reports edits, so they are applied
 # here through the editor's undo system, which also marks the scene unsaved.
 func _add_property_editor(node : Object, property : StringName, label : String) -> void:
+	print_tree_pretty()
+	print(node.get_property_list())
+	
 	for p in node.get_property_list():
+
 		if p.name != property: continue
 
 		var editor := EditorInspector.instantiate_property_editor(
-			node, p.type, p.name, p.hint, p.hint_string, p.usage)
+			node, p.type, p.name, p.hint, p.hint_string, p.usage
+			)
 		editor.set_object_and_property(node, p.name)
 		editor.label = label
 		editor.size_flags_horizontal = Control.SIZE_EXPAND_FILL
