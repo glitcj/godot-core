@@ -2,7 +2,7 @@
 Claude ignores this files, this file is only for the human developer to see, use, and maintain.
 
 
-- ALL IN means ? Means alhabibabbas.com as allingamedev.com ?
+- ALL IN means ? Means alhabibabbas.com as allingamedev.com ? allinpokerdev.com ? wordcraftsmithmologist.com ? wordsovernumbers.com ? devbugfix.com ? buggydev.com ? bugsnotallowed.com ? wordsarenumbers.com ? O 0 = o .0 = o0 = 0O = 00 = 1oO ? wordsarenumbers.com ?
 
 - ALL IN means ? Mean Hidetaka Miyazaki at 29
 

@@ -139,7 +139,7 @@ func _process(_delta: float):
 	_update_active_state()
 	if not _is_active(): return
 		
-	_log()
+	
 	# CLAUDE: only emit frame_started if the subclass actually overrides _on_frame
 	if _has_on_frame_override: frame_started.emit()
 	
@@ -231,10 +231,6 @@ func _on_action():
 	else:
 		return
 
-
-
-func _log():
-	pass
 
 func is_running():
 	return trigger_is_running.values().any(func(x): return x)

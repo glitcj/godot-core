@@ -84,7 +84,8 @@ func _process_movement() -> void:
 			direction = next_direction
 
 
-	print(map_position, direction, map_position + direction)
+	# print(map_position, direction, map_position + direction)
+	_log("%s, %s, %s" % [ map_position, direction, map_position + direction ])
 	if tile_has_collision(map_position + direction):
 		direction = Vector2i.ZERO
 		return

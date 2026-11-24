@@ -26,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://xtndm6lmqlnp" path="res://viewports/rpgm/common/common_events/_common_camera_position_v1.tscn" id="23_ej2nw"]
 [ext_resource type="Script" uid="uid://brl88l8fl1w5u" path="res://viewports/rpgm/common/common_scripts/_rpgm_common_script_teleport.gd" id="24_jvimy"]
 [ext_resource type="PackedScene" uid="uid://bfksw2782klor" path="res://viewports/rpgm/components/_rpgm_script.tscn" id="25_os0wp"]
+[ext_resource type="Script" uid="uid://bl5h2aanw8u6d" path="res://viewports/rpgm/lambdas/_rpgm_lambda_fade_out.gd" id="27_jkq8p"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_vd6wf"]
 
@@ -2479,6 +2480,9 @@ script = ExtResource("21_3g6bu")
 messages = Array[String](["Resources are shared In Memory, but not On Disk.", "That explains the bugginess of saving resources in common components and events."])
 metadata/_custom_type_script = "uid://mhwrdc5y8886"
 
+[sub_resource type="Resource" id="Resource_q33eq"]
+script = ExtResource("27_jkq8p")
+
 [sub_resource type="Resource" id="Resource_0u55c"]
 script = ExtResource("21_3g6bu")
 messages = Array[String](["I am in state A, changing to state B !"])
@@ -4404,7 +4408,7 @@ script = ExtResource("11_mp8pu")
 map_position = Vector2i(36, -27)
 
 [node name="_RPGM_Script" parent="_common_base_0_1" unique_id=1629462265 instance=ExtResource("25_os0wp")]
-on_action = Array[ExtResource("20_qyd70")]([SubResource("Resource_0dxda")])
+on_action = Array[ExtResource("20_qyd70")]([SubResource("Resource_0dxda"), SubResource("Resource_q33eq")])
 interrupt_player = true
 is_collision = true
 

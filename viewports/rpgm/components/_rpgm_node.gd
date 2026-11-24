@@ -1,5 +1,5 @@
 @tool
-extends Node2D
+extends _Core_Node
 class_name _RPGM_Node
 
 # CLAUDE: shared base for the RPGM Node2D family (mover, event, script,
