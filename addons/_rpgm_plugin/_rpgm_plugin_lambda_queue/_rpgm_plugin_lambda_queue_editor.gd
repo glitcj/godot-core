@@ -1,6 +1,6 @@
 @tool
 # CLAUDE: the lambda queue editor shown in the RPGM bottom dock: one tab per
-# queue, a toolbar, the list of commands, and the selected command's values.
+# queue, a toolbar, the list of commands, and a popup for a command's values.
 # LESSON: a view never changes itself. Every edit is an undo action
 # (_commit_queue / _commit_value) and every redraw comes from history_changed.
 class_name _RPGM_Plugin_Lambda_Queue_Editor
@@ -9,7 +9,7 @@ extends VBoxContainer
 # what is being edited
 var _node : Node
 var _queue_properties : Array[StringName] = []
-var _queue_property : StringName
+var _queue_property : StringName # i0 eg on action, on frame ?
 var _selected_index := -1
 
 # what the two panes currently show
@@ -26,6 +26,7 @@ var _down_button : Button
 var _delete_button : Button
 var _list := Tree.new()
 var _values := VBoxContainer.new()
+var _values_dialog := AcceptDialog.new()
 
 
 func _init() -> void:
@@ -42,6 +43,9 @@ func _exit_tree() -> void:
 
 # Start editing the lambda queues of this node.
 # i0 called from bottom dock control node
+
+
+# io edit gets one tab per lambda queue
 func edit(node : Node) -> void:
 	_node = node
 	_queue_properties = _RPGM_Plugin_Lambda_Text.queue_properties(node)
@@ -66,6 +70,11 @@ func show_queue(property : StringName) -> void:
 
 # ---- reading
 
+
+# Chunk 3 of 7, lines 70-83: two small readers that everything else uses; they always fetch the queue fresh from the node, so the editor never holds its own copy of the data. Clear?
+# i0 these getters read the "queue property" 
+# which is the lambda queue
+# i0 get currently selected lambda queue ?
 func _get_queue() -> Array:
 	if not is_instance_valid(_node) or _queue_property.is_empty(): return []
 	var queue = _node.get(_queue_property)
@@ -148,12 +157,11 @@ func _rebuild_values(lambda : Resource) -> void:
 	for child in _values.get_children():
 		_values.remove_child(child)
 		child.queue_free()
-	if lambda == null: return
-
-	var title := Label.new()
-	title.text = _RPGM_Plugin_Lambda_Text.class_name_of(lambda)
-	_values.add_child(title)
-	_values.add_child(HSeparator.new())
+	# CLAUDE: the dialog's title bar replaces the title label and separator
+	_values_dialog.title = _RPGM_Plugin_Lambda_Text.class_name_of(lambda)
+	if lambda == null:
+		_values_dialog.hide()
+		return
 
 	# LESSON: reuse the Inspector's own widget for each value instead of
 	# writing a text box per type. It only reports the edit; we commit it.
@@ -251,21 +259,6 @@ func _on_delete_pressed() -> void:
 	_commit_queue("Delete Command", queue)
 
 
-# LESSON: a shortcut is just another way to press the button, so it calls
-# the same handler. accept_event() stops the Tree from also using the key.
-func _on_list_input(event : InputEvent) -> void:
-	var key := event as InputEventKey
-	if key == null or not key.pressed: return
-
-	# the Mac "delete" key is Backspace
-	if key.keycode == KEY_DELETE or key.keycode == KEY_BACKSPACE: _on_delete_pressed()
-	elif key.keycode == KEY_D and key.is_command_or_control_pressed(): _on_duplicate_pressed()
-	elif key.keycode == KEY_UP and key.alt_pressed: _on_move_pressed(-1)
-	elif key.keycode == KEY_DOWN and key.alt_pressed: _on_move_pressed(1)
-	else: return
-	_list.accept_event()
-
-
 func _fill_add_menu() -> void:
 	var popup := _add_button.get_popup()
 	popup.clear()
@@ -291,40 +284,34 @@ func _build_layout() -> void:
 	_add_button.get_popup().index_pressed.connect(_on_add_chosen)
 	toolbar.add_child(_add_button)
 
-	_duplicate_button = _make_tool_button(toolbar, "Duplicate", "Duplicate (Cmd/Ctrl+D)")
+	_duplicate_button = _make_tool_button(toolbar, "Duplicate", "Duplicate", KEY_D, true)
 	_duplicate_button.pressed.connect(_on_duplicate_pressed)
-	_up_button = _make_tool_button(toolbar, "MoveUp", "Move up (Alt+Up)")
+	_up_button = _make_tool_button(toolbar, "MoveUp", "Move up", KEY_UP, true)
 	_up_button.pressed.connect(_on_move_pressed.bind(-1))
-	_down_button = _make_tool_button(toolbar, "MoveDown", "Move down (Alt+Down)")
+	_down_button = _make_tool_button(toolbar, "MoveDown", "Move down", KEY_DOWN, true)
 	_down_button.pressed.connect(_on_move_pressed.bind(1))
-	_delete_button = _make_tool_button(toolbar, "Remove", "Delete (Delete)")
+	# the Mac "delete" key is Backspace
+	_delete_button = _make_tool_button(toolbar, "Remove", "Delete", KEY_BACKSPACE, false)
 	_delete_button.pressed.connect(_on_delete_pressed)
 
-	var split := HSplitContainer.new()
-	split.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	add_child(split)
-
-	# left pane: number | class name
+	# the list: number | class name
 	_list.columns = 2
 	_list.hide_root = true
 	_list.select_mode = Tree.SELECT_ROW
+	# typing in the list would otherwise search it and eat the shortcut keys
+	_list.allow_search = false
 	_list.set_column_expand(0, false)
 	_list.set_column_custom_minimum_width(0, int(40 * _scale()))
-	_list.custom_minimum_size.x = 260 * _scale()
-	_list.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_list.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	_list.item_selected.connect(_on_row_selected)
-	_list.gui_input.connect(_on_list_input)
-	split.add_child(_list)
+	# CLAUDE: double-click (or Enter) on a command opens its values in a popup,
+	# instead of a pane that is always open beside the list
+	_list.item_activated.connect(func():
+		_values_dialog.popup_centered(Vector2i(int(500 * _scale()), 0)))
+	add_child(_list)
 
-	# right pane: the selected command's values, scrolling when tall
-	var scroll := ScrollContainer.new()
-	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-	scroll.custom_minimum_size.x = 260 * _scale()
-	scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	split.add_child(scroll)
-
-	_values.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	scroll.add_child(_values)
+	_values_dialog.add_child(_values)
+	add_child(_values_dialog)
 
 
 # LESSON: take icons from the editor theme and multiply sizes by the editor
@@ -337,10 +324,22 @@ func _icon(icon_name : String) -> Texture2D:
 	return EditorInterface.get_editor_theme().get_icon(icon_name, "EditorIcons")
 
 
-func _make_tool_button(toolbar : Control, icon_name : String, tooltip : String) -> Button:
+# CLAUDE: the key is a native Button.shortcut instead of a gui_input handler.
+# LESSON: shortcut_context limits it to when the list has focus, the button
+# ignores it while disabled, and the tooltip shows the key by itself.
+func _make_tool_button(
+		toolbar : Control, icon_name : String, tooltip : String,
+		keycode : Key, alt : bool) -> Button:
+	var key := InputEventKey.new()
+	key.keycode = keycode
+	key.alt_pressed = alt
+
 	var button := Button.new()
 	button.icon = _icon(icon_name)
 	button.tooltip_text = tooltip
 	button.focus_mode = Control.FOCUS_NONE
+	button.shortcut = Shortcut.new()
+	button.shortcut.events = [key]
+	button.shortcut_context = _list
 	toolbar.add_child(button)
 	return button
