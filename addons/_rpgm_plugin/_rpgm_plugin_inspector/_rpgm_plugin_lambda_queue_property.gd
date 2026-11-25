@@ -2,7 +2,9 @@
 # :C: read-only Inspector row for a lambda queue,
 # with a button to open the RPGM dock.
 class_name _RPGM_Plugin_Lambda_Queue_Property
-extends EditorProperty
+# i0 ONLY relates to Inspector properties
+# this property can only be added to EditorInspectorPlugin
+extends EditorProperty 
 
 signal edit_pressed
 

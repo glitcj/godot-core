@@ -4,11 +4,14 @@
 # :C: every edit is an undo action,
 # and every redraw comes from history_changed.
 class_name _RPGM_Plugin_Lambda_Queue_Editor
-extends VBoxContainer
+extends VBoxContainer # Control and not EditorProperty !
 
-var _node : Node
-var _lambda_queue_property : StringName # i0 eg on action, on frame ?
-var _selected_index := -1
+var _node : Node # i0 selected node from the scene tree
+var _lambda_queue_property : StringName # i0 eg on action, on frame
+var _selected_index := -1 # i0 highlighted lambda index in the bottom dock
+
+# i0 this is the EditorInspector node included
+# in the pop up dialogue, after clicking a lambda
 var _lambda_inspector := EditorInspector.new()
 
 
@@ -40,7 +43,6 @@ func _ready() -> void:
 
 
 # i0 called from bottom dock control node
-# io edit gets one tab per lambda queue
 # :C: start editing this node's lambda queues, on the first tab.
 func edit(node : Node) -> void:
 	_node = node

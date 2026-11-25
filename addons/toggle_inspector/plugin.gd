@@ -1,12 +1,10 @@
 @tool
 extends EditorPlugin
 
-# CLAUDE: Cmd+Option+I shows/hides the dock column holding the Inspector.
-# This is a plugin because editor shortcuts can't be set per project through
-# [editor_overrides] in project.godot, and the built-in "Open Inspector Dock"
-# shortcut only opens the dock, it never hides it.
-# Toggling the slot's visibility is a workaround, not an official API: the
-# editor may re-show the column when the dock layout changes (press again).
+# :C: Cmd+Option+I rotates the Inspector's dock slot:
+# FileSystem tab, then Inspector tab, then hidden.
+# :C: hiding the slot is a workaround, not an official API;
+# the editor may re-show it when the dock layout changes.
 
 
 func _input(event: InputEvent) -> void:
@@ -20,7 +18,17 @@ func _input(event: InputEvent) -> void:
 	var slot := _inspector_slot()
 	if slot == null:
 		return
-	slot.visible = not slot.visible
+
+	var file_system_tab := _tab_of(slot, EditorInterface.get_file_system_dock())
+	var inspector_tab := _tab_of(slot, EditorInterface.get_inspector())
+	if not slot.visible:
+		slot.visible = true
+		# :C: FileSystem may live in another slot; then show the Inspector.
+		slot.current_tab = file_system_tab if file_system_tab >= 0 else inspector_tab
+	elif slot.current_tab == file_system_tab:
+		slot.current_tab = inspector_tab
+	else:
+		slot.visible = false
 
 	# CLAUDE: the slot usually sits in a split container with a second slot
 	# below it. If every sibling is hidden too, hide that parent as well so
@@ -40,8 +48,16 @@ func _input(event: InputEvent) -> void:
 
 # CLAUDE: the dock slot is the first TabContainer above the Inspector; found
 # on each press because the Inspector can be dragged to another slot.
-func _inspector_slot() -> Control:
+func _inspector_slot() -> TabContainer:
 	var node: Node = EditorInterface.get_inspector()
 	while node != null and not node is TabContainer:
 		node = node.get_parent()
-	return node as Control
+	return node as TabContainer
+
+
+# :C: the tab index of the slot's child holding this dock,
+# or -1 when the dock is not in this slot.
+func _tab_of(slot: TabContainer, dock: Node) -> int:
+	while dock != null and dock.get_parent() != slot:
+		dock = dock.get_parent()
+	return slot.get_tab_idx_from_control(dock) if dock != null else -1
