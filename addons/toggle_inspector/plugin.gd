@@ -6,7 +6,8 @@ extends EditorPlugin
 # :C: hiding the slot is a workaround, not an official API;
 # the editor may re-show it when the dock layout changes.
 
-
+# i0 _input is the root of input catching, catches
+# input events before everything else
 func _input(event: InputEvent) -> void:
 	var key := event as InputEventKey
 	if key == null or not key.pressed or key.echo:
@@ -30,9 +31,9 @@ func _input(event: InputEvent) -> void:
 	else:
 		slot.visible = false
 
-	# CLAUDE: the slot usually sits in a split container with a second slot
-	# below it. If every sibling is hidden too, hide that parent as well so
-	# the column gives its width back to the viewport instead of leaving a gap.
+	# :C: the slot shares a split container with another slot.
+	# :C: when every slot in it is hidden, hide the container too,
+	# so the viewport gets the width back.
 	var column := slot.get_parent() as SplitContainer
 	if column != null:
 		var any_visible := false
@@ -46,8 +47,10 @@ func _input(event: InputEvent) -> void:
 	get_viewport().set_input_as_handled()
 
 
-# CLAUDE: the dock slot is the first TabContainer above the Inspector; found
-# on each press because the Inspector can be dragged to another slot.
+# i0i TabContainer is the horizontal strip that contains tabs
+# :C: the dock slot is the first TabContainer above the Inspector.
+# :C: found on each press,
+# because the Inspector can be dragged to another slot.
 func _inspector_slot() -> TabContainer:
 	var node: Node = EditorInterface.get_inspector()
 	while node != null and not node is TabContainer:
