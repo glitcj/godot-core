@@ -1,6 +1,5 @@
 @tool
-# CLAUDE: replaces the two stacked @export_tool_button rows on _RPGM_Mover
-# with one HBox row of buttons, placed just above map_position
+# CLAUDE: adds a row of Quantise buttons to the _RPGM_Mover inspector.
 extends EditorInspectorPlugin
 
 
@@ -10,25 +9,23 @@ func _can_handle(object: Object) -> bool:
 	return object is _RPGM_Mover
 
 
+# CLAUDE: called once per object, before any property; adds the row at the top.
+func _parse_begin(object: Object) -> void:
+	_add_quantise_row(object)
 
-func _parse_begin(object: Object):# -> bool:
-	# if name != "map_position": return false
 
-	var box := HBoxContainer.new()
-	box.add_child(_make_button("Quantise via Map", Callable(object, "_quantise_via_map_position")))
-	box.add_child(_make_button("Quantise via Global", Callable(object, "_quantise_via_global_position")))
-	add_custom_control(box)
-	# return false
-
-func _parse_property(object: Object, type: Variant.Type, name: String, hint_type: PropertyHint, hint_string: String, usage_flags: int, wide: bool) -> bool:
-	# if name != "map_position": return false
-	if name != "speed": return false
-
-	var box := HBoxContainer.new()
-	box.add_child(_make_button("Quantise via Map", Callable(object, "_quantise_via_map_position")))
-	box.add_child(_make_button("Quantise via Global", Callable(object, "_quantise_via_global_position")))
-	add_custom_control(box)
+# CLAUDE: adds a second row above "speed"; returning false keeps the stock row.
+func _parse_property(object: Object, _type: Variant.Type, name: String, _hint_type: PropertyHint, _hint_string: String, _usage_flags: int, _wide: bool) -> bool:
+	if name == "speed": _add_quantise_row(object)
 	return false
+
+
+func _add_quantise_row(object: Object) -> void:
+	var box := HBoxContainer.new()
+	box.add_child(_make_button("Quantise via Map", Callable(object, "_quantise_via_map_position")))
+	box.add_child(_make_button("Quantise via Global", Callable(object, "_quantise_via_global_position")))
+	add_custom_control(box)
+
 
 func _make_button(text: String, callback: Callable) -> Button:
 	var button := Button.new()

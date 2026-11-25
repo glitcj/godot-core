@@ -1,24 +1,21 @@
 @tool
-# CLAUDE: Inspector plugin for _RPGM_Script. Swaps the stock array editor of
-# every lambda queue for the _RPGM_Plugin_Lambda_Queue_Property row.
-# LESSON: the editor asks _can_handle "is this object yours?", then
-# _parse_property per property; return true to replace the stock row.
+# CLAUDE: swaps the stock array row of each lambda queue on _RPGM_Script for a readable one.
 extends EditorInspectorPlugin
 
-# Emitted when a queue's "Edit in RPGM dock" button is pressed.
-signal edit_requested(node : Node, property : StringName)
+signal edit_requested(node : Node, lambda_queue_property : StringName)
 
 
+# CLAUDE: the editor asks this first, "is this object yours?".
 func _can_handle(object : Object) -> bool:
 	return object is _RPGM_Script
 
 
+# CLAUDE: called once per property; returning true replaces the stock row.
 func _parse_property(
-		object : Object, type : Variant.Type, name : String,
+		object : Object, _type : Variant.Type, name : String,
 		_hint_type : PropertyHint, _hint_string : String,
 		_usage_flags : int, _wide : bool) -> bool:
-	if type != TYPE_ARRAY: return false
-	if not _RPGM_Plugin_Lambda_Text.is_lambda_queue(object.get(name)): return false
+	if not StringName(name) in _RPGM_Plugin_Lambda_Inspector.LAMBDA_QUEUE_PROPERTIES: return false
 
 	var row := _RPGM_Plugin_Lambda_Queue_Property.new()
 	row.edit_pressed.connect(func(): edit_requested.emit(object, StringName(name)))

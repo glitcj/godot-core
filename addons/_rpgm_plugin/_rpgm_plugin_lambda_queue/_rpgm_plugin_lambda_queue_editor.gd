@@ -1,32 +1,25 @@
 @tool
-# CLAUDE: the lambda queue editor shown in the RPGM bottom dock: one tab per
-# queue, a toolbar, the list of commands, and a popup for a command's values.
-# LESSON: a view never changes itself. Every edit is an undo action
-# (_commit_queue / _commit_value) and every redraw comes from history_changed.
+# CLAUDE: the lambda queue editor in the RPGM dock; every edit is an undo action and every redraw comes from history_changed.
 class_name _RPGM_Plugin_Lambda_Queue_Editor
 extends VBoxContainer
 
-# what is being edited
 var _node : Node
-var _queue_properties : Array[StringName] = []
-var _queue_property : StringName # i0 eg on action, on frame ?
+var _lambda_queue_property : StringName # i0 eg on action, on frame ?
 var _selected_index := -1
 
-# what the two panes currently show
-var _listed_count := -1
+var _listed_lambda_count := -1
 var _shown_lambda : Resource
 var _value_editors : Array[EditorProperty] = []
 
-# controls
 var _tabs := TabBar.new()
 var _add_button := MenuButton.new()
 var _duplicate_button : Button
 var _up_button : Button
 var _down_button : Button
 var _delete_button : Button
-var _list := Tree.new()
-var _values := VBoxContainer.new()
-var _values_dialog := AcceptDialog.new()
+var _lambda_list := Tree.new()
+var _lambda_values := VBoxContainer.new()
+var _lambda_values_dialog := AcceptDialog.new()
 
 
 func _init() -> void:
@@ -41,163 +34,126 @@ func _exit_tree() -> void:
 	EditorInterface.get_editor_undo_redo().history_changed.disconnect(_refresh)
 
 
-# Start editing the lambda queues of this node.
 # i0 called from bottom dock control node
-
-
 # io edit gets one tab per lambda queue
+# CLAUDE: start editing this node's lambda queues, on the first tab.
 func edit(node : Node) -> void:
 	_node = node
-	_queue_properties = _RPGM_Plugin_Lambda_Text.queue_properties(node)
-	_queue_property = _queue_properties[0] if not _queue_properties.is_empty() else &""
-	_selected_index = _first_index()
-
-	_tabs.set_block_signals(true)
-	_tabs.clear_tabs()
-	for property in _queue_properties: _tabs.add_tab("")
-	_tabs.set_block_signals(false)
-
-	_listed_count = -1
-	_rebuild_values(null)
-	_refresh()
+	_tabs.current_tab = 0
+	_on_tab_changed(0)
 
 
-# Switch to one of the node's queues, e.g. &"on_frame".
-func show_queue(property : StringName) -> void:
-	var tab := _queue_properties.find(property)
-	if tab >= 0: _tabs.current_tab = tab
+# CLAUDE: switch to one lambda queue of the node, e.g. &"on_frame".
+func show_lambda_queue(lambda_queue_property : StringName) -> void:
+	_tabs.current_tab = _RPGM_Plugin_Lambda_Inspector.LAMBDA_QUEUE_PROPERTIES.find(lambda_queue_property)
 
 
-# ---- reading
-
-
-# Chunk 3 of 7, lines 70-83: two small readers that everything else uses; they always fetch the queue fresh from the node, so the editor never holds its own copy of the data. Clear?
-# i0 these getters read the "queue property" 
+# i0 these getters read the "queue property"
 # which is the lambda queue
 # i0 get currently selected lambda queue ?
-func _get_queue() -> Array:
-	if not is_instance_valid(_node) or _queue_property.is_empty(): return []
-	var queue = _node.get(_queue_property)
-	return queue if queue is Array else []
-
-
-func _first_index() -> int:
-	return 0 if not _get_queue().is_empty() else -1
+# CLAUDE: always read from the node with get(), because _RPGM_Script is a placeholder in the editor.
+func _get_lambda_queue() -> Array:
+	return _node.get(_lambda_queue_property)
 
 
 func _get_selected_lambda() -> Resource:
-	var queue := _get_queue()
-	if _selected_index < 0 or _selected_index >= queue.size(): return null
-	return queue[_selected_index] as Resource
+	return _get_lambda_queue()[_selected_index] if _selected_index >= 0 else null
 
 
-# The only place the panes are redrawn from the data.
+# CLAUDE: the only place the panes are redrawn from the data.
 func _refresh() -> void:
 	if not is_instance_valid(_node): return
-	_selected_index = clampi(_selected_index, -1, _get_queue().size() - 1)
+	_selected_index = clampi(_selected_index, -1, _get_lambda_queue().size() - 1)
 	_refresh_tabs()
 	_refresh_toolbar()
-	_refresh_list()
-	_refresh_values()
+	_refresh_lambda_list()
+	_refresh_lambda_values()
 
 
 func _refresh_tabs() -> void:
-	for tab in _queue_properties.size():
-		var property := _queue_properties[tab]
-		var count := (_node.get(property) as Array).size()
-		_tabs.set_tab_title(tab, "%s  %d" % [property, count])
+	var properties := _RPGM_Plugin_Lambda_Inspector.LAMBDA_QUEUE_PROPERTIES
+	for tab in properties.size():
+		_tabs.set_tab_title(tab, "%s  %d" % [properties[tab], _node.get(properties[tab]).size()])
 
 
 func _refresh_toolbar() -> void:
-	var count := _get_queue().size()
 	var has_selection := _selected_index >= 0
-	_add_button.disabled = _queue_property.is_empty()
 	_duplicate_button.disabled = not has_selection
 	_delete_button.disabled = not has_selection
 	_up_button.disabled = _selected_index <= 0
-	_down_button.disabled = not has_selection or _selected_index >= count - 1
+	_down_button.disabled = not has_selection or _selected_index >= _get_lambda_queue().size() - 1
 
 
-# Rows are rebuilt only when their number changes, so the list keeps its
-# scroll position; otherwise the texts are updated in place.
-func _refresh_list() -> void:
-	var queue := _get_queue()
-	_list.set_block_signals(true)
+# CLAUDE: rows are rebuilt only when their number changes, so the list keeps its scroll position.
+func _refresh_lambda_list() -> void:
+	var lambda_queue := _get_lambda_queue()
+	_lambda_list.set_block_signals(true)
 
-	if queue.size() != _listed_count:
-		_listed_count = queue.size()
-		_list.clear()
-		var root := _list.create_item()
-		for i in queue.size(): _list.create_item(root)
+	if lambda_queue.size() != _listed_lambda_count:
+		_listed_lambda_count = lambda_queue.size()
+		_lambda_list.clear()
+		var root := _lambda_list.create_item()
+		for i in lambda_queue.size(): _lambda_list.create_item(root)
 
-	# CLAUDE: two columns now, number and raw class name (no value summary)
-	var rows := _list.get_root().get_children()
-	for i in queue.size():
+	var rows := _lambda_list.get_root().get_children()
+	for i in lambda_queue.size():
 		rows[i].set_text(0, str(i + 1))
-		rows[i].set_text(1, _RPGM_Plugin_Lambda_Text.class_name_of(queue[i]))
+		rows[i].set_text(1, _RPGM_Plugin_Lambda_Inspector.class_name_of(lambda_queue[i]))
 
 	if _selected_index >= 0: rows[_selected_index].select(0)
-	else: _list.deselect_all()
-	_list.set_block_signals(false)
+	else: _lambda_list.deselect_all()
+	_lambda_list.set_block_signals(false)
 
 
-# The value editors are rebuilt only when a different lambda is selected, so
-# keyboard focus stays in the field being typed in.
-func _refresh_values() -> void:
+# CLAUDE: value editors are rebuilt only for a different lambda, so focus stays in the field being typed in.
+func _refresh_lambda_values() -> void:
 	var lambda := _get_selected_lambda()
 	if lambda != _shown_lambda:
-		_rebuild_values(lambda)
+		_rebuild_lambda_values(lambda)
 		return
 	for editor in _value_editors: editor.update_property()
 
 
-func _rebuild_values(lambda : Resource) -> void:
+func _rebuild_lambda_values(lambda : Resource) -> void:
 	_shown_lambda = lambda
 	_value_editors.clear()
-	for child in _values.get_children():
-		_values.remove_child(child)
+	for child in _lambda_values.get_children():
+		_lambda_values.remove_child(child)
 		child.queue_free()
-	# CLAUDE: the dialog's title bar replaces the title label and separator
-	_values_dialog.title = _RPGM_Plugin_Lambda_Text.class_name_of(lambda)
+	_lambda_values_dialog.title = _RPGM_Plugin_Lambda_Inspector.class_name_of(lambda)
 	if lambda == null:
-		_values_dialog.hide()
+		_lambda_values_dialog.hide()
 		return
 
-	# LESSON: reuse the Inspector's own widget for each value instead of
-	# writing a text box per type. It only reports the edit; we commit it.
-	for p in _RPGM_Plugin_Lambda_Text.exported_properties(lambda):
+	# CLAUDE: reuse the Inspector's own widget per value; it only reports the edit, _commit_value applies it.
+	for p in _RPGM_Plugin_Lambda_Inspector.exported_properties(lambda):
 		var editor := EditorInspector.instantiate_property_editor(
 			lambda, p.type, p.name, p.hint, p.hint_string, p.usage)
 		if editor == null: continue
 		editor.set_object_and_property(lambda, p.name)
 		editor.label = p.name
 		editor.name_split_ratio = 0.3
-		# CLAUDE: connected straight to _commit_value, no forwarding handler
 		editor.property_changed.connect(_commit_value.bind(lambda))
-		_values.add_child(editor)
+		_lambda_values.add_child(editor)
 		editor.update_property()
 		_value_editors.append(editor)
 
 
-# ---- writing: the only two functions that change data
-
-# LESSON: hand undo a copy of the array. If the live array were changed in
-# place, "before" and "after" would be the same object and undo would do nothing.
-func _commit_queue(action_name : String, queue : Array) -> void:
+# CLAUDE: undo gets a changed copy of the array, since editing the live one would make "before" and "after" the same.
+func _commit_lambda_queue(action_name : String, lambda_queue : Array) -> void:
 	var undo := EditorInterface.get_editor_undo_redo()
 	undo.create_action(action_name)
-	undo.add_do_property(_node, _queue_property, queue)
-	undo.add_undo_property(_node, _queue_property, _get_queue())
+	undo.add_do_property(_node, _lambda_queue_property, lambda_queue)
+	undo.add_undo_property(_node, _lambda_queue_property, _get_lambda_queue())
 	undo.commit_action()
 
 
-# LESSON: _node is passed as the action's context so the edit lands in the
-# scene's history and marks the scene unsaved.
+# CLAUDE: _node is the action's context so the edit lands in the scene's history and marks it unsaved.
 func _commit_value(
 		property : StringName, value : Variant, _field : StringName,
 		changing : bool, lambda : Resource) -> void:
 	var undo := EditorInterface.get_editor_undo_redo()
-	# while a slider is dragged, merge the stream of edits into one undo step
+	# CLAUDE: while a slider is dragged, the stream of edits merges into one undo step.
 	var merge := UndoRedo.MERGE_ENDS if changing else UndoRedo.MERGE_DISABLE
 	undo.create_action("Set Value", merge, _node)
 	undo.add_do_property(lambda, property, value)
@@ -205,71 +161,62 @@ func _commit_value(
 	undo.commit_action()
 
 
-# ---- user actions
-
 func _on_tab_changed(tab : int) -> void:
-	if tab < 0 or tab >= _queue_properties.size(): return
-	_queue_property = _queue_properties[tab]
-	_selected_index = _first_index()
-	_listed_count = -1
+	_lambda_queue_property = _RPGM_Plugin_Lambda_Inspector.LAMBDA_QUEUE_PROPERTIES[tab]
+	_selected_index = 0
+	_listed_lambda_count = -1
 	_refresh()
 
 
 func _on_row_selected() -> void:
-	_selected_index = _list.get_selected().get_index()
+	_selected_index = _lambda_list.get_selected().get_index()
 	_refresh_toolbar()
-	_refresh_values()
+	_refresh_lambda_values()
 
 
-# New commands go right after the selected one, or at the end.
+# CLAUDE: a new lambda goes right after the selected one, or at the end.
 func _on_add_chosen(menu_index : int) -> void:
-	var path : String = _add_button.get_popup().get_item_metadata(menu_index)
-	var queue := _get_queue().duplicate()
-	var at := _selected_index + 1 if _selected_index >= 0 else queue.size()
-	queue.insert(at, _RPGM_Plugin_Lambda_Text.new_lambda(path))
-	_selected_index = at
-	_commit_queue("Add Command", queue)
+	var script_path : String = _add_button.get_popup().get_item_metadata(menu_index)
+	var lambda_queue := _get_lambda_queue().duplicate()
+	_selected_index += 1
+	lambda_queue.insert(_selected_index, _RPGM_Plugin_Lambda_Inspector.new_lambda(script_path))
+	_commit_lambda_queue("Add Command", lambda_queue)
 
 
 func _on_duplicate_pressed() -> void:
-	var lambda := _get_selected_lambda()
-	if lambda == null: return
-	var queue := _get_queue().duplicate()
-	queue.insert(_selected_index + 1, lambda.duplicate(true))
+	var lambda_queue := _get_lambda_queue().duplicate()
+	lambda_queue.insert(_selected_index + 1, _get_selected_lambda().duplicate(true))
 	_selected_index += 1
-	_commit_queue("Duplicate Command", queue)
+	_commit_lambda_queue("Duplicate Command", lambda_queue)
 
 
 func _on_move_pressed(direction : int) -> void:
-	var queue := _get_queue().duplicate()
+	var lambda_queue := _get_lambda_queue().duplicate()
 	var to := _selected_index + direction
-	if _selected_index < 0 or to < 0 or to >= queue.size(): return
-	var moved = queue[_selected_index]
-	queue[_selected_index] = queue[to]
-	queue[to] = moved
+	var moved = lambda_queue[_selected_index]
+	lambda_queue[_selected_index] = lambda_queue[to]
+	lambda_queue[to] = moved
 	_selected_index = to
-	_commit_queue("Move Command", queue)
+	_commit_lambda_queue("Move Command", lambda_queue)
 
 
 func _on_delete_pressed() -> void:
-	var queue := _get_queue().duplicate()
-	if _selected_index < 0 or _selected_index >= queue.size(): return
-	queue.remove_at(_selected_index)
-	_selected_index = mini(_selected_index, queue.size() - 1)
-	_commit_queue("Delete Command", queue)
+	var lambda_queue := _get_lambda_queue().duplicate()
+	lambda_queue.remove_at(_selected_index)
+	_commit_lambda_queue("Delete Command", lambda_queue)
 
 
 func _fill_add_menu() -> void:
 	var popup := _add_button.get_popup()
 	popup.clear()
-	for lambda_class in _RPGM_Plugin_Lambda_Text.lambda_classes():
+	for lambda_class in _RPGM_Plugin_Lambda_Inspector.lambda_classes():
 		popup.add_item(lambda_class["class"])
 		popup.set_item_metadata(popup.item_count - 1, lambda_class["path"])
 
 
-# ---- layout: built once; nothing in here reads the node
-
+# CLAUDE: built once; nothing in here reads the node.
 func _build_layout() -> void:
+	for property in _RPGM_Plugin_Lambda_Inspector.LAMBDA_QUEUE_PROPERTIES: _tabs.add_tab("")
 	_tabs.tab_changed.connect(_on_tab_changed)
 	add_child(_tabs)
 
@@ -290,43 +237,40 @@ func _build_layout() -> void:
 	_up_button.pressed.connect(_on_move_pressed.bind(-1))
 	_down_button = _make_tool_button(toolbar, "MoveDown", "Move down", KEY_DOWN, true)
 	_down_button.pressed.connect(_on_move_pressed.bind(1))
-	# the Mac "delete" key is Backspace
+	# CLAUDE: the Mac "delete" key is Backspace.
 	_delete_button = _make_tool_button(toolbar, "Remove", "Delete", KEY_BACKSPACE, false)
 	_delete_button.pressed.connect(_on_delete_pressed)
 
-	# the list: number | class name
-	_list.columns = 2
-	_list.hide_root = true
-	_list.select_mode = Tree.SELECT_ROW
-	# typing in the list would otherwise search it and eat the shortcut keys
-	_list.allow_search = false
-	_list.set_column_expand(0, false)
-	_list.set_column_custom_minimum_width(0, int(40 * _scale()))
-	_list.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	_list.item_selected.connect(_on_row_selected)
-	# CLAUDE: double-click (or Enter) on a command opens its values in a popup,
-	# instead of a pane that is always open beside the list
-	_list.item_activated.connect(func():
-		_values_dialog.popup_centered(Vector2i(int(500 * _scale()), 0)))
-	add_child(_list)
+	# CLAUDE: two columns, number and class name.
+	_lambda_list.columns = 2
+	_lambda_list.hide_root = true
+	_lambda_list.select_mode = Tree.SELECT_ROW
+	# CLAUDE: search-as-you-type would eat the shortcut keys.
+	_lambda_list.allow_search = false
+	_lambda_list.set_column_expand(0, false)
+	_lambda_list.set_column_custom_minimum_width(0, int(40 * _scale()))
+	_lambda_list.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	_lambda_list.item_selected.connect(_on_row_selected)
+	# CLAUDE: double-click or Enter on a row opens its values in a popup.
+	_lambda_list.item_activated.connect(func():
+		_lambda_values_dialog.popup_centered(Vector2i(int(500 * _scale()), 0)))
+	add_child(_lambda_list)
 
-	_values_dialog.add_child(_values)
-	add_child(_values_dialog)
+	_lambda_values_dialog.add_child(_lambda_values)
+	add_child(_lambda_values_dialog)
 
 
-# LESSON: take icons from the editor theme and multiply sizes by the editor
-# scale, so the UI matches light / dark themes and hiDPI screens.
+# CLAUDE: sizes are multiplied by the editor scale so the UI fits hiDPI screens.
 func _scale() -> float:
 	return EditorInterface.get_editor_scale()
 
 
+# CLAUDE: icons come from the editor theme so they match light and dark themes.
 func _icon(icon_name : String) -> Texture2D:
 	return EditorInterface.get_editor_theme().get_icon(icon_name, "EditorIcons")
 
 
-# CLAUDE: the key is a native Button.shortcut instead of a gui_input handler.
-# LESSON: shortcut_context limits it to when the list has focus, the button
-# ignores it while disabled, and the tooltip shows the key by itself.
+# CLAUDE: Button.shortcut with shortcut_context fires only while the list has focus and the button is enabled.
 func _make_tool_button(
 		toolbar : Control, icon_name : String, tooltip : String,
 		keycode : Key, alt : bool) -> Button:
@@ -340,6 +284,6 @@ func _make_tool_button(
 	button.focus_mode = Control.FOCUS_NONE
 	button.shortcut = Shortcut.new()
 	button.shortcut.events = [key]
-	button.shortcut_context = _list
+	button.shortcut_context = _lambda_list
 	toolbar.add_child(button)
 	return button
