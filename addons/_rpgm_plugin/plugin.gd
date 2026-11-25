@@ -14,8 +14,8 @@ const BOTTOM_DOCK : PackedScene = preload("res://addons/_rpgm_plugin/_rpgm_plugi
 
 # i0 GDScript.new() creates a dimmed script node,
 # because it is made from GDScript
-var INSPECTOR : GDScript = preload("res://addons/_rpgm_plugin/_rpgm_plugin_inspector/_rpgm_plugin_inspector.gd")
-var SCRIPT_INSPECTOR : GDScript = preload("res://addons/_rpgm_plugin/_rpgm_plugin_inspector/_rpgm_plugin_script_inspector.gd")
+var INSPECTOR : GDScript = preload("res://addons/_rpgm_plugin/_rpgm_plugin_inspector/_rpgm_plugin_rpgm_mover.gd")
+var SCRIPT_INSPECTOR : GDScript = preload("res://addons/_rpgm_plugin/_rpgm_plugin_inspector/_rpgm_plugin_rpgm_script.gd")
 
 # :C: instances are kept so _exit_tree can remove the same ones.
 var _mover_inspector : EditorInspectorPlugin

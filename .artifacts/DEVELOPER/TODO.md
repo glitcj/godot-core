@@ -2,6 +2,20 @@
 Claude ignores this files, this file is only for the human developer to see, use, and maintain.
 
 
+- Add Stats and Cool Things and Shaders in RPGM MAIN SCREEN
+
+- Rename Inspector Toggler plugin to All Shortcuts
+
+- Shortcut: Hide Show Dock at the correct scale (covering the same vertical space as inspector)
+
+- Shortcut: Hide Show Dock at the Maximum (looks like Main Screen)
+
+- Shortcut: GODOT LINK FUNCTION KEYS
+
+- Shortcut: VSCODE LINK FUNCTION KEYS
+
+
+
 
 - Review _RPGM_Plugin_Lambda_Queue_Editor
 

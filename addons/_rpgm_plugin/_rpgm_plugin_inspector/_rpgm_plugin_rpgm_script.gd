@@ -18,7 +18,7 @@ func _parse_property(
 		_usage_flags : int, _wide : bool) -> bool:
 	if not StringName(name) in _RPGM_Plugin_Lambda_Helper.LAMBDA_QUEUE_PROPERTIES: return false
 
-	var row := _RPGM_Plugin_Lambda_Queue_Property.new()
+	var row := _RPGM_Plugin_Property_Lambda_Queue.new()
 	row.edit_pressed.connect(func(): edit_requested.emit(object, StringName(name)))
 	add_property_editor(name, row)
 	return true
