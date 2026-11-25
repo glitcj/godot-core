@@ -1,0 +1,84 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://addons/_rpgm_plugin/_rpgm_plugin_lambda_queue/_rpgm_plugin_lambda_queue_editor.gd" id="1_editor"]
+
+[sub_resource type="InputEventKey" id="key_duplicate"]
+alt_pressed = true
+keycode = 68
+
+[sub_resource type="Shortcut" id="shortcut_duplicate"]
+events = [SubResource("key_duplicate")]
+
+[sub_resource type="InputEventKey" id="key_move_up"]
+alt_pressed = true
+keycode = 4194320
+
+[sub_resource type="Shortcut" id="shortcut_move_up"]
+events = [SubResource("key_move_up")]
+
+[sub_resource type="InputEventKey" id="key_move_down"]
+alt_pressed = true
+keycode = 4194322
+
+[sub_resource type="Shortcut" id="shortcut_move_down"]
+events = [SubResource("key_move_down")]
+
+[sub_resource type="InputEventKey" id="key_remove"]
+keycode = 4194308
+
+[sub_resource type="Shortcut" id="shortcut_remove"]
+events = [SubResource("key_remove")]
+
+[node name="_RPGM_Plugin_Lambda_Queue_Editor" type="VBoxContainer"]
+script = ExtResource("1_editor")
+
+[node name="Tabs" type="TabBar" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Toolbar" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Add" type="Button" parent="Toolbar"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Add a command after the selected one"
+text = "Add"
+
+[node name="Duplicate" type="Button" parent="Toolbar"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Duplicate"
+focus_mode = 0
+shortcut = SubResource("shortcut_duplicate")
+
+[node name="MoveUp" type="Button" parent="Toolbar"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Move up"
+focus_mode = 0
+shortcut = SubResource("shortcut_move_up")
+
+[node name="MoveDown" type="Button" parent="Toolbar"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Move down"
+focus_mode = 0
+shortcut = SubResource("shortcut_move_down")
+
+[node name="Remove" type="Button" parent="Toolbar"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Delete"
+focus_mode = 0
+shortcut = SubResource("shortcut_remove")
+
+[node name="LambdaList" type="ItemList" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+allow_search = false
+
+[node name="LambdaInspectorDialog" type="AcceptDialog" parent="."]
+unique_name_in_owner = true

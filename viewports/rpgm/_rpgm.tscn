@@ -27,6 +27,7 @@
 [ext_resource type="Script" uid="uid://brl88l8fl1w5u" path="res://viewports/rpgm/common/common_scripts/_rpgm_common_script_teleport.gd" id="24_jvimy"]
 [ext_resource type="PackedScene" uid="uid://bfksw2782klor" path="res://viewports/rpgm/components/_rpgm_script.tscn" id="25_os0wp"]
 [ext_resource type="Script" uid="uid://bl5h2aanw8u6d" path="res://viewports/rpgm/lambdas/_rpgm_lambda_fade_out.gd" id="27_jkq8p"]
+[ext_resource type="Script" uid="uid://chucp3im6mrea" path="res://viewports/rpgm/lambdas/_rpgm_lambda_fade_in.gd" id="28_q33eq"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_vd6wf"]
 
@@ -2493,6 +2494,16 @@ script = ExtResource("21_3g6bu")
 messages = Array[String](["Another tester message."])
 metadata/_custom_type_script = "uid://mhwrdc5y8886"
 
+[sub_resource type="Resource" id="Resource_l5s21"]
+script = ExtResource("27_jkq8p")
+
+[sub_resource type="Resource" id="Resource_jkq8p"]
+script = ExtResource("21_3g6bu")
+messages = Array[String](["Hello from a native lambda selector ~"])
+
+[sub_resource type="Resource" id="Resource_k6ufa"]
+script = ExtResource("28_q33eq")
+
 [node name="_RPGM" type="Node2D" unique_id=401710376]
 y_sort_enabled = true
 script = ExtResource("1_liwig")
@@ -4421,7 +4432,7 @@ script = ExtResource("11_mp8pu")
 map_position = Vector2i(37, -27)
 
 [node name="_RPGM_Script" parent="_common_base_0_2" unique_id=144276679 instance=ExtResource("25_os0wp")]
-on_action = Array[ExtResource("20_qyd70")]([SubResource("Resource_0u55c"), SubResource("Resource_o56lo")])
+on_action = Array[ExtResource("20_qyd70")]([SubResource("Resource_0u55c"), SubResource("Resource_o56lo"), SubResource("Resource_l5s21"), SubResource("Resource_jkq8p"), SubResource("Resource_k6ufa")])
 interrupt_player = true
 is_collision = true
 

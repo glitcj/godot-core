@@ -7,7 +7,7 @@ extends EditorProperty
 signal edit_pressed
 
 var _box := VBoxContainer.new()
-var _lines := VBoxContainer.new()
+var _lambda_names := Label.new()
 var _edit_button := Button.new()
 
 
@@ -16,7 +16,8 @@ func _init() -> void:
 	_edit_button.icon = EditorInterface.get_editor_theme().get_icon("Edit", "EditorIcons")
 	_edit_button.pressed.connect(edit_pressed.emit)
 
-	_box.add_child(_lines)
+	_lambda_names.clip_text = true
+	_box.add_child(_lambda_names)
 	_box.add_child(_edit_button)
 	add_child(_box)
 	# :C: full width under the label,
@@ -26,18 +27,8 @@ func _init() -> void:
 
 # :C: the Inspector calls this when the lambda queue changes.
 func _update_property() -> void:
-	for child in _lines.get_children():
-		_lines.remove_child(child)
-		child.queue_free()
-
 	var lambda_queue : Array = get_edited_object().get(get_edited_property())
-	if lambda_queue.is_empty(): _add_line("No commands")
+	var lines := PackedStringArray()
 	for i in lambda_queue.size():
-		_add_line("%d   %s" % [i + 1, _RPGM_Plugin_Lambda_Helper.class_name_of(lambda_queue[i])])
-
-
-func _add_line(text : String) -> void:
-	var line := Label.new()
-	line.text = text
-	line.clip_text = true
-	_lines.add_child(line)
+		lines.append("%d   %s" % [i + 1, _RPGM_Plugin_Lambda_Helper.class_name_of(lambda_queue[i])])
+	_lambda_names.text = "\n".join(lines) if not lines.is_empty() else "No commands"

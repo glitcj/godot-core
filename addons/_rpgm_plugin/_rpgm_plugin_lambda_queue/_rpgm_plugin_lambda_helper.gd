@@ -4,8 +4,6 @@
 extends Object
 class_name _RPGM_Plugin_Lambda_Helper
 
-const BASE_CLASS := &"_RPGM_Lambda"
-
 # :C: the lambda queues of _RPGM_Script, in tab order;
 # keep in sync with its @exports.
 const LAMBDA_QUEUE_PROPERTIES : Array[StringName] = [
@@ -17,31 +15,9 @@ static func class_name_of(lambda : Resource) -> String:
 	if lambda == null: return "<empty>"
 	return String((lambda.get_script() as Script).get_global_name())
 
-
-# :C: lambda scripts are not @tool,
-# so the @export list is read from the script.
-static func exported_properties(lambda : Resource) -> Array[Dictionary]:
-	var properties : Array[Dictionary] = []
-	for p in (lambda.get_script() as Script).get_script_property_list():
-		if p.usage & PROPERTY_USAGE_EDITOR: properties.append(p)
-	return properties
-
-
-# :C: every global class inheriting _RPGM_Lambda,
-# as { "class", "base", "path" }.
-static func lambda_classes() -> Array[Dictionary]:
-	var all := ProjectSettings.get_global_class_list()
-	var base_of := {}
-	for c in all: base_of[String(c["class"])] = String(c["base"])
-
-	var found : Array[Dictionary] = []
-	for c in all:
-		var base := String(c["base"])
-		while base != BASE_CLASS and base_of.has(base): base = base_of[base]
-		if base == BASE_CLASS: found.append(c)
-	return found
-
-
+# i0 generates a new script by making a Resource.new()
+# then attaching the script, skips _init() while the
+# editor is running.
 # :C: set_script on a plain Resource,
 # so the game's _init() does not run in editor.
 static func new_lambda(script_path : String) -> Resource:

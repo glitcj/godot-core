@@ -16,7 +16,9 @@ signal bottom_dock_requested
 signal output_bottom_dock_requested
 
 var on_selection_interface : VBoxContainer = VBoxContainer.new()
-var _lambda_queue_editor := _RPGM_Plugin_Lambda_Queue_Editor.new()
+# :C: instantiated from its scene, which holds the layout.
+const LAMBDA_QUEUE_EDITOR : PackedScene = preload("res://addons/_rpgm_plugin/_rpgm_plugin_lambda_queue/_rpgm_plugin_lambda_queue_editor.tscn")
+var _lambda_queue_editor : _RPGM_Plugin_Lambda_Queue_Editor = LAMBDA_QUEUE_EDITOR.instantiate()
 var _hint := Label.new()
 
 
