@@ -1,5 +1,5 @@
 @tool
-# CLAUDE: adds a row of Quantise buttons to the _RPGM_Mover inspector.
+# :C: adds a row of Quantise buttons to the _RPGM_Mover inspector.
 extends EditorInspectorPlugin
 
 
@@ -9,12 +9,14 @@ func _can_handle(object: Object) -> bool:
 	return object is _RPGM_Mover
 
 
-# CLAUDE: called once per object, before any property; adds the row at the top.
+# :C: called once per object, before any property;
+# adds the row at the top.
 func _parse_begin(object: Object) -> void:
 	_add_quantise_row(object)
 
 
-# CLAUDE: adds a second row above "speed"; returning false keeps the stock row.
+# :C: adds a second row above "speed";
+# returning false keeps the stock row.
 func _parse_property(object: Object, _type: Variant.Type, name: String, _hint_type: PropertyHint, _hint_string: String, _usage_flags: int, _wide: bool) -> bool:
 	if name == "speed": _add_quantise_row(object)
 	return false

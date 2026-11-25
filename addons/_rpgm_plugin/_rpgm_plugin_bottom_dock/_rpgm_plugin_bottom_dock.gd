@@ -9,7 +9,8 @@ class_name _RPGM_Plugin_Bottom_Dock
 # i0 the lambda queue "widget" is complicated so needs its own def
 
 
-# CLAUDE: the dock follows the editor selection and decides what to show.
+# :C: the dock follows the editor selection
+# and decides what to show.
 
 signal bottom_dock_requested
 signal output_bottom_dock_requested
@@ -32,14 +33,15 @@ func _ready() -> void:
 	_on_selection_changed()
 
 
-# CLAUDE: disconnect from editor singletons when leaving.
+# :C: disconnect from editor singletons when leaving.
 func _exit_tree() -> void:
 	var selection := EditorInterface.get_selection()
 	if selection.selection_changed.is_connected(_on_selection_changed):
 		selection.selection_changed.disconnect(_on_selection_changed)
 
 
-# CLAUDE: opens one lambda queue of a script node, from the Inspector's "Edit in RPGM dock" button.
+# :C: opens one lambda queue of a script node,
+# from the Inspector's "Edit in RPGM dock" button.
 func show_lambda_queue(node : Node, lambda_queue_property : StringName) -> void:
 	_on_rpgm_script_node_selected(node)
 	_lambda_queue_editor.show_lambda_queue(lambda_queue_property)
@@ -85,7 +87,7 @@ func _on_rpgm_tilemap_node_selected(node : TileMapLayer):
 	_add_button("Describe Tilemap", func(): print(node))
 
 
-# CLAUDE: a script node gets the lambda queue editor.
+# :C: a script node gets the lambda queue editor.
 func _on_rpgm_script_node_selected(node : _RPGM_Script):
 	_hint.visible = false
 	_lambda_queue_editor.edit(node)
