@@ -1,8 +1,14 @@
 
 Claude ignores this files, this file is only for the human developer to see, use, and maintain.
+RPGM = (RPG Map), DGM = (Dungeon Map)
 
+- Sound effects and haptic effects in editor ?
 
-- Add Stats and Cool Things and Shaders in RPGM MAIN SCREEN
+- RPGM: Selecting _RPGM_Event shows Tabs, ONE TAB ONE _RPGM_SCRIPT
+
+- Shortcut: F11 Rotate Through FOCUS LAYOUTS, e.g. CODE FOCUS LAYOUT, 2D FOCUS LAYOUT, 3D FOCUS LAYOUT, GBA LAYOUT, PS1 LAYOUT
+
+- RPGM MAIN SCREEN: Add Stats and Cool Things and Shaders in RPGM MAIN SCREEN
 
 - Rename Inspector Toggler plugin to All Shortcuts
 

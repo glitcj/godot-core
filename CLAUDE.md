@@ -7,6 +7,10 @@ shared infrastructure. The individual games/scenes under `viewports/` are as
 much test-beds for the core as they are games. The owner codes and maintains
 this hands-on.
 
+## Rules written by the developer. Note to ALL agents (including Claude): DO NOT TOUCH this section
+
+- whenever I say "dock" without qualifying bottom, left, or right, I mean the bottom dock.
+
 
 ## Claude's role
 

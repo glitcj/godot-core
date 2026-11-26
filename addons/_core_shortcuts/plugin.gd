@@ -17,6 +17,24 @@ func _enter_tree() -> void:
 # i0 _input is the root of input catching, catches
 # input events before everything else
 func _input(event: InputEvent) -> void:
+	_input_inspector_toggle(event)
+
+
+
+
+func _input_dock_toggle(event : InputEvent):
+	var key := event as InputEventKey
+	if key == null or not key.pressed or key.echo: return
+	# F11
+	if key.physical_keycode != KEY_F11: return
+	
+	# i0i grab bottom dock
+	# o-o toggle loop through [ show bottom dock > maximise dock > hide dock ]
+	
+	
+
+
+func _input_inspector_toggle(event : InputEvent):
 	var key := event as InputEventKey
 	if key == null or not key.pressed or key.echo: return
 	# F12, or Cmd + Option + I

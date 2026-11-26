@@ -30,7 +30,7 @@ func _enter_tree():
 	_bottom_dock_control = BOTTOM_DOCK.instantiate()
 	add_control_to_bottom_panel(_bottom_dock_control, "RPGM")
 	_bottom_dock_control.bottom_dock_requested.connect(func(): make_bottom_panel_item_visible(_bottom_dock_control))
-	_bottom_dock_control.output_bottom_dock_requested.connect(_show_output_tab)
+	_bottom_dock_control.output_dock_requested.connect(_show_output_tab)
 
 	_mover_inspector = INSPECTOR.new()
 	add_inspector_plugin(_mover_inspector)
