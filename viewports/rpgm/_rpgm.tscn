@@ -4451,4 +4451,8 @@ is_collision = true
 
 [node name="_RPGM_Portrait" parent="_common_base_0_3/_RPGM_Script" unique_id=905552253 instance=ExtResource("13_s4010")]
 
+[node name="Button" type="Button" parent="." unique_id=1319539312]
+offset_right = 8.0
+offset_bottom = 8.0
+
 [editable path="_map_4/_npc_0_1"]

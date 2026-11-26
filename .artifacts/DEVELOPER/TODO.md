@@ -2,6 +2,13 @@
 Claude ignores this files, this file is only for the human developer to see, use, and maintain.
 RPGM = (RPG Map), DGM = (Dungeon Map)
 
+
+
+- Code DRAWING RULES, the best: 
+o-ask in code > :C: > o-ask in cli > o-ask in cli > o-ask in code > :C:
+
+- Add Editor State Script Inlined Nodes + Editor State Plugin with Dock and Page
+
 - Sound effects and haptic effects in editor ?
 
 - RPGM: Selecting _RPGM_Event shows Tabs, ONE TAB ONE _RPGM_SCRIPT
