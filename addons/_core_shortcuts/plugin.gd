@@ -18,6 +18,7 @@ func _enter_tree() -> void:
 # input events before everything else
 func _input(event: InputEvent) -> void:
 	_input_inspector_toggle(event)
+	_input_dock_toggle(event)
 
 
 
@@ -28,10 +29,58 @@ func _input_dock_toggle(event : InputEvent):
 	# F11
 	if key.physical_keycode != KEY_F11: return
 	
-	# i0i grab bottom dock
+	# i0i _bottom_dock() returns all nodes relating
+	# to all tabs in the bottom dock
+	if false: _bottom_dock().visible = !_bottom_dock().visible
+	
+	
+	
+	# i0i get_base_control() is a Control node, 
+	# specficially, a Panel, it's children are
+	# ALL the editor nodes showing on screen.
+	
+	# i0i setting EditorInterface.get_base_control().visible = false
+	# hides all editor nodes.
+	if false: # i0i hehe
+		EditorInterface.get_base_control().visible = !EditorInterface.get_base_control().visible 
+
+	
+	# get_viewport().set_input_as_handled()
+	# return
+
+	var bottom_dock := _bottom_dock()
+	if bottom_dock == null: return
+	# :C: maximising means hiding the area above the bottom dock.
+	var area_above_dock := bottom_dock.get_parent().get_child(0) as Control
+
 	# o-o toggle loop through [ show bottom dock > maximise dock > hide dock ]
-	
-	
+	if bottom_dock.current_tab == -1:
+		bottom_dock.current_tab = maxi(bottom_dock.get_previous_tab(), 0)
+	elif area_above_dock.visible:
+		area_above_dock.visible = false
+	else:
+		area_above_dock.visible = true
+		hide_bottom_panel()
+		_focus_main_screen()
+
+	get_viewport().set_input_as_handled()
+
+
+# :C: no API says which control is a main screen's work area,
+# so the largest visible focusable control is taken.
+func _focus_main_screen() -> void:
+	var work_area : Control
+	for control : Control in EditorInterface.get_editor_main_screen().find_children("*", "Control", true, false):
+		if control.focus_mode != Control.FOCUS_ALL or not control.is_visible_in_tree(): continue
+		if work_area == null or control.size.x * control.size.y > work_area.size.x * work_area.size.y: work_area = control
+	if work_area != null: work_area.grab_focus()
+
+
+# :C: the bottom dock has no official getter,
+# so it is found by its class name.
+func _bottom_dock() -> TabContainer:
+	var found := EditorInterface.get_base_control().find_children("*", "EditorBottomPanel", true, false)
+	return found.front() as TabContainer
 
 
 func _input_inspector_toggle(event : InputEvent):
