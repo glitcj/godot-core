@@ -1,11 +1,12 @@
 @tool
 extends EditorPlugin
 
-# :C: F12 or Cmd+Option+I steps through the tabs
-# of the Inspector's dock slot, then hides the slot.
 # :C: hiding the slot is a workaround, not an official API;
 # the editor may re-show it when the dock layout changes.
 # :C: selecting a node brings the Inspector forward.
+
+var TOGGLE_BOTTOM_DOCK_SIZE_KEY = KEY_F12
+var TOGGLE_INSPECTOR_DOCK_TAB_KEY = KEY_F11
 
 
 # :C: no disconnect needed;
@@ -19,15 +20,38 @@ func _enter_tree() -> void:
 func _input(event: InputEvent) -> void:
 	_input_inspector_toggle(event)
 	_input_dock_toggle(event)
+	_input_dock_tab_step(event)
 
 
+# :C: Cmd+Option+Left or Right steps through the bottom dock's tabs.
+# :C: select_*_available skips hidden tabs, and stops at either end.
+func _input_dock_tab_step(event : InputEvent):
+	var key := event as InputEventKey
+	if key == null or not key.pressed or key.echo: return
+	if not key.meta_pressed or not key.alt_pressed: return
+	if key.physical_keycode != KEY_LEFT and key.physical_keycode != KEY_RIGHT: return
+
+	var bottom_dock := _bottom_dock()
+	if bottom_dock == null: return
+
+	if key.physical_keycode == KEY_RIGHT: bottom_dock.select_next_available()
+	else: bottom_dock.select_previous_available()
+	
+	# i0i this is what makes sure the default
+	# behaviour of the editor is overriden
+	# :C: get_viewport() is the editor's main window,
+	# the one this plugin node lives in.
+	# :C: the editor has more viewports:
+	# each 2D/3D view, dialog and floating panel.
+	get_viewport().set_input_as_handled()
+	
+	
 
 
 func _input_dock_toggle(event : InputEvent):
 	var key := event as InputEventKey
 	if key == null or not key.pressed or key.echo: return
-	# F11
-	if key.physical_keycode != KEY_F11: return
+	if key.physical_keycode != TOGGLE_BOTTOM_DOCK_SIZE_KEY: return
 	
 	# i0i _bottom_dock() returns all nodes relating
 	# to all tabs in the bottom dock
@@ -86,11 +110,10 @@ func _bottom_dock() -> TabContainer:
 func _input_inspector_toggle(event : InputEvent):
 	var key := event as InputEventKey
 	if key == null or not key.pressed or key.echo: return
-	# F12, or Cmd + Option + I
 	var is_cmd_option_i := key.physical_keycode == KEY_I and key.meta_pressed and key.alt_pressed
-	if key.physical_keycode != KEY_F12 and not is_cmd_option_i: return
+	if key.physical_keycode != TOGGLE_INSPECTOR_DOCK_TAB_KEY and not is_cmd_option_i: return
 
-	var slot := _inspector_slot()
+	var slot := _inspector_tab_container()
 	if slot == null: return
 
 	if not slot.visible:
@@ -108,7 +131,7 @@ func _input_inspector_toggle(event : InputEvent):
 # :C: selection_changed also fires on deselect, which is ignored.
 func _show_inspector() -> void:
 	if EditorInterface.get_selection().get_selected_nodes().is_empty(): return
-	var slot := _inspector_slot()
+	var slot := _inspector_tab_container()
 	if slot == null: return
 
 	# :C: the Inspector's tab is the one that contains it.
@@ -133,7 +156,7 @@ func _sync_column(slot: TabContainer) -> void:
 # :C: the dock slot is the first TabContainer above the Inspector.
 # :C: found on each press,
 # because the Inspector can be dragged to another slot.
-func _inspector_slot() -> TabContainer:
+func _inspector_tab_container() -> TabContainer:
 	var node: Node = EditorInterface.get_inspector()
 	while node != null and not node is TabContainer:
 		node = node.get_parent()
