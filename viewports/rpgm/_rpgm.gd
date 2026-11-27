@@ -19,6 +19,7 @@ func get_data(): return data as _RPGM_Data
 
 func _ready() -> void:
 	super()
+	if Engine.is_editor_hint(): return # i0 this is a @tool and _Core instance is not available at _ready()
 	get_core().get_log().add_log(func tester(): return "is_active: %s" % is_active)
 
 func _on_viewport_start():

@@ -4,8 +4,23 @@ RPGM = (RPG Map), DGM = (Dungeon Map)
 
 
 
+- ADD CODE DRAWING BUTTON F2
+
+
+- add and DO, LOTS of INLINE CONTROL DRAWING, _Core_Editor is COMPLETELY INLINE
+
+
+- WRITE in CLAUDE.md Drawing messages reference for: :D: inline diffing, deleted by dev after implementation :A: answered o-ask :C: general comment, and during implementation
+
+
+
+- MAP F1 to LINES OR DRAWING ?
+
 - Code DRAWING RULES, the best: 
 o-ask in code > :C: > o-ask in cli > o-ask in cli > o-ask in code > :C:
+
+
+- ADD _Core_Bot CONNECTS TO GLITCJ BOT
 
 - Add Editor State Script Inlined Nodes + Editor State Plugin with Dock and Page
 

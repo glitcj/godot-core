@@ -25,6 +25,9 @@ func _show_rectangle():
 
 var _editor_root : Panel = EditorInterface.get_base_control()
 var _label := Label.new()
+
+
+
 func _show_editor_state():
 	
 	_label.text += "selected_nodes:\n"
@@ -42,7 +45,7 @@ func _show_editor_state():
 	
 	# i0i panel covers the rect and clicks on it
 	panel.mouse_filter = Control.MOUSE_FILTER_PASS
-	panel.modulate = Color(0,0,0,.25)
+	panel.modulate = Color(0,0,0,.05)
 	
 	rectangle.add_child(panel)
 	panel.add_child(vbox)
@@ -50,10 +53,13 @@ func _show_editor_state():
 	panel.add_child(button)
 	
 	button.pivot_offset = button.get_combined_minimum_size() / 2.
+	button.scale = Vector2.ONE * 5
+	button.pressed.connect(_Core_Editor.play_sfx)
 	
-	button.scale = Vector2.ONE * 50
 	button.pressed.connect(func(): print("pressed i0i0"))
 	button.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
+	
+	_Core_Editor.play_sfx("res://assets/ninja/Sounds/Game/Alert2.wav")
 	
 func _connect_rectangle_gui_input():
 	rectangle.gui_input.connect(

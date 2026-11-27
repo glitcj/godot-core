@@ -17,6 +17,8 @@ var _all_collision_debugging_rects: Array[ColorRect] = []
 
 func _ready() -> void:
 	if false: print_tree_pretty()
+	if Engine.is_editor_hint(): return # i0i custom_monitor is not available at _ready for @tool
+	
 	Performance.add_custom_monitor("_RPGM/_RPGM_process", func(): return last_process_ms)
 	if not Engine.is_editor_hint(): modulate = Color(0,0,0,1)
 	

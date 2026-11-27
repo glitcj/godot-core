@@ -8,32 +8,32 @@
 // Pairs with "zenMode.centerLayout": false in .vscode/settings.json.
 // cmd+k k toggles centered layout manually.
 [
-    {
-        "key": "cmd+k k",
-        "command": "workbench.action.toggleCenteredLayout"
-    },
-    {
-        "key": "cmd+l",
-        "command": "runCommands",
-        "args": {
-            "commands": [
-                "workbench.action.toggleZenMode",
-                "workbench.action.terminal.focus",
+	{
+		"key": "cmd+k k",
+		"command": "workbench.action.toggleCenteredLayout"
+	},
+	{
+		"key": "cmd+l",
+		"command": "runCommands",
+		"args": {
+			"commands": [
+				"workbench.action.toggleZenMode",
+				"workbench.action.terminal.focus",
                 "workbench.action.toggleMaximizedPanel"
-            ]
-        },
-        "when": "!inZenMode"
-    },
-    {
-        "key": "cmd+l",
-        "command": "runCommands",
-        "args": {
-            "commands": [
-                "workbench.action.toggleMaximizedPanel",
-                "workbench.action.toggleZenMode",
+			]
+		},
+		"when": "!inZenMode"
+	},
+	{
+		"key": "cmd+l",
+		"command": "runCommands",
+		"args": {
+			"commands": [
+				"workbench.action.toggleMaximizedPanel",
+				"workbench.action.toggleZenMode",
                 "workbench.action.focusActiveEditorGroup"
-            ]
-        },
-        "when": "inZenMode"
-    }
+			]
+		},
+		"when": "inZenMode"
+	}
 ]
