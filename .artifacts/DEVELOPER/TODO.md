@@ -2,23 +2,34 @@
 Claude ignores this files, this file is only for the human developer to see, use, and maintain.
 RPGM = (RPG Map), DGM = (Dungeon Map)
 
+- ADD _RPGM_Script as a Resource ******
 
+- ADD  _RPGPM_Tilemap as a Resource in _RPGM ****** sounds like a BAD IDEA, read PAGE to see why painted tiles as a Resource is a bad idea - OR add multiple _RPGM maps ( Start with 2), Tilemaps as Nodes, even though they are only Data, because ? They do things ?
+
+- ADD SECOND _RPGM map, JUST to TEST paradigms. TEST _RPGM as a base paradigm
+
+- ADD Contiguous Painted Nodes ?  Will be used by: Pushables and In Room Area detectors
+
+
+
+
+
+
+
+
+
+
+
+
+- ADD TELEPORT AND CAMERA LAMBDAs as Resource
+
+- Add ROOM LOGIC, when entering an RPGM Room borders = ADD MAPS AS TSCN ?
+
+- Move BROKEN EVENTS to the broken events ROOM
+
+- Remove Common Events, Replace with Common Lambda Queues
 
 - ADD CODE DRAWING BUTTON F2
-
-
-- add and DO, LOTS of INLINE CONTROL DRAWING, _Core_Editor is COMPLETELY INLINE
-
-
-- WRITE in CLAUDE.md Drawing messages reference for: :D: inline diffing, deleted by dev after implementation :A: answered o-ask :C: general comment, and during implementation
-
-
-
-- MAP F1 to LINES OR DRAWING ?
-
-- Code DRAWING RULES, the best: 
-o-ask in code > :C: > o-ask in cli > o-ask in cli > o-ask in code > :C:
-
 
 - ADD _Core_Bot CONNECTS TO GLITCJ BOT
 

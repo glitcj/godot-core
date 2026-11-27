@@ -2,12 +2,23 @@
 
 [ext_resource type="Script" uid="uid://dxkbij13lf7tg" path="res://viewports/rpgm/components/_rpgm_event.gd" id="1_k3851"]
 [ext_resource type="PackedScene" uid="uid://bfksw2782klor" path="res://viewports/rpgm/components/_rpgm_script.tscn" id="2_shuxs"]
+[ext_resource type="Script" uid="uid://bo0dmi82n1uvj" path="res://viewports/rpgm/lambdas/_rpgm_lambda.gd" id="3_22ywv"]
 [ext_resource type="PackedScene" uid="uid://ca8vvptjr324n" path="res://viewports/rpgm/components/_rpgm_portrait.tscn" id="3_c2osw"]
+[ext_resource type="Script" uid="uid://mhwrdc5y8886" path="res://viewports/rpgm/lambdas/_rpgm_lambda_show_messages.gd" id="4_11dvb"]
+
+[sub_resource type="Resource" id="Resource_tjjl4"]
+script = ExtResource("4_11dvb")
+messages = Array[String](["Welcome to the Broken Events Room !"])
+
+[sub_resource type="Resource" id="Resource_fxafh"]
+script = ExtResource("4_11dvb")
+messages = Array[String](["It would seem that the Editor likes you to: 1. Right click to instantiate a node (with hidden children), and..", "2. go inside the event and customise it by adding nodes and so, and it does NOT save it's own.tscn"])
 
 [node name="_common_base_0_0" type="Node2D" unique_id=909921870]
 script = ExtResource("1_k3851")
 
 [node name="_RPGM_Script" parent="." unique_id=1629462265 instance=ExtResource("2_shuxs")]
+on_action = Array[ExtResource("3_22ywv")]([SubResource("Resource_tjjl4"), SubResource("Resource_fxafh")])
 interrupt_player = true
 is_collision = true
 
