@@ -2202,14 +2202,13 @@ shader = ExtResource("14_umjq4")
 [sub_resource type="GDScript" id="GDScript_eu0qy"]
 script/source = "extends _RPGM_Script
 
-var _viewport : _Scroller
+var _viewport : _Starter
 signal returned_from_viewport_and_finished
 
 func _ready():
 	super()
-	# CLAUDE: scroller moved from viewports/swiper/ to viewports/scroller/ —
-	# the old path made load() return null and crash on instantiate()
-	_viewport = load(\"res://viewports/scroller/_scroller.tscn\").instantiate() as _Scroller
+	return
+	_viewport = load(\"res://viewports/scroller/_starter.tscn\").instantiate() as _Starter
 	_viewport.is_centered = true
 	_viewport.scale = Vector2(.25, .25)
 	
@@ -2235,7 +2234,7 @@ shader = ExtResource("14_umjq4")
 script/source = "extends _RPGM_Script
 
 signal returned_from_viewport_and_finished
-@onready var _viewport = get_core().get_scene(\"_Scroller\") as _Scroller # load(\"res://scenes/swiper/_swiper.tscn\").instantiate() as _Swiper
+@onready var _viewport = get_core().get_scene(\"_Starter\") as _Starter # load(\"res://scenes/swiper/_swiper.tscn\").instantiate() as _Swiper
 
 
 # adjust _on_viewport_finished such that it takes in 

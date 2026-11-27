@@ -133,7 +133,9 @@ func _show_editor_state():
 	# panel.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	
 	
-	
+	# i0 a code painting monitor will be added to the
+	# top right of _core_editor in the future, to show
+	# when the code painting plugin is busy
 
 
 func _refresh():
